@@ -1,0 +1,12 @@
+title: Python Basics
+author: Arthur Koehl and Nick Ulle
+copyright: "2021"
+logo: img/datalab-logo-full-color-rgb-1.png
+only_build_toc_files: true
+
+repository:
+  url: https://github.com/ucdavisdatalab/workshop_python_basics
+
+html:
+  use_repository_button: true
+
