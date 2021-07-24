@@ -7,6 +7,18 @@ only_build_toc_files: true
 repository:
   url: https://github.com/ucdavisdatalab/workshop_python_basics
 
+parse:
+  myst_enable_extensions:
+    # - amsmath
+    - colon_fence
+    # - deflist
+    - dollarmath
+    # - html_admonition
+    - html_image
+    - linkify
+    # - replacements
+    # - smartquotes
+    - substitution
+
 html:
   use_repository_button: true
-
