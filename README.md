@@ -99,6 +99,12 @@ contributors before adding it.
 
 ## Setup
 
+### Jupyter-Book
+
+Install jupyter-book using pip
+```sh
+pip install -U jupyter-book
+```
 
 ### Git LFS
 
