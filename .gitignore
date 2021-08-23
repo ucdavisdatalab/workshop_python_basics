@@ -2,8 +2,12 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+
 #.RData
 .Rhistory
+
+# Pyenv
+.python-version
 
 # Thumbnails
 ._*
