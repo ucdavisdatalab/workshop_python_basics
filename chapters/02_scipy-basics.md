@@ -14,10 +14,15 @@ Scientific Python
 =================
 
 :::{admonition} Learning Objectives
-- review python basics
 - describe numpy and pandas packages
-- create and explore dataframes
-- learn ways to index dataframes
+- create dataframe from csv file
+- inspect structure of dataframe
+- handle missing values in dataframe
+- index dataframe based on label (loc), integer index (iloc), logical conditions, and [] operator
+- concatenate and merge dataframes
+- drop columns and rows from dataframes
+- change datatypes of columns
+- apply function to column and add as new column to dataframe
 :::
 
 
@@ -62,11 +67,11 @@ arr = np.array( [1, 3, 9, 2], dtype=np.float64)
 **Pandas** is a package that provides the **data frame** object. As well as
 many functions for working with data, including functions for:
 - loading and writing data to/from files and databases
-- merging datasets
 - summarizing data
 - handling missing data
 - reshaping and transforming data
 - subsetting and filtering data
+- merging and combining datasets
 
 
 ## Load in data
@@ -83,28 +88,35 @@ or from the python shell using: `help(pd.read_csv)`
 dataset = pd.read_csv() # should the input be a url?
 ```
 
-We can use the `head()` **method** to see what we have.
+We can use the `head()` method to see what we have.
 ```{code-cell}
 dataset.head()
 ```
 
 Here we see a dataframe, which is the really important part of pandas, which we
-will spend lots of time with. The dataframe is the tool we can merge, join,
-summarize, etc.
+will spend lots of time with during this lesson and the next. 
+The dataframe is the tool we can merge, join, summarize, etc.
 
 ## Dataframes
 
-A dataframe is how pandas structures tabular data - data structured as rows
-and columns.
+A **dataframe** is how pandas structures tabular data - data structured as rows
+and columns. In general rows are observations, and columns are variables.
+Each entry is called a cell.
+
 
 ## Methods for Exploring Dataframes
 
 As with the `head()` method there are many other methods for looking 
 at the contents of a pandas dataframe.
 
+`head()` shows the first rows of the dataframe, to see the last rows, use
+`tail()`. By default, the the number of rows displayed is 5, this amount
+can be modified by passing an optional interger argument.
 ```{code-cell}
-dataset.tail()
+dataset.tail(10)
+dataset.head(3)
 ```
+
 ```{code-cell}
 dataset.describe()
 ```
@@ -114,6 +126,8 @@ dataset.columns
 ```{code-cell}
 dataset.info
 ```
+
+## Missing Values
 
 ## Data Types
 ```{code-cell}
@@ -130,11 +144,11 @@ dataset[colname][4]
 ```
 
 ## Modiying DataFrames
-Concat
+dropping values
+dropping columns
+Concat 
 Join
 cleaning
 changing datatypes
 ```{code-cell}
 ```
-
-## Grouping
