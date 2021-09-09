@@ -69,7 +69,7 @@ WHEN TO USE PRINT VS JUST VARIABLE NAME?
 There are several ways to create an ndarray. In this case we will use a 
 list (built-in python object) of numbers as the input for our array creation:
 ```{code-cell}
-arr = np.array( [1, 3, 9, 2])
+arr = np.array([1, 3, 9, 2])
 arr
 ```
 
@@ -103,7 +103,7 @@ arr.dtype
 To explicitly define the datatype you want for the array you create, pass
 the dtype parameter when creating the array:
 ```{code-cell}
-arr = np.array( [1, 3, 9, 2], dtype=np.int8)
+arr = np.array([1, 3, 9, 2], dtype=np.int8)
 arr 
 ```
 
@@ -121,33 +121,39 @@ For reference here is a list of common datatypes in data analysis:
 
 To access an element from the array use the `[]` operator:
 ```{code-cell}
+display(arr)
 arr[3]
 ```
 
 We can access more than one element with python slicing:
 ```{code-cell}
+display(arr)
 arr[1:4:1]
 ```
 
 We can use integer arrays as indexes:
 ```{code-cell}
-arr[ [1,2,4] ]
+display(arr)
+arr[[1,2,0]]
 ```
 
 We can also use boolean arrays as indexes:
 ```{code-cell}
-arr[ [True,False,True, True] ]
+display(arr)
+arr[[True,False,True,True]]
 ```
 
 We can use indexing to modify the selected elements:
 ```{code-cell}
+display(arr)
 arr[3] = 78
-arr[ [1,2] ] = [0,9]
+arr[[1,2]] = [0,9]
 arr
 ```
 
 Notice what happens when we pass a value that is not an integer:
 ```{code-cell}
+display(arr)
 arr[3] = 7.8
 arr
 ```
@@ -155,7 +161,7 @@ arr
 NumPy has converted 7.8 to an integer before entering it into the array. This
 will only work if there is an accepted way of converting to integer, for 
 example it will fail if something like this is passed:
-```{code-cell}
+```
 arr[3] = "hello"
 ```
 
@@ -181,7 +187,7 @@ arr[arr>3]
 Now let us see some of these concepts with a 2-D array. As before, we can
 define a 2-D array by passing a python list as input:
 ```{code-cell}
-arr = np.array( [ [1,2], [3,4] ], dtype=np.int8 )
+arr = np.array([[1,2], [3,4]], dtype=np.int8)
 ```
 
 Here is another way of initializing an array:
@@ -245,10 +251,10 @@ Both `head()` and `tail()` accept this optional integer argument.
 
 ```{code-cell}
 dataset.tail(10)
-dataset.head(3)
 ```
 To display the columns of the dataframe we can access the columns attribute
 of the dataframe object.
+
 ```{code-cell}
 dataset.columns
 ```
