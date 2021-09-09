@@ -63,9 +63,6 @@ and its size is set on its creation.
 If you are working in python for data analysis, data science, 
 machine learning, etc. you will run into numpy arrays. 
 
-WHEN TO INTRODUCE FUNCTION VS METHOD VS ATTRIBUTE/PROPERTY/DESCIPTOR?
-WHEN TO USE PRINT VS JUST VARIABLE NAME?
-
 There are several ways to create an ndarray. In this case we will use a 
 list (built-in python object) of numbers as the input for our array creation:
 ```{code-cell}
@@ -128,7 +125,7 @@ arr[3]
 We can access more than one element with python slicing:
 ```{code-cell}
 display(arr)
-arr[1:4:1]
+arr[1:3:1]
 ```
 
 We can use integer arrays as indexes:
@@ -161,24 +158,30 @@ arr
 NumPy has converted 7.8 to an integer before entering it into the array. This
 will only work if there is an accepted way of converting to integer, for 
 example it will fail if something like this is passed:
-```
-arr[3] = "hello"
+```{code-cell}
+try:
+    arr[3] = "hello"
+except ValueError as e:
+    print(e)
 ```
 
 ## Operating on NumPy Arrays
 
 In general, operations are applied element by element on the array:
 ```{code-cell}
+display(arr)
 arr * 2
 ```
 
 Another example but with comparison operators:
 ```{code-cell}
+display(arr)
 arr > 3
 ```
 
 This fits in nicely with indexing using boolean array from before:
 ```{code-cell}
+display(arr)
 arr[arr>3]
 ```
 
