@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -144,7 +144,10 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="../_sources/chapters/02_scipy-basics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../_sources/chapters/02_scipy-basics.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
@@ -179,6 +182,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/02_scipy-basics.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -205,43 +225,63 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy-arrays">
+   2.4. Numpy Arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing-numpy-arrays">
+   2.5. Indexing Numpy Arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operating-on-numpy-arrays">
+   2.6. Operating on NumPy Arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multi-dimensional-arrays-other-ways-to-create-arrays">
+   2.7. Multi Dimensional Arrays + Other Ways to Create Arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pandas">
-   2.4. Pandas
+   2.8. Pandas
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#load-in-data">
-   2.5. Load in data
+   2.9. Load in data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dataframes">
-   2.6. Dataframes
+   2.10. Dataframes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#methods-for-exploring-dataframes">
-   2.7. Methods for Exploring Dataframes
+   2.11. Methods for Exploring Dataframes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#missing-values">
+   2.12. Missing Values
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-types">
-   2.8. Data Types
+   2.13. Data Types
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#indexing">
-   2.9. Indexing
+   2.14. Indexing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#modiying-dataframes">
-   2.10. Modiying DataFrames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grouping">
-   2.11. Grouping
+   2.15. Modiying DataFrames
   </a>
  </li>
 </ul>
@@ -260,10 +300,16 @@
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <ul class="simple">
-<li><p>review python basics</p></li>
 <li><p>describe numpy and pandas packages</p></li>
-<li><p>create and explore dataframes</p></li>
-<li><p>learn ways to index dataframes</p></li>
+<li><p>create numpy ndarrays</p></li>
+<li><p>create dataframe from csv file</p></li>
+<li><p>inspect structure of dataframe</p></li>
+<li><p>handle missing values in dataframe</p></li>
+<li><p>index dataframe based on label (loc), integer index (iloc), logical conditions, and [] operator</p></li>
+<li><p>concatenate and merge dataframes</p></li>
+<li><p>drop columns and rows from dataframes</p></li>
+<li><p>change datatypes of columns</p></li>
+<li><p>apply function to column and add as new column to dataframe</p></li>
 </ul>
 </div>
 <div class="section" id="recap">
@@ -271,57 +317,452 @@
 </div>
 <div class="section" id="packages">
 <h2><span class="section-number">2.2. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<p>When packages are installed, they can be loaded into the python session with
+the <code class="docutils literal notranslate"><span class="pre">import</span></code> command. To avoid having to type the full name of the module
+we define an alias using the <code class="docutils literal notranslate"><span class="pre">as</span></code> keyword. By convention, the alias for
+<code class="docutils literal notranslate"><span class="pre">numpy</span></code> is <code class="docutils literal notranslate"><span class="pre">np</span></code> and the alias for <code class="docutils literal notranslate"><span class="pre">pandas</span></code> is <code class="docutils literal notranslate"><span class="pre">pd</span></code>.</p>
+<p>Lets start by loading in numpy and pandas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
+</div>
+</div>
 <div class="section" id="numpy">
 <h2><span class="section-number">2.3. </span>Numpy<a class="headerlink" href="#numpy" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<p><strong>NumPy</strong> (Numerical Python) is a package that provides functions and
+data structures for working with numerical data. NumPy functions are generally
+more intuitive, and more computationally efficient for working with lots
+of numbers than Python’s built-in options. It has become the standard for
+working with numeric data in python.</p>
+</div>
+<div class="section" id="numpy-arrays">
+<h2><span class="section-number">2.4. </span>Numpy Arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this headline">¶</a></h2>
+<p>NumPy provides an <strong>array</strong> object. Arrays are a critical data structure for
+working with numerical data and some version of array can be found in pretty
+much every commonly used programming language. NumPy’s array is different from
+the python list object in that each element needs to be the same data type,
+and its size is set on its creation.</p>
+<p>If you are working in python for data analysis, data science,
+machine learning, etc. you will run into numpy arrays.</p>
+<p>There are several ways to create an ndarray. In this case we will use a
+list (built-in python object) of numbers as the input for our array creation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">arr</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 3, 9, 2])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see the number of elements in the array with the <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute reflects the number of elements in each <strong>dimension</strong> of
+the ndarray. In this case, there are four elements and only one dimension.</p>
+<p><strong>Dimensions</strong> refers to the number of <strong>axes</strong> that represents the data. For
+example if you are working with lat/long coordinates you will probably
+have 2 dimensions in your data. If working with images you may have 3
+dimensions: x,y and color.</p>
+<p>To see the number of of dimensions of the array object use <code class="docutils literal notranslate"><span class="pre">ndim</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="o">.</span><span class="n">ndim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned earlier, unlike python’s built-in list type, each element
+in an ndarray are the same data type. Recall that we created this array,
+we did not specify a data type for numpy to use. As a result, numpy inferred
+a data type from values in the list. We can access the datatype from
+the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> attribute of the array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;int64&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To explicitly define the datatype you want for the array you create, pass
+the dtype parameter when creating the array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+<span class="n">arr</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 3, 9, 2], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For reference here is a list of common datatypes in data analysis:</p>
+<ul class="simple">
+<li><p>bool</p></li>
+<li><p>int</p></li>
+<li><p>float</p></li>
+<li><p>datetime</p></li>
+<li><p>string</p></li>
+<li><p>object</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indexing-numpy-arrays">
+<h2><span class="section-number">2.5. </span>Indexing Numpy Arrays<a class="headerlink" href="#indexing-numpy-arrays" title="Permalink to this headline">¶</a></h2>
+<p>To access an element from the array use the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 3, 9, 2], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can access more than one element with python slicing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 3, 9, 2], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 9], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use integer arrays as indexes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 3, 9, 2], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 9, 1], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also use boolean arrays as indexes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span><span class="p">[[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 3, 9, 2], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 9, 2], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use indexing to modify the selected elements:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">78</span>
+<span class="n">arr</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 3, 9, 2], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1,  0,  9, 78], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice what happens when we pass a value that is not an integer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">7.8</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1,  0,  9, 78], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 9, 7], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>NumPy has converted 7.8 to an integer before entering it into the array. This
+will only work if there is an accepted way of converting to integer, for
+example it will fail if something like this is passed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>invalid literal for int() with base 10: &#39;hello&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="operating-on-numpy-arrays">
+<h2><span class="section-number">2.6. </span>Operating on NumPy Arrays<a class="headerlink" href="#operating-on-numpy-arrays" title="Permalink to this headline">¶</a></h2>
+<p>In general, operations are applied element by element on the array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 9, 7], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2,  0, 18, 14], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another example but with comparison operators:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span> <span class="o">&gt;</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 9, 7], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False,  True,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This fits in nicely with indexing using boolean array from before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr</span><span class="p">[</span><span class="n">arr</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 9, 7], dtype=int8)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9, 7], dtype=int8)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multi-dimensional-arrays-other-ways-to-create-arrays">
+<h2><span class="section-number">2.7. </span>Multi Dimensional Arrays + Other Ways to Create Arrays<a class="headerlink" href="#multi-dimensional-arrays-other-ways-to-create-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Now let us see some of these concepts with a 2-D array. As before, we can
+define a 2-D array by passing a python list as input:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is another way of initializing an array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0.],
+       [0., 0., 0., 0.],
+       [0., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="pandas">
-<h2><span class="section-number">2.4. </span>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
-<p>Pandas two data structures - series and dataframes
-As well as many useful functions and methods for data analysis tasks</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
-</pre></div>
-</div>
+<h2><span class="section-number">2.8. </span>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
+<p><strong>Pandas</strong> is a package that provides the <strong>data frame</strong> object. As well as
+many functions for working with data, including functions for:</p>
+<ul class="simple">
+<li><p>loading and writing data to/from files and databases</p></li>
+<li><p>summarizing data</p></li>
+<li><p>handling missing data</p></li>
+<li><p>reshaping and transforming data</p></li>
+<li><p>subsetting and filtering data</p></li>
+<li><p>merging and combining datasets</p></li>
+</ul>
 </div>
 <div class="section" id="load-in-data">
-<h2><span class="section-number">2.5. </span>Load in data<a class="headerlink" href="#load-in-data" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">()</span> <span class="c1"># should the input be a url?</span>
+<h2><span class="section-number">2.9. </span>Load in data<a class="headerlink" href="#load-in-data" title="Permalink to this headline">¶</a></h2>
+<p>First, we will load in a dataset from a csv using the <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> function
+from pandas:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can look at the documentation for this function either online,
+from the python shell using: <code class="docutils literal notranslate"><span class="pre">help(pd.read_csv)</span></code>, or using the ? operator
+in Ipython (or notebook)</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">()</span> <span class="c1"># should the input be a url?</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="mi">792</span><span class="n">d4708db5e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">()</span> <span class="c1"># should the input be a url?</span>
+
+<span class="ne">TypeError</span>: read_csv() missing 1 required positional argument: &#39;filepath_or_buffer&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">head()</span></code> method to see what we have.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we see a dataframe, which is the really important part of pandas, which we
+will spend lots of time with during this lesson and the next.
+The dataframe is the tool we can merge, join, summarize, etc.</p>
 </div>
 <div class="section" id="dataframes">
-<h2><span class="section-number">2.6. </span>Dataframes<a class="headerlink" href="#dataframes" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-</pre></div>
-</div>
+<h2><span class="section-number">2.10. </span>Dataframes<a class="headerlink" href="#dataframes" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>dataframe</strong> is how pandas structures tabular data - data structured as rows
+and columns. In general rows are observations, and columns are variables.
+Each entry is called a cell.</p>
 </div>
 <div class="section" id="methods-for-exploring-dataframes">
-<h2><span class="section-number">2.7. </span>Methods for Exploring Dataframes<a class="headerlink" href="#methods-for-exploring-dataframes" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">columns</span>
-<span class="n">dataset</span><span class="o">.</span><span class="n">info</span>
+<h2><span class="section-number">2.11. </span>Methods for Exploring Dataframes<a class="headerlink" href="#methods-for-exploring-dataframes" title="Permalink to this headline">¶</a></h2>
+<p>As with the <code class="docutils literal notranslate"><span class="pre">head()</span></code> method there are many other methods for looking
+at the contents of a pandas dataframe.</p>
+<p><code class="docutils literal notranslate"><span class="pre">head()</span></code> shows the first rows of the dataframe, to see the last rows, use
+<code class="docutils literal notranslate"><span class="pre">tail()</span></code>. By default, the the number of rows displayed is 5, this amount
+can be modified by passing an optional integer argument to the function call.
+Both <code class="docutils literal notranslate"><span class="pre">head()</span></code> and <code class="docutils literal notranslate"><span class="pre">tail()</span></code> accept this optional integer argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+<p>To display the columns of the dataframe we can access the columns attribute
+of the dataframe object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">info</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="missing-values">
+<h2><span class="section-number">2.12. </span>Missing Values<a class="headerlink" href="#missing-values" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="data-types">
-<h2><span class="section-number">2.8. </span>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">dtypes</span>
+<h2><span class="section-number">2.13. </span>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="indexing">
-<h2><span class="section-number">2.9. </span>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">loc</span> <span class="c1"># label based or boolean array</span>
+<h2><span class="section-number">2.14. </span>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">loc</span> <span class="c1"># label based or boolean array</span>
 <span class="n">dataset</span><span class="o">.</span><span class="n">iloc</span> <span class="c1"># interger based</span>
 <span class="n">dataset</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span>
 <span class="n">dataset</span><span class="p">[[</span><span class="n">colnames</span><span class="p">]]</span>
@@ -329,18 +770,16 @@ As well as many useful functions and methods for data analysis tasks</p>
 </pre></div>
 </div>
 </div>
+</div>
+</div>
 <div class="section" id="modiying-dataframes">
-<h2><span class="section-number">2.10. </span>Modiying DataFrames<a class="headerlink" href="#modiying-dataframes" title="Permalink to this headline">¶</a></h2>
-<p>Concat
+<h2><span class="section-number">2.15. </span>Modiying DataFrames<a class="headerlink" href="#modiying-dataframes" title="Permalink to this headline">¶</a></h2>
+<p>dropping values
+dropping columns
+Concat
 Join
 cleaning
 changing datatypes</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="grouping">
-<h2><span class="section-number">2.11. </span>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
