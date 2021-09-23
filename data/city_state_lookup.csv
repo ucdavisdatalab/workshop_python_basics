@@ -1,0 +1,327 @@
+"city","state","pop2020","pop2010","area2020"
+"New York","New York",8804190,8175133,300.5
+"Los Angeles","California",3898747,3792621,469.5
+"Chicago","Illinois",2746388,2695598,227.7
+"Houston","Texas",2304580,2100263,640.4
+"Phoenix","Arizona",1608139,1445632,518
+"Philadelphia","Pennsylvania",1603797,1526006,134.4
+"San Antonio","Texas",1434625,1327407,498.8
+"San Diego","California",1386932,1307402,325.9
+"Dallas","Texas",1304379,1197816,339.6
+"San Jose","California",1013240,945942,178.3
+"Austin","Texas",961855,790390,319.9
+"Jacksonville","Florida",949611,821784,747.3
+"Fort Worth","Texas",918915,741206,342.9
+"Columbus","Ohio",905748,787033,220
+"Indianapolis","Indiana",887642,820445,361.6
+"Charlotte","North Carolina",874579,731424,308.3
+"San Francisco","California",873965,805235,46.9
+"Seattle","Washington",737015,608660,83.8
+"Denver","Colorado",715522,600158,153.1
+"Washington","District of Columbia",689545,601723,61.1
+"Nashville","Tennessee",689447,601222,475.8
+"Oklahoma City","Oklahoma",681054,579999,606.2
+"El Paso","Texas",678815,649121,258.4
+"Boston","Massachusetts",675647,617594,48.3
+"Portland","Oregon",652503,583776,133.5
+"Las Vegas","Nevada",641903,583756,141.8
+"Detroit","Michigan",639111,713777,138.7
+"Memphis","Tennessee",633104,646889,297
+"Louisville","Kentucky",633045,597337,263.5
+"Baltimore","Maryland",585708,620961,80.9
+"Milwaukee","Wisconsin",577222,594833,96.2
+"Albuquerque","New Mexico",564559,545852,187.3
+"Tucson","Arizona",542629,520116,241
+"Fresno","California",542107,494665,115.2
+"Sacramento","California",524943,466488,98.6
+"Kansas City","Missouri",508090,459787,314.7
+"Mesa","Arizona",504258,439041,138.7
+"Atlanta","Georgia",498715,420003,135.3
+"Omaha","Nebraska",486051,408958,133.2
+"Colorado Springs","Colorado",478961,416427,195.4
+"Raleigh","North Carolina",467665,403892,145.1
+"Long Beach","California",466742,462257,50.7
+"Virginia Beach","Virginia",459470,437994,244.7
+"Miami","Florida",442241,399457,36
+"Oakland","California",440646,390724,55.9
+"Minneapolis","Minnesota",429954,382578,54
+"Tulsa","Oklahoma",413066,391906,197.5
+"Bakersfield","California",403455,347483,149.8
+"Wichita","Kansas",397532,382368,162
+"Arlington","Texas",394266,365438,95.9
+"Aurora","Colorado",386261,325078,160.1
+"Tampa","Florida",384959,335709,114
+"New Orleans","Louisiana",383997,343829,169.5
+"Cleveland","Ohio",372624,396815,77.7
+"Honolulu","Hawaii",350964,337256,60.5
+"Anaheim","California",346824,336265,50.3
+"Lexington","Kentucky",322570,295803,283.6
+"Stockton","California",320804,291707,62.2
+"Corpus Christi","Texas",317863,305215,162.2
+"Henderson","Nevada",317610,257729,106.2
+"Riverside","California",314998,303871,81.2
+"Newark","New Jersey",311549,277140,24.1
+"Saint Paul","Minnesota",311527,285068,52
+"Santa Ana","California",310227,324528,27.3
+"Cincinnati","Ohio",309317,296943,77.8
+"Irvine","California",307670,212375,65.6
+"Orlando","Florida",307573,238300,110.6
+"Pittsburgh","Pennsylvania",302971,305704,55.4
+"St. Louis","Missouri",301578,319294,61.7
+"Greensboro","North Carolina",299035,269666,129.6
+"Jersey City","New Jersey",292449,247597,14.7
+"Anchorage","Alaska",291247,291826,1706.8
+"Lincoln","Nebraska",291082,258379,97.7
+"Plano","Texas",285494,259841,71.7
+"Durham","North Carolina",283506,228330,112.8
+"Buffalo","New York",278349,261310,40.4
+"Chandler","Arizona",275987,236123,65.3
+"Chula Vista","California",275487,243916,49.6
+"Toledo","Ohio",270871,287208,80.5
+"Madison","Wisconsin",269840,233209,79.6
+"Gilbert","Arizona",267918,208453,68.6
+"Reno","Nevada",264165,225221,108.8
+"Fort Wayne","Indiana",263886,253691,110.7
+"North Las Vegas","Nevada",262527,216961,101.3
+"St. Petersburg","Florida",258308,244769,61.8
+"Lubbock","Texas",257141,229573,134.6
+"Irving","Texas",256684,216290,67
+"Laredo","Texas",255205,236091,106.5
+"Winston–Salem","North Carolina",249545,229617,132.7
+"Chesapeake","Virginia",249422,222209,338.5
+"Glendale","Arizona",248325,226721,61.6
+"Garland","Texas",246018,226876,57.1
+"Scottsdale","Arizona",241361,217385,184
+"Norfolk","Virginia",238005,242803,53.3
+"Boise","Idaho",235684,205671,84
+"Fremont","California",230504,214089,78.3
+"Spokane","Washington",228989,208916,68.8
+"Santa Clarita","California",228673,176320,70.8
+"Baton Rouge","Louisiana",227470,229493,86.3
+"Richmond","Virginia",226610,204214,59.9
+"Hialeah","Florida",223109,224669,21.6
+"San Bernardino","California",222101,209924,62.1
+"Tacoma","Washington",219346,198397,49.7
+"Modesto","California",218464,201165,43
+"Huntsville","Alabama",215006,180105,218.1
+"Des Moines","Iowa",214133,203433,88.2
+"Yonkers","New York",211569,195976,18
+"Rochester","New York",211328,210565,35.8
+"Moreno Valley","California",208634,193365,51.3
+"Fayetteville","North Carolina",208501,200564,148.3
+"Fontana","California",208393,196069,43.1
+"Columbus","Georgia",206922,189885,216.5
+"Worcester","Massachusetts",206518,181045,37.4
+"Port St. Lucie","Florida",204851,164603,119.2
+"Little Rock","Arkansas",202591,193524,120
+"Augusta","Georgia",202081,195844,302.3
+"Oxnard","California",202063,197899,26.5
+"Birmingham","Alabama",200733,212237,147
+"Montgomery","Alabama",200603,205764,159.9
+"Frisco","Texas",200509,116989,68.6
+"Amarillo","Texas",200393,190695,102.3
+"Salt Lake City","Utah",199723,186440,110.3
+"Grand Rapids","Michigan",198917,188040,44.8
+"Huntington Beach","California",198711,189992,27
+"Overland Park","Kansas",197238,173372,75.2
+"Glendale","California",196543,191719,30.5
+"Tallahassee","Florida",196169,181376,100.9
+"Grand Prairie","Texas",196100,175396,72.6
+"McKinney","Texas",195308,131117,67
+"Cape Coral","Florida",194016,154305,106
+"Sioux Falls","South Dakota",192517,153888,79.1
+"Peoria","Arizona",190985,154065,176.1
+"Providence","Rhode Island",190934,178042,18.4
+"Vancouver","Washington",190915,161791,48.7
+"Knoxville","Tennessee",190740,178874,98.7
+"Akron","Ohio",190469,199110,61.9
+"Shreveport","Louisiana",187593,199311,107.8
+"Mobile","Alabama",187041,195111,139.5
+"Brownsville","Texas",186738,175023,131.5
+"Newport News","Virginia",186247,180719,69
+"Fort Lauderdale","Florida",182760,165521,34.6
+"Chattanooga","Tennessee",181099,167674,142.4
+"Tempe","Arizona",180587,161719,39.9
+"Aurora","Illinois",180542,197899,45
+"Santa Rosa","California",178127,167815,42.5
+"Eugene","Oregon",176654,156185,44.2
+"Elk Grove","California",176124,153015,42
+"Salem","Oregon",175535,154637,48.8
+"Ontario","California",175265,163924,50
+"Cary","North Carolina",174721,135234,59.2
+"Rancho Cucamonga","California",174453,165269,40.1
+"Oceanside","California",174068,167086,41.3
+"Lancaster","California",173516,156633,94.3
+"Garden Grove","California",171949,170883,18
+"Pembroke Pines","Florida",171178,154019,32.7
+"Fort Collins","Colorado",169810,143986,57.2
+"Palmdale","California",169450,152750,106.1
+"Springfield","Missouri",169176,159498,82.4
+"Clarksville","Tennessee",166722,132929,99.4
+"Salinas","California",163542,150441,23.5
+"Hayward","California",162954,144186,45.8
+"Paterson","New Jersey",159732,146199,8.4
+"Alexandria","Virginia",159467,139966,14.9
+"Macon","Georgia",157346,91351,249.4
+"Corona","California",157136,152374,39.9
+"Kansas City","Kansas",156607,145786,124.7
+"Lakewood","Colorado",155984,142980,43.5
+"Springfield","Massachusetts",155929,153060,31.9
+"Sunnyvale","California",155805,140081,22.1
+"Jackson","Mississippi",153701,173514,111.7
+"Killeen","Texas",153095,127921,54.8
+"Hollywood","Florida",153067,140768,27.3
+"Murfreesboro","Tennessee",152769,108755,62.9
+"Pasadena","Texas",151950,149043,43.7
+"Bellevue","Washington",151854,122363,33.5
+"Pomona","California",151713,149058,23
+"Escondido","California",151038,143911,37.3
+"Joliet","Illinois",150362,147433,64.5
+"Charleston","South Carolina",150227,120083,114.8
+"Mesquite","Texas",150108,139824,48.5
+"Naperville","Illinois",149540,141853,39.1
+"Rockford","Illinois",148655,152871,64.5
+"Bridgeport","Connecticut",148654,144229,16.1
+"Syracuse","New York",148620,145170,25.1
+"Savannah","Georgia",147780,136286,106.8
+"Roseville","California",147773,118788,44.1
+"Torrance","California",147067,145438,20.5
+"Fullerton","California",143617,135161,22.4
+"Surprise","Arizona",143148,117517,110.3
+"McAllen","Texas",142210,129877,62.3
+"Thornton","Colorado",141867,118772,35.9
+"Visalia","California",141384,124442,37.9
+"Olathe","Kansas",141290,125872,61.9
+"Gainesville","Florida",141085,124354,63.2
+"West Valley City","Utah",140230,129480,35.8
+"Orange","California",139911,136416,25.7
+"Denton","Texas",139869,113383,96.4
+"Warren","Michigan",139387,134056,34.4
+"Pasadena","California",138699,137122,23
+"Waco","Texas",138486,124805,88.7
+"Cedar Rapids","Iowa",137710,126326,72.1
+"Dayton","Ohio",137644,141527,55.8
+"Elizabeth","New Jersey",137298,124969,12.3
+"Hampton","Virginia",137148,137436,51.5
+"Columbia","South Carolina",136632,129272,136.8
+"Kent","Washington",136588,92411,33.8
+"Stamford","Connecticut",135470,122643,37.6
+"Lakewood","New Jersey",135158,92843,24.7
+"Victorville","California",134810,115903,73.7
+"Miramar","Florida",134721,122041,28.9
+"Coral Springs","Florida",134394,121096,22.9
+"Sterling Heights","Michigan",134346,129699,36.4
+"New Haven","Connecticut",134023,129779,18.7
+"Carrollton","Texas",133434,119097,36.7
+"Midland","Texas",132524,111147,75.5
+"Norman","Oklahoma",128026,110925,178.8
+"Santa Clara","California",127647,116468,18.3
+"Athens","Georgia",127315,115452,116.3
+"Thousand Oaks","California",126966,126683,55.3
+"Topeka","Kansas",126587,127473,61.4
+"Simi Valley","California",126356,124237,41.5
+"Columbia","Missouri",126254,108500,66.5
+"Vallejo","California",126090,115942,30.4
+"Fargo","North Dakota",125990,105549,49.8
+"Allentown","Pennsylvania",125845,118032,17.6
+"Pearland","Texas",125828,91252,48.7
+"Concord","California",125410,122067,30.6
+"Abilene","Texas",125182,117063,106.7
+"Arvada","Colorado",124402,106433,38.9
+"Berkeley","California",124321,112580,10.4
+"Ann Arbor","Michigan",123851,113934,28.2
+"Independence","Missouri",123011,116830,78
+"Rochester","Minnesota",121395,106769,55.5
+"Lafayette","Louisiana",121374,120623,55.8
+"Hartford","Connecticut",121054,124775,17.4
+"College Station","Texas",120511,93857,51.2
+"Clovis","California",120124,95631,25.4
+"Fairfield","California",119881,105321,41.6
+"Palm Bay","Florida",119760,103190,86.4
+"Richardson","Texas",119469,99223,28.6
+"Round Rock","Texas",119468,99887,37.6
+"Cambridge","Massachusetts",118403,105162,6.4
+"Meridian","Idaho",117635,75092,35.1
+"West Palm Beach","Florida",117415,99919,53.8
+"Evansville","Indiana",117298,117429,47.4
+"Clearwater","Florida",117292,107685,26.1
+"Billings","Montana",117116,104170,44.8
+"West Jordan","Utah",116961,103712,32.3
+"Richmond","California",116448,103701,30.1
+"Westminster","Colorado",116317,106114,31.6
+"Manchester","New Hampshire",115644,109565,33.1
+"Lowell","Massachusetts",115554,106519,13.6
+"Wilmington","North Carolina",115451,106476,51.4
+"Antioch","California",115291,102372,29.2
+"Beaumont","Texas",115282,118296,82.5
+"Provo","Utah",115162,112488,41.7
+"North Charleston","South Carolina",114852,97471,77.6
+"Elgin","Illinois",114797,108188,38
+"Carlsbad","California",114746,105328,37.8
+"Odessa","Texas",114428,99940,51.1
+"Waterbury","Connecticut",114403,110366,28.5
+"Springfield","Illinois",114394,116250,61.1
+"League City","Texas",114392,83560,51.3
+"Downey","California",114355,111772,12.4
+"Gresham","Oregon",114247,105594,23.5
+"High Point","North Carolina",114059,104371,56.4
+"Broken Arrow","Oklahoma",113540,98850,63
+"Peoria","Illinois",113150,115007,48
+"Lansing","Michigan",112644,114297,39.1
+"Lakeland","Florida",112641,97422,66.2
+"Pompano Beach","Florida",112046,99845,24
+"Costa Mesa","California",111918,109960,15.8
+"Pueblo","Colorado",111876,106595,55.4
+"Lewisville","Texas",111822,95290,37
+"Miami Gardens","Florida",111640,107167,18.2
+"Las Cruces","New Mexico",111385,97618,76.9
+"Sugar Land","Texas",111026,78817,40.5
+"Murrieta","California",110949,103466,33.6
+"Ventura","California",110763,106433,21.9
+"Everett","Washington",110629,103019,33.2
+"Temecula","California",110003,100097,37.3
+"Dearborn","Michigan",109976,98153,24.2
+"Santa Maria","California",109707,99553,22.8
+"West Covina","California",109501,106098,16
+"El Monte","California",109450,113475,9.6
+"Greeley","Colorado",108795,92889,48.9
+"Sparks","Nevada",108445,90264,36.4
+"Centennial","Colorado",108418,100377,29.7
+"Boulder","Colorado",108250,97385,26.3
+"Sandy Springs","Georgia",108080,93853,37.7
+"Inglewood","California",107762,109673,9.1
+"Edison","New Jersey",107588,99967,30.1
+"South Fulton","Georgia",107436,0,85.2
+"Green Bay","Wisconsin",107395,104057,45.5
+"Burbank","California",107337,103340,17.3
+"Renton","Washington",106785,90927,23.5
+"Hillsboro","Oregon",106447,91611,25.7
+"El Cajon","California",106215,99478,14.5
+"Tyler","Texas",105995,96900,57.5
+"Davie","Florida",105691,91992,34.9
+"San Mateo","California",105661,97207,12.1
+"Brockton","Massachusetts",105643,93810,21.3
+"Concord","North Carolina",105240,79066,63.5
+"Jurupa Valley","California",105053,0,42.9
+"Daly City","California",104901,101123,7.6
+"Allen","Texas",104627,84246,26.4
+"Rio Rancho","New Mexico",104046,87521,103.4
+"Rialto","California",104026,99171,24.1
+"Woodbridge","New Jersey",103639,99585,23.3
+"South Bend","Indiana",103453,101168,42
+"Spokane Valley","Washington",102976,89755,37.7
+"Norwalk","California",102773,105549,9.7
+"Menifee","California",102527,77519,46.5
+"Vacaville","California",102386,92428,29.9
+"Wichita Falls","Texas",102316,104553,72
+"Davenport","Iowa",101724,99685,63.8
+"Quincy","Massachusetts",101636,92271,16.6
+"Chico","California",101475,86187,34.1
+"Lynn","Massachusetts",101253,90329,10.7
+"Lee's Summit","Missouri",101108,91364,63.9
+"New Bedford","Massachusetts",101079,95072,20
+"Federal Way","Washington",101030,89306,22.3
+"Clinton","Michigan",100513,96796,28.1
+"Edinburg","Texas",100243,77100,44.7
+"Nampa","Idaho",100200,81557,33.5
+"Roanoke","Virginia",100011,97032,42.5
