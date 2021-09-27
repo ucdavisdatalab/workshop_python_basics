@@ -215,7 +215,7 @@ These include:
 - StringDtype
 - python object (including strings)
 
-For **numeric data** pandas supports `int` as well as `float` types.
+For `int` and `float` data, in pandas we can specify 
 
 ```{code-cell}
 ```
