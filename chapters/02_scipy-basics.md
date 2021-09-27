@@ -20,9 +20,7 @@ Scientific Python
 - learn the pandas/numpy datatypes including missing values
 - index and work with Series objects
 - index dataframe based on label (loc), integer index (iloc), logical conditions, and [] operator
-- concatenate and merge dataframes
 - drop columns and rows from dataframes
-- change datatypes of columns
 - apply function to column and add as new column to dataframe
 :::
 
@@ -45,8 +43,8 @@ import pandas as pd
 
 ## Pandas
 
-**Pandas** is a package that provides the **data frame** object. As well as
-many functions for working with data, including functions for:
+**Pandas** is a package that provides objects and many functions for working 
+with data. It is very popular and used for tasks such as:
 - loading and writing data to/from files and databases
 - summarizing data
 - handling missing data
@@ -57,22 +55,26 @@ many functions for working with data, including functions for:
 
 ## Load in data
 
-First, we will load in a dataset from a csv using the `read_csv()` function 
-from pandas: 
+First, we will load in the dataset from a csv file using the `read_csv`
+function from pandas: 
 
 ```{tip} 
-You can look at the documentation for this function either online, 
-from the python shell using: `help(pd.read_csv)`, or using the ? operator 
-in Ipython (or notebook)
+Most functions in pandas will have documentation describing what the function 
+does and how to use it. You can find this documentation online or directly
+from the python shell using the built-in help system: `help(pd.read_csv)`.
+In IPython environments, you can use `?` either before or after the function
+name as a shorthand for the help function: `?pd.read_csv`
+
+This will also work on many objects and classes. 
 ```
 
 ```{code-cell}
-dataset = pd.read_csv() # should the input be a url?
+df = pd.read_csv("../data/parks_final.csv") 
 ```
 
 We can use the `head()` method to see what we have.
 ```{code-cell}
-dataset.head()
+df.head()
 ```
 
 Here we see a dataframe, which is the really important part of pandas, which we
@@ -113,14 +115,136 @@ dataset.info
 dataset.describe()
 ```
 
-## Missing Values
-
-## Data Types
 ```{code-cell}
 dataset.dtypes
 ```
 
-## Indexing
+## Data Types in python
+
+Python has built-in objects for handling different types of data, including
+numeric and non numeric data.
+
+Numeric data can be represented as either an `int` (integer) or `float` object.
+An integer is simply a whole number, such as 0, 3, 3000...
+When we assign as whole number to a variable, python will use the int class:
+```{code-cell}
+a = 4
+```
+
+We can see the type of an object in python using the `type` function:
+```{code-cell}
+type(a)
+```
+
+We can also explicitly construct an int object in python:
+```{code-cell}
+b = int(4)
+```
+
+Integer objects don't allow for decimal points:
+```{code-cell}
+b = int(4.5)
+b
+```
+
+A float (floating point number) stores numeric data with decimal precision:
+```{code-cell}
+a = 4.7
+type(a)
+```
+
+Python supports using arithmetic operators on different numeric types by 
+automatically altering the more limited type to match. For example:
+```{code-cell}
+a = 4.7
+b = 3
+c = a + b
+type(c)
+```
+
+Additionally, if you divide an integer with another integer in python, you will
+get a float:
+```{code-cell}
+c = 4 / 4
+type(c)
+```
+
+`bool` short for Boolean is a data type that stores either True or False. 
+Booleans are used as values for expressions with yes-or-no responses.
+For example:
+```{code-cell}
+5 < 2
+```
+
+In python, text is stored in a String object called `str`. Strings are created
+by enclosing a series of characters in quotes, either single or double quotes
+can be used.
+```{code-cell}
+d = "hello world!"
+type(d)
+```
+
+To convert between data types in python, we use the constructor associated
+with each type:
+```{code-cell}
+a = float(3)
+```
+
+Another example:
+```{code-cell}
+a = str(3)
+```
+
+## Data Types in Pandas
+
+Python's built-in data types are very flexible at the cost of precision. 
+Numpy provides more control to the programmer by adding many classes for
+storing numeric data that can be modified to best match the data, in order
+to improve memory and time performance.
+
+Pandas, which is built on top of numpy, incorporates these types and some of
+its own.
+
+These include:
+- boolean
+- int
+- float
+- complex, 
+- datetime
+- timedelta
+- StringDtype
+- python object (including strings)
+
+For **numeric data** pandas supports `int` as well as `float` types.
+
+```{code-cell}
+```
+
+
+These can also be modified to allow for specifying the size of the data in 
+bytes.
+
+
+## Series
+
+Each column in the dataframe is a pandas `Series` object.
+A Series is a collection of values that all share the same data type. 
+In addition, the values can be access by their integer index, or based
+on their label.
+
+It is built on top of the numpy ndarray object, and as such, will
+perform much faster than the list object for numerical operations.
+
+## Missing Values
+
+## Indexing Series
+
+## Reindex dataframe (city_year)
+
+## Operating on Series
+
+
+## Indexing DataFrames
 ```{code-cell}
 dataset.loc # label based or boolean array
 dataset.iloc # interger based
