@@ -26,8 +26,6 @@ Scientific Python
 :::
 
 
-## Recap
-
 ## Packages
 
 When packages are installed, they can be loaded into the python session with
@@ -59,7 +57,7 @@ with data. It is very popular and used for tasks such as:
 First, we will load in the dataset from a csv file using the `read_csv`
 function from pandas: 
 
-```{tip} 
+:::{Tip} 
 Most functions in pandas will have documentation describing what the function 
 does and how to use it. You can find this documentation online or directly
 from the python shell using the built-in help system: `help(pd.read_csv)`.
@@ -67,7 +65,7 @@ In IPython environments, you can use `?` either before or after the function
 name as a shorthand for the help function: `?pd.read_csv`
 
 This will also work on many objects and classes. 
-```
+:::
 
 ```{code-cell}
 df = pd.read_csv("../data/parks_final.csv") 
@@ -82,7 +80,7 @@ Here we see a DataFrame, which is the really important part of pandas, which we
 will spend lots of time with during this lesson and the next. 
 The dataframe is the tool we can merge, join, summarize, etc.
 
-## DataFrame
+## DataFrames
 
 A **DataFrame** is how pandas structures tabular data - data structured as rows
 and columns. In general rows are observations, and columns are variables.
@@ -255,8 +253,18 @@ Since the data is numeric we can also get some summary data:
 year.describe()
 ```
 
+To see just the unique set of values we can use the `unique` method:
+```{code-cell}
+year.unique()
+```
+
+Another very useful summary is `value_counts`:
+```{code-cell}
+year.value_counts()
+```
+
 Series are powerful because we can apply operations on them in an element wise
-fashion very easily. For example:
+fashion very easily and efficiently. For example:
 ```{code-cell}
 year + 10
 ```
@@ -386,8 +394,9 @@ df[df["state"] == "California"]
 :::{Note}
 Be careful when passing a bool Series to either `[]` or `loc` that the indexes of the bool Series and the DataFrame match. 
 For example we would get an error if we were to attempt to run:
-```{code-cell}
-#df[year > 2020]
+
+```
+df[year > 2020]
 ```
 :::
 
@@ -480,12 +489,18 @@ pb.replace(-1, np.nan)
 ```
 
 ## Modifying DataFrames
-Lets apply what we have learned and tidy up the dataframe:
-dropping values
-dropping columns
-Concat 
-Join
-cleaning
-changing datatypes
+TODO:
+- dropping values
+- dropping columns
+- Concat 
+- Join
+- cleaning
+- changing datatypes
+
+TODO:
+Use one operation to modify values, instead of two [][]:
+df.loc[criteria, columns] =
 
 ## Saving
+TODO:
+save cleaned df as csv
