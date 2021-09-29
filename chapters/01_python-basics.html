@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,15 +42,15 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Scientific Python" href="02_scipy-basics.html" />
@@ -72,6 +72,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -629,7 +633,7 @@ a call. So this code causes an error:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_58225</span><span class="o">/</span><span class="mf">3863254417.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">l2</span><span class="o">/</span><span class="mi">9</span><span class="n">h6xd6f555321vx3s_ttqb_80000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_10914</span><span class="o">/</span><span class="mf">3863254417.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">number</span> <span class="o">=</span> <span class="mf">4.755</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 
@@ -763,8 +767,6 @@ an object. Here are the attributes for a string:</p>
  &#39;lstrip&#39;,
  &#39;maketrans&#39;,
  &#39;partition&#39;,
- &#39;removeprefix&#39;,
- &#39;removesuffix&#39;,
  &#39;replace&#39;,
  &#39;rfind&#39;,
  &#39;rindex&#39;,
@@ -1006,7 +1008,7 @@ but the quote at the beginning of the string must match the quote at the end.</p
 *******************
 
 The following table summarizes the operator precedence in Python, from
-highest precedence (most binding) to lowest precedence (least
+lowest precedence (least binding) to highest precedence (most
 binding).  Operators in the same box have the same precedence.  Unless
 the syntax is explicitly given, operators are binary.  Operators in
 the same box group left to right (except for exponentiation, which
@@ -1019,47 +1021,47 @@ described in the Comparisons section.
 +-------------------------------------------------+---------------------------------------+
 | Operator                                        | Description                           |
 |=================================================|=======================================|
-| &quot;(expressions...)&quot;,  &quot;[expressions...]&quot;, &quot;{key: | Binding or parenthesized expression,  |
-| value...}&quot;, &quot;{expressions...}&quot;                  | list display, dictionary display, set |
-|                                                 | display                               |
+| &quot;:=&quot;                                            | Assignment expression                 |
 +-------------------------------------------------+---------------------------------------+
-| &quot;x[index]&quot;, &quot;x[index:index]&quot;,                   | Subscription, slicing, call,          |
-| &quot;x(arguments...)&quot;, &quot;x.attribute&quot;                | attribute reference                   |
+| &quot;lambda&quot;                                        | Lambda expression                     |
 +-------------------------------------------------+---------------------------------------+
-| &quot;await&quot; &quot;x&quot;                                     | Await expression                      |
+| &quot;if&quot; – &quot;else&quot;                                   | Conditional expression                |
 +-------------------------------------------------+---------------------------------------+
-| &quot;**&quot;                                            | Exponentiation [5]                    |
+| &quot;or&quot;                                            | Boolean OR                            |
 +-------------------------------------------------+---------------------------------------+
-| &quot;+x&quot;, &quot;-x&quot;, &quot;~x&quot;                                | Positive, negative, bitwise NOT       |
+| &quot;and&quot;                                           | Boolean AND                           |
 +-------------------------------------------------+---------------------------------------+
-| &quot;*&quot;, &quot;@&quot;, &quot;/&quot;, &quot;//&quot;, &quot;%&quot;                        | Multiplication, matrix                |
-|                                                 | multiplication, division, floor       |
-|                                                 | division, remainder [6]               |
-+-------------------------------------------------+---------------------------------------+
-| &quot;+&quot;, &quot;-&quot;                                        | Addition and subtraction              |
-+-------------------------------------------------+---------------------------------------+
-| &quot;&lt;&lt;&quot;, &quot;&gt;&gt;&quot;                                      | Shifts                                |
-+-------------------------------------------------+---------------------------------------+
-| &quot;&amp;&quot;                                             | Bitwise AND                           |
-+-------------------------------------------------+---------------------------------------+
-| &quot;^&quot;                                             | Bitwise XOR                           |
-+-------------------------------------------------+---------------------------------------+
-| &quot;|&quot;                                             | Bitwise OR                            |
+| &quot;not&quot; &quot;x&quot;                                       | Boolean NOT                           |
 +-------------------------------------------------+---------------------------------------+
 | &quot;in&quot;, &quot;not in&quot;, &quot;is&quot;, &quot;is not&quot;, &quot;&lt;&quot;, &quot;&lt;=&quot;, &quot;&gt;&quot;, | Comparisons, including membership     |
 | &quot;&gt;=&quot;, &quot;!=&quot;, &quot;==&quot;                                | tests and identity tests              |
 +-------------------------------------------------+---------------------------------------+
-| &quot;not&quot; &quot;x&quot;                                       | Boolean NOT                           |
+| &quot;|&quot;                                             | Bitwise OR                            |
 +-------------------------------------------------+---------------------------------------+
-| &quot;and&quot;                                           | Boolean AND                           |
+| &quot;^&quot;                                             | Bitwise XOR                           |
 +-------------------------------------------------+---------------------------------------+
-| &quot;or&quot;                                            | Boolean OR                            |
+| &quot;&amp;&quot;                                             | Bitwise AND                           |
 +-------------------------------------------------+---------------------------------------+
-| &quot;if&quot; – &quot;else&quot;                                   | Conditional expression                |
+| &quot;&lt;&lt;&quot;, &quot;&gt;&gt;&quot;                                      | Shifts                                |
 +-------------------------------------------------+---------------------------------------+
-| &quot;lambda&quot;                                        | Lambda expression                     |
+| &quot;+&quot;, &quot;-&quot;                                        | Addition and subtraction              |
 +-------------------------------------------------+---------------------------------------+
-| &quot;:=&quot;                                            | Assignment expression                 |
+| &quot;*&quot;, &quot;@&quot;, &quot;/&quot;, &quot;//&quot;, &quot;%&quot;                        | Multiplication, matrix                |
+|                                                 | multiplication, division, floor       |
+|                                                 | division, remainder [5]               |
++-------------------------------------------------+---------------------------------------+
+| &quot;+x&quot;, &quot;-x&quot;, &quot;~x&quot;                                | Positive, negative, bitwise NOT       |
++-------------------------------------------------+---------------------------------------+
+| &quot;**&quot;                                            | Exponentiation [6]                    |
++-------------------------------------------------+---------------------------------------+
+| &quot;await&quot; &quot;x&quot;                                     | Await expression                      |
++-------------------------------------------------+---------------------------------------+
+| &quot;x[index]&quot;, &quot;x[index:index]&quot;,                   | Subscription, slicing, call,          |
+| &quot;x(arguments...)&quot;, &quot;x.attribute&quot;                | attribute reference                   |
++-------------------------------------------------+---------------------------------------+
+| &quot;(expressions...)&quot;,  &quot;[expressions...]&quot;, &quot;{key: | Binding or parenthesized expression,  |
+| value...}&quot;, &quot;{expressions...}&quot;                  | list display, dictionary display, set |
+|                                                 | display                               |
 +-------------------------------------------------+---------------------------------------+
 
 -[ Footnotes ]-
@@ -1107,11 +1109,11 @@ described in the Comparisons section.
     comparisons between instance methods, or constants.  Check their
     documentation for more info.
 
-[5] The power operator &quot;**&quot; binds less tightly than an arithmetic or
-    bitwise unary operator on its right, that is, &quot;2**-1&quot; is &quot;0.5&quot;.
-
-[6] The &quot;%&quot; operator is also used for string formatting; the same
+[5] The &quot;%&quot; operator is also used for string formatting; the same
     precedence applies.
+
+[6] The power operator &quot;**&quot; binds less tightly than an arithmetic or
+    bitwise unary operator on its right, that is, &quot;2**-1&quot; is &quot;0.5&quot;.
 
 Related help topics: lambda, or, and, not, in, is, BOOLEAN, COMPARISON,
 BITWISE, SHIFTING, BINARY, FORMATTING, POWER, UNARY, ATTRIBUTES,
@@ -1194,6 +1196,16 @@ the <code class="docutils literal notranslate"><span class="pre">numpy</span></c
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">l2</span><span class="o">/</span><span class="mi">9</span><span class="n">h6xd6f555321vx3s_ttqb_80000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_10914</span><span class="o">/</span><span class="mf">2172125874.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>A handful of modules print out a message when loaded, but the vast majority do
 not. Thus you can assume the <code class="docutils literal notranslate"><span class="pre">import</span></code> command was successful if nothing is
@@ -1205,11 +1217,6 @@ module, a dot <code class="docutils literal notranslate"><span class="pre">.</sp
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">3.3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
 </pre></div>
 </div>
 </div>
@@ -1231,11 +1238,6 @@ because it makes it easier for other people to understand your code. Use the
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">3.4</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
 </pre></div>
 </div>
 </div>
@@ -1528,317 +1530,6 @@ assign the returned result to a variable:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rank</th>
-      <th>city</th>
-      <th>med_park_size_data</th>
-      <th>med_park_size_points</th>
-      <th>park_pct_city_data</th>
-      <th>park_pct_city_points</th>
-      <th>pct_near_park_data</th>
-      <th>pct_near_park_points</th>
-      <th>spend_per_resident_data</th>
-      <th>...</th>
-      <th>splashground_data</th>
-      <th>splashground_points</th>
-      <th>amenities_points</th>
-      <th>total_points</th>
-      <th>total_pct</th>
-      <th>park_benches</th>
-      <th>state</th>
-      <th>pop2020</th>
-      <th>pop2010</th>
-      <th>area2020</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2020</td>
-      <td>1</td>
-      <td>Minneapolis</td>
-      <td>5.7</td>
-      <td>26.0</td>
-      <td>15%</td>
-      <td>38.0</td>
-      <td>98%</td>
-      <td>98.0</td>
-      <td>$319</td>
-      <td>...</td>
-      <td>4.0</td>
-      <td>100.0</td>
-      <td>79.3</td>
-      <td>341.0</td>
-      <td>85.3</td>
-      <td>NaN</td>
-      <td>Minnesota</td>
-      <td>429954.0</td>
-      <td>382578.0</td>
-      <td>54.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2020</td>
-      <td>2</td>
-      <td>Washington</td>
-      <td>1.4</td>
-      <td>5.0</td>
-      <td>24%</td>
-      <td>50.0</td>
-      <td>98%</td>
-      <td>98.0</td>
-      <td>$307</td>
-      <td>...</td>
-      <td>4.1</td>
-      <td>100.0</td>
-      <td>80.3</td>
-      <td>333.0</td>
-      <td>83.3</td>
-      <td>NaN</td>
-      <td>District of Columbia</td>
-      <td>689545.0</td>
-      <td>601723.0</td>
-      <td>61.1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2020</td>
-      <td>3</td>
-      <td>St. Paul</td>
-      <td>3.2</td>
-      <td>14.0</td>
-      <td>15%</td>
-      <td>39.0</td>
-      <td>99%</td>
-      <td>99.0</td>
-      <td>$219</td>
-      <td>...</td>
-      <td>1.3</td>
-      <td>47.0</td>
-      <td>78.0</td>
-      <td>330.0</td>
-      <td>82.5</td>
-      <td>NaN</td>
-      <td>Minnesota</td>
-      <td>311527.0</td>
-      <td>285068.0</td>
-      <td>52.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2020</td>
-      <td>4</td>
-      <td>Arlington</td>
-      <td>2.4</td>
-      <td>10.0</td>
-      <td>11%</td>
-      <td>28.0</td>
-      <td>99%</td>
-      <td>99.0</td>
-      <td>$301</td>
-      <td>...</td>
-      <td>2.2</td>
-      <td>81.0</td>
-      <td>89.0</td>
-      <td>326.0</td>
-      <td>81.5</td>
-      <td>NaN</td>
-      <td>Virginia</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2020</td>
-      <td>5</td>
-      <td>Cincinnati</td>
-      <td>4.4</td>
-      <td>20.0</td>
-      <td>14%</td>
-      <td>36.0</td>
-      <td>82%</td>
-      <td>74.0</td>
-      <td>$190</td>
-      <td>...</td>
-      <td>4.5</td>
-      <td>100.0</td>
-      <td>92.5</td>
-      <td>323.0</td>
-      <td>80.6</td>
-      <td>NaN</td>
-      <td>Ohio</td>
-      <td>309317.0</td>
-      <td>296943.0</td>
-      <td>77.8</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>741</th>
-      <td>2012</td>
-      <td>36</td>
-      <td>Indianapolis</td>
-      <td>10.3</td>
-      <td>20.0</td>
-      <td>4.8%</td>
-      <td>4.0</td>
-      <td>32%</td>
-      <td>6.0</td>
-      <td>$43.61</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>37.0</td>
-      <td>31.0</td>
-      <td>1.5</td>
-      <td>Indiana</td>
-      <td>887642.0</td>
-      <td>820445.0</td>
-      <td>361.6</td>
-    </tr>
-    <tr>
-      <th>742</th>
-      <td>2012</td>
-      <td>36</td>
-      <td>Mesa</td>
-      <td>3.2</td>
-      <td>7.0</td>
-      <td>2.6%</td>
-      <td>1.0</td>
-      <td>60%</td>
-      <td>22.0</td>
-      <td>$60.96</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>37.0</td>
-      <td>31.0</td>
-      <td>1.5</td>
-      <td>Arizona</td>
-      <td>504258.0</td>
-      <td>439041.0</td>
-      <td>138.7</td>
-    </tr>
-    <tr>
-      <th>743</th>
-      <td>2012</td>
-      <td>38</td>
-      <td>Louisville</td>
-      <td>7.3</td>
-      <td>15.0</td>
-      <td>6.7%</td>
-      <td>6.0</td>
-      <td>32%</td>
-      <td>6.0</td>
-      <td>$50.76</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>35.0</td>
-      <td>29.0</td>
-      <td>1.0</td>
-      <td>Kentucky</td>
-      <td>633045.0</td>
-      <td>597337.0</td>
-      <td>263.5</td>
-    </tr>
-    <tr>
-      <th>744</th>
-      <td>2012</td>
-      <td>39</td>
-      <td>Charlotte</td>
-      <td>19.9</td>
-      <td>20.0</td>
-      <td>4.1%</td>
-      <td>3.0</td>
-      <td>26%</td>
-      <td>2.0</td>
-      <td>$78.94</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>34.0</td>
-      <td>28.5</td>
-      <td>1.0</td>
-      <td>North Carolina</td>
-      <td>874579.0</td>
-      <td>731424.0</td>
-      <td>308.3</td>
-    </tr>
-    <tr>
-      <th>745</th>
-      <td>2012</td>
-      <td>40</td>
-      <td>Fresno</td>
-      <td>4.9</td>
-      <td>10.0</td>
-      <td>2.1%</td>
-      <td>1.0</td>
-      <td>35%</td>
-      <td>8.0</td>
-      <td>$54.98</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>26.0</td>
-      <td>21.5</td>
-      <td>0.5</td>
-      <td>California</td>
-      <td>542107.0</td>
-      <td>494665.0</td>
-      <td>115.2</td>
-    </tr>
-  </tbody>
-</table>
-<p>746 rows × 31 columns</p>
-</div></div></div>
 </div>
 <p>The variable name <code class="docutils literal notranslate"><span class="pre">parks</span></code> here is arbitrary; you can choose something different
 if you want. However, in general, it’s a good habit to choose variable names
@@ -1907,7 +1598,7 @@ of inspecting a data set.</p>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

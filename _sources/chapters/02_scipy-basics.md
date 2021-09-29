@@ -15,17 +15,16 @@ Scientific Python
 
 
 :::{admonition} Learning Objectives
-- create dataframe from csv file
-- inspect structure of dataframe
-- learn the pandas/numpy datatypes including missing values
-- index and work with Series objects
-- index dataframe based on label (loc), integer index (iloc), logical conditions, and [] operator
-- drop columns and rows from dataframes
-- apply function to column and add as new column to dataframe
+- create DataFrame from csv file
+- inspect structure of DataFrame
+- learn python and pandas data types
+- index Series, using integer position, labels, and booleans
+- index DataFrame 
+- find and remove missing values in a Series and DataFrame
+- make modifications to a DataFrame
+- save a DataFrame to csv
 :::
 
-
-## Recap
 
 ## Packages
 
@@ -41,9 +40,9 @@ import numpy as np
 import pandas as pd
 ```
 
-## Pandas
+## pandas
 
-**Pandas** is a package that provides objects and many functions for working 
+**pandas** is a package that provides objects and many functions for working 
 with data. It is very popular and used for tasks such as:
 - loading and writing data to/from files and databases
 - summarizing data
@@ -58,7 +57,7 @@ with data. It is very popular and used for tasks such as:
 First, we will load in the dataset from a csv file using the `read_csv`
 function from pandas: 
 
-```{tip} 
+:::{Tip} 
 Most functions in pandas will have documentation describing what the function 
 does and how to use it. You can find this documentation online or directly
 from the python shell using the built-in help system: `help(pd.read_csv)`.
@@ -66,7 +65,7 @@ In IPython environments, you can use `?` either before or after the function
 name as a shorthand for the help function: `?pd.read_csv`
 
 This will also work on many objects and classes. 
-```
+:::
 
 ```{code-cell}
 df = pd.read_csv("../data/parks_final.csv") 
@@ -77,46 +76,50 @@ We can use the `head()` method to see what we have.
 df.head()
 ```
 
-Here we see a dataframe, which is the really important part of pandas, which we
+Here we see a DataFrame, which is the really important part of pandas, which we
 will spend lots of time with during this lesson and the next. 
 The dataframe is the tool we can merge, join, summarize, etc.
 
-## Dataframes
+## DataFrames
 
-A **dataframe** is how pandas structures tabular data - data structured as rows
+A **DataFrame** is how pandas structures tabular data - data structured as rows
 and columns. In general rows are observations, and columns are variables.
 Each entry is called a cell.
 
 
-## Methods for Exploring Dataframes
+## Methods for Exploring DataFrames
 
 As with the `head()` method there are many other methods for looking 
-at the contents of a pandas dataframe.
+at the contents of a pandas DataFrame.
 
-`head()` shows the first rows of the dataframe, to see the last rows, use
-`tail()`. By default, the the number of rows displayed is 5, this amount
+`head()` shows the first rows of the DataFrame, to see the last rows, use
+`tail()`. By default, the number of rows displayed is 5, this amount
 can be modified by passing an optional integer argument to the function call.
 Both `head()` and `tail()` accept this optional integer argument.
 
 ```{code-cell}
-dataset.tail(10)
+df.tail(10)
 ```
-To display the columns of the dataframe we can access the columns attribute
-of the dataframe object.
+To display the columns of the DataFrame we can access the columns attribute
+of the DataFrame object.
 
 ```{code-cell}
-dataset.columns
-```
-```{code-cell}
-dataset.info
+df.columns
 ```
 
+To see information about a DataFrame and its content:
 ```{code-cell}
-dataset.describe()
+df.info()
 ```
 
+To get some summary statistics about the values of a DataFrame:
 ```{code-cell}
-dataset.dtypes
+df.describe()
+```
+
+To see the data types of a DataFrame:
+```{code-cell}
+df.dtypes
 ```
 
 ## Data Types in python
@@ -195,14 +198,14 @@ Another example:
 a = str(3)
 ```
 
-## Data Types in Pandas
+## Data Types in pandas
 
 Python's built-in data types are very flexible at the cost of precision. 
 Numpy provides more control to the programmer by adding many classes for
 storing numeric data that can be modified to best match the data, in order
 to improve memory and time performance.
 
-Pandas, which is built on top of numpy, incorporates these types and some of
+pandas, which is built on top of numpy, incorporates these types and some of
 its own.
 
 These include:
@@ -215,50 +218,289 @@ These include:
 - StringDtype
 - python object (including strings)
 
-For `int` and `float` data, in pandas we can specify 
-
-```{code-cell}
-```
-
-
-These can also be modified to allow for specifying the size of the data in 
-bytes.
+For `int` and `float` data, in pandas we can specify the number the size of
+the int or float, such as int64 -> a 64 bit integer.
 
 
 ## Series
 
-Each column in the dataframe is a pandas `Series` object.
+Each column in the DataFrame is a pandas `Series` object.
 A Series is a collection of values that all share the same data type. 
-In addition, the values can be access by their integer index, or based
-on their label.
+In addition, each value has a label, these labels don't need to be unique
+and by default are integers starting at 0.
 
 It is built on top of the numpy ndarray object, and as such, will
 perform much faster than the list object for numerical operations.
 
-## Missing Values
+Lets look at the year column of our data. We can access it with the following:
+```{code-cell}
+year = df["year"].copy()
+```
+
+As with DataFrames, there are several functions for exploring series.
+
+To get the first values, we can once again use `head`:
+```{code-cell}
+year.head()
+```
+And again, to get the last values we can use `tail`:
+```{code-cell}
+year.tail()
+```
+
+Since the data is numeric we can also get some summary data:
+```{code-cell}
+year.describe()
+```
+
+To see just the unique set of values we can use the `unique` method:
+```{code-cell}
+year.unique()
+```
+
+Another very useful summary is `value_counts`:
+```{code-cell}
+year.value_counts()
+```
+
+Series are powerful because we can apply operations on them in an element wise
+fashion very easily and efficiently. For example:
+```{code-cell}
+year + 10
+```
+
+In addition, we can also use comparison operators:
+```{code-cell}
+year > 2014
+```
 
 ## Indexing Series
 
-## Reindex dataframe (city_year)
+pandas `Series` provide multiple methods for accessing values of a Series
+based on label or value. The main ways are the `iloc` attribute for accessing
+values based on their integer location and the `loc` attribute for accessing
+values based on their labels. In addition, Series can be indexed with
+the `[]` operator, in a way similar to what we saw with python lists. 
 
-## Operating on Series
+To see the labels of our Series we use the `index` attribute:
+```{code-cell}
+year.index
+```
+
+We can modify this to use a different set of labels:
+```{code-cell}
+year.index = df["city"]
+```
+
+### iloc
+`iloc` is an attribute of Series that we use to access elements based on
+their integer position. There are multiple values that can be used with `iloc`.
+
+First, we can access elements by passing a single integer:
+```{code-cell}
+year.iloc[33]
+```
+
+We can also pass a list or array of locations:
+```{code-cell}
+year.iloc[[33,0,23]]
+```
+
+As with lists, we can use python's slice operator:
+```{code-cell}
+year.iloc[3:10]
+```
+
+Lastly, with `iloc`, we can pass a boolean list or array. Recall that the 
+comparison operator returned a series, so we need to extract just the values,
+which we can do with the .values attribute:
+```{code-cell}
+year.iloc[(year > 2014).values]
+```
+
+### loc
+`loc` is an attribute Series that we use to access elements based on their 
+label.
+
+First, we can access elements by passing a single label:
+```{code-cell}
+year.loc["St. Paul"]
+```
+Notice that there were multiple values that matched with that label, so the
+Series returned all of them.
+
+We can also pass a list or array of labels:
+```{code-cell}
+year.loc[["St. Paul", "Mesa", "Fresno"]]
+```
+We can use a boolean array or list:
+```{code-cell}
+year.loc[(df["state"] == "California").values]
+```
+### []
+
+Pandas also supports selecting values form the Series using the `[]` operator.
+The behavior is somewhat complex, and is inherently less clear than the `iloc`
+or `loc` attributes described above.
+
+We can access elements by passing a single label or list of labels:
+```{code-cell}
+year[["Irvine", "San Diego"]]
+```
+We can also use a boolean array or list:
+```{code-cell}
+year[(df["pop2010"] > 500000).values]
+```
+We can pass an integer, but be weary that it will first attempt to match
+based on the label. If there are integer labels, then it will match with 
+those, and not fall back on integer location. In this case, since the labels
+are the city names, it will fall back on integer location, and we can do
+most of the same methods as with `iloc`:
+```{code-cell}
+year[[-1, 0, 500]]
+```
+
+```{code-cell}
+year[13:24]
+```
 
 
 ## Indexing DataFrames
+
+Conceptually, indexing DataFrames is very similar to the operations on Series. 
+However, whereas Series are one dimensional, DataFrames are two dimensional.
+A DataFrame is a collection of Series, organized as columns.
+
+As with Series, we can use `iloc` to select rows based on their integer position:
 ```{code-cell}
-dataset.loc # label based or boolean array
-dataset.iloc # interger based
-dataset[colname]
-dataset[[colnames]]
-dataset[colname][4]
+df.iloc[[300, 200, -1]]
 ```
 
-## Modiying DataFrames
-dropping values
-dropping columns
-Concat 
-Join
-cleaning
-changing datatypes
+And we can use `loc` to select based on label, in this case the label is also integers:
 ```{code-cell}
+df.loc[732]
 ```
+
+Again, as with Series, we can use boolean arrays or lists to index:
+```{code-cell}
+df.loc[df["state"] == "California"]
+```
+
+This also works with just the `[]` operator:
+```{code-cell}
+df[df["state"] == "California"]
+```
+
+:::{Note}
+Be careful when passing a bool Series to either `[]` or `loc` that the indexes of the bool Series and the DataFrame match. 
+For example we would get an error if we were to attempt to run:
+
+```
+df[year > 2020]
+```
+:::
+
+To use a boolean array or list with `iloc` be sure to pass only the values:
+```{code-cell}
+df.iloc[(df["state"] == "California").values]
+```
+
+To access columns from a DataFrame, we use the `[]` operator, as we have already seen:
+```{code-cell}
+df["pop2020"]
+```
+
+We can also pass a list of column names, in any order:
+```{code-cell}
+df[["pop2020", "city"]]
+```
+
+If we select a single column from the DataFrame, we get a Series, which we can index as we saw before:
+```{code-cell}
+df["pop2020"].iloc[1:10]
+```
+
+So, to combine with what we saw before with boolean indexing:
+```{code-cell}
+df[["city", "pop2020"]].loc[df["state"] == "California"]
+```
+
+We can combine multiple conditions with the `&` operator, note the paranthesis around the expressions:
+```{code-cell}
+df[["city", "pop2020"]].loc[(df["state"] == "California") & (df["year"] == 2020)] 
+```
+
+## Missing Values
+
+Often times, the data we import into pandas will have missing values. 
+Or, over the course of the the analysis, missing values will be introduced.
+
+pandas provides many methods for detecting, manipulating, and otherwise dealing with missing values.
+
+:::{note}
+There are several values that are considered missing. These include:
+- `NaN`
+- `None`
+- `NA`
+- `np.nan`
+:::
+
+To detect missing values, pandas provides two complementary methods - `isna` and `notna`.
+
+We can see information about missing values with the `count` method on DataFrames:
+```{code-cell}
+df.count()
+```
+
+If we look at the `park_benches` columns of the DataFrame, we can see what those missing values look like.
+```{code-cell}
+pb = df["park_benches"]
+pb.count()
+```
+
+The return of `isna` is a boolean Series indicating which of the values are considered missing:
+```{code-cell}
+pb.isna()
+```
+
+The reverse - to see which values are not considered missing - is returned with `notna`:
+```{code-cell}
+pb.notna()
+```
+
+We can use this boolean Series to subset. For example, to keep only the values that aren't missing:
+```{code-cell}
+pb.loc[pb.notna()]
+```
+
+pandas also provides a shortcut with the `dropna` method:
+```{code-cell}
+pb.dropna()
+```
+
+Another strategy may be to fill the missing values. We could do so using the `fillna` function:
+```{code-cell}
+pb.fillna(-1)
+```
+
+Additionally, the data set may have its own indicator for missing values, e.g "" or 0. We can convert those to missing using the `replace` method:
+```{code-cell}
+pb.replace(-1, np.nan)
+```
+
+## Modifying DataFrames
+TODO:
+- dropping values
+- dropping columns
+- Concat 
+- Join
+- cleaning
+- changing datatypes
+
+TODO:
+Use one operation to modify values, instead of two [][]:
+df.loc[criteria, columns] =
+
+## Saving
+TODO:
+save cleaned df as csv
