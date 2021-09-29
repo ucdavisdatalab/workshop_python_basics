@@ -215,45 +215,157 @@ These include:
 - StringDtype
 - python object (including strings)
 
-For `int` and `float` data, in pandas we can specify 
-
-```{code-cell}
-```
-
-
-These can also be modified to allow for specifying the size of the data in 
-bytes.
+For `int` and `float` data, in pandas we can specify the number the size of
+the int or float, such as int64 -> a 64 bit integer.
 
 
 ## Series
 
 Each column in the dataframe is a pandas `Series` object.
 A Series is a collection of values that all share the same data type. 
-In addition, the values can be access by their integer index, or based
-on their label.
+In addition, each value has a label, these labels don't need to be unique
+and by default are integers starting at 0.
 
 It is built on top of the numpy ndarray object, and as such, will
 perform much faster than the list object for numerical operations.
 
-## Missing Values
+Lets look at the year column of our data. We can access it with the following:
+```{code-cell}
+year = dataset["year"]
+```
+
+As with dataframes, there are several functions for exploring series.
+
+To get the first values, we can once again use `head`:
+```{code-cell}
+year.head()
+```
+And again, to get the last values we can use `tail`:
+```{code-cell}
+year.tail()
+```
+
+Since the data is numeric we can also get some summary data:
+```{code-cell}
+year.describe()
+```
+
+Series are powerful because we can apply operations on them in an element wise
+fashion very easily. For example:
+```{code-cell}
+year + 10
+```
+
+In addition, we can also use comparison operators:
+```{code-cell}
+year > 2014
+```
 
 ## Indexing Series
 
-## Reindex dataframe (city_year)
+Pandas `Series` provide multiple methods for accessing values of a Series
+based on label or value. The main ways are the `iloc` attribute for accessing
+values based on their integer location and the `loc` attritibute for accessing
+values based on their labels. In addition, Series can be indexed with
+the `[]` operator, in a way similar to what we saw with python lists. 
 
-## Operating on Series
+To see the labels of our Series we use the `index` attribute:
+```{code-cell}
+year.index
+```
 
+We can modify this to use a different set of labels:
+```{code-cell}
+year.index = dataset["city"]
+```
+
+### iloc
+`iloc` is an attribute of Series that we use to access elements based on
+their integer position. There are multiple values that can be used with `iloc`.
+
+First, we can access elements by passing a single integer:
+```{code-cell}
+year.iloc[33]
+```
+
+We can also pass a list or array of locations:
+```{code-cell}
+year.iloc[[33,0,23]]
+```
+
+As with lists, we can use python's slice operator:
+```{code-cell}
+year.iloc[3:10]
+```
+
+Lastly, with iloc, we can pass a boolean list or array. Recall that the 
+comparison operator returned a series, so we need to extract just the values,
+which we can do with the .values attribute:
+```{code-cell}
+year.iloc[(year > 2014).values]
+```
+
+### loc
+`loc` is an attribute Series that we use to access elements based on their 
+label.
+
+First, we can access elements by passing a single label:
+```{code-cell}
+year.loc["St. Paul"]
+```
+Notice that there were multiple values that matched with that label, so the
+Series returned all of them.
+
+We can also pass a list or array of labels:
+```{code-cell}
+year.loc[["St. Paul", "Mesa", "Fresno"]]
+```
+We can use a boolean array or list:
+```{code-cell}
+year.loc[(df["state"] == "California").values]
+```
+### []
+
+Pandas also supports selecting values form the Series using the `[]` operator.
+The behavior is somewhat complex, and is inherently less clear than the `iloc`
+or `loc` attributes described above.
+
+We can access elements by passing a single label or list of labels:
+```{code-cell}
+year[["Irvine", "San Diego"]]
+```
+We can also use a boolean array or list:
+```{code-cell}
+year[(df["pop2010"] > 500000).values]
+```
+We can pass an integer, but be weary that it will first attempt to match
+based on the label. If there are integer labels, then it will match with 
+those, and not fall back on integer location. In this case, since the labels
+are the city names, it will fall back on integer location, and we can do
+most of the same methods as with `iloc`:
+```{code-cell}
+year[[-1, 0, 500]]
+```
+
+```{code-cell}
+year[13:24]
+```
+
+## Missing Values
 
 ## Indexing DataFrames
+Columns and rows are indexed separately in pandas.
 ```{code-cell}
 dataset.loc # label based or boolean array
-dataset.iloc # interger based
+dataset.iloc # integer based or boolean array
 dataset[colname]
 dataset[[colnames]]
 dataset[colname][4]
+dataset[colname].loc[4]
 ```
 
 ## Modiying DataFrames
+Lets apply what we have learned and tidy up the dataframe:
 dropping values
 dropping columns
 Concat 
@@ -262,3 +374,5 @@ cleaning
 changing datatypes
 ```{code-cell}
 ```
+
+## Saving
