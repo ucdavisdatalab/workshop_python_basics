@@ -99,24 +99,24 @@ can be modified by passing an optional integer argument to the function call.
 Both `head()` and `tail()` accept this optional integer argument.
 
 ```{code-cell}
-dataset.tail(10)
+df.tail(10)
 ```
 To display the columns of the dataframe we can access the columns attribute
 of the dataframe object.
 
 ```{code-cell}
-dataset.columns
+df.columns
 ```
 ```{code-cell}
-dataset.info
-```
-
-```{code-cell}
-dataset.describe()
+df.info
 ```
 
 ```{code-cell}
-dataset.dtypes
+df.describe()
+```
+
+```{code-cell}
+df.dtypes
 ```
 
 ## Data Types in python
@@ -231,7 +231,7 @@ perform much faster than the list object for numerical operations.
 
 Lets look at the year column of our data. We can access it with the following:
 ```{code-cell}
-year = dataset["year"]
+year = df["year"]
 ```
 
 As with dataframes, there are several functions for exploring series.
@@ -276,7 +276,7 @@ year.index
 
 We can modify this to use a different set of labels:
 ```{code-cell}
-year.index = dataset["city"]
+year.index = df["city"]
 ```
 
 ### iloc
@@ -356,12 +356,12 @@ year[13:24]
 ## Indexing DataFrames
 Columns and rows are indexed separately in pandas.
 ```{code-cell}
-dataset.loc # label based or boolean array
-dataset.iloc # integer based or boolean array
-dataset[colname]
-dataset[[colnames]]
-dataset[colname][4]
-dataset[colname].loc[4]
+#df.loc # label based or boolean array
+#df.iloc # integer based or boolean array
+#df[colname]
+#df[[colnames]]
+#df[colname][4]
+#df[colname].loc[4]
 ```
 
 ## Modiying DataFrames
@@ -372,7 +372,5 @@ Concat
 Join
 cleaning
 changing datatypes
-```{code-cell}
-```
 
 ## Saving
