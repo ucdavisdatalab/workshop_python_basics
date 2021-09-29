@@ -42,15 +42,15 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Scientific Python" href="02_scipy-basics.html" />
@@ -105,6 +105,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="03_summarizing-data.html">
    3. Summarizing Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_extension.html">
+   4. Numpy
   </a>
  </li>
 </ul>
@@ -217,8 +222,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-jupyterlab-interface">
-   1.2. The JupyterLab Interface
+  <a class="reference internal nav-link" href="#the-python-console">
+   1.2. The Python Console
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -229,6 +234,21 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#calling-functions">
      1.2.2. Calling Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#objects-attributes">
+     1.2.3. Objects &amp; Attributes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lists">
+     1.2.4. Lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     1.2.5. References
     </a>
    </li>
   </ul>
@@ -246,45 +266,52 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modules-packages">
-   1.4. Modules &amp; Packages
+  <a class="reference internal nav-link" href="#packages">
+   1.4. Packages
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-scipy-ecosystem">
-   1.5. The SciPy Ecosystem
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-scipy-ecosystem">
+     1.4.1. The SciPy Ecosystem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modules">
+     1.4.2. Modules
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#file-systems">
-   1.6. File Systems
+   1.5. File Systems
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#absolute-relative-paths">
-     1.6.1. Absolute &amp; Relative Paths
+     1.5.1. Absolute &amp; Relative Paths
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#jupyter-notebooks">
-     1.6.2. Jupyter Notebooks
+     1.5.2. Jupyter Notebooks
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-working-directory">
-     1.6.3. The Working Directory
+     1.5.3. The Working Directory
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#reading-files">
-   1.7. Reading Files
+   1.6. Reading Files
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#hello-data">
-     1.7.1. Hello, Data!
+     1.6.1. Hello, Data!
     </a>
    </li>
   </ul>
@@ -303,9 +330,8 @@
   <div class="section" id="getting-started">
 <h1><span class="section-number">1. </span>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <p><strong><a class="reference external" href="https://www.python.org/">Python</a></strong> is a popular general-purpose programming language. Python is also a
-leading language for scientific computing, due to the introduction of the
-<strong><a class="reference external" href="https://scipy.org/">SciPy ecosystem</a></strong>, a collection of scientific computing software for
-Python, in 2001.</p>
+leading language for scientific computing due to the <strong><a class="reference external" href="https://scipy.org/">SciPy
+ecosystem</a></strong>, a collection of scientific computing software for Python.</p>
 <p>The main way you’ll interact with Python is by writing Python code or
 <strong>expressions</strong>. Most people use “Python” as a blanket term to refer to both
 the Python language and the Python software (which runs code written in the
@@ -364,33 +390,33 @@ an install guide [here][vscode-guide].
 [vscode-guide]: TODO
 -->
 </div>
-<div class="section" id="the-jupyterlab-interface">
-<h2><span class="section-number">1.2. </span>The JupyterLab Interface<a class="headerlink" href="#the-jupyterlab-interface" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-python-console">
+<h2><span class="section-number">1.2. </span>The Python Console<a class="headerlink" href="#the-python-console" title="Permalink to this headline">¶</a></h2>
 <p>The first time you open JupyterLab, you’ll see a window that looks like this:</p>
-<!-- TODO: -->
+<img alt="The JupyterLab startup screen." src="../_images/jupyterlab_startup.png" />
 <p>Don’t worry if the text in the panes isn’t exactly the same on your computer;
 it depends on your operating system and version of JupyterLab.</p>
-<p>You can open up a Python <em>console</em> by clicking on the “Python 3” button on the
-right. If you have multiple Python 3 buttons, click on the one that mentions
-“IPython”:</p>
-<!-- TODO: -->
-<p>After you open the console, your window should look like this:</p>
-<!-- TODO: -->
-<p>Let’s start by using Python to do some arithmetic. In the console, you’ll see
-a text box that begins with <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]:</span></code>, called the <em>prompt</em>. You can make Python
+<p>Start by opening up a Python <strong>console</strong>. In JupyterLab, look for the “Python
+3” button in the “Console” section of the pane on the right. If there are
+multiple Python 3 buttons, click on the one that mentions “IPython” or
+“ipykernel”:</p>
+<img alt="The JupyterLab startup screen with the console button highlighted." src="../_images/jupyterlab_console_button.png" />
+<p>The console is a interactive, text-based interface to Python. If you enter a
+Python expression in the console, Python will compute and display the result.
+After you open the console, your window should look like this:</p>
+<img alt="A Python console running in JupyterLab." src="../_images/jupyterlab_console.png" />
+<p>At the bottom of the console, the text box beginning with <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]:</span></code> is called the
+<strong>prompt</strong>. The prompt is where you’ll type Python expressions. Ask Python to
 compute the sum <span class="math notranslate nohighlight">\(2 + 2\)</span> by typing the code <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">2</span></code> in the prompt and then
 pressing <code class="docutils literal notranslate"><span class="pre">Shift</span></code>-<code class="docutils literal notranslate"><span class="pre">Enter</span></code>. Your code and the result from Python should look like
 this:</p>
-<!-- TODO: -->
-<p>Python always puts the result on a separate line (or lines) from your code.
-Your code and the result both begin with the tag <code class="docutils literal notranslate"><span class="pre">[1]</span></code> to indicate that they
-are the first code and result. Python will increment the tag each time you run
-an expression. The result of the sum, <code class="docutils literal notranslate"><span class="pre">4</span></code>, is displayed after the tag. In this
-reader, results from Python will usually be prefixed with <code class="docutils literal notranslate"><span class="pre">##</span></code> to indicate that
-they aren’t code.</p>
-<p>Now try typing the code <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">-</span> <span class="pre">1</span></code> in the prompt and
-pressing <code class="docutils literal notranslate"><span class="pre">Shift</span></code>-<code class="docutils literal notranslate"><span class="pre">Enter</span></code>:</p>
-<!-- TODO: -->
+<img alt="A Python console running in JupyterLab, showing the sum of two numbers." src="../_images/jupyterlab_console_sum.png" />
+<p>The Python console displays your code and the result on separate lines. Both
+begin with the tag <code class="docutils literal notranslate"><span class="pre">[1]</span></code> to indicate that they are the first expression and
+result. Python will increment the tag each time you run an expression. The tag
+numbers will restart from 1 each time you open a new Python console.</p>
+<p>Now try typing the code <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">-</span> <span class="pre">1</span></code> in the prompt and pressing <code class="docutils literal notranslate"><span class="pre">Shift</span></code>-<code class="docutils literal notranslate"><span class="pre">Enter</span></code>:</p>
+<img alt="A Python console running in JupyterLab, showing the difference of two numbers." src="../_images/jupyterlab_console_diff.png" />
 <p>The tag on the code and result is <code class="docutils literal notranslate"><span class="pre">[2]</span></code>, and once again the result is displayed
 after the tag.</p>
 <p>Try out some other arithmetic in the Python console. Besides <code class="docutils literal notranslate"><span class="pre">+</span></code> for addition,
@@ -402,40 +428,41 @@ the other arithmetic operators are:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">%</span></code> for remainder division (modulo)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">**</span></code> for exponentiation</p></li>
 </ul>
-<p>You can combine these and use parentheses to make more complicated expressions,
-just as you would when writing a mathematical expression. When Python computes
-a result, it follows the standard order of operations: parentheses,
-exponentiation, multiplication, division, addition, and finally subtraction.</p>
-<p>For example, to estimate the area of a circle with radius 3, you can write:</p>
+<p>You can combine these and use parentheses <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code> to make more complicated
+expressions, just as you would when writing a mathematical expression. When
+Python computes a result, it follows the standard order of operations:
+parentheses, exponentiation, multiplication, division, addition, and finally
+subtraction.</p>
+<p>For example, to compute the area of a triangle with base 3 and height 4, you
+can write:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">3.14</span> <span class="o">*</span> <span class="mi">3</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.5</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28.26
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
 </pre></div>
 </div>
 </div>
 </div>
 <p>You can write Python expressions with any number of spaces (including none)
-around the operators and Python will still compute the result. Nevertheless,
-putting spaces in your code makes it easier for you and others to read, so it’s
-good to make it a habit. Put spaces around most operators, after commas, and
-after keywords. Later on, you’ll learn about other kinds of expressions where
-the spacing does matter.</p>
+around the operators and Python will still compute the result. As with writing
+text, putting spaces in your code makes it easier for you and others to read,
+so it’s good to make it a habit. Put a single space on each side of most
+operators, after commas, and after keywords. Later on, you’ll learn about other
+kinds of expressions where the spacing does matter.</p>
 <div class="section" id="variables">
 <h3><span class="section-number">1.2.1. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
 <p>Python and most other programming languages allow you to create named values
-called <strong>variables</strong>.  The main reason to use variables is to temporarily save
-results from expressions so that you can use them in other expressions.</p>
-<p>You can create a variable with the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>. For example, to
-save the estimated area of the circle in a variable called <code class="docutils literal notranslate"><span class="pre">area</span></code>, you can
-write:</p>
+called <strong>variables</strong>. You can create a variable with the assignment operator
+<code class="docutils literal notranslate"><span class="pre">=</span></code> by writing a name on the left-hand side and a value or expression on the
+right hand side. For example, to save the estimated area of the triangle in a
+variable called <code class="docutils literal notranslate"><span class="pre">area</span></code>, you can write:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span> <span class="o">=</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="mi">3</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -443,10 +470,12 @@ write:</p>
 <p>In Python, variable names can contain any combination of letters, numbers, and
 underscores <code class="docutils literal notranslate"><span class="pre">_</span></code>, but must always start with a letter. Spaces, dots, and other
 symbols are not allowed in variable names.</p>
-<p>Now you can use the <code class="docutils literal notranslate"><span class="pre">area</span></code> variable anywhere you want the computed area. Notice
-that when you assign a result to a variable, Python doesn’t automatically
-display that result. If you want to see the result as well, you have to enter
-the variable’s name as a separate expression:</p>
+<p>The main reason to use variables is to temporarily save results from
+expressions so that you can use them in other expressions. For instance, now
+you can use the <code class="docutils literal notranslate"><span class="pre">area</span></code> variable anywhere you want the area of the triangle.</p>
+<p>Notice that when you assign a result to a variable, Python doesn’t
+automatically display that result. If you want to see the result as well, you
+have to enter the variable’s name as a separate expression:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span>
@@ -454,36 +483,40 @@ the variable’s name as a separate expression:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28.26
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
 </pre></div>
 </div>
 </div>
 </div>
-<p>Another reason to use variables is to make an expression more general. For
-instance, you might want to compute the area of several circles with different
-radii. Then the expression <code class="docutils literal notranslate"><span class="pre">3.14</span> <span class="pre">*</span> <span class="pre">3**2</span></code> is too specific. You can rewrite it as
-<code class="docutils literal notranslate"><span class="pre">3.14</span> <span class="pre">*</span> <span class="pre">r**2</span></code>, and then assign a value to the variable <code class="docutils literal notranslate"><span class="pre">r</span></code> just before you
-compute the area. Here’s the code to compute and display the area of a circle
-with radius 1 this way:</p>
+<p>Another reason to use variables is to make an expression clearer and more
+general. For instance, you might want to compute the area of several triangles
+with different bases and heights. Then the expression <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">/</span> <span class="pre">2</span></code> is too
+specific.
+Instead, you can create variables <code class="docutils literal notranslate"><span class="pre">base</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>, then rewrite the
+expression as <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">*</span> <span class="pre">height</span> <span class="pre">/</span> <span class="pre">2</span></code>. This makes the expression easier to
+understand, because the reader does not have to intuit that <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code> are the
+base and height in the formula. Here’s the new code to compute and display the
+area of a triangle with base 3 and height 4:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">area</span> <span class="o">=</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">area</span> <span class="o">=</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="n">area</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.14
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now if you want to compute the area for a different radius, all you have to do
-is change <code class="docutils literal notranslate"><span class="pre">r</span></code> and run the code again (Python will not change <code class="docutils literal notranslate"><span class="pre">area</span></code> until you
-do this). Writing code that’s general enough to reuse across multiple problems
-can be a big time-saver in the long run. Later on, you’ll see ways to make this
-code even easier to reuse.</p>
+<p>Now if you want to compute the area for a different triangle, all you have to
+do is change <code class="docutils literal notranslate"><span class="pre">base</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> and run the code again (Python will not update
+<code class="docutils literal notranslate"><span class="pre">area</span></code> until you do this). Writing code that’s general enough to reuse across
+multiple problems can be a big time-saver in the long run. Later on, you’ll see
+ways to make this code even easier to reuse.</p>
 </div>
 <div class="section" id="calling-functions">
 <h3><span class="section-number">1.2.2. </span>Calling Functions<a class="headerlink" href="#calling-functions" title="Permalink to this headline">¶</a></h3>
@@ -494,41 +527,91 @@ output. In programming jargon, the inputs to a function are called
 <strong>arguments</strong>, the output is called the <strong>return value</strong>, and using a function
 is called <strong>calling</strong> the function.</p>
 <p>To call a function, write its name followed by parentheses. Put any arguments
-to the function inside the parentheses. For example, the sine function is named
-<code class="docutils literal notranslate"><span class="pre">sin</span></code> (there are also <code class="docutils literal notranslate"><span class="pre">cos</span></code> and <code class="docutils literal notranslate"><span class="pre">tan</span></code>). So you can compute the sine of <span class="math notranslate nohighlight">\(\pi /
-4\)</span> with this code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+to the function inside the parentheses. For example, the function to round a
+number to a specified decimal place is named <code class="docutils literal notranslate"><span class="pre">round</span></code>. So you can round the
+number <code class="docutils literal notranslate"><span class="pre">8.153</span></code> to the nearest integer with this code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">8.153</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>There are many functions that accept more than one argument. For instance, the
-<code class="docutils literal notranslate"><span class="pre">sum</span></code> function accepts any number of arguments and adds them all together. When
-you call a function with multiple arguments, separate the arguments with
-commas. So another way to compute <span class="math notranslate nohighlight">\(2 + 2\)</span> in R is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
 </pre></div>
 </div>
-<p>When you call a function, Python assigns each argument to a <strong>parameter</strong>.
-Parameters are special variables that represent the inputs to a function and
-only exist while that function runs. For example, the <code class="docutils literal notranslate"><span class="pre">log</span></code> function, which
-computes a logarithm, has parameters <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">base</span></code> for the operand and base of
-the logaritm, respectively. The next section, Section &#64;ref(getting-help),
-explains how to look up the parameters for a function.</p>
-<p>By default, Python assigns arguments to parameters based on their order. The
+</div>
+</div>
+<p>Many functions accept more than one argument. For instance, the <code class="docutils literal notranslate"><span class="pre">round</span></code> function
+accepts two arguments: the number to round, and the number of decimal places to
+keep. When you call a function with multiple arguments, separate the arguments
+with commas. So to round <code class="docutils literal notranslate"><span class="pre">8.153</span></code> to 1 decimal place:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">8.153</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you call a function, Python assigns the arguments to the function’s
+<strong>parameters</strong>. Parameters are special variables that represent the inputs to a
+function and only exist while that function runs. For example, the <code class="docutils literal notranslate"><span class="pre">round</span></code>
+function has parameters <code class="docutils literal notranslate"><span class="pre">number</span></code> and <code class="docutils literal notranslate"><span class="pre">ndigits</span></code>. The next section,
+<a class="reference internal" href="#getting-help"><span class="std std-numref">Section 1.3</span></a>, explains how to look up the parameters for a function.</p>
+<p>Some parameters have <strong>default arguments</strong>. A parameter is automatically
+assigned its default argument whenever the parameter’s argument is not
+specified explicitly. As a result, assigning arguments to these parameters is
+optional. For instance, the <code class="docutils literal notranslate"><span class="pre">ndigits</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">round</span></code> has a default
+argument (round to the nearest integer), so it is okay to call <code class="docutils literal notranslate"><span class="pre">round</span></code> without
+setting <code class="docutils literal notranslate"><span class="pre">ndigits</span></code>, as in <code class="docutils literal notranslate"><span class="pre">round(8.153)</span></code>. In contrast, the <code class="docutils literal notranslate"><span class="pre">numbers</span></code> parameter
+does not have a default argument. <a class="reference internal" href="#getting-help"><span class="std std-numref">Section 1.3</span></a> explains how to look
+up the default arguments for a function.</p>
+<p>Python normally assigns arguments to parameters based on their position. The
 first argument is assigned to the function’s first parameter, the second to the
-second, and so on. So you can compute the logarithm of 64, base 2, with this
-code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+second, and so on. So in the code above, <code class="docutils literal notranslate"><span class="pre">8.153</span></code> is assigned to <code class="docutils literal notranslate"><span class="pre">number</span></code> and
+<code class="docutils literal notranslate"><span class="pre">1</span></code> is assigned to <code class="docutils literal notranslate"><span class="pre">ndigits</span></code>.</p>
+<p>You can make Python assign arguments to parameters by name with <code class="docutils literal notranslate"><span class="pre">=</span></code>, overriding
+their positions. So two other ways you can write the call above are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">8.153</span><span class="p">,</span> <span class="n">ndigits</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The argument 64 is assigned to the parameter <code class="docutils literal notranslate"><span class="pre">x</span></code>, and the argument 2 is
-assigned to the parameter <code class="docutils literal notranslate"><span class="pre">base</span></code>. You can also assign arguments to parameters
-by name with <code class="docutils literal notranslate"><span class="pre">=</span></code>, overriding their positions. So some other ways you can write
-the call above are:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="n">base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="n">base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">64</span><span class="p">)</span>
-<span class="n">log</span><span class="p">(</span><span class="n">base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.2
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">number</span> <span class="o">=</span> <span class="mf">8.153</span><span class="p">,</span> <span class="n">ndigits</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">number</span> <span class="o">=</span> <span class="mf">8.153</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.2
+</pre></div>
+</div>
+</div>
 </div>
 <p>All of these are equivalent. When you write code, choose whatever seems the
 clearest to you. Leaving parameter names out of calls saves typing, but
@@ -536,26 +619,520 @@ including some or all of them can make the code easier to understand.</p>
 <p>Parameters are not regular variables, and only exist while their associated
 function runs. You can’t set them before a call, nor can you access them after
 a call. So this code causes an error:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">64</span>
-<span class="n">log</span><span class="p">(</span><span class="n">base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="mf">4.755</span>
+<span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_58225</span><span class="o">/</span><span class="mf">3863254417.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">number</span> <span class="o">=</span> <span class="mf">4.755</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: round() missing required argument &#39;number&#39; (pos 1)
+</pre></div>
+</div>
+</div>
 </div>
 <p>In the error message, Python says that you forgot to assign an argument to the
-parameter <code class="docutils literal notranslate"><span class="pre">x</span></code>. You can keep the variable <code class="docutils literal notranslate"><span class="pre">x</span></code> and correct the call by making <code class="docutils literal notranslate"><span class="pre">x</span></code>
-an argument (for the parameter <code class="docutils literal notranslate"><span class="pre">x</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+parameter <code class="docutils literal notranslate"><span class="pre">number</span></code>. You can keep the variable <code class="docutils literal notranslate"><span class="pre">number</span></code> and correct the call by
+making <code class="docutils literal notranslate"><span class="pre">number</span></code> an argument (for the parameter <code class="docutils literal notranslate"><span class="pre">number</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.75
+</pre></div>
+</div>
+</div>
 </div>
 <p>Or, written more explicitly:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">base</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span><span class="p">,</span> <span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In summary, variables and parameters are distinct, even if they happen to have
-the same name. The variable <code class="docutils literal notranslate"><span class="pre">x</span></code> is not the same thing as the parameter <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.75
+</pre></div>
+</div>
+</div>
+</div>
+<p>The point is that variables and parameters are distinct, even if they happen to
+have the same name. The variable <code class="docutils literal notranslate"><span class="pre">number</span></code> is not the same thing as the
+parameter <code class="docutils literal notranslate"><span class="pre">number</span></code>.</p>
+</div>
+<div class="section" id="objects-attributes">
+<h3><span class="section-number">1.2.3. </span>Objects &amp; Attributes<a class="headerlink" href="#objects-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Python represents data as <strong>objects</strong>. Numbers, strings, data structures, and
+functions are all examples of objects.</p>
+<p>An <strong>attribute</strong> is an object attached to another object. An attribute usually
+contains metadata about the object to which it is attached. An attribute can
+also be a function, in which case it is called a <strong>method</strong>.</p>
+<p>For example, all strings have a <code class="docutils literal notranslate"><span class="pre">capitalize</span></code> method. You can access attributes
+and methods by typing a <code class="docutils literal notranslate"><span class="pre">.</span></code> after an object. Here’s the code to capitalize a
+string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;snakes everywhere!&quot;</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Snakes everywhere!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The built-in <code class="docutils literal notranslate"><span class="pre">dir</span></code> function lists all of the attributes attached to
+an object. Here are the attributes for a string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;__add__&#39;,
+ &#39;__class__&#39;,
+ &#39;__contains__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__getitem__&#39;,
+ &#39;__getnewargs__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__iter__&#39;,
+ &#39;__le__&#39;,
+ &#39;__len__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__mod__&#39;,
+ &#39;__mul__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__rmod__&#39;,
+ &#39;__rmul__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;capitalize&#39;,
+ &#39;casefold&#39;,
+ &#39;center&#39;,
+ &#39;count&#39;,
+ &#39;encode&#39;,
+ &#39;endswith&#39;,
+ &#39;expandtabs&#39;,
+ &#39;find&#39;,
+ &#39;format&#39;,
+ &#39;format_map&#39;,
+ &#39;index&#39;,
+ &#39;isalnum&#39;,
+ &#39;isalpha&#39;,
+ &#39;isascii&#39;,
+ &#39;isdecimal&#39;,
+ &#39;isdigit&#39;,
+ &#39;isidentifier&#39;,
+ &#39;islower&#39;,
+ &#39;isnumeric&#39;,
+ &#39;isprintable&#39;,
+ &#39;isspace&#39;,
+ &#39;istitle&#39;,
+ &#39;isupper&#39;,
+ &#39;join&#39;,
+ &#39;ljust&#39;,
+ &#39;lower&#39;,
+ &#39;lstrip&#39;,
+ &#39;maketrans&#39;,
+ &#39;partition&#39;,
+ &#39;removeprefix&#39;,
+ &#39;removesuffix&#39;,
+ &#39;replace&#39;,
+ &#39;rfind&#39;,
+ &#39;rindex&#39;,
+ &#39;rjust&#39;,
+ &#39;rpartition&#39;,
+ &#39;rsplit&#39;,
+ &#39;rstrip&#39;,
+ &#39;split&#39;,
+ &#39;splitlines&#39;,
+ &#39;startswith&#39;,
+ &#39;strip&#39;,
+ &#39;swapcase&#39;,
+ &#39;title&#39;,
+ &#39;translate&#39;,
+ &#39;upper&#39;,
+ &#39;zfill&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Attributes which begin with two underscores <code class="docutils literal notranslate"><span class="pre">__</span></code> are used by Python internally
+and usually not intended to be accessed directly.</p>
+</div>
+<div class="section" id="lists">
+<h3><span class="section-number">1.2.4. </span>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
+<p>A <strong>list</strong> is a container for zero or more values. The values in a list are
+called <strong>elements</strong>, and the <strong>length</strong> of a list is the number of elements.
+Lists are ordered, so there is a first element, second element, and so on up to
+the length of the list.</p>
+<p>You can make a list by enclosing comma-separated values in square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lists can be empty:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The elements of a list can also be qualitatively different. For instance,
+here’s a list where the first element is a number, the second is a string, and
+the third is another list (with one element):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]]</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8, &#39;hello&#39;, [&#39;a&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> also serve as the <strong>indexing operator</strong> in Python. The
+indexing operator gets or sets an element of a list based on the element’s
+position. Python uses <strong>zero-based indexing</strong>, which means the first element of
+a data structure is at position 0. The code to get the first element of the
+list <code class="docutils literal notranslate"><span class="pre">x</span></code> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, the code to get the third element of <code class="docutils literal notranslate"><span class="pre">x</span></code> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can set an element of a list by assigning at that index. So the code to
+change the first element of <code class="docutils literal notranslate"><span class="pre">x</span></code> to the string <code class="docutils literal notranslate"><span class="pre">&quot;hi&quot;</span></code> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;hi&quot;</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hi&#39;, &#39;hello&#39;, [&#39;a&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that this changes the overall list.</p>
+<p>You can get the length of a list with the built-in <code class="docutils literal notranslate"><span class="pre">len</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lists are a fundamental data structure in Python, so you’ll see many more
+examples of them as you go through this reader.</p>
+</div>
+<div class="section" id="references">
+<h3><span class="section-number">1.2.5. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<p>When you assign a Python object to a variable, Python usually creates a
+<strong>reference</strong> to the object. This means that if you assign an object to
+multiple variables and change one, all of them will change.</p>
+<p>For example, suppose you assign a list to variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, then change an
+element of <code class="docutils literal notranslate"><span class="pre">y</span></code>. Doing so also changes <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to make a copy of an object, use the object’s <code class="docutils literal notranslate"><span class="pre">copy</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reassigning a variable, as opposed to modifying elements, does not affect other
+variables. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="getting-help">
-<h2><span class="section-number">1.3. </span>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><span class="section-number">1.3. </span>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+<p>Learning and using a language is hard, so it’s important to know how to get
+help. The first place to look for help is Python’s built-in documentation. In
+the console, you can access the help pages with the <code class="docutils literal notranslate"><span class="pre">help</span></code> function.</p>
+<p>There are help pages for all of Python’s built-in functions, usually with the
+same name as the function itself. So the code to open the help page for the
+<code class="docutils literal notranslate"><span class="pre">round</span></code> function is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function round in module builtins:
+
+round(number, ndigits=None)
+    Round a number to a given precision in decimal digits.
+    
+    The return value is an integer if ndigits is omitted or None.  Otherwise
+    the return value has the same type as the number.  ndigits may be negative.
+</pre></div>
+</div>
+</div>
+</div>
+<p>For functions, help pages usually include a brief description and a list of
+parameters and default arguments. For instance, the help page for <code class="docutils literal notranslate"><span class="pre">round</span></code> shows
+that there are two parameters <code class="docutils literal notranslate"><span class="pre">number</span></code> and <code class="docutils literal notranslate"><span class="pre">ndigits</span></code>. It also says that
+<code class="docutils literal notranslate"><span class="pre">ndigits=None</span></code>, meaning the default argument for <code class="docutils literal notranslate"><span class="pre">ndigits</span></code> is the special
+<code class="docutils literal notranslate"><span class="pre">None</span></code> value, which you’ll learn more about in TODO.</p>
+<p>There are also help pages for other topics, such as built-in operators and
+modules (you’ll learn more about modules in <a class="reference internal" href="#modules-packages"><span class="std std-numref">Section 1.4</span></a>). To
+look up the help page for an operator, put the operator’s name in single or
+double quotes.</p>
+<p>Python treats anything inside single or double quotes as literal text rather
+than as an expression to evaluate. In programming jargon, a piece of literal
+text is called a <strong>string</strong>. You can use whichever kind of quotes you prefer,
+but the quote at the beginning of the string must match the quote at the end.</p>
+<p>For example, this code opens the help page for the arithmetic operators:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operator precedence
+*******************
+
+The following table summarizes the operator precedence in Python, from
+highest precedence (most binding) to lowest precedence (least
+binding).  Operators in the same box have the same precedence.  Unless
+the syntax is explicitly given, operators are binary.  Operators in
+the same box group left to right (except for exponentiation, which
+groups from right to left).
+
+Note that comparisons, membership tests, and identity tests, all have
+the same precedence and have a left-to-right chaining feature as
+described in the Comparisons section.
+
++-------------------------------------------------+---------------------------------------+
+| Operator                                        | Description                           |
+|=================================================|=======================================|
+| &quot;(expressions...)&quot;,  &quot;[expressions...]&quot;, &quot;{key: | Binding or parenthesized expression,  |
+| value...}&quot;, &quot;{expressions...}&quot;                  | list display, dictionary display, set |
+|                                                 | display                               |
++-------------------------------------------------+---------------------------------------+
+| &quot;x[index]&quot;, &quot;x[index:index]&quot;,                   | Subscription, slicing, call,          |
+| &quot;x(arguments...)&quot;, &quot;x.attribute&quot;                | attribute reference                   |
++-------------------------------------------------+---------------------------------------+
+| &quot;await&quot; &quot;x&quot;                                     | Await expression                      |
++-------------------------------------------------+---------------------------------------+
+| &quot;**&quot;                                            | Exponentiation [5]                    |
++-------------------------------------------------+---------------------------------------+
+| &quot;+x&quot;, &quot;-x&quot;, &quot;~x&quot;                                | Positive, negative, bitwise NOT       |
++-------------------------------------------------+---------------------------------------+
+| &quot;*&quot;, &quot;@&quot;, &quot;/&quot;, &quot;//&quot;, &quot;%&quot;                        | Multiplication, matrix                |
+|                                                 | multiplication, division, floor       |
+|                                                 | division, remainder [6]               |
++-------------------------------------------------+---------------------------------------+
+| &quot;+&quot;, &quot;-&quot;                                        | Addition and subtraction              |
++-------------------------------------------------+---------------------------------------+
+| &quot;&lt;&lt;&quot;, &quot;&gt;&gt;&quot;                                      | Shifts                                |
++-------------------------------------------------+---------------------------------------+
+| &quot;&amp;&quot;                                             | Bitwise AND                           |
++-------------------------------------------------+---------------------------------------+
+| &quot;^&quot;                                             | Bitwise XOR                           |
++-------------------------------------------------+---------------------------------------+
+| &quot;|&quot;                                             | Bitwise OR                            |
++-------------------------------------------------+---------------------------------------+
+| &quot;in&quot;, &quot;not in&quot;, &quot;is&quot;, &quot;is not&quot;, &quot;&lt;&quot;, &quot;&lt;=&quot;, &quot;&gt;&quot;, | Comparisons, including membership     |
+| &quot;&gt;=&quot;, &quot;!=&quot;, &quot;==&quot;                                | tests and identity tests              |
++-------------------------------------------------+---------------------------------------+
+| &quot;not&quot; &quot;x&quot;                                       | Boolean NOT                           |
++-------------------------------------------------+---------------------------------------+
+| &quot;and&quot;                                           | Boolean AND                           |
++-------------------------------------------------+---------------------------------------+
+| &quot;or&quot;                                            | Boolean OR                            |
++-------------------------------------------------+---------------------------------------+
+| &quot;if&quot; – &quot;else&quot;                                   | Conditional expression                |
++-------------------------------------------------+---------------------------------------+
+| &quot;lambda&quot;                                        | Lambda expression                     |
++-------------------------------------------------+---------------------------------------+
+| &quot;:=&quot;                                            | Assignment expression                 |
++-------------------------------------------------+---------------------------------------+
+
+-[ Footnotes ]-
+
+[1] While &quot;abs(x%y) &lt; abs(y)&quot; is true mathematically, for floats it
+    may not be true numerically due to roundoff.  For example, and
+    assuming a platform on which a Python float is an IEEE 754 double-
+    precision number, in order that &quot;-1e-100 % 1e100&quot; have the same
+    sign as &quot;1e100&quot;, the computed result is &quot;-1e-100 + 1e100&quot;, which
+    is numerically exactly equal to &quot;1e100&quot;.  The function
+    &quot;math.fmod()&quot; returns a result whose sign matches the sign of the
+    first argument instead, and so returns &quot;-1e-100&quot; in this case.
+    Which approach is more appropriate depends on the application.
+
+[2] If x is very close to an exact integer multiple of y, it’s
+    possible for &quot;x//y&quot; to be one larger than &quot;(x-x%y)//y&quot; due to
+    rounding.  In such cases, Python returns the latter result, in
+    order to preserve that &quot;divmod(x,y)[0] * y + x % y&quot; be very close
+    to &quot;x&quot;.
+
+[3] The Unicode standard distinguishes between *code points* (e.g.
+    U+0041) and *abstract characters* (e.g. “LATIN CAPITAL LETTER A”).
+    While most abstract characters in Unicode are only represented
+    using one code point, there is a number of abstract characters
+    that can in addition be represented using a sequence of more than
+    one code point.  For example, the abstract character “LATIN
+    CAPITAL LETTER C WITH CEDILLA” can be represented as a single
+    *precomposed character* at code position U+00C7, or as a sequence
+    of a *base character* at code position U+0043 (LATIN CAPITAL
+    LETTER C), followed by a *combining character* at code position
+    U+0327 (COMBINING CEDILLA).
+
+    The comparison operators on strings compare at the level of
+    Unicode code points. This may be counter-intuitive to humans.  For
+    example, &quot;&quot;\u00C7&quot; == &quot;\u0043\u0327&quot;&quot; is &quot;False&quot;, even though both
+    strings represent the same abstract character “LATIN CAPITAL
+    LETTER C WITH CEDILLA”.
+
+    To compare strings at the level of abstract characters (that is,
+    in a way intuitive to humans), use &quot;unicodedata.normalize()&quot;.
+
+[4] Due to automatic garbage-collection, free lists, and the dynamic
+    nature of descriptors, you may notice seemingly unusual behaviour
+    in certain uses of the &quot;is&quot; operator, like those involving
+    comparisons between instance methods, or constants.  Check their
+    documentation for more info.
+
+[5] The power operator &quot;**&quot; binds less tightly than an arithmetic or
+    bitwise unary operator on its right, that is, &quot;2**-1&quot; is &quot;0.5&quot;.
+
+[6] The &quot;%&quot; operator is also used for string formatting; the same
+    precedence applies.
+
+Related help topics: lambda, or, and, not, in, is, BOOLEAN, COMPARISON,
+BITWISE, SHIFTING, BINARY, FORMATTING, POWER, UNARY, ATTRIBUTES,
+SUBSCRIPTS, SLICINGS, CALLS, TUPLES, LISTS, DICTIONARIES
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s always okay to put quotes around the name of the page when you use <code class="docutils literal notranslate"><span class="pre">help</span></code>,
+but they’re only required if the name contains non-alphabetic characters. So
+<code class="docutils literal notranslate"><span class="pre">help(abs)</span></code>, <code class="docutils literal notranslate"><span class="pre">help('abs')</span></code>, and <code class="docutils literal notranslate"><span class="pre">help(&quot;abs&quot;)</span></code> all open the documentation for
+<code class="docutils literal notranslate"><span class="pre">abs</span></code>, the absolute value function.</p>
+<p>You can also browse the Python documentation <a class="reference external" href="https://docs.python.org/3/">online</a>. This is a good
+way to explore the many different functions and data structures built into
+Python. If you do use the online documentation, make sure to use the
+documentation for the same version of Python as the one you have. Python
+displays the version each time you open a new console, and the online
+documentation shows the version in the upper left corner.</p>
+<p>Sometimes you might not know the name of the help page you want to look up. In
+that case it’s best to use an online search engine. When you search for help
+with Python online, include “Python” as a search term.</p>
 <div class="section" id="when-something-goes-wrong">
 <h3><span class="section-number">1.3.1. </span>When Something Goes Wrong<a class="headerlink" href="#when-something-goes-wrong" title="Permalink to this headline">¶</a></h3>
 <p>As a programmer, sooner or later you’ll run some code and get an error message
@@ -578,19 +1155,39 @@ popular question and answer website for programmers. Before posting, make sure
 to read about <a class="reference external" href="https://stackoverflow.com/help/how-to-ask">how to ask a good question</a>.</p>
 </div>
 </div>
-<div class="section" id="modules-packages">
-<h2><span class="section-number">1.4. </span>Modules &amp; Packages<a class="headerlink" href="#modules-packages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="packages">
+<span id="modules-packages"></span><h2><span class="section-number">1.4. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
 <p>A <strong>package</strong> is a reusable bundle of code. Packages usually include
 documentation, and can also contain examples and data sets. Most packages are
-developed by members of the Python community, so quality varies. There are also
-many packages that are built into Python, to provide extra features.</p>
+developed by members of the Python community, so quality varies.</p>
+<div class="section" id="the-scipy-ecosystem">
+<h3><span class="section-number">1.4.1. </span>The SciPy Ecosystem<a class="headerlink" href="#the-scipy-ecosystem" title="Permalink to this headline">¶</a></h3>
+<p>The SciPy ecosystem is a collection of scientific computing software for Python
+introduced in 2001. SciPy is divided into several different Python packages.</p>
+<p>Some of the most important packages in the SciPy ecosystem are:</p>
+<ul class="simple">
+<li><p><strong>NumPy</strong>, which provides an n-dimensional array data structure and a variety
+of math functions</p></li>
+<li><p><strong>SciPy</strong>, which provides additional math functions</p></li>
+<li><p><strong>Pandas</strong>, which provides data frames</p></li>
+<li><p><strong>IPython</strong>, which makes it possible to run Python code in Jupyter</p></li>
+<li><p><strong>Matplotlib</strong>, which provides data visualization functions</p></li>
+</ul>
+<p>You’ll learn much more about NumPy, SciPy, and Pandas as you go through this
+reader. By using JupyterLab, you’ve already used IPython. You’ll use Matplotlib
+indirectly later on, when you learn about visualization.</p>
+</div>
+<div class="section" id="modules">
+<h3><span class="section-number">1.4.2. </span>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
 <p>In Python, packages are further subdivided into <strong>modules</strong>, collections of
 related functions and data structures. The best way to learn about the modules
-provided by a package is to read the package’s documentation.</p>
-<p>Most packages have a main module with the same name as the package. So NumPy
-provides a module called <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, and Pandas provides a module called <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.
-You can use the <code class="docutils literal notranslate"><span class="pre">import</span></code> command to load a module from an installed package.
-Anaconda installs NumPy by default, so try loading the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module:</p>
+provided by a package is to read the package’s documentation. There are also
+many modules that are built into Python, to provide extra features.</p>
+<p>Most packages have a main module with the same name as the package. So the
+NumPy package provides a module called <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, and the Pandas package provides
+a module called <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. You can use the <code class="docutils literal notranslate"><span class="pre">import</span></code> command to load a module
+from an installed package. Anaconda installs NumPy by default, so try loading
+the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
@@ -603,7 +1200,7 @@ not. Thus you can assume the <code class="docutils literal notranslate"><span cl
 printed. If something goes wrong while loading a module, Python will print out
 an error message explaining the problem.</p>
 <p>Once a module is loaded, you can access its functions by typing the name of the
-module, a dot, and then the name of the function. For instance, to use the
+module, a dot <code class="docutils literal notranslate"><span class="pre">.</span></code>, and then the name of the function. For instance, to use the
 <code class="docutils literal notranslate"><span class="pre">round</span></code> function provided by NumPy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -612,12 +1209,7 @@ module, a dot, and then the name of the function. For instance, to use the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">l2</span><span class="o">/</span><span class="mi">9</span><span class="n">h6xd6f555321vx3s_ttqb_80000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_18715</span><span class="o">/</span><span class="mf">2079409107.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">3.3</span><span class="p">)</span>
-
-<span class="ne">AttributeError</span>: module &#39;numpy&#39; has no attribute &#39;round&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
 </pre></div>
 </div>
 </div>
@@ -642,27 +1234,20 @@ because it makes it easier for other people to understand your code. Use the
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
+</pre></div>
 </div>
 </div>
-<div class="section" id="the-scipy-ecosystem">
-<h2><span class="section-number">1.5. </span>The SciPy Ecosystem<a class="headerlink" href="#the-scipy-ecosystem" title="Permalink to this headline">¶</a></h2>
-<p>The SciPy ecosystem is a collection of scientific computing software for Python
-introduced in 2001. SciPy is divided into several different Python packages.</p>
-<p>Some of the most important packages in the SciPy ecosystem are:</p>
-<ul class="simple">
-<li><p><strong>NumPy</strong>, which provides an n-dimensional array data structure and a variety
-of math functions</p></li>
-<li><p><strong>SciPy</strong>, which provides additional math functions</p></li>
-<li><p><strong>Pandas</strong>, which provides data frames</p></li>
-<li><p><strong>IPython</strong>, which makes it possible to run Python code in Jupyter</p></li>
-<li><p><strong>Matplotlib</strong>, which provides data visualization functions</p></li>
-</ul>
-<p>You’ll learn much more about NumPy, SciPy, and Pandas as you go through this
-reader. By using JupyterLab, you’ve already used IPython. You’ll use Matplotlib
-indirectly later on, when you learn about visualization.</p>
+</div>
+<p>Note that NumPy’s <code class="docutils literal notranslate"><span class="pre">np.round</span></code> is an entirely different function than Python’s
+built-in <code class="docutils literal notranslate"><span class="pre">round</span></code> function, even though they do the same thing. NumPy’s math
+functions are generally faster, more precise, and more convenient than Python’s
+built-in math functions.</p>
+</div>
 </div>
 <div class="section" id="file-systems">
-<h2><span class="section-number">1.6. </span>File Systems<a class="headerlink" href="#file-systems" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.5. </span>File Systems<a class="headerlink" href="#file-systems" title="Permalink to this headline">¶</a></h2>
 <p><em>TODO: Remake image to be Python appropriate or language agnostic.</em></p>
 <p>Most of the time, you won’t just write code directly into the Python console.
 Reproducibility and reusability are important benefits of Python over
@@ -682,7 +1267,7 @@ is also what it’s called on all macOS and Linux computers. On Windows, the roo
 is usually called <code class="docutils literal notranslate"><span class="pre">C:/</span></code>, but sometimes other letters, like <code class="docutils literal notranslate"><span class="pre">D:/</span></code>, are also used
 depending on the computer’s hardware.</p>
 <p>A <em>path</em> is a list of directories that leads to a specific file or directory on
-a file system (imagine giving directons to someone as they walk through the
+a file system (imagine giving directions to someone as they walk through the
 file system). Use forward slashes <code class="docutils literal notranslate"><span class="pre">/</span></code> to separate the directories in a path,
 rather than commas or spaces. The root directory includes a forward slash as
 part of its name, and doesn’t need an extra one.</p>
@@ -719,7 +1304,7 @@ working in R, use forward slashes and don’t worry about the operating system.
 This is especially convenient when you want to share code with someone that
 uses a different operating system than you.</p>
 <div class="section" id="absolute-relative-paths">
-<span id="id1"></span><h3><span class="section-number">1.6.1. </span>Absolute &amp; Relative Paths<a class="headerlink" href="#absolute-relative-paths" title="Permalink to this headline">¶</a></h3>
+<span id="id2"></span><h3><span class="section-number">1.5.1. </span>Absolute &amp; Relative Paths<a class="headerlink" href="#absolute-relative-paths" title="Permalink to this headline">¶</a></h3>
 <p>A path that starts from the root directory, like all of the ones we’ve seen so
 far, is called an <em>absolute path</em>. The path is “absolute” because it
 unambiguously describes where a file or directory is located. The downside is
@@ -734,24 +1319,24 @@ isn’t portable to others.</p>
 <p>On the other hand, a <em>relative path</em> is one that doesn’t start from the root
 directory. The path is “relative” to an unspecified starting point, which
 usually depends on the context.</p>
-<p>For instance, suppose Ada’s code is saved in the file <code class="docutils literal notranslate"><span class="pre">analysis.R</span></code> (more about
-<code class="docutils literal notranslate"><span class="pre">.R</span></code> files in Section &#64;ref(r-scripts)), which is in the same directory as
-<code class="docutils literal notranslate"><span class="pre">cats.csv</span></code> on her computer. Then instead of an absolute path, she can use a
-relative path in her code:</p>
+<p>For instance, suppose Ada’s code is saved in the file <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code> (more
+about <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files in <a class="reference internal" href="#jupyter-notebooks"><span class="std std-numref">Section 1.5.2</span></a>), which is in the same
+directory as <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code> on her computer. Then instead of an absolute path, she
+can use a relative path in her code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cats</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
-<p>The context is the location of <code class="docutils literal notranslate"><span class="pre">analysis.R</span></code>, the file that contains the code.
+<p>The context is the location of <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code>, the file that contains the code.
 In other words, the starting point on Ada’s computer is the <code class="docutils literal notranslate"><span class="pre">ada</span></code> directory. On
 other computers, the starting point will be different, depending on where the
 code is stored.</p>
-<p>Now suppose Ada sends her corrected code in <code class="docutils literal notranslate"><span class="pre">analysis.R</span></code> to Gladys, and tells
-Gladys to put it in the same directory as <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>. Since the path <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>
-is relative, the code will still work on Gladys’ computer, as long as the two
-files are in the same directory. The name of that directory and its location in
-the file system don’t matter, and don’t have to be the same as on Ada’s
-computer. Gladys can put the files in a directory <code class="docutils literal notranslate"><span class="pre">/Users/gladys/from_ada/</span></code> and
-the path (and code) will still work.</p>
+<p>Now suppose Ada sends her corrected code in <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code> to Gladys, and
+tells Gladys to put it in the same directory as <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>. Since the path
+<code class="docutils literal notranslate"><span class="pre">cats.csv</span></code> is relative, the code will still work on Gladys’ computer, as long
+as the two files are in the same directory. The name of that directory and its
+location in the file system don’t matter, and don’t have to be the same as on
+Ada’s computer. Gladys can put the files in a directory
+<code class="docutils literal notranslate"><span class="pre">/Users/gladys/from_ada/</span></code> and the path (and code) will still work.</p>
 <p>Relative paths can include directories. For example, suppose that Charles wants
 to write a relative path from the <code class="docutils literal notranslate"><span class="pre">Users</span></code> directory to a cool selfie he took.
 Then he can write:</p>
@@ -777,7 +1362,7 @@ are typically found inside <code class="docutils literal notranslate"><span clas
 <code class="docutils literal notranslate"><span class="pre">/home/</span></code> on Linux.</p></li>
 </ul>
 <p>As an example, suppose Ada wants to write a (relative) path from the <code class="docutils literal notranslate"><span class="pre">ada</span></code>
-directory to Charles’ cool selfie. Using these shorcuts, she can write:</p>
+directory to Charles’ cool selfie. Using these shortcuts, she can write:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../</span><span class="n">charles</span><span class="o">/</span><span class="n">cool_hair_selfie</span><span class="o">.</span><span class="n">jpg</span>
 </pre></div>
 </div>
@@ -798,20 +1383,474 @@ specific situations where <code class="docutils literal notranslate"><span class
 this text.</p>
 </div>
 <div class="section" id="jupyter-notebooks">
-<h3><span class="section-number">1.6.2. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3><span class="section-number">1.5.2. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="the-working-directory">
-<h3><span class="section-number">1.6.3. </span>The Working Directory<a class="headerlink" href="#the-working-directory" title="Permalink to this headline">¶</a></h3>
-<p>Section <a class="reference internal" href="#absolute-relative-paths"><span class="std std-ref">Absolute &amp; Relative Paths</span></a> explained that relative paths have a
+<h3><span class="section-number">1.5.3. </span>The Working Directory<a class="headerlink" href="#the-working-directory" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="#absolute-relative-paths"><span class="std std-numref">Section 1.5.1</span></a> explained that relative paths have a
 starting point that depends on the context where the path is used. The <em>working
 directory</em> is the starting point Python uses for relative paths. Think of the
 working directory as the directory Python is currently “at” or watching.</p>
 </div>
 </div>
 <div class="section" id="reading-files">
-<h2><span class="section-number">1.7. </span>Reading Files<a class="headerlink" href="#reading-files" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.6. </span>Reading Files<a class="headerlink" href="#reading-files" title="Permalink to this headline">¶</a></h2>
+<p>The first step in most data analyses is loading the data. The Pandas package
+provides functions to read a variety of data formats. In order to know which
+function to use, you need to identify the data’s file format.</p>
+<p>Most of the time, you can guess the format of a file by looking at its
+<strong>extension</strong>, the characters (usually three) after the last dot <code class="docutils literal notranslate"><span class="pre">.</span></code> in the
+filename. For example, the extension <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> or <code class="docutils literal notranslate"><span class="pre">.jpeg</span></code> indicates a <a class="reference external" href="https://en.wikipedia.org/wiki/JPEG">JPEG image
+file</a>. Some operating systems hide extensions by default, but you can find
+instructions to change this setting online by searching for “show file
+extensions” and your operating system’s name. The extension is just part of the
+file’s name, so it should be taken as a hint about the file’s format rather
+than a guarantee.</p>
+<p>The table below shows several formats that are frequently used to distribute
+data. Although Pandas provides reader functions for all of these, the lxml
+package and Python’s built-in json module are better suited to the last two.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Name</p></th>
+<th class="text-align:left head"><p>Extension</p></th>
+<th class="text-align:left head"><p>Tabular?</p></th>
+<th class="text-align:left head"><p>Text?</p></th>
+<th class="text-align:left head"><p>Pandas Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>Comma-separated Values</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">read_csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Tab-separated Values</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">.tsv</span></code></p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">read_table</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>Fixed-width File</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">.fwf</span></code></p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">read_fwf</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Microsoft Excel</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">.xlsx</span></code></p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">read_excel</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p><a class="reference external" href="https://arrow.apache.org/">Apache Arrow</a></p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">.feather</span></code></p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">read_feather</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>Extensible Markup Language</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">.xml</span></code></p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>Use lxml package</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>JavaScript Object Notation</p></td>
+<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">.json</span></code></p></td>
+<td class="text-align:left"><p>No</p></td>
+<td class="text-align:left"><p>Yes</p></td>
+<td class="text-align:left"><p>Use json module</p></td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>tabular</strong> data set is one that’s structured as a table, with rows and
+columns. We’ll focus on tabular data sets for most of this reader, since
+they’re easier to get started with. Here’s an example of a tabular data set:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>Fruit</p></th>
+<th class="text-align:right head"><p>Quantity</p></th>
+<th class="text-align:right head"><p>Price</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>apple</p></td>
+<td class="text-align:right"><p>32</p></td>
+<td class="text-align:right"><p>1.49</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>banana</p></td>
+<td class="text-align:right"><p>541</p></td>
+<td class="text-align:right"><p>0.79</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>pear</p></td>
+<td class="text-align:right"><p>10</p></td>
+<td class="text-align:right"><p>1.99</p></td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>text</strong> file is one that contains human-readable lines of text. You can
+check this by opening the file with a text editor such as Microsoft Notepad or
+macOS TextEdit. Many file formats use text in order to make the format easier
+to work with.</p>
+<p>For instance, a <strong>comma-separated values</strong> (CSV) file records a tabular data
+using one line per row, with commas separating columns. If you store the table
+above in a CSV file and open the file in a text editor, here’s what you’ll see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Fruit</span><span class="p">,</span><span class="n">Quantity</span><span class="p">,</span><span class="n">Price</span>
+<span class="n">apple</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mf">1.49</span>
+<span class="n">banana</span><span class="p">,</span><span class="mi">541</span><span class="p">,</span><span class="mf">0.79</span>
+<span class="n">pear</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">1.99</span>
+</pre></div>
+</div>
+<p>A <strong>binary</strong> file is one that’s not human-readable. You can’t just read off the
+data if you open a binary file in a text editor, but they have a number of
+other advantages. Compared to text files, binary files are often faster to read
+and take up less storage space (bytes).</p>
 <div class="section" id="hello-data">
-<h3><span class="section-number">1.7.1. </span>Hello, Data!<a class="headerlink" href="#hello-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">1.6.1. </span>Hello, Data!<a class="headerlink" href="#hello-data" title="Permalink to this headline">¶</a></h3>
+<p>Over the next few sections, you’ll explore data from <a class="reference external" href="https://www.tpl.org/parks-and-an-equitable-recovery-parkscore-report">The Trust for Public
+Land</a> about park access in major American cities. The data set was
+prepared as part of the Tidy Tuesday community data project. You can find more
+details about the data set <a class="reference external" href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-06-22">here</a>, and you can download the data set
+<a class="reference external" href="https://raw.githubusercontent.com/ucdavisdatalab/workshop_python_basics/main/data/parks_final.csv">here</a> (you may need to choose <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Save</span> <span class="pre">As...</span></code> in your browser’s
+menu).</p>
+<p>The data set is a file called <code class="docutils literal notranslate"><span class="pre">parks_final.csv</span></code>, which suggests it’s a CSV
+file. In this case, the extension is correct, so you can read the file with
+Pandas’ <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function. The first argument is the path to where you saved
+the file, which may be different on your computer. The <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function
+returns the data set, but Python won’t keep the data in memory unless you
+assign the returned result to a variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">parks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/parks_final.csv&quot;</span><span class="p">)</span>
+<span class="n">parks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>rank</th>
+      <th>city</th>
+      <th>med_park_size_data</th>
+      <th>med_park_size_points</th>
+      <th>park_pct_city_data</th>
+      <th>park_pct_city_points</th>
+      <th>pct_near_park_data</th>
+      <th>pct_near_park_points</th>
+      <th>spend_per_resident_data</th>
+      <th>...</th>
+      <th>splashground_data</th>
+      <th>splashground_points</th>
+      <th>amenities_points</th>
+      <th>total_points</th>
+      <th>total_pct</th>
+      <th>park_benches</th>
+      <th>state</th>
+      <th>pop2020</th>
+      <th>pop2010</th>
+      <th>area2020</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020</td>
+      <td>1</td>
+      <td>Minneapolis</td>
+      <td>5.7</td>
+      <td>26.0</td>
+      <td>15%</td>
+      <td>38.0</td>
+      <td>98%</td>
+      <td>98.0</td>
+      <td>$319</td>
+      <td>...</td>
+      <td>4.0</td>
+      <td>100.0</td>
+      <td>79.3</td>
+      <td>341.0</td>
+      <td>85.3</td>
+      <td>NaN</td>
+      <td>Minnesota</td>
+      <td>429954.0</td>
+      <td>382578.0</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020</td>
+      <td>2</td>
+      <td>Washington</td>
+      <td>1.4</td>
+      <td>5.0</td>
+      <td>24%</td>
+      <td>50.0</td>
+      <td>98%</td>
+      <td>98.0</td>
+      <td>$307</td>
+      <td>...</td>
+      <td>4.1</td>
+      <td>100.0</td>
+      <td>80.3</td>
+      <td>333.0</td>
+      <td>83.3</td>
+      <td>NaN</td>
+      <td>District of Columbia</td>
+      <td>689545.0</td>
+      <td>601723.0</td>
+      <td>61.1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020</td>
+      <td>3</td>
+      <td>St. Paul</td>
+      <td>3.2</td>
+      <td>14.0</td>
+      <td>15%</td>
+      <td>39.0</td>
+      <td>99%</td>
+      <td>99.0</td>
+      <td>$219</td>
+      <td>...</td>
+      <td>1.3</td>
+      <td>47.0</td>
+      <td>78.0</td>
+      <td>330.0</td>
+      <td>82.5</td>
+      <td>NaN</td>
+      <td>Minnesota</td>
+      <td>311527.0</td>
+      <td>285068.0</td>
+      <td>52.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020</td>
+      <td>4</td>
+      <td>Arlington</td>
+      <td>2.4</td>
+      <td>10.0</td>
+      <td>11%</td>
+      <td>28.0</td>
+      <td>99%</td>
+      <td>99.0</td>
+      <td>$301</td>
+      <td>...</td>
+      <td>2.2</td>
+      <td>81.0</td>
+      <td>89.0</td>
+      <td>326.0</td>
+      <td>81.5</td>
+      <td>NaN</td>
+      <td>Virginia</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020</td>
+      <td>5</td>
+      <td>Cincinnati</td>
+      <td>4.4</td>
+      <td>20.0</td>
+      <td>14%</td>
+      <td>36.0</td>
+      <td>82%</td>
+      <td>74.0</td>
+      <td>$190</td>
+      <td>...</td>
+      <td>4.5</td>
+      <td>100.0</td>
+      <td>92.5</td>
+      <td>323.0</td>
+      <td>80.6</td>
+      <td>NaN</td>
+      <td>Ohio</td>
+      <td>309317.0</td>
+      <td>296943.0</td>
+      <td>77.8</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>741</th>
+      <td>2012</td>
+      <td>36</td>
+      <td>Indianapolis</td>
+      <td>10.3</td>
+      <td>20.0</td>
+      <td>4.8%</td>
+      <td>4.0</td>
+      <td>32%</td>
+      <td>6.0</td>
+      <td>$43.61</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>37.0</td>
+      <td>31.0</td>
+      <td>1.5</td>
+      <td>Indiana</td>
+      <td>887642.0</td>
+      <td>820445.0</td>
+      <td>361.6</td>
+    </tr>
+    <tr>
+      <th>742</th>
+      <td>2012</td>
+      <td>36</td>
+      <td>Mesa</td>
+      <td>3.2</td>
+      <td>7.0</td>
+      <td>2.6%</td>
+      <td>1.0</td>
+      <td>60%</td>
+      <td>22.0</td>
+      <td>$60.96</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>37.0</td>
+      <td>31.0</td>
+      <td>1.5</td>
+      <td>Arizona</td>
+      <td>504258.0</td>
+      <td>439041.0</td>
+      <td>138.7</td>
+    </tr>
+    <tr>
+      <th>743</th>
+      <td>2012</td>
+      <td>38</td>
+      <td>Louisville</td>
+      <td>7.3</td>
+      <td>15.0</td>
+      <td>6.7%</td>
+      <td>6.0</td>
+      <td>32%</td>
+      <td>6.0</td>
+      <td>$50.76</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>35.0</td>
+      <td>29.0</td>
+      <td>1.0</td>
+      <td>Kentucky</td>
+      <td>633045.0</td>
+      <td>597337.0</td>
+      <td>263.5</td>
+    </tr>
+    <tr>
+      <th>744</th>
+      <td>2012</td>
+      <td>39</td>
+      <td>Charlotte</td>
+      <td>19.9</td>
+      <td>20.0</td>
+      <td>4.1%</td>
+      <td>3.0</td>
+      <td>26%</td>
+      <td>2.0</td>
+      <td>$78.94</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>34.0</td>
+      <td>28.5</td>
+      <td>1.0</td>
+      <td>North Carolina</td>
+      <td>874579.0</td>
+      <td>731424.0</td>
+      <td>308.3</td>
+    </tr>
+    <tr>
+      <th>745</th>
+      <td>2012</td>
+      <td>40</td>
+      <td>Fresno</td>
+      <td>4.9</td>
+      <td>10.0</td>
+      <td>2.1%</td>
+      <td>1.0</td>
+      <td>35%</td>
+      <td>8.0</td>
+      <td>$54.98</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>26.0</td>
+      <td>21.5</td>
+      <td>0.5</td>
+      <td>California</td>
+      <td>542107.0</td>
+      <td>494665.0</td>
+      <td>115.2</td>
+    </tr>
+  </tbody>
+</table>
+<p>746 rows × 31 columns</p>
+</div></div></div>
+</div>
+<p>The variable name <code class="docutils literal notranslate"><span class="pre">parks</span></code> here is arbitrary; you can choose something different
+if you want. However, in general, it’s a good habit to choose variable names
+that describe the contents of the variable somehow.</p>
+<p>If you tried running the line of code above and got an error message, pay
+attention to what the error message says, and remember the strategies to get
+help in <a class="reference internal" href="#getting-help"><span class="std std-numref">Section 1.3</span></a>. The most common mistake when reading a file is
+incorrectly specifying the path, so first check that you got the path right.</p>
+<p>If you ran the line of code, there was no error message, and you can see a
+table of data, then congratulations, you’ve read your first data set into
+Python! The next session will pick up from this point and introduce the basics
+of inspecting a data set.</p>
 </div>
 </div>
 </div>

@@ -10,13 +10,20 @@ kernelspec:
   name: python3
 ---
 
+```{code-cell}
+:tags: [remove-cell]
+import os
+
+os.chdir("..")
+```
+
+
 Getting Started
 ===============
 
 **[Python][]** is a popular general-purpose programming language. Python is also a
-leading language for scientific computing, due to the introduction of the
-**[SciPy ecosystem][SciPy]**, a collection of scientific computing software for
-Python, in 2001.
+leading language for scientific computing due to the **[SciPy
+ecosystem][SciPy]**, a collection of scientific computing software for Python.
 
 [Python]: https://www.python.org/
 [SciPy]: https://scipy.org/
@@ -95,45 +102,55 @@ an install guide [here][vscode-guide].
 -->
 
 
-The JupyterLab Interface
-------------------------
+The Python Console
+------------------
 
 The first time you open JupyterLab, you'll see a window that looks like this:
 
-<!-- TODO: -->
+```{image} ../img/jupyterlab_startup.png
+:alt: The JupyterLab startup screen.
+```
 
 Don't worry if the text in the panes isn't exactly the same on your computer;
 it depends on your operating system and version of JupyterLab.
 
-You can open up a Python *console* by clicking on the "Python 3" button on the
-right. If you have multiple Python 3 buttons, click on the one that mentions
-"IPython":
+Start by opening up a Python **console**. In JupyterLab, look for the "Python
+3" button in the "Console" section of the pane on the right. If there are
+multiple Python 3 buttons, click on the one that mentions "IPython" or
+"ipykernel":
 
-<!-- TODO: -->
+```{image} ../img/jupyterlab_console_button.png
+:alt: The JupyterLab startup screen with the console button highlighted.
+```
 
+The console is a interactive, text-based interface to Python. If you enter a
+Python expression in the console, Python will compute and display the result.
 After you open the console, your window should look like this:
 
-<!-- TODO: -->
+```{image} ../img/jupyterlab_console.png
+:alt: A Python console running in JupyterLab.
+```
 
-Let's start by using Python to do some arithmetic. In the console, you'll see
-a text box that begins with `[ ]:`, called the *prompt*. You can make Python
+At the bottom of the console, the text box beginning with `[ ]:` is called the
+**prompt**. The prompt is where you'll type Python expressions. Ask Python to
 compute the sum $2 + 2$ by typing the code `2 + 2` in the prompt and then
 pressing `Shift`-`Enter`. Your code and the result from Python should look like
 this:
 
-<!-- TODO: -->
+```{image} ../img/jupyterlab_console_sum.png
+:alt: A Python console running in JupyterLab, showing the sum of two numbers.
+```
 
-Python always puts the result on a separate line (or lines) from your code.
-Your code and the result both begin with the tag `[1]` to indicate that they
-are the first code and result. Python will increment the tag each time you run
-an expression. The result of the sum, `4`, is displayed after the tag. In this
-reader, results from Python will usually be prefixed with `##` to indicate that
-they aren't code.
+The Python console displays your code and the result on separate lines. Both
+begin with the tag `[1]` to indicate that they are the first expression and
+result. Python will increment the tag each time you run an expression. The tag
+numbers will restart from 1 each time you open a new Python console.
 
-Now try typing the code `3 - 1` in the prompt and
-pressing `Shift`-`Enter`:
+Now try typing the code `3 - 1` in the prompt and pressing `Shift`-`Enter`:
 
-<!-- TODO: -->
+```{image} ../img/jupyterlab_console_diff.png
+:alt: A Python console running in JupyterLab, showing the difference of two numbers.
+```
 
 The tag on the code and result is `[2]`, and once again the result is displayed
 after the tag.
@@ -147,70 +164,77 @@ the other arithmetic operators are:
 * `%` for remainder division (modulo)
 * `**` for exponentiation
 
-You can combine these and use parentheses to make more complicated expressions,
-just as you would when writing a mathematical expression. When Python computes
-a result, it follows the standard order of operations: parentheses,
-exponentiation, multiplication, division, addition, and finally subtraction.
+You can combine these and use parentheses `( )` to make more complicated
+expressions, just as you would when writing a mathematical expression. When
+Python computes a result, it follows the standard order of operations:
+parentheses, exponentiation, multiplication, division, addition, and finally
+subtraction.
 
-For example, to estimate the area of a circle with radius 3, you can write:
+For example, to compute the area of a triangle with base 3 and height 4, you
+can write:
 
 ```{code-cell}
-3.14 * 3**2
+0.5 * 3 * 4
 ```
 
 You can write Python expressions with any number of spaces (including none)
-around the operators and Python will still compute the result. Nevertheless,
-putting spaces in your code makes it easier for you and others to read, so it's
-good to make it a habit. Put spaces around most operators, after commas, and
-after keywords. Later on, you'll learn about other kinds of expressions where
-the spacing does matter.
+around the operators and Python will still compute the result. As with writing
+text, putting spaces in your code makes it easier for you and others to read,
+so it's good to make it a habit. Put a single space on each side of most
+operators, after commas, and after keywords. Later on, you'll learn about other
+kinds of expressions where the spacing does matter.
 
 
 ### Variables
 
 Python and most other programming languages allow you to create named values
-called **variables**.  The main reason to use variables is to temporarily save
-results from expressions so that you can use them in other expressions.
-
-You can create a variable with the assignment operator `=`. For example, to
-save the estimated area of the circle in a variable called `area`, you can
-write:
+called **variables**. You can create a variable with the assignment operator
+`=` by writing a name on the left-hand side and a value or expression on the
+right hand side. For example, to save the estimated area of the triangle in a
+variable called `area`, you can write:
 
 ```{code-cell}
-area = 3.14 * 3**2
+area = 3 * 4 / 2
 ```
 
 In Python, variable names can contain any combination of letters, numbers, and
 underscores `_`, but must always start with a letter. Spaces, dots, and other
 symbols are not allowed in variable names.
 
-Now you can use the `area` variable anywhere you want the computed area. Notice
-that when you assign a result to a variable, Python doesn't automatically
-display that result. If you want to see the result as well, you have to enter
-the variable's name as a separate expression:
+The main reason to use variables is to temporarily save results from
+expressions so that you can use them in other expressions. For instance, now
+you can use the `area` variable anywhere you want the area of the triangle.
+
+Notice that when you assign a result to a variable, Python doesn't
+automatically display that result. If you want to see the result as well, you
+have to enter the variable's name as a separate expression:
 
 ```{code-cell}
 area
 ```
 
-Another reason to use variables is to make an expression more general. For
-instance, you might want to compute the area of several circles with different
-radii. Then the expression `3.14 * 3**2` is too specific. You can rewrite it as
-`3.14 * r**2`, and then assign a value to the variable `r` just before you
-compute the area. Here's the code to compute and display the area of a circle
-with radius 1 this way:
+Another reason to use variables is to make an expression clearer and more
+general. For instance, you might want to compute the area of several triangles
+with different bases and heights. Then the expression `3 * 4 / 2` is too
+specific.
+Instead, you can create variables `base` and `height`, then rewrite the
+expression as `base * height / 2`. This makes the expression easier to
+understand, because the reader does not have to intuit that `3` and `4` are the
+base and height in the formula. Here's the new code to compute and display the
+area of a triangle with base 3 and height 4:
 
 ```{code-cell}
-r = 1
-area = 3.14 * r**2
+base = 3
+height = 4
+area = base * height / 2
 area
 ```
 
-Now if you want to compute the area for a different radius, all you have to do
-is change `r` and run the code again (Python will not change `area` until you
-do this). Writing code that's general enough to reuse across multiple problems
-can be a big time-saver in the long run. Later on, you'll see ways to make this
-code even easier to reuse.
+Now if you want to compute the area for a different triangle, all you have to
+do is change `base` and `height` and run the code again (Python will not update
+`area` until you do this). Writing code that's general enough to reuse across
+multiple problems can be a big time-saver in the long run. Later on, you'll see
+ways to make this code even easier to reuse.
 
 
 ### Calling Functions
@@ -223,49 +247,56 @@ output. In programming jargon, the inputs to a function are called
 is called **calling** the function.
 
 To call a function, write its name followed by parentheses. Put any arguments
-to the function inside the parentheses. For example, the sine function is named
-`sin` (there are also `cos` and `tan`). So you can compute the sine of $\pi /
-4$ with this code:
+to the function inside the parentheses. For example, the function to round a
+number to a specified decimal place is named `round`. So you can round the
+number `8.153` to the nearest integer with this code:
 
-```
-sin(pi / 4)
-```
-
-There are many functions that accept more than one argument. For instance, the
-`sum` function accepts any number of arguments and adds them all together. When
-you call a function with multiple arguments, separate the arguments with
-commas. So another way to compute $2 + 2$ in R is:
-
-```
-sum(2, 2)
+```{code-cell}
+round(8.153)
 ```
 
-When you call a function, Python assigns each argument to a **parameter**.
-Parameters are special variables that represent the inputs to a function and
-only exist while that function runs. For example, the `log` function, which
-computes a logarithm, has parameters `x` and `base` for the operand and base of
-the logaritm, respectively. The next section, Section \@ref(getting-help),
-explains how to look up the parameters for a function.
+Many functions accept more than one argument. For instance, the `round` function
+accepts two arguments: the number to round, and the number of decimal places to
+keep. When you call a function with multiple arguments, separate the arguments
+with commas. So to round `8.153` to 1 decimal place:
 
-By default, Python assigns arguments to parameters based on their order. The
+```{code-cell}
+round(8.153, 1)
+```
+
+When you call a function, Python assigns the arguments to the function's
+**parameters**. Parameters are special variables that represent the inputs to a
+function and only exist while that function runs. For example, the `round`
+function has parameters `number` and `ndigits`. The next section,
+{numref}`getting-help`, explains how to look up the parameters for a function.
+
+Some parameters have **default arguments**. A parameter is automatically
+assigned its default argument whenever the parameter's argument is not
+specified explicitly. As a result, assigning arguments to these parameters is
+optional. For instance, the `ndigits` parameter of `round` has a default
+argument (round to the nearest integer), so it is okay to call `round` without
+setting `ndigits`, as in `round(8.153)`. In contrast, the `numbers` parameter
+does not have a default argument. {numref}`getting-help` explains how to look
+up the default arguments for a function.
+
+Python normally assigns arguments to parameters based on their position. The
 first argument is assigned to the function's first parameter, the second to the
-second, and so on. So you can compute the logarithm of 64, base 2, with this
-code:
+second, and so on. So in the code above, `8.153` is assigned to `number` and
+`1` is assigned to `ndigits`.
 
-```
-log(64, 2)
+You can make Python assign arguments to parameters by name with `=`, overriding
+their positions. So two other ways you can write the call above are:
+
+```{code-cell}
+round(8.153, ndigits = 1)
 ```
 
-The argument 64 is assigned to the parameter `x`, and the argument 2 is
-assigned to the parameter `base`. You can also assign arguments to parameters
-by name with `=`, overriding their positions. So some other ways you can write
-the call above are:
-
+```{code-cell}
+round(number = 8.153, ndigits = 1)
 ```
-log(64, base = 2)
-log(x = 64, base = 2)
-log(base = 2, x = 64)
-log(base = 2, 64)
+
+```{code-cell}
+round(ndigits = 1, number = 8.153)
 ```
 
 All of these are equivalent. When you write code, choose whatever seems the
@@ -276,32 +307,215 @@ Parameters are not regular variables, and only exist while their associated
 function runs. You can't set them before a call, nor can you access them after
 a call. So this code causes an error:
 
-```
-x = 64
-log(base = 2)
+```{code-cell}
+:tags: [raises-exception]
+number = 4.755
+round(ndigits = 2)
 ```
 
 In the error message, Python says that you forgot to assign an argument to the
-parameter `x`. You can keep the variable `x` and correct the call by making `x`
-an argument (for the parameter `x`):
+parameter `number`. You can keep the variable `number` and correct the call by
+making `number` an argument (for the parameter `number`):
 
-```
-log(x, base = 2)
+```{code-cell}
+round(number, ndigits = 2)
 ```
 
 Or, written more explicitly:
 
+```{code-cell}
+round(number = number, ndigits = 2)
 ```
-log(x = x, base = 2)
+
+The point is that variables and parameters are distinct, even if they happen to
+have the same name. The variable `number` is not the same thing as the
+parameter `number`.
+
+
+### Objects & Attributes
+
+Python represents data as **objects**. Numbers, strings, data structures, and
+functions are all examples of objects.
+
+An **attribute** is an object attached to another object. An attribute usually
+contains metadata about the object to which it is attached. An attribute can
+also be a function, in which case it is called a **method**.
+
+For example, all strings have a `capitalize` method. You can access attributes
+and methods by typing a `.` after an object. Here's the code to capitalize a
+string:
+
+```{code-cell}
+"snakes everywhere!".capitalize()
 ```
 
-In summary, variables and parameters are distinct, even if they happen to have
-the same name. The variable `x` is not the same thing as the parameter `x`.
+The built-in `dir` function lists all of the attributes attached to
+an object. Here are the attributes for a string:
+
+```{code-cell}
+dir("hi")
+```
+
+Attributes which begin with two underscores `__` are used by Python internally
+and usually not intended to be accessed directly.
 
 
+### Lists
 
+A **list** is a container for zero or more values. The values in a list are
+called **elements**, and the **length** of a list is the number of elements.
+Lists are ordered, so there is a first element, second element, and so on up to
+the length of the list.
+
+You can make a list by enclosing comma-separated values in square brackets `[
+]`, like this:
+
+```{code-cell}
+[1, 2, 3]
+```
+
+Lists can be empty:
+```{code-cell}
+[]
+```
+
+The elements of a list can also be qualitatively different. For instance,
+here's a list where the first element is a number, the second is a string, and
+the third is another list (with one element):
+
+```{code-cell}
+x = [8, "hello", ["a"]]
+x
+```
+
+Square brackets `[ ]` also serve as the **indexing operator** in Python. The
+indexing operator gets or sets an element of a list based on the element's
+position. Python uses **zero-based indexing**, which means the first element of
+a data structure is at position 0. The code to get the first element of the
+list `x` is:
+
+```{code-cell}
+x[0]
+```
+
+Similarly, the code to get the third element of `x` is:
+
+```{code-cell}
+x[2]
+```
+
+You can set an element of a list by assigning at that index. So the code to
+change the first element of `x` to the string `"hi"` is:
+
+```{code-cell}
+x[0] = "hi"
+x
+```
+
+Notice that this changes the overall list.
+
+You can get the length of a list with the built-in `len` function:
+
+```{code-cell}
+len(x)
+```
+
+Lists are a fundamental data structure in Python, so you'll see many more
+examples of them as you go through this reader.
+
+
+### References
+
+When you assign a Python object to a variable, Python usually creates a
+**reference** to the object. This means that if you assign an object to
+multiple variables and change one, all of them will change.
+
+For example, suppose you assign a list to variables `x` and `y`, then change an
+element of `y`. Doing so also changes `x`:
+
+```{code-cell}
+x = [1, 2]
+y = x
+y[0] = 10
+x
+```
+
+If you want to make a copy of an object, use the object's `copy` method:
+
+```{code-cell}
+x = [1, 2]
+y = x.copy()
+y[0] = 10
+x
+```
+
+Reassigning a variable, as opposed to modifying elements, does not affect other
+variables. Here's an example:
+
+```{code-cell}
+x = 3
+y = x
+y = 4
+x
+```
+
+
+(getting-help)=
 Getting Help
 ------------
+
+Learning and using a language is hard, so it's important to know how to get
+help. The first place to look for help is Python's built-in documentation. In
+the console, you can access the help pages with the `help` function.
+
+There are help pages for all of Python's built-in functions, usually with the
+same name as the function itself. So the code to open the help page for the
+`round` function is:
+
+```{code-cell}
+help(round)
+```
+
+For functions, help pages usually include a brief description and a list of
+parameters and default arguments. For instance, the help page for `round` shows
+that there are two parameters `number` and `ndigits`. It also says that
+`ndigits=None`, meaning the default argument for `ndigits` is the special
+`None` value, which you'll learn more about in TODO.
+
+There are also help pages for other topics, such as built-in operators and
+modules (you'll learn more about modules in {numref}`modules-packages`). To
+look up the help page for an operator, put the operator's name in single or
+double quotes. 
+
+Python treats anything inside single or double quotes as literal text rather
+than as an expression to evaluate. In programming jargon, a piece of literal
+text is called a **string**. You can use whichever kind of quotes you prefer,
+but the quote at the beginning of the string must match the quote at the end. 
+
+For example, this code opens the help page for the arithmetic operators:
+
+```{code-cell}
+help("+")
+```
+
+It's always okay to put quotes around the name of the page when you use `help`,
+but they're only required if the name contains non-alphabetic characters. So
+`help(abs)`, `help('abs')`, and `help("abs")` all open the documentation for
+`abs`, the absolute value function.
+
+You can also browse the Python documentation [online][pydocs]. This is a good
+way to explore the many different functions and data structures built into
+Python. If you do use the online documentation, make sure to use the
+documentation for the same version of Python as the one you have. Python
+displays the version each time you open a new console, and the online
+documentation shows the version in the upper left corner.
+
+[pydocs]: https://docs.python.org/3/
+
+Sometimes you might not know the name of the help page you want to look up. In
+that case it's best to use an online search engine. When you search for help
+with Python online, include "Python" as a search term.
+
 
 ### When Something Goes Wrong
 
@@ -329,23 +543,46 @@ to read about [how to ask a good question][goodq].
 [goodq]: https://stackoverflow.com/help/how-to-ask
 
 
-Modules & Packages
-------------------
-
+(modules-packages)=
+Packages
+--------
 
 A **package** is a reusable bundle of code. Packages usually include
 documentation, and can also contain examples and data sets. Most packages are
-developed by members of the Python community, so quality varies. There are also
-many packages that are built into Python, to provide extra features.
+developed by members of the Python community, so quality varies. 
+
+
+### The SciPy Ecosystem
+
+The SciPy ecosystem is a collection of scientific computing software for Python
+introduced in 2001. SciPy is divided into several different Python packages.
+
+Some of the most important packages in the SciPy ecosystem are:
+
+* **NumPy**, which provides an n-dimensional array data structure and a variety
+  of math functions
+* **SciPy**, which provides additional math functions
+* **Pandas**, which provides data frames
+* **IPython**, which makes it possible to run Python code in Jupyter
+* **Matplotlib**, which provides data visualization functions
+
+You'll learn much more about NumPy, SciPy, and Pandas as you go through this
+reader. By using JupyterLab, you've already used IPython. You'll use Matplotlib
+indirectly later on, when you learn about visualization.
+
+
+### Modules
 
 In Python, packages are further subdivided into **modules**, collections of
 related functions and data structures. The best way to learn about the modules
-provided by a package is to read the package's documentation.
+provided by a package is to read the package's documentation. There are also
+many modules that are built into Python, to provide extra features.
 
-Most packages have a main module with the same name as the package. So NumPy
-provides a module called `numpy`, and Pandas provides a module called `pandas`.
-You can use the `import` command to load a module from an installed package.
-Anaconda installs NumPy by default, so try loading the `numpy` module:
+Most packages have a main module with the same name as the package. So the
+NumPy package provides a module called `numpy`, and the Pandas package provides
+a module called `pandas`. You can use the `import` command to load a module
+from an installed package. Anaconda installs NumPy by default, so try loading
+the `numpy` module:
 
 ```{code-cell}
 import numpy
@@ -357,7 +594,7 @@ printed. If something goes wrong while loading a module, Python will print out
 an error message explaining the problem.
 
 Once a module is loaded, you can access its functions by typing the name of the
-module, a dot, and then the name of the function. For instance, to use the
+module, a dot `.`, and then the name of the function. For instance, to use the
 `round` function provided by NumPy:
 
 ```{code-cell}
@@ -381,27 +618,10 @@ Now you can call NumPy functions by typing `np` instead of `numpy`:
 np.round(3.4)
 ```
 
-
-
-The SciPy Ecosystem
--------------------
-
-The SciPy ecosystem is a collection of scientific computing software for Python
-introduced in 2001. SciPy is divided into several different Python packages.
-
-Some of the most important packages in the SciPy ecosystem are:
-
-* **NumPy**, which provides an n-dimensional array data structure and a variety
-  of math functions
-* **SciPy**, which provides additional math functions
-* **Pandas**, which provides data frames
-* **IPython**, which makes it possible to run Python code in Jupyter
-* **Matplotlib**, which provides data visualization functions
-
-You'll learn much more about NumPy, SciPy, and Pandas as you go through this
-reader. By using JupyterLab, you've already used IPython. You'll use Matplotlib
-indirectly later on, when you learn about visualization.
-
+Note that NumPy's `np.round` is an entirely different function than Python's
+built-in `round` function, even though they do the same thing. NumPy's math
+functions are generally faster, more precise, and more convenient than Python's
+built-in math functions.
 
 
 File Systems
@@ -435,7 +655,7 @@ is usually called `C:/`, but sometimes other letters, like `D:/`, are also used
 depending on the computer's hardware.
 
 A _path_ is a list of directories that leads to a specific file or directory on
-a file system (imagine giving directons to someone as they walk through the
+a file system (imagine giving directions to someone as they walk through the
 file system). Use forward slashes `/` to separate the directories in a path,
 rather than commas or spaces. The root directory includes a forward slash as
 part of its name, and doesn't need an extra one.
@@ -482,6 +702,7 @@ working in R, use forward slashes and don't worry about the operating system.
 This is especially convenient when you want to share code with someone that
 uses a different operating system than you.
 
+
 (absolute-relative-paths)=
 ### Absolute & Relative Paths
 
@@ -504,27 +725,27 @@ On the other hand, a _relative path_ is one that doesn't start from the root
 directory. The path is "relative" to an unspecified starting point, which
 usually depends on the context.
 
-For instance, suppose Ada's code is saved in the file `analysis.R` (more about
-`.R` files in Section \@ref(r-scripts)), which is in the same directory as
-`cats.csv` on her computer. Then instead of an absolute path, she can use a
-relative path in her code:
+For instance, suppose Ada's code is saved in the file `analysis.ipynb` (more
+about `.ipynb` files in {numref}`jupyter-notebooks`), which is in the same
+directory as `cats.csv` on her computer. Then instead of an absolute path, she
+can use a relative path in her code:
 
 ```
 cats.csv
 ```
 
-The context is the location of `analysis.R`, the file that contains the code.
+The context is the location of `analysis.ipynb`, the file that contains the code.
 In other words, the starting point on Ada's computer is the `ada` directory. On
 other computers, the starting point will be different, depending on where the
 code is stored.
 
-Now suppose Ada sends her corrected code in `analysis.R` to Gladys, and tells
-Gladys to put it in the same directory as `cats.csv`. Since the path `cats.csv`
-is relative, the code will still work on Gladys' computer, as long as the two
-files are in the same directory. The name of that directory and its location in
-the file system don't matter, and don't have to be the same as on Ada's
-computer. Gladys can put the files in a directory `/Users/gladys/from_ada/` and
-the path (and code) will still work.
+Now suppose Ada sends her corrected code in `analysis.ipynb` to Gladys, and
+tells Gladys to put it in the same directory as `cats.csv`. Since the path
+`cats.csv` is relative, the code will still work on Gladys' computer, as long
+as the two files are in the same directory. The name of that directory and its
+location in the file system don't matter, and don't have to be the same as on
+Ada's computer. Gladys can put the files in a directory
+`/Users/gladys/from_ada/` and the path (and code) will still work.
 
 Relative paths can include directories. For example, suppose that Charles wants
 to write a relative path from the `Users` directory to a cool selfie he took.
@@ -555,7 +776,7 @@ useful in relative paths, but also work in absolute paths:
   `/home/` on Linux.
 
 As an example, suppose Ada wants to write a (relative) path from the `ada`
-directory to Charles' cool selfie. Using these shorcuts, she can write:
+directory to Charles' cool selfie. Using these shortcuts, she can write:
 
 ```
 ../charles/cool_hair_selfie.jpg
@@ -581,18 +802,124 @@ specific situations where `.` is necessary, but they fall outside the scope of
 this text.
 
 
+(jupyter-notebooks)=
 ### Jupyter Notebooks
+
+
 
 
 ### The Working Directory
 
-Section [](absolute-relative-paths) explained that relative paths have a
+{numref}`absolute-relative-paths` explained that relative paths have a
 starting point that depends on the context where the path is used. The _working
 directory_ is the starting point Python uses for relative paths. Think of the
 working directory as the directory Python is currently "at" or watching.
 
 
+
 Reading Files
 -------------
 
+The first step in most data analyses is loading the data. The Pandas package
+provides functions to read a variety of data formats. In order to know which
+function to use, you need to identify the data's file format.
+
+Most of the time, you can guess the format of a file by looking at its
+**extension**, the characters (usually three) after the last dot `.` in the
+filename. For example, the extension `.jpg` or `.jpeg` indicates a [JPEG image
+file][jpg]. Some operating systems hide extensions by default, but you can find
+instructions to change this setting online by searching for "show file
+extensions" and your operating system's name. The extension is just part of the
+file's name, so it should be taken as a hint about the file's format rather
+than a guarantee.
+
+[jpg]: https://en.wikipedia.org/wiki/JPEG
+
+The table below shows several formats that are frequently used to distribute
+data. Although Pandas provides reader functions for all of these, the lxml
+package and Python's built-in json module are better suited to the last two.
+
+| Name                        | Extension  | Tabular?  | Text? | Pandas Function
+| :-------------------------- | :--------  | :-------- | :---- | :--------------
+| Comma-separated Values      | `.csv`     | Yes       | Yes   | `read_csv`
+| Tab-separated Values        | `.tsv`     | Yes       | Yes   | `read_table`
+| Fixed-width File            | `.fwf`     | Yes       | Yes   | `read_fwf`
+| Microsoft Excel             | `.xlsx`    | Yes       | No    | `read_excel`
+| [Apache Arrow][arrow]       | `.feather` | Yes       | No    | `read_feather`
+| Extensible Markup Language  | `.xml`     | No        | Yes   | Use lxml package
+| JavaScript Object Notation  | `.json`    | No        | Yes   | Use json module
+
+[arrow]: https://arrow.apache.org/
+
+A **tabular** data set is one that's structured as a table, with rows and
+columns. We'll focus on tabular data sets for most of this reader, since
+they're easier to get started with. Here's an example of a tabular data set:
+
+| Fruit  | Quantity | Price
+| :----  | -------: | ----:
+| apple  | 32       | 1.49
+| banana | 541      | 0.79
+| pear   | 10       | 1.99
+
+A **text** file is one that contains human-readable lines of text. You can
+check this by opening the file with a text editor such as Microsoft Notepad or
+macOS TextEdit. Many file formats use text in order to make the format easier
+to work with.
+
+For instance, a **comma-separated values** (CSV) file records a tabular data
+using one line per row, with commas separating columns. If you store the table
+above in a CSV file and open the file in a text editor, here's what you'll see:
+
+```
+Fruit,Quantity,Price
+apple,32,1.49
+banana,541,0.79
+pear,10,1.99
+```
+
+A **binary** file is one that's not human-readable. You can't just read off the
+data if you open a binary file in a text editor, but they have a number of
+other advantages. Compared to text files, binary files are often faster to read
+and take up less storage space (bytes).
+
+
 ### Hello, Data!
+
+Over the next few sections, you'll explore data from [The Trust for Public
+Land][tpl] about park access in major American cities. The data set was
+prepared as part of the Tidy Tuesday community data project. You can find more
+details about the data set [here][parks], and you can download the data set
+[here][parks-dl] (you may need to choose `File -> Save As...` in your browser's
+menu).
+
+[tpl]: https://www.tpl.org/parks-and-an-equitable-recovery-parkscore-report
+[parks]: https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-06-22
+[parks-dl]: https://raw.githubusercontent.com/ucdavisdatalab/workshop_python_basics/main/data/parks_final.csv
+
+The data set is a file called `parks_final.csv`, which suggests it's a CSV
+file. In this case, the extension is correct, so you can read the file with
+Pandas' `read_csv` function. The first argument is the path to where you saved
+the file, which may be different on your computer. The `read_csv` function
+returns the data set, but Python won't keep the data in memory unless you
+assign the returned result to a variable:
+
+```{code-cell}
+import pandas as pd
+
+parks = pd.read_csv("data/parks_final.csv")
+parks
+```
+
+The variable name `parks` here is arbitrary; you can choose something different
+if you want. However, in general, it's a good habit to choose variable names
+that describe the contents of the variable somehow.
+
+If you tried running the line of code above and got an error message, pay
+attention to what the error message says, and remember the strategies to get
+help in {numref}`getting-help`. The most common mistake when reading a file is
+incorrectly specifying the path, so first check that you got the path right.
+
+If you ran the line of code, there was no error message, and you can see a
+table of data, then congratulations, you've read your first data set into
+Python! The next session will pick up from this point and introduce the basics
+of inspecting a data set.

@@ -15,15 +15,12 @@ Scientific Python
 
 
 :::{admonition} Learning Objectives
-- describe numpy and pandas packages
-- create numpy ndarrays
 - create dataframe from csv file
 - inspect structure of dataframe
-- handle missing values in dataframe
+- learn the pandas/numpy datatypes including missing values
+- index and work with Series objects
 - index dataframe based on label (loc), integer index (iloc), logical conditions, and [] operator
-- concatenate and merge dataframes
 - drop columns and rows from dataframes
-- change datatypes of columns
 - apply function to column and add as new column to dataframe
 :::
 
@@ -44,165 +41,10 @@ import numpy as np
 import pandas as pd
 ```
 
-## Numpy
-
-**NumPy** (Numerical Python) is a package that provides functions and 
-data structures for working with numerical data. NumPy functions are generally 
-more intuitive, and more computationally efficient for working with lots 
-of numbers than Python's built-in options. It has become the standard for 
-working with numeric data in python.
-
-## Numpy Arrays
-
-NumPy provides an **array** object. Arrays are a critical data structure for
-working with numerical data and some version of array can be found in pretty
-much every commonly used programming language. NumPy's array is different from 
-the python list object in that each element needs to be the same data type, 
-and its size is set on its creation.
-
-If you are working in python for data analysis, data science, 
-machine learning, etc. you will run into numpy arrays. 
-
-There are several ways to create an ndarray. In this case we will use a 
-list (built-in python object) of numbers as the input for our array creation:
-```{code-cell}
-arr = np.array([1, 3, 9, 2])
-arr
-```
-
-We can see the number of elements in the array with the `shape` attribute:
-```{code-cell}
-arr.shape
-```
-
-The `shape` attribute reflects the number of elements in each **dimension** of
-the ndarray. In this case, there are four elements and only one dimension.
-
-**Dimensions** refers to the number of **axes** that represents the data. For 
-example if you are working with lat/long coordinates you will probably
-have 2 dimensions in your data. If working with images you may have 3 
-dimensions: x,y and color.
-
-To see the number of of dimensions of the array object use `ndim`:
-```{code-cell}
-arr.ndim
-```
-
-As mentioned earlier, unlike python's built-in list type, each element
-in an ndarray are the same data type. Recall that we created this array,
-we did not specify a data type for numpy to use. As a result, numpy inferred
-a data type from values in the list. We can access the datatype from
-the `dtype` attribute of the array:
-```{code-cell}
-arr.dtype 
-```
-
-To explicitly define the datatype you want for the array you create, pass
-the dtype parameter when creating the array:
-```{code-cell}
-arr = np.array([1, 3, 9, 2], dtype=np.int8)
-arr 
-```
-
-```{Note}
-For reference here is a list of common datatypes in data analysis:
-- bool
-- int
-- float
-- datetime
-- string
-- object
-```
-
-## Indexing Numpy Arrays
-
-To access an element from the array use the `[]` operator:
-```{code-cell}
-display(arr)
-arr[3]
-```
-
-We can access more than one element with python slicing:
-```{code-cell}
-display(arr)
-arr[1:3:1]
-```
-
-We can use integer arrays as indexes:
-```{code-cell}
-display(arr)
-arr[[1,2,0]]
-```
-
-We can also use boolean arrays as indexes:
-```{code-cell}
-display(arr)
-arr[[True,False,True,True]]
-```
-
-We can use indexing to modify the selected elements:
-```{code-cell}
-display(arr)
-arr[3] = 78
-arr[[1,2]] = [0,9]
-arr
-```
-
-Notice what happens when we pass a value that is not an integer:
-```{code-cell}
-display(arr)
-arr[3] = 7.8
-arr
-```
-
-NumPy has converted 7.8 to an integer before entering it into the array. This
-will only work if there is an accepted way of converting to integer, for 
-example it will fail if something like this is passed:
-```{code-cell}
-try:
-    arr[3] = "hello"
-except ValueError as e:
-    print(e)
-```
-
-## Operating on NumPy Arrays
-
-In general, operations are applied element by element on the array:
-```{code-cell}
-display(arr)
-arr * 2
-```
-
-Another example but with comparison operators:
-```{code-cell}
-display(arr)
-arr > 3
-```
-
-This fits in nicely with indexing using boolean array from before:
-```{code-cell}
-display(arr)
-arr[arr>3]
-```
-
-## Multi Dimensional Arrays + Other Ways to Create Arrays
-
-Now let us see some of these concepts with a 2-D array. As before, we can
-define a 2-D array by passing a python list as input:
-```{code-cell}
-arr = np.array([[1,2], [3,4]], dtype=np.int8)
-```
-
-Here is another way of initializing an array:
-```{code-cell}
-arr = np.zeros((3,4), dtype=np.float64)
-arr
-```
-
 ## Pandas
 
-**Pandas** is a package that provides the **data frame** object. As well as
-many functions for working with data, including functions for:
+**Pandas** is a package that provides objects and many functions for working 
+with data. It is very popular and used for tasks such as:
 - loading and writing data to/from files and databases
 - summarizing data
 - handling missing data
@@ -213,22 +55,26 @@ many functions for working with data, including functions for:
 
 ## Load in data
 
-First, we will load in a dataset from a csv using the `read_csv()` function 
-from pandas: 
+First, we will load in the dataset from a csv file using the `read_csv`
+function from pandas: 
 
 ```{tip} 
-You can look at the documentation for this function either online, 
-from the python shell using: `help(pd.read_csv)`, or using the ? operator 
-in Ipython (or notebook)
+Most functions in pandas will have documentation describing what the function 
+does and how to use it. You can find this documentation online or directly
+from the python shell using the built-in help system: `help(pd.read_csv)`.
+In IPython environments, you can use `?` either before or after the function
+name as a shorthand for the help function: `?pd.read_csv`
+
+This will also work on many objects and classes. 
 ```
 
 ```{code-cell}
-dataset = pd.read_csv() # should the input be a url?
+df = pd.read_csv("../data/parks_final.csv") 
 ```
 
 We can use the `head()` method to see what we have.
 ```{code-cell}
-dataset.head()
+df.head()
 ```
 
 Here we see a dataframe, which is the really important part of pandas, which we
@@ -269,14 +115,136 @@ dataset.info
 dataset.describe()
 ```
 
-## Missing Values
-
-## Data Types
 ```{code-cell}
 dataset.dtypes
 ```
 
-## Indexing
+## Data Types in python
+
+Python has built-in objects for handling different types of data, including
+numeric and non numeric data.
+
+Numeric data can be represented as either an `int` (integer) or `float` object.
+An integer is simply a whole number, such as 0, 3, 3000...
+When we assign as whole number to a variable, python will use the int class:
+```{code-cell}
+a = 4
+```
+
+We can see the type of an object in python using the `type` function:
+```{code-cell}
+type(a)
+```
+
+We can also explicitly construct an int object in python:
+```{code-cell}
+b = int(4)
+```
+
+Integer objects don't allow for decimal points:
+```{code-cell}
+b = int(4.5)
+b
+```
+
+A float (floating point number) stores numeric data with decimal precision:
+```{code-cell}
+a = 4.7
+type(a)
+```
+
+Python supports using arithmetic operators on different numeric types by 
+automatically altering the more limited type to match. For example:
+```{code-cell}
+a = 4.7
+b = 3
+c = a + b
+type(c)
+```
+
+Additionally, if you divide an integer with another integer in python, you will
+get a float:
+```{code-cell}
+c = 4 / 4
+type(c)
+```
+
+`bool` short for Boolean is a data type that stores either True or False. 
+Booleans are used as values for expressions with yes-or-no responses.
+For example:
+```{code-cell}
+5 < 2
+```
+
+In python, text is stored in a String object called `str`. Strings are created
+by enclosing a series of characters in quotes, either single or double quotes
+can be used.
+```{code-cell}
+d = "hello world!"
+type(d)
+```
+
+To convert between data types in python, we use the constructor associated
+with each type:
+```{code-cell}
+a = float(3)
+```
+
+Another example:
+```{code-cell}
+a = str(3)
+```
+
+## Data Types in Pandas
+
+Python's built-in data types are very flexible at the cost of precision. 
+Numpy provides more control to the programmer by adding many classes for
+storing numeric data that can be modified to best match the data, in order
+to improve memory and time performance.
+
+Pandas, which is built on top of numpy, incorporates these types and some of
+its own.
+
+These include:
+- boolean
+- int
+- float
+- complex, 
+- datetime
+- timedelta
+- StringDtype
+- python object (including strings)
+
+For `int` and `float` data, in pandas we can specify 
+
+```{code-cell}
+```
+
+
+These can also be modified to allow for specifying the size of the data in 
+bytes.
+
+
+## Series
+
+Each column in the dataframe is a pandas `Series` object.
+A Series is a collection of values that all share the same data type. 
+In addition, the values can be access by their integer index, or based
+on their label.
+
+It is built on top of the numpy ndarray object, and as such, will
+perform much faster than the list object for numerical operations.
+
+## Missing Values
+
+## Indexing Series
+
+## Reindex dataframe (city_year)
+
+## Operating on Series
+
+
+## Indexing DataFrames
 ```{code-cell}
 dataset.loc # label based or boolean array
 dataset.iloc # interger based
