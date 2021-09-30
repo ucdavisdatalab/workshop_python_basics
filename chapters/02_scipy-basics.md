@@ -201,7 +201,7 @@ Another example:
 a = str(3)
 ```
 
-## In Pandas
+### In Pandas
 
 Python's built-in data types are very flexible at the cost of precision. 
 Numpy provides more control to the programmer by adding many classes for
