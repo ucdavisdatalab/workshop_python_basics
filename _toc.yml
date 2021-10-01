@@ -1,7 +1,12 @@
 format: jb-book
 root: chapters/index
-defaults:
-  numbered: true
-chapters:
-  - glob: chapters/*
+parts:
+  - caption: Notes
+    numbered: true
+    chapters:
+      - glob: chapters/0*
+  - caption: Afterword
+    chapters:
+      - file: chapters/references
+      - file: chapters/acknowledgements
 
