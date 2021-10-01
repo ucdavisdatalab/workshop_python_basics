@@ -707,15 +707,26 @@ In other words, when a path leads to a directory, including a _trailing slash_
 is optional, but makes the meaning of the path clearer. Paths that lead to
 files never have a trailing slash.
 
-_TODO: Python doesn't use / for all OSes_
+:::{warning}
+On Windows computers, the components of a path are usually separated with
+backslashes ```\``` instead of forward slashes `/`.
 
-On Windows computers, paths are usually written with backslashes ```\``` to
-separate directories instead of forward slashes. Fortunately, R uses forward
-slashes `/` for all paths, regardless of the operating system. So when you're
-working in R, use forward slashes and don't worry about the operating system.
-This is especially convenient when you want to share code with someone that
-uses a different operating system than you.
+Regardless of the operating system, most Python functions accept and understand
+paths separated with forward slashes as arguments. In other words, you can use
+paths separated with forward slashes in your Python code, even on Windows. This
+is especially convenient when you want to share code with other people, because
+they might use a different operating system than you.
 
+On Windows, most Python functions *return* paths separated by backslashes. Be
+careful of this if your code gets a path by calling a function and then edits
+it (for example, by calling `os.getcwd` and then splitting the path into its
+components). The separator will be a backslash on Windows, but a forward slash
+on all other operating systems. Python's built-in [pathlib][] module provides
+helper functions to edit paths that account for differences between operating
+systems.
+:::
+
+[pathlib]: https://docs.python.org/3/library/pathlib.html
 
 (absolute-relative-paths)=
 ### Absolute & Relative Paths
@@ -775,10 +786,12 @@ directory, and from there go to the `cool_hair_selfie.jpg` file." In other
 words, the relative path depends on the context of the code or program that
 uses it.
 
+:::{tip}
 When use you paths in code, they should almost always be relative paths. This
 ensures that the code is portable to other computers, which is an important
 aspect of reproducibility. Another benefit is that relative paths tend to be
 shorter, making your code easier to read (and write).
+:::
 
 When you write paths, there are three shortcuts you can use. These are most
 useful in relative paths, but also work in absolute paths:
@@ -819,9 +832,11 @@ this text.
 
 ### Saving Code
 
+:::{tip}
 When you start a new project, it's a good idea to create a specific directory
 for all of the project's files. If you're using Python, you should also store
 your Python code in that directory. As you work, periodically save your code.
+:::
 
 The most common way to save Python code is as a **Python script** with the
 extension `.py` (see {numref}`reading-files` for more about extensions).
