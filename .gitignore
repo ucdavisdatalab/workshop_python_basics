@@ -3,11 +3,13 @@
 .AppleDouble
 .LSOverride
 
+# R
 #.RData
 .Rhistory
 
-# Pyenv
+# Python
 .python-version
+.ipynb_checkpoints
 
 # Thumbnails
 ._*
