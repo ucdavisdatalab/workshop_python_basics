@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -71,10 +71,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
       
@@ -93,6 +89,11 @@
   </a>
  </li>
 </ul>
+<p class="caption">
+ <span class="caption-text">
+  Notes
+ </span>
+</p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_python-basics.html">
@@ -112,6 +113,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="04_extension.html">
    4. Numpy
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Afterword
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="references.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
   </a>
  </li>
 </ul>
@@ -219,85 +237,93 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#packages">
-   2.1. Packages
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pandas">
-   2.2. pandas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-in-data">
-   2.3. Load in data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dataframes">
-   2.4. DataFrames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#methods-for-exploring-dataframes">
-   2.5. Methods for Exploring DataFrames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-types-in-python">
-   2.6. Data Types in python
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-types-in-pandas">
-   2.7. Data Types in pandas
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#series">
-   2.8. Series
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#indexing-series">
-   2.9. Indexing Series
+  <a class="reference internal nav-link" href="#recap">
+   2.1. Recap
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#iloc">
-     2.9.1. iloc
+    <a class="reference internal nav-link" href="#packages">
+     2.1.1. Packages
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#loc">
-     2.9.2. loc
+    <a class="reference internal nav-link" href="#pandas">
+     2.1.2. pandas
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     2.9.3. []
+    <a class="reference internal nav-link" href="#load-in-data">
+     2.1.3. Load in data
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataframes">
+   2.2. DataFrames
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#methods-for-exploring-dataframes">
+     2.2.1. Methods for Exploring DataFrames
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-types">
+   2.3. Data Types
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#built-in-python">
+     2.3.1. Built-In Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-pandas">
+     2.3.2. In Pandas
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#series">
+   2.4. Series
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indexing-series">
+     2.4.1. Indexing Series
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iloc">
+       2.4.1.1. iloc
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#loc">
+       2.4.1.2. loc
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       2.4.1.3. []
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#indexing-dataframes">
-   2.10. Indexing DataFrames
+   2.5. Indexing DataFrames
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#missing-values">
-   2.11. Missing Values
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#modifying-dataframes">
-   2.12. Modifying DataFrames
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#saving">
-   2.13. Saving
+  <a class="reference internal nav-link" href="#special-values">
+   2.6. Special Values
   </a>
  </li>
 </ul>
@@ -326,8 +352,10 @@
 <li><p>save a DataFrame to csv</p></li>
 </ul>
 </div>
+<div class="section" id="recap">
+<h2><span class="section-number">2.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="packages">
-<h2><span class="section-number">2.1. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.1.1. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h3>
 <p>When packages are installed, they can be loaded into the python session with
 the <code class="docutils literal notranslate"><span class="pre">import</span></code> command. To avoid having to type the full name of the module
 we define an alias using the <code class="docutils literal notranslate"><span class="pre">as</span></code> keyword. By convention, the alias for
@@ -343,7 +371,7 @@ we define an alias using the <code class="docutils literal notranslate"><span cl
 </div>
 </div>
 <div class="section" id="pandas">
-<h2><span class="section-number">2.2. </span>pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.1.2. </span>pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h3>
 <p><strong>pandas</strong> is a package that provides objects and many functions for working
 with data. It is very popular and used for tasks such as:</p>
 <ul class="simple">
@@ -356,7 +384,7 @@ with data. It is very popular and used for tasks such as:</p>
 </ul>
 </div>
 <div class="section" id="load-in-data">
-<h2><span class="section-number">2.3. </span>Load in data<a class="headerlink" href="#load-in-data" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.1.3. </span>Load in data<a class="headerlink" href="#load-in-data" title="Permalink to this headline">¶</a></h3>
 <p>First, we will load in the dataset from a csv file using the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>
 function from pandas:</p>
 <div class="admonition tip">
@@ -375,7 +403,7 @@ name as a shorthand for the help function: <code class="docutils literal notrans
 </div>
 </div>
 </div>
-<p>We can use the <code class="docutils literal notranslate"><span class="pre">head()</span></code> method to see what we have.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">head</span></code> method to see what we have.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -554,20 +582,20 @@ name as a shorthand for the help function: <code class="docutils literal notrans
 will spend lots of time with during this lesson and the next.
 The dataframe is the tool we can merge, join, summarize, etc.</p>
 </div>
+</div>
 <div class="section" id="dataframes">
-<h2><span class="section-number">2.4. </span>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this headline">¶</a></h2>
 <p>A <strong>DataFrame</strong> is how pandas structures tabular data - data structured as rows
 and columns. In general rows are observations, and columns are variables.
 Each entry is called a cell.</p>
-</div>
 <div class="section" id="methods-for-exploring-dataframes">
-<h2><span class="section-number">2.5. </span>Methods for Exploring DataFrames<a class="headerlink" href="#methods-for-exploring-dataframes" title="Permalink to this headline">¶</a></h2>
-<p>As with the <code class="docutils literal notranslate"><span class="pre">head()</span></code> method there are many other methods for looking
+<h3><span class="section-number">2.2.1. </span>Methods for Exploring DataFrames<a class="headerlink" href="#methods-for-exploring-dataframes" title="Permalink to this headline">¶</a></h3>
+<p>As with the <code class="docutils literal notranslate"><span class="pre">head</span></code> method there are many other methods for looking
 at the contents of a pandas DataFrame.</p>
-<p><code class="docutils literal notranslate"><span class="pre">head()</span></code> shows the first rows of the DataFrame, to see the last rows, use
-<code class="docutils literal notranslate"><span class="pre">tail()</span></code>. By default, the number of rows displayed is 5, this amount
+<p><code class="docutils literal notranslate"><span class="pre">head</span></code> shows the first rows of the DataFrame, to see the last rows, use
+<code class="docutils literal notranslate"><span class="pre">tail</span></code>. By default, the number of rows displayed is 5, this amount
 can be modified by passing an optional integer argument to the function call.
-Both <code class="docutils literal notranslate"><span class="pre">head()</span></code> and <code class="docutils literal notranslate"><span class="pre">tail()</span></code> accept this optional integer argument.</p>
+Both <code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> accept this optional integer argument.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -1227,8 +1255,11 @@ dtype: object
 </div>
 </div>
 </div>
-<div class="section" id="data-types-in-python">
-<h2><span class="section-number">2.6. </span>Data Types in python<a class="headerlink" href="#data-types-in-python" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="data-types">
+<h2><span class="section-number">2.3. </span>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="built-in-python">
+<h3><span class="section-number">2.3.1. </span>Built-In Python<a class="headerlink" href="#built-in-python" title="Permalink to this headline">¶</a></h3>
 <p>Python has built-in objects for handling different types of data, including
 numeric and non numeric data.</p>
 <p>Numeric data can be represented as either an <code class="docutils literal notranslate"><span class="pre">int</span></code> (integer) or <code class="docutils literal notranslate"><span class="pre">float</span></code> object.
@@ -1371,8 +1402,8 @@ with each type:</p>
 </div>
 </div>
 </div>
-<div class="section" id="data-types-in-pandas">
-<h2><span class="section-number">2.7. </span>Data Types in pandas<a class="headerlink" href="#data-types-in-pandas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="in-pandas">
+<h3><span class="section-number">2.3.2. </span>In Pandas<a class="headerlink" href="#in-pandas" title="Permalink to this headline">¶</a></h3>
 <p>Python’s built-in data types are very flexible at the cost of precision.
 Numpy provides more control to the programmer by adding many classes for
 storing numeric data that can be modified to best match the data, in order
@@ -1393,15 +1424,17 @@ its own.</p>
 <p>For <code class="docutils literal notranslate"><span class="pre">int</span></code> and <code class="docutils literal notranslate"><span class="pre">float</span></code> data, in pandas we can specify the number the size of
 the int or float, such as int64 -&gt; a 64 bit integer.</p>
 </div>
+</div>
 <div class="section" id="series">
-<h2><span class="section-number">2.8. </span>Series<a class="headerlink" href="#series" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Series<a class="headerlink" href="#series" title="Permalink to this headline">¶</a></h2>
 <p>Each column in the DataFrame is a pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> object.
 A Series is a collection of values that all share the same data type.
 In addition, each value has a label, these labels don’t need to be unique
 and by default are integers starting at 0.</p>
 <p>It is built on top of the numpy ndarray object, and as such, will
 perform much faster than the list object for numerical operations.</p>
-<p>Lets look at the year column of our data. We can access it with the following:</p>
+<p>Lets look at the year column of our data. We can access it with the following:
+TODO: explain</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1409,6 +1442,7 @@ perform much faster than the list object for numerical operations.</p>
 </div>
 </div>
 </div>
+<p>TODO: show index, show values</p>
 <p>As with DataFrames, there are several functions for exploring series.</p>
 <p>To get the first values, we can once again use <code class="docutils literal notranslate"><span class="pre">head</span></code>:</p>
 <div class="cell docutils container">
@@ -1551,9 +1585,8 @@ Name: year, Length: 746, dtype: bool
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="indexing-series">
-<h2><span class="section-number">2.9. </span>Indexing Series<a class="headerlink" href="#indexing-series" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.4.1. </span>Indexing Series<a class="headerlink" href="#indexing-series" title="Permalink to this headline">¶</a></h3>
 <p>pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> provide multiple methods for accessing values of a Series
 based on label or value. The main ways are the <code class="docutils literal notranslate"><span class="pre">iloc</span></code> attribute for accessing
 values based on their integer location and the <code class="docutils literal notranslate"><span class="pre">loc</span></code> attribute for accessing
@@ -1581,7 +1614,7 @@ the <code class="docutils literal notranslate"><span class="pre">[]</span></code
 </div>
 </div>
 <div class="section" id="iloc">
-<h3><span class="section-number">2.9.1. </span>iloc<a class="headerlink" href="#iloc" title="Permalink to this headline">¶</a></h3>
+<h4><span class="section-number">2.4.1.1. </span>iloc<a class="headerlink" href="#iloc" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">iloc</span></code> is an attribute of Series that we use to access elements based on
 their integer position. There are multiple values that can be used with <code class="docutils literal notranslate"><span class="pre">iloc</span></code>.</p>
 <p>First, we can access elements by passing a single integer:</p>
@@ -1664,7 +1697,7 @@ Name: year, Length: 589, dtype: int64
 </div>
 </div>
 <div class="section" id="loc">
-<h3><span class="section-number">2.9.2. </span>loc<a class="headerlink" href="#loc" title="Permalink to this headline">¶</a></h3>
+<h4><span class="section-number">2.4.1.2. </span>loc<a class="headerlink" href="#loc" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">loc</span></code> is an attribute Series that we use to access elements based on their
 label.</p>
 <p>First, we can access elements by passing a single label:</p>
@@ -1754,7 +1787,7 @@ Name: year, Length: 129, dtype: int64
 </div>
 </div>
 <div class="section" id="id1">
-<h3><span class="section-number">2.9.3. </span>[]<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h4><span class="section-number">2.4.1.3. </span>[]<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>Pandas also supports selecting values form the Series using the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator.
 The behavior is somewhat complex, and is inherently less clear than the <code class="docutils literal notranslate"><span class="pre">iloc</span></code>
 or <code class="docutils literal notranslate"><span class="pre">loc</span></code> attributes described above.</p>
@@ -1858,12 +1891,14 @@ Name: year, dtype: int64
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="indexing-dataframes">
-<h2><span class="section-number">2.10. </span>Indexing DataFrames<a class="headerlink" href="#indexing-dataframes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5. </span>Indexing DataFrames<a class="headerlink" href="#indexing-dataframes" title="Permalink to this headline">¶</a></h2>
 <p>Conceptually, indexing DataFrames is very similar to the operations on Series.
 However, whereas Series are one dimensional, DataFrames are two dimensional.
 A DataFrame is a collection of Series, organized as columns.</p>
-<p>As with Series, we can use <code class="docutils literal notranslate"><span class="pre">iloc</span></code> to select rows based on their integer position:</p>
+<p>As with Series, we can use <code class="docutils literal notranslate"><span class="pre">iloc</span></code> to select rows based on their integer
+position:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
@@ -1990,7 +2025,8 @@ A DataFrame is a collection of Series, organized as columns.</p>
 <p>3 rows × 31 columns</p>
 </div></div></div>
 </div>
-<p>And we can use <code class="docutils literal notranslate"><span class="pre">loc</span></code> to select based on label, in this case the label is also integers:</p>
+<p>And we can use <code class="docutils literal notranslate"><span class="pre">loc</span></code> to select based on label, in this case the label is
+also integers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">732</span><span class="p">]</span>
@@ -2674,7 +2710,8 @@ Name: 732, dtype: object
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Be careful when passing a bool Series to either <code class="docutils literal notranslate"><span class="pre">[]</span></code> or <code class="docutils literal notranslate"><span class="pre">loc</span></code> that the indexes of the bool Series and the DataFrame match.
+<p>Be careful when passing a bool Series to either <code class="docutils literal notranslate"><span class="pre">[]</span></code> or <code class="docutils literal notranslate"><span class="pre">loc</span></code> that the indexes
+of the bool Series and the DataFrame match.
 For example we would get an error if we were to attempt to run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2020</span><span class="p">]</span>
 </pre></div>
@@ -2999,7 +3036,8 @@ For example we would get an error if we were to attempt to run:</p>
 <p>129 rows × 31 columns</p>
 </div></div></div>
 </div>
-<p>To access columns from a DataFrame, we use the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator, as we have already seen:</p>
+<p>To access columns from a DataFrame, we use the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator, as we have
+already seen:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">]</span>
@@ -3114,7 +3152,8 @@ Name: pop2020, Length: 746, dtype: float64
 <p>746 rows × 2 columns</p>
 </div></div></div>
 </div>
-<p>If we select a single column from the DataFrame, we get a Series, which we can index as we saw before:</p>
+<p>If we select a single column from the DataFrame, we get a Series,
+which we can index as we saw before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
@@ -3227,7 +3266,8 @@ Name: pop2020, dtype: float64
 <p>129 rows × 2 columns</p>
 </div></div></div>
 </div>
-<p>We can combine multiple conditions with the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator, note the paranthesis around the expressions:</p>
+<p>We can combine multiple conditions with the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator, note
+the paranthesis around the expressions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;pop2020&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">)]</span> 
@@ -3348,11 +3388,12 @@ Name: pop2020, dtype: float64
 </div></div></div>
 </div>
 </div>
-<div class="section" id="missing-values">
-<h2><span class="section-number">2.11. </span>Missing Values<a class="headerlink" href="#missing-values" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="special-values">
+<h2><span class="section-number">2.6. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">¶</a></h2>
 <p>Often times, the data we import into pandas will have missing values.
 Or, over the course of the the analysis, missing values will be introduced.</p>
-<p>pandas provides many methods for detecting, manipulating, and otherwise dealing with missing values.</p>
+<p>Pandas provides many methods for detecting, manipulating, and otherwise
+dealing with missing values.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There are several values that are considered missing. These include:</p>
@@ -3363,8 +3404,10 @@ Or, over the course of the the analysis, missing values will be introduced.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></li>
 </ul>
 </div>
-<p>To detect missing values, pandas provides two complementary methods - <code class="docutils literal notranslate"><span class="pre">isna</span></code> and <code class="docutils literal notranslate"><span class="pre">notna</span></code>.</p>
-<p>We can see information about missing values with the <code class="docutils literal notranslate"><span class="pre">count</span></code> method on DataFrames:</p>
+<p>To detect missing values, pandas provides two complementary methods -
+<code class="docutils literal notranslate"><span class="pre">isna</span></code> and <code class="docutils literal notranslate"><span class="pre">notna</span></code>.</p>
+<p>We can see information about missing values with the <code class="docutils literal notranslate"><span class="pre">count</span></code> method on
+DataFrames:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
@@ -3408,7 +3451,8 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>If we look at the <code class="docutils literal notranslate"><span class="pre">park_benches</span></code> columns of the DataFrame, we can see what those missing values look like.</p>
+<p>If we look at the <code class="docutils literal notranslate"><span class="pre">park_benches</span></code> columns of the DataFrame, we can see what
+those missing values look like.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;park_benches&quot;</span><span class="p">]</span>
@@ -3422,7 +3466,8 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>The return of <code class="docutils literal notranslate"><span class="pre">isna</span></code> is a boolean Series indicating which of the values are considered missing:</p>
+<p>The return of <code class="docutils literal notranslate"><span class="pre">isna</span></code> is a boolean Series indicating which of the values
+are considered missing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
@@ -3446,7 +3491,8 @@ Name: park_benches, Length: 746, dtype: bool
 </div>
 </div>
 </div>
-<p>The reverse - to see which values are not considered missing - is returned with <code class="docutils literal notranslate"><span class="pre">notna</span></code>:</p>
+<p>The reverse - to see which values are not considered missing - is returned
+with <code class="docutils literal notranslate"><span class="pre">notna</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
@@ -3470,7 +3516,8 @@ Name: park_benches, Length: 746, dtype: bool
 </div>
 </div>
 </div>
-<p>We can use this boolean Series to subset. For example, to keep only the values that aren’t missing:</p>
+<p>We can use this boolean Series to subset.
+For example, to keep only the values that aren’t missing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pb</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
@@ -3518,7 +3565,8 @@ Name: park_benches, Length: 442, dtype: float64
 </div>
 </div>
 </div>
-<p>Another strategy may be to fill the missing values. We could do so using the <code class="docutils literal notranslate"><span class="pre">fillna</span></code> function:</p>
+<p>Another strategy may be to fill the missing values. We could do so using the
+<code class="docutils literal notranslate"><span class="pre">fillna</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -3542,7 +3590,8 @@ Name: park_benches, Length: 746, dtype: float64
 </div>
 </div>
 </div>
-<p>Additionally, the data set may have its own indicator for missing values, e.g “” or 0. We can convert those to missing using the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method:</p>
+<p>Additionally, the data set may have its own indicator for missing values,
+e.g “” or 0. We can convert those to missing using the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
@@ -3566,26 +3615,6 @@ Name: park_benches, Length: 746, dtype: float64
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="modifying-dataframes">
-<h2><span class="section-number">2.12. </span>Modifying DataFrames<a class="headerlink" href="#modifying-dataframes" title="Permalink to this headline">¶</a></h2>
-<p>TODO:</p>
-<ul class="simple">
-<li><p>dropping values</p></li>
-<li><p>dropping columns</p></li>
-<li><p>Concat</p></li>
-<li><p>Join</p></li>
-<li><p>cleaning</p></li>
-<li><p>changing datatypes</p></li>
-</ul>
-<p>TODO:
-Use one operation to modify values, instead of two [][]:
-df.loc[criteria, columns] =</p>
-</div>
-<div class="section" id="saving">
-<h2><span class="section-number">2.13. </span>Saving<a class="headerlink" href="#saving" title="Permalink to this headline">¶</a></h2>
-<p>TODO:
-save cleaned df as csv</p>
 </div>
 </div>
 
@@ -3641,7 +3670,7 @@ save cleaned df as csv</p>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         

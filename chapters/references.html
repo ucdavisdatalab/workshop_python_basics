@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Overview &#8212; Python Basics</title>
+    <title>References &#8212; Python Basics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,7 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Getting Started" href="01_python-basics.html" />
+    <link rel="next" title="Acknowledgements" href="acknowledgements.html" />
+    <link rel="prev" title="4. Numpy" href="04_extension.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -82,8 +83,8 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
    Overview
   </a>
  </li>
@@ -120,9 +121,9 @@
   Afterword
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="references.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    References
   </a>
  </li>
@@ -170,9 +171,12 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="../_sources/chapters/references.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapters/index.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/chapters/references.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -205,6 +209,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/references.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -218,20 +239,28 @@
         
               <div>
                 
-  <div class="section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>This 4-part workshop series provides an introduction to using the Python
-programming language for reproducible data analysis and scientific computing.
-The focus of this workshop is programming basics and working with tabular data.
-Along the way, we’ll learn a little bit about how to break down programming
-problems and organize for clarity and reproducibility.</p>
-<p>After this workshop, learners will be able to load tabular data sets into
-Python, compute simple summaries and visualizations, do common data-tidying
-tasks, write reusable functions, and identify where to go to learn more.</p>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<p>This reader provides an introduction to the basics of Python, but there’s lots
+more to learn. Fortunately, many Python and data science learning resources are
+available for free online or through the library.</p>
+<p>Here are a few readers and notes created by DataLab staff:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ucdavisdatalab.github.io/workshop_how-to-data-documentation/">README, Write Me!</a>, our workshop about how to organize and document
+computing projects.</p></li>
+<li><p><a class="reference external" href="https://ucdavisdatalab.github.io/workshop_data_viz_principles/">Principles of Data Visualization</a>, our workshop about how to
+design clear and effective data visualizations.</p></li>
+<li><p><a class="reference external" href="https://ucdavisdatalab.github.io/adventures_in_data_science/">Adventures in Data Science</a>, our course introducing humanities
+undergraduates to data science techniques.</p></li>
+<li><p>Nick’s <a class="reference external" href="https://github.com/nick-ulle/teaching-notes">teaching notes</a> from several years of teaching
+statistical computing.</p></li>
+</ul>
+<p>And here are a few books created by others that we’ve found useful:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wesmckinney.com/pages/book.html">Python for Data Analysis</a> (2nd edition) by McKinney. An introduction
+to using Python for data science, by the creator of the Pandas package.</p></li>
+<li><p><a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a> by VanderPlas.</p></li>
+</ul>
 </div>
 
     <script type="text/x-thebe-config">
@@ -263,11 +292,20 @@ tasks, write reusable functions, and identify where to go to learn more.</p>
 
 <div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="04_extension.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">4. </span>Numpy</p>
+            </div>
+        </a>
+    </div>
      <div id="next">
-        <a class="right-next" href="01_python-basics.html" title="next page">
+        <a class="right-next" href="acknowledgements.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">1. </span>Getting Started</p>
+                <p class="prevnext-title">Acknowledgements</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
