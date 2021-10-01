@@ -1,6 +1,15 @@
 Summarizing Data
 ================
 
+:::{admonition} Learning Objectives
+* Write functions to organize and encapsulate reusable code
+* Map a function over data frame columns
+* Map a function over grouped data frame rows
+* Describe the popular data visualization packages for Python
+* Use the grammar of graphics to create a visualization
+* Save a visualization to a file
+:::
+
 ## Recap
 
 

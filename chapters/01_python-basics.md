@@ -21,6 +21,17 @@ os.chdir("..")
 Getting Started
 ===============
 
+:::{admonition} Learning Objectives
+* Run code in a Python console (in JupyterLab)
+* Run and save code in a Jupyter notebook
+* Create variables and call functions
+* Create and access elements of lists
+* Write paths to files and directories
+* Get or set the Python working directory
+* Identify the format of a data file
+* Select appropriate functions for loading common file formats
+:::
+
 **[Python][]** is a popular general-purpose programming language. Python is also a
 leading language for scientific computing due to the **[SciPy
 ecosystem][SciPy]**, a collection of scientific computing software for Python.
