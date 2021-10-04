@@ -69,12 +69,12 @@ This will also work on many objects and classes.
 :::
 
 ```{code-cell}
-df = pd.read_csv("../data/parks_final.csv") 
+parks = pd.read_csv("../data/parks_final.csv") 
 ```
 
 We can use the `head` method to see what we have.
 ```{code-cell}
-df.head()
+parks.head()
 ```
 
 Here we see a DataFrame, which is the really important part of pandas, which we
@@ -99,28 +99,28 @@ can be modified by passing an optional integer argument to the function call.
 Both `head` and `tail` accept this optional integer argument.
 
 ```{code-cell}
-df.tail(10)
+parks.tail(10)
 ```
 To display the columns of the DataFrame we can access the columns attribute
 of the DataFrame object.
 
 ```{code-cell}
-df.columns
+parks.columns
 ```
 
 To see information about a DataFrame and its content:
 ```{code-cell}
-df.info()
+parks.info()
 ```
 
 To get some summary statistics about the values of a DataFrame:
 ```{code-cell}
-df.describe()
+parks.describe()
 ```
 
 To see the data types of a DataFrame:
 ```{code-cell}
-df.dtypes
+parks.dtypes
 ```
 
 ## Data Types
@@ -238,7 +238,7 @@ perform much faster than the list object for numerical operations.
 Lets look at the year column of our data. We can access it with the following:
 TODO: explain
 ```{code-cell}
-year = df["year"].copy()
+year = parks["year"].copy()
 ```
 
 TODO: show index, show values
@@ -295,7 +295,7 @@ year.index
 
 We can modify this to use a different set of labels:
 ```{code-cell}
-year.index = df["city"]
+year.index = parks["city"]
 ```
 
 #### iloc
@@ -341,7 +341,7 @@ year.loc[["St. Paul", "Mesa", "Fresno"]]
 ```
 We can use a boolean array or list:
 ```{code-cell}
-year.loc[(df["state"] == "California").values]
+year.loc[(parks["state"] == "California").values]
 ```
 #### []
 
@@ -355,7 +355,7 @@ year[["Irvine", "San Diego"]]
 ```
 We can also use a boolean array or list:
 ```{code-cell}
-year[(df["pop2010"] > 500000).values]
+year[(parks["pop2010"] > 500000).values]
 ```
 We can pass an integer, but be weary that it will first attempt to match
 based on the label. If there are integer labels, then it will match with 
@@ -380,23 +380,23 @@ A DataFrame is a collection of Series, organized as columns.
 As with Series, we can use `iloc` to select rows based on their integer 
 position:
 ```{code-cell}
-df.iloc[[300, 200, -1]]
+parks.iloc[[300, 200, -1]]
 ```
 
 And we can use `loc` to select based on label, in this case the label is 
 also integers:
 ```{code-cell}
-df.loc[732]
+parks.loc[732]
 ```
 
 Again, as with Series, we can use boolean arrays or lists to index:
 ```{code-cell}
-df.loc[df["state"] == "California"]
+parks.loc[parks["state"] == "California"]
 ```
 
 This also works with just the `[]` operator:
 ```{code-cell}
-df[df["state"] == "California"]
+parks[parks["state"] == "California"]
 ```
 
 :::{Note}
@@ -405,58 +405,104 @@ of the bool Series and the DataFrame match.
 For example we would get an error if we were to attempt to run:
 
 ```
-df[year > 2020]
+parks[year > 2020]
 ```
 :::
 
 To use a boolean array or list with `iloc` be sure to pass only the values:
 ```{code-cell}
-df.iloc[(df["state"] == "California").values]
+parks.iloc[(parks["state"] == "California").values]
 ```
 
 To access columns from a DataFrame, we use the `[]` operator, as we have 
 already seen:
 ```{code-cell}
-df["pop2020"]
+parks["pop2020"]
 ```
 
 We can also pass a list of column names, in any order:
 ```{code-cell}
-df[["pop2020", "city"]]
+parks[["pop2020", "city"]]
 ```
 
 If we select a single column from the DataFrame, we get a Series, 
 which we can index as we saw before:
 ```{code-cell}
-df["pop2020"].iloc[1:10]
+parks["pop2020"].iloc[1:10]
 ```
 
 So, to combine with what we saw before with boolean indexing:
 ```{code-cell}
-df[["city", "pop2020"]].loc[df["state"] == "California"]
+parks[["city", "pop2020"]].loc[parks["state"] == "California"]
 ```
 
 We can combine multiple conditions with the `&` operator, note 
 the paranthesis around the expressions:
 ```{code-cell}
-df[["city", "pop2020"]].loc[(df["state"] == "California") & (df["year"] == 2020)] 
+parks[["city", "pop2020"]].loc[(parks["state"] == "California") & (parks["year"] == 2020)] 
 ```
 
 ## Special Values
 
-Often times, the data we import into pandas will have missing values. 
-Or, over the course of the the analysis, missing values will be introduced.
+Often times, the data we have will work with has missing, or invalid data.
+Its important to understand these values, and how to work with them in Pandas.
 
-Pandas provides many methods for detecting, manipulating, and otherwise 
-dealing with missing values.
+There are many reasons that could cause these values to be missing or incomplete,
+and as a result, Pandas provides lots of flexibility for detecting and handling
+these values.
 
-:::{note}
-There are several values that are considered missing. These include:
-- `NaN`
-- `None`
-- `NA`
-- `np.nan`
-:::
+In Pandas, these special values, are generally treated as missing values
+in the dataset, and are represented by the Numpy `nan` type. This reduces
+some of the nuance of data values and types, but was seemingly done
+for computational preformance reasons.
+
+### Types of Values Considered Missing by Pandas
+
+In addition to `np.nan` (which displays as NaN), Pandas interprets 
+several other values as missing. 
+This includes Python's `None` type, as well as Pandas' experimental `NA` types.
+
+Python's `None` type represents something that has no value. 
+It often comes about as the return of a function, if something hasn't
+been defined yet, or if something wasn't found.
+
+When creating a Series, we can pass this value:
+```{code-cell}
+pd.Series([None, "one", "two"])
+```
+
+Be aware that `None` is a python object, and in the above example, the 
+datatype of the series became 'object'. If we specify a datatype explicitly
+then Pandas will convert it to one of its representations:
+```{code-cell}
+pd.Series([1.5,2.0,3, None], dtype="float")
+```
+
+Be aware that `None` is a python object, and in the above example, the 
+datatype of the series became 'object'. If we specify a datatype explicitly
+then Pandas will convert it to one of its representations:
+```{code-cell}
+pd.Series(["the", "and", None], dtype="string")
+```
+
+### Reading in Missing Values from a CSV file
+
+An obvious source of missing or incomplete values is the data itself. 
+When the data was collected, there may have been reasons to code missing data.
+For example, in collection of survey responses, there may be times where the 
+answer was not applicable. 
+Another example would be if a measurement was not taken on some of the samples. 
+Obviously, there are no rules on how this was represented in the data set. 
+However there are several conventions, and Pandas is aware of many of them. 
+
+When reading data from a csv file, Pandas will automatically detect missing 
+values. 
+By default, it will convert any empty cell, or string such as 'na', 'nan', 'null',
+'N/A', and other variants to NaN.
+A full list can be found in the pandas documentation: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+
+
+### Detecting Missing Values
 
 To detect missing values, pandas provides two complementary methods - 
 `isna` and `notna`.
@@ -464,13 +510,13 @@ To detect missing values, pandas provides two complementary methods -
 We can see information about missing values with the `count` method on 
 DataFrames:
 ```{code-cell}
-df.count()
+parks.count()
 ```
 
 If we look at the `park_benches` columns of the DataFrame, we can see what 
 those missing values look like.
 ```{code-cell}
-pb = df["park_benches"]
+pb = parks["park_benches"]
 pb.count()
 ```
 
@@ -485,6 +531,8 @@ with `notna`:
 ```{code-cell}
 pb.notna()
 ```
+
+### Replacing Missing Values
 
 We can use this boolean Series to subset. 
 For example, to keep only the values that aren't missing:
