@@ -491,7 +491,7 @@ For functions, help pages usually include a brief description and a list of
 parameters and default arguments. For instance, the help page for `round` shows
 that there are two parameters `number` and `ndigits`. It also says that
 `ndigits=None`, meaning the default argument for `ndigits` is the special
-`None` value, which you'll learn more about in TODO.
+`None` value, which you'll learn more about on day 2.
 
 There are also help pages for other topics, such as built-in operators and
 modules (you'll learn more about modules in {numref}`modules-packages`). To
@@ -1036,15 +1036,16 @@ The table below shows several formats that are frequently used to distribute
 data. Although Pandas provides reader functions for all of these, the lxml
 package and Python's built-in json module are better suited to the last two.
 
-| Name                        | Extension  | Tabular?  | Text? | Pandas Function
-| :-------------------------- | :--------  | :-------- | :---- | :--------------
-| Comma-separated Values      | `.csv`     | Yes       | Yes   | `read_csv`
-| Tab-separated Values        | `.tsv`     | Yes       | Yes   | `read_table`
-| Fixed-width File            | `.fwf`     | Yes       | Yes   | `read_fwf`
-| Microsoft Excel             | `.xlsx`    | Yes       | No    | `read_excel`
-| [Apache Arrow][arrow]       | `.feather` | Yes       | No    | `read_feather`
-| Extensible Markup Language  | `.xml`     | No        | Yes   | Use lxml package
-| JavaScript Object Notation  | `.json`    | No        | Yes   | Use json module
+| Name                        | Extension       | Tabular?  | Text? | Pandas Function
+| :-------------------------- | :-------------- | :-------- | :---- | :--------------
+| Comma-separated Values      | `.csv`          | Yes       | Yes   | `read_csv`
+| Tab-separated Values        | `.tsv`          | Yes       | Yes   | `read_table`
+| Fixed-width File            | `.fwf`          | Yes       | Yes   | `read_fwf`
+| Microsoft Excel             | `.xls`, `.xlsx` | Yes       | No    | `read_excel`
+| [Apache Arrow][arrow]       | `.feather`      | Yes       | No    | `read_feather`
+| Extensible Markup Language  | `.xml`          | No        | Yes   | Use lxml package
+| JavaScript Object Notation  | `.json`         | No        | Yes   | Use json module
+| Arbitrary File              |                 |           |       | Use io module
 
 [arrow]: https://arrow.apache.org/
 
