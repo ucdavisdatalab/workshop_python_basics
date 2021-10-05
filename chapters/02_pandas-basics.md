@@ -10,38 +10,38 @@ kernelspec:
   name: python3
 ---
 
-Scientific Python
-=================
+Pandas Data Structures
+======================
 
 
 :::{admonition} Learning Objectives
-- create DataFrame from csv file
-- inspect the structure of DataFrame
-- learn python and pandas data types
-- index Series, using integer position, labels, and booleans
-- index DataFrames, using integer position, labels, and booleans
-- find and remove missing values in a Series and DataFrame
+- Load a DataFrame from a CSV file
+- Inspect the structure of DataFrame
+- Learn Python and Pandas data types
+- Index Series using integer position, labels, and Booleans
+- Index DataFrames using integer position, labels, and Booleans
+- Find and remove missing values in a Series and DataFrame
 :::
 
 
 ## Recap 
 ### Packages
 
-When packages are installed, they can be loaded into the python session with
+When packages are installed, they can be loaded into the Python session with
 the `import` command. To avoid having to type the full name of the module
 we define an alias using the `as` keyword. By convention, the alias for
 `numpy` is `np` and the alias for `pandas` is `pd`. 
 
-Lets start by loading in numpy and pandas:
+Let's start by loading in NumPy and Pandas:
 
 ```{code-cell}
 import numpy as np
 import pandas as pd
 ```
 
-### pandas
+### Pandas
 
-**pandas** is a package that provides objects and many functions for working 
+**Pandas** is a package that provides objects and many functions for working 
 with data. It is very popular and used for tasks such as:
 - loading and writing data to/from files and databases
 - summarizing data
@@ -53,13 +53,13 @@ with data. It is very popular and used for tasks such as:
 
 ### Load in data
 
-First, we will load in the dataset from a csv file using the `read_csv`
-function from pandas: 
+First, we will load in the dataset from a CSV file using the `read_csv`
+function from Pandas: 
 
 :::{Tip} 
-Most functions in pandas will have documentation describing what the function 
+Most functions in Pandas will have documentation describing what the function 
 does and how to use it. You can find this documentation online or directly
-from the python shell using the built-in help system: `help(pd.read_csv)`.
+from the Python shell using the built-in help system: `help(pd.read_csv)`.
 In IPython environments, you can use `?` either before or after the function
 name as a shorthand for the help function: `?pd.read_csv`
 
@@ -75,13 +75,13 @@ We can use the `head` method to see what we have.
 parks.head()
 ```
 
-Here we see a DataFrame, which is the really important part of pandas, which we
+Here we see a DataFrame, which is the really important part of Pandas, which we
 will spend lots of time with during this lesson and the next. 
 The dataframe is the tool we can merge, join, summarize, etc.
 
 ## DataFrames
 
-A **DataFrame** is how pandas structures tabular data - data structured as rows
+A **DataFrame** is how Pandas structures tabular data - data structured as rows
 and columns. In general rows are observations, and columns are variables.
 Each entry is called a cell.
 
@@ -89,7 +89,7 @@ Each entry is called a cell.
 ### Methods for Exploring DataFrames
 
 As with the `head` method there are many other methods for looking 
-at the contents of a pandas DataFrame.
+at the contents of a Pandas DataFrame.
 
 `head` shows the first rows of the DataFrame, to see the last rows, use
 `tail`. By default, the number of rows displayed is 5, this amount
@@ -130,17 +130,17 @@ numeric and non numeric data.
 
 Numeric data can be represented as either an `int` (integer) or `float` object.
 An integer is simply a whole number, such as 0, 3, 3000...
-When we assign as whole number to a variable, python will use the int class:
+When we assign as whole number to a variable, Python will use the int class:
 ```{code-cell}
 a = 4
 ```
 
-We can see the type of an object in python using the `type` function:
+We can see the type of an object in Python using the `type` function:
 ```{code-cell}
 type(a)
 ```
 
-We can also explicitly construct an int object in python:
+We can also explicitly construct an int object in Python:
 ```{code-cell}
 b = int(4)
 ```
@@ -166,7 +166,7 @@ c = a + b
 type(c)
 ```
 
-Additionally, if you divide an integer with another integer in python, you will
+Additionally, if you divide an integer with another integer in Python, you will
 get a float:
 ```{code-cell}
 c = 4 / 4
@@ -180,7 +180,7 @@ For example:
 5 < 2
 ```
 
-In python, text is stored in a String object called `str`. Strings are created
+In Python, text is stored in a String object called `str`. Strings are created
 by enclosing a series of characters in quotes, either single or double quotes
 can be used.
 ```{code-cell}
@@ -188,7 +188,7 @@ d = "hello world!"
 type(d)
 ```
 
-To convert between data types in python, we use the constructor associated
+To convert between data types in Python, we use the constructor associated
 with each type:
 ```{code-cell}
 a = float(3)
@@ -202,11 +202,11 @@ a = str(3)
 ### In Pandas
 
 Python's built-in data types are very flexible at the cost of precision. 
-Numpy provides more control to the programmer by adding many classes for
+NumPy provides more control to the programmer by adding many classes for
 storing numeric data that can be modified to best match the data, in order
 to improve memory and time performance.
 
-pandas, which is built on top of numpy, incorporates these types and some of
+Pandas, which is built on top of NumPy, incorporates these types and some of
 its own.
 
 These include:
@@ -219,18 +219,18 @@ These include:
 - StringDtype
 - python object (including strings)
 
-For `int` and `float` data, in pandas we can specify the number the size of
+For `int` and `float` data, in Pandas we can specify the number the size of
 the int or float, such as int64 -> a 64 bit integer.
 
 
 ## Series
 
-Each column in the DataFrame is a pandas `Series` object.
+Each column in the DataFrame is a Pandas `Series` object.
 A Series is a collection of values that all share the same data type. 
 In addition, each value has a label, these labels don't need to be unique
 and by default are integers starting at 0.
 
-It is built on top of the numpy ndarray object, and as such, will
+It is built on top of the NumPy ndarray object, and as such, will
 perform much faster than the list object for numerical operations.
 
 Lets look at the year column of our data. We can access it with the following:
@@ -300,7 +300,7 @@ We can also pass a list or array of integer locations:
 ```{code-cell}
 year.iloc[[33,0,23]]
 ```
-As with lists, we can use python's slice operator:
+As with lists, we can use Python's slice operator:
 ```{code-cell}
 year.iloc[3:10]
 ```
@@ -429,7 +429,7 @@ and as a result, Pandas provides lots of flexibility for detecting and handling
 these values.
 
 In Pandas, these special values, are generally treated as missing values
-in the dataset, and are represented by the Numpy `nan` type. This reduces
+in the dataset, and are represented by the NumPy `nan` type. This reduces
 some of the nuance of data values and types, but was seemingly done
 for computational preformance reasons.
 
@@ -448,14 +448,14 @@ When creating a Series, we can pass this value:
 pd.Series([None, "one", "two"])
 ```
 
-Be aware that `None` is a python object, and in the above example, the 
+Be aware that `None` is a Python object, and in the above example, the 
 datatype of the series became 'object'. If we specify a datatype explicitly
 then Pandas will convert it to one of its representations:
 ```{code-cell}
 pd.Series([1.5,2.0,3, None], dtype="float")
 ```
 
-Be aware that `None` is a python object, and in the above example, the 
+Be aware that `None` is a Python object, and in the above example, the 
 datatype of the series became 'object'. If we specify a datatype explicitly
 then Pandas will convert it to one of its representations:
 ```{code-cell}
@@ -472,16 +472,16 @@ Another example would be if a measurement was not taken on some of the samples.
 Obviously, there are no rules on how this was represented in the data set. 
 However there are several conventions, and Pandas is aware of many of them. 
 
-When reading data from a csv file, Pandas will automatically detect missing 
+When reading data from a CSV file, Pandas will automatically detect missing 
 values. 
 By default, it will convert any empty cell, or string such as 'na', 'nan', 'null',
 'N/A', and other variants to NaN.
-A full list can be found in the pandas documentation: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+A full list can be found in the Pandas documentation: https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
 
 
 ### Detecting Missing Values
 
-To detect missing values, pandas provides two complementary methods - 
+To detect missing values, Pandas provides two complementary methods - 
 `isna` and `notna`.
 
 We can see information about missing values with the `count` method on 
@@ -517,7 +517,7 @@ For example, to keep only the values that aren't missing:
 pb.loc[pb.notna()]
 ```
 
-pandas also provides a shortcut with the `dropna` method:
+Pandas also provides a shortcut with the `dropna` method:
 ```{code-cell}
 pb.dropna()
 ```
