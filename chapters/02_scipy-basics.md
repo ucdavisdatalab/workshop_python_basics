@@ -19,7 +19,7 @@ Scientific Python
 - inspect the structure of DataFrame
 - learn python and pandas data types
 - index Series, using integer position, labels, and booleans
-- index DataFrames 
+- index DataFrames, using integer position, labels, and booleans
 - find and remove missing values in a Series and DataFrame
 :::
 
@@ -337,7 +337,7 @@ Additionally, Pandas supports the more conventional `[]` operator, directly
 on Series.
 We can pass labels to this operator:
 ```{code-cell}
-year[["Irvine, "San Diego"]]
+year[["Irvine", "San Diego"]]
 ```
 
 ### Selecting Values Based On A Boolean Array
