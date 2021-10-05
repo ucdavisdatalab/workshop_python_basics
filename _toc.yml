@@ -4,7 +4,8 @@ parts:
   - caption: Notes
     numbered: true
     chapters:
-      - glob: chapters/0*
+      - file: chapters/01_python-basics
+      - file: chapters/02_pandas-basics
   - caption: Afterword
     chapters:
       - file: chapters/references
