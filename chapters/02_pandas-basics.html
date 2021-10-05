@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -70,6 +70,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -172,11 +176,11 @@
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         <a class="dropdown-buttons"
-            href="../_sources/chapters/02_scipy-basics.ipynb"><button type="button"
+            href="../_sources/chapters/02_pandas-basics.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapters/02_scipy-basics.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/chapters/02_pandas-basics.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -214,7 +218,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/02_scipy-basics.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/02_pandas-basics.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -296,23 +300,21 @@
     <a class="reference internal nav-link" href="#indexing-series">
      2.4.1. Indexing Series
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iloc">
-       2.4.1.1. iloc
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#loc">
-       2.4.1.2. loc
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       2.4.1.3. []
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-values-by-integer-position">
+     2.4.2. Selecting Values By Integer Position
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-values-by-label">
+     2.4.3. Selecting Values By Label
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-values-based-on-a-boolean-array">
+     2.4.4. Selecting Values Based On A Boolean Array
+    </a>
    </li>
   </ul>
  </li>
@@ -325,6 +327,28 @@
   <a class="reference internal nav-link" href="#special-values">
    2.6. Special Values
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-values-considered-missing-by-pandas">
+     2.6.1. Types of Values Considered Missing by Pandas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-in-missing-values-from-a-csv-file">
+     2.6.2. Reading in Missing Values from a CSV file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#detecting-missing-values">
+     2.6.3. Detecting Missing Values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#replacing-missing-values">
+     2.6.4. Replacing Missing Values
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -343,13 +367,11 @@
 <p class="admonition-title">Learning Objectives</p>
 <ul class="simple">
 <li><p>create DataFrame from csv file</p></li>
-<li><p>inspect structure of DataFrame</p></li>
+<li><p>inspect the structure of DataFrame</p></li>
 <li><p>learn python and pandas data types</p></li>
 <li><p>index Series, using integer position, labels, and booleans</p></li>
-<li><p>index DataFrame</p></li>
+<li><p>index DataFrames, using integer position, labels, and booleans</p></li>
 <li><p>find and remove missing values in a Series and DataFrame</p></li>
-<li><p>make modifications to a DataFrame</p></li>
-<li><p>save a DataFrame to csv</p></li>
 </ul>
 </div>
 <div class="section" id="recap">
@@ -398,7 +420,7 @@ name as a shorthand for the help function: <code class="docutils literal notrans
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/parks_final.csv&quot;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/parks_final.csv&quot;</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -406,7 +428,7 @@ name as a shorthand for the help function: <code class="docutils literal notrans
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">head</span></code> method to see what we have.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -598,7 +620,7 @@ can be modified by passing an optional integer argument to the function call.
 Both <code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> accept this optional integer argument.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -894,7 +916,7 @@ Both <code class="docutils literal notranslate"><span class="pre">head</span></c
 of the DataFrame object.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
@@ -916,7 +938,7 @@ of the DataFrame object.</p>
 <p>To see information about a DataFrame and its content:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -966,7 +988,7 @@ memory usage: 180.8+ KB
 <p>To get some summary statistics about the values of a DataFrame:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1213,7 +1235,7 @@ memory usage: 180.8+ KB
 <p>To see the data types of a DataFrame:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 </div>
 </div>
@@ -1433,16 +1455,19 @@ In addition, each value has a label, these labels don’t need to be unique
 and by default are integers starting at 0.</p>
 <p>It is built on top of the numpy ndarray object, and as such, will
 perform much faster than the list object for numerical operations.</p>
-<p>Lets look at the year column of our data. We can access it with the following:
-TODO: explain</p>
+<p>Lets look at the year column of our data. We can access it with the following:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span> <span class="o">=</span> <span class="n">parks</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>TODO: show index, show values</p>
+<p>In this case, we have assigned a copy of the year column from the parks
+dataframe to a variable we call year. If we didn’t use the copy method,
+then modifications we made to year, would also modify that column
+in the DataFrame. This way, we can make changes without effecting
+the original.</p>
 <p>As with DataFrames, there are several functions for exploring series.</p>
 <p>To get the first values, we can once again use <code class="docutils literal notranslate"><span class="pre">head</span></code>:</p>
 <div class="cell docutils container">
@@ -1587,37 +1612,17 @@ Name: year, Length: 746, dtype: bool
 </div>
 <div class="section" id="indexing-series">
 <h3><span class="section-number">2.4.1. </span>Indexing Series<a class="headerlink" href="#indexing-series" title="Permalink to this headline">¶</a></h3>
-<p>pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> provide multiple methods for accessing values of a Series
-based on label or value. The main ways are the <code class="docutils literal notranslate"><span class="pre">iloc</span></code> attribute for accessing
-values based on their integer location and the <code class="docutils literal notranslate"><span class="pre">loc</span></code> attribute for accessing
-values based on their labels. In addition, Series can be indexed with
-the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator, in a way similar to what we saw with python lists.</p>
-<p>To see the labels of our Series we use the <code class="docutils literal notranslate"><span class="pre">index</span></code> attribute:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">index</span>
-</pre></div>
+<p>There are three main methods for accessing specific values in Pandas:</p>
+<ol class="simple">
+<li><p>by integer position</p></li>
+<li><p>by label/name</p></li>
+<li><p>based on a boolean array</p></li>
+</ol>
+<p>These methods apply to Series, and as we will see later, to DataFrames.</p>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=746, step=1)
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can modify this to use a different set of labels:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="iloc">
-<h4><span class="section-number">2.4.1.1. </span>iloc<a class="headerlink" href="#iloc" title="Permalink to this headline">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">iloc</span></code> is an attribute of Series that we use to access elements based on
-their integer position. There are multiple values that can be used with <code class="docutils literal notranslate"><span class="pre">iloc</span></code>.</p>
-<p>First, we can access elements by passing a single integer:</p>
+<div class="section" id="selecting-values-by-integer-position">
+<h3><span class="section-number">2.4.2. </span>Selecting Values By Integer Position<a class="headerlink" href="#selecting-values-by-integer-position" title="Permalink to this headline">¶</a></h3>
+<p>To access elements in a Series by integer position, use the <code class="docutils literal notranslate"><span class="pre">iloc</span></code> attribute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">33</span><span class="p">]</span>
@@ -1630,7 +1635,7 @@ their integer position. There are multiple values that can be used with <code cl
 </div>
 </div>
 </div>
-<p>We can also pass a list or array of locations:</p>
+<p>We can also pass a list or array of integer locations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">33</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">]]</span>
@@ -1638,10 +1643,9 @@ their integer position. There are multiple values that can be used with <code cl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
-Kansas City    2020
-Minneapolis    2020
-Aurora         2020
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33    2020
+0     2020
+23    2020
 Name: year, dtype: int64
 </pre></div>
 </div>
@@ -1655,52 +1659,57 @@ Name: year, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
-Arlington        2020
-Cincinnati       2020
-Portland         2020
-Irvine           2020
-San Francisco    2020
-Boston           2020
-Chicago          2020
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3    2020
+4    2020
+5    2020
+6    2020
+7    2020
+8    2020
+9    2020
 Name: year, dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
-<p>Lastly, with <code class="docutils literal notranslate"><span class="pre">iloc</span></code>, we can pass a boolean list or array. Recall that the
-comparison operator returned a series, so we need to extract just the values,
-which we can do with the .values attribute:</p>
+</div>
+<div class="section" id="selecting-values-by-label">
+<h3><span class="section-number">2.4.3. </span>Selecting Values By Label<a class="headerlink" href="#selecting-values-by-label" title="Permalink to this headline">¶</a></h3>
+<p>A Series in Pandas has labels attached to each value, in what Pandas calls
+the index.
+We can see the index of a Series with the <code class="docutils literal notranslate"><span class="pre">index</span></code> attribute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">iloc</span><span class="p">[(</span><span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2014</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
-Minneapolis      2020
-Washington       2020
-St. Paul         2020
-Arlington        2020
-Cincinnati       2020
-                 ... 
-Oklahoma City    2015
-Louisville       2015
-Indianapolis     2015
-Charlotte        2015
-Fresno           2015
-Name: year, Length: 589, dtype: int64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=746, step=1)
 </pre></div>
 </div>
 </div>
 </div>
+<p>Here we see that the index the index is a collection of integers.
+We can change that to something a little more descriptive.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">parks</span><span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span>
+<span class="n">year</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
 </div>
-<div class="section" id="loc">
-<h4><span class="section-number">2.4.1.2. </span>loc<a class="headerlink" href="#loc" title="Permalink to this headline">¶</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">loc</span></code> is an attribute Series that we use to access elements based on their
-label.</p>
-<p>First, we can access elements by passing a single label:</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Minneapolis&#39;, &#39;Washington&#39;, &#39;St. Paul&#39;, &#39;Arlington&#39;, &#39;Cincinnati&#39;,
+       &#39;Portland&#39;, &#39;Irvine&#39;, &#39;San Francisco&#39;, &#39;Boston&#39;, &#39;Chicago&#39;,
+       ...
+       &#39;Tucson&#39;, &#39;Memphis&#39;, &#39;Oklahoma City&#39;, &#39;Jacksonville&#39;, &#39;San Antonio&#39;,
+       &#39;Indianapolis&#39;, &#39;Mesa&#39;, &#39;Louisville&#39;, &#39;Charlotte&#39;, &#39;Fresno&#39;],
+      dtype=&#39;object&#39;, name=&#39;city&#39;, length=746)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To access elements based on label or name, we use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> attribute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;St. Paul&quot;</span><span class="p">]</span>
@@ -1760,38 +1769,9 @@ Name: year, dtype: int64
 </div>
 </div>
 </div>
-<p>We can use a boolean array or list:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
-Irvine           2020
-San Francisco    2020
-San Diego        2020
-Long Beach       2020
-Sacramento       2020
-                 ... 
-San Diego        2012
-San Jose         2012
-Long Beach       2012
-Los Angeles      2012
-Fresno           2012
-Name: year, Length: 129, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="id1">
-<h4><span class="section-number">2.4.1.3. </span>[]<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
-<p>Pandas also supports selecting values form the Series using the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator.
-The behavior is somewhat complex, and is inherently less clear than the <code class="docutils literal notranslate"><span class="pre">iloc</span></code>
-or <code class="docutils literal notranslate"><span class="pre">loc</span></code> attributes described above.</p>
-<p>We can access elements by passing a single label or list of labels:</p>
+<p>Additionally, Pandas supports the more conventional <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator, directly
+on Series.
+We can pass labels to this operator:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="p">[[</span><span class="s2">&quot;Irvine&quot;</span><span class="p">,</span> <span class="s2">&quot;San Diego&quot;</span><span class="p">]]</span>
@@ -1819,74 +1799,61 @@ Name: year, dtype: int64
 </div>
 </div>
 </div>
-<p>We can also use a boolean array or list:</p>
+</div>
+<div class="section" id="selecting-values-based-on-a-boolean-array">
+<h3><span class="section-number">2.4.4. </span>Selecting Values Based On A Boolean Array<a class="headerlink" href="#selecting-values-based-on-a-boolean-array" title="Permalink to this headline">¶</a></h3>
+<p>The third way to select values is based on a Boolean array.
+The Boolean array must have the same length as the number of elements
+in the Series.</p>
+<p>This is a really powerful method, that ties in well with functions that
+create Boolean Series.</p>
+<p>For example, with the example from earlier:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pop2010&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">500000</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2014</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
+Minneapolis      2020
 Washington       2020
-Portland         2020
-San Francisco    2020
-Boston           2020
-Chicago          2020
+St. Paul         2020
+Arlington        2020
+Cincinnati       2020
                  ... 
-Jacksonville     2012
-San Antonio      2012
-Indianapolis     2012
-Louisville       2012
-Charlotte        2012
-Name: year, Length: 292, dtype: int64
+Oklahoma City    2015
+Louisville       2015
+Indianapolis     2015
+Charlotte        2015
+Fresno           2015
+Name: year, Length: 589, dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can pass an integer, but be weary that it will first attempt to match
-based on the label. If there are integer labels, then it will match with
-those, and not fall back on integer location. In this case, since the labels
-are the city names, it will fall back on integer location, and we can do
-most of the same methods as with <code class="docutils literal notranslate"><span class="pre">iloc</span></code>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator also accepts Boolean Series:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="p">[</span><span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2014</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
-Fresno         2012
-Minneapolis    2020
-Baton Rouge    2016
-Name: year, dtype: int64
+Minneapolis      2020
+Washington       2020
+St. Paul         2020
+Arlington        2020
+Cincinnati       2020
+                 ... 
+Oklahoma City    2015
+Louisville       2015
+Indianapolis     2015
+Charlotte        2015
+Fresno           2015
+Name: year, Length: 589, dtype: int64
 </pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">year</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
-Seattle           2020
-Pittsburgh        2020
-Philadelphia      2020
-Plano             2020
-San Diego         2020
-St. Petersburg    2020
-New Orleans       2020
-Boise             2020
-Denver            2020
-Long Beach        2020
-Aurora            2020
-Name: year, dtype: int64
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1901,7 +1868,7 @@ A DataFrame is a collection of Series, organized as columns.</p>
 position:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -2029,7 +1996,7 @@ position:</p>
 also integers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">732</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">732</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2073,7 +2040,7 @@ Name: 732, dtype: object
 <p>Again, as with Series, we can use boolean arrays or lists to index:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2392,335 +2359,7 @@ Name: 732, dtype: object
 <p>This also works with just the <code class="docutils literal notranslate"><span class="pre">[]</span></code> operator:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>rank</th>
-      <th>city</th>
-      <th>med_park_size_data</th>
-      <th>med_park_size_points</th>
-      <th>park_pct_city_data</th>
-      <th>park_pct_city_points</th>
-      <th>pct_near_park_data</th>
-      <th>pct_near_park_points</th>
-      <th>spend_per_resident_data</th>
-      <th>...</th>
-      <th>splashground_data</th>
-      <th>splashground_points</th>
-      <th>amenities_points</th>
-      <th>total_points</th>
-      <th>total_pct</th>
-      <th>park_benches</th>
-      <th>state</th>
-      <th>pop2020</th>
-      <th>pop2010</th>
-      <th>area2020</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>6</th>
-      <td>2020</td>
-      <td>7</td>
-      <td>Irvine</td>
-      <td>6.1</td>
-      <td>28.0</td>
-      <td>27%</td>
-      <td>50.0</td>
-      <td>82%</td>
-      <td>73.0</td>
-      <td>$215</td>
-      <td>...</td>
-      <td>0.7</td>
-      <td>25.0</td>
-      <td>67.3</td>
-      <td>318.0</td>
-      <td>79.6</td>
-      <td>NaN</td>
-      <td>California</td>
-      <td>307670.0</td>
-      <td>212375.0</td>
-      <td>65.6</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2020</td>
-      <td>8</td>
-      <td>San Francisco</td>
-      <td>1.3</td>
-      <td>4.0</td>
-      <td>21%</td>
-      <td>50.0</td>
-      <td>100%</td>
-      <td>100.0</td>
-      <td>$399</td>
-      <td>...</td>
-      <td>1.0</td>
-      <td>36.0</td>
-      <td>61.7</td>
-      <td>316.0</td>
-      <td>78.9</td>
-      <td>NaN</td>
-      <td>California</td>
-      <td>873965.0</td>
-      <td>805235.0</td>
-      <td>46.9</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>2020</td>
-      <td>18</td>
-      <td>San Diego</td>
-      <td>6.8</td>
-      <td>32.0</td>
-      <td>19%</td>
-      <td>50.0</td>
-      <td>81%</td>
-      <td>71.0</td>
-      <td>$153</td>
-      <td>...</td>
-      <td>0.1</td>
-      <td>2.0</td>
-      <td>37.2</td>
-      <td>276.0</td>
-      <td>69.0</td>
-      <td>NaN</td>
-      <td>California</td>
-      <td>1386932.0</td>
-      <td>1307402.0</td>
-      <td>325.9</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>2020</td>
-      <td>23</td>
-      <td>Long Beach</td>
-      <td>3.2</td>
-      <td>14.0</td>
-      <td>10%</td>
-      <td>25.0</td>
-      <td>84%</td>
-      <td>76.0</td>
-      <td>$180</td>
-      <td>...</td>
-      <td>0.2</td>
-      <td>4.0</td>
-      <td>50.0</td>
-      <td>265.0</td>
-      <td>66.3</td>
-      <td>NaN</td>
-      <td>California</td>
-      <td>466742.0</td>
-      <td>462257.0</td>
-      <td>50.7</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>2020</td>
-      <td>30</td>
-      <td>Sacramento</td>
-      <td>5.4</td>
-      <td>25.0</td>
-      <td>9%</td>
-      <td>21.0</td>
-      <td>83%</td>
-      <td>75.0</td>
-      <td>$122</td>
-      <td>...</td>
-      <td>4.5</td>
-      <td>100.0</td>
-      <td>60.2</td>
-      <td>248.0</td>
-      <td>62.0</td>
-      <td>NaN</td>
-      <td>California</td>
-      <td>524943.0</td>
-      <td>466488.0</td>
-      <td>98.6</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>711</th>
-      <td>2012</td>
-      <td>8</td>
-      <td>San Diego</td>
-      <td>6.7</td>
-      <td>14.0</td>
-      <td>22.8%</td>
-      <td>20.0</td>
-      <td>75%</td>
-      <td>28.0</td>
-      <td>$121.47</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>81.0</td>
-      <td>67.5</td>
-      <td>4.0</td>
-      <td>California</td>
-      <td>1386932.0</td>
-      <td>1307402.0</td>
-      <td>325.9</td>
-    </tr>
-    <tr>
-      <th>715</th>
-      <td>2012</td>
-      <td>12</td>
-      <td>San Jose</td>
-      <td>3.7</td>
-      <td>8.0</td>
-      <td>14.1%</td>
-      <td>15.0</td>
-      <td>69%</td>
-      <td>26.0</td>
-      <td>$135.68</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>76.0</td>
-      <td>63.5</td>
-      <td>3.5</td>
-      <td>California</td>
-      <td>1013240.0</td>
-      <td>945942.0</td>
-      <td>178.3</td>
-    </tr>
-    <tr>
-      <th>723</th>
-      <td>2012</td>
-      <td>19</td>
-      <td>Long Beach</td>
-      <td>3.2</td>
-      <td>7.0</td>
-      <td>10.3%</td>
-      <td>11.0</td>
-      <td>70%</td>
-      <td>26.0</td>
-      <td>$130.54</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>62.0</td>
-      <td>51.5</td>
-      <td>2.5</td>
-      <td>California</td>
-      <td>466742.0</td>
-      <td>462257.0</td>
-      <td>50.7</td>
-    </tr>
-    <tr>
-      <th>729</th>
-      <td>2012</td>
-      <td>25</td>
-      <td>Los Angeles</td>
-      <td>6.7</td>
-      <td>14.0</td>
-      <td>14.1%</td>
-      <td>15.0</td>
-      <td>52%</td>
-      <td>18.0</td>
-      <td>$55.14</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>52.0</td>
-      <td>43.5</td>
-      <td>2.0</td>
-      <td>California</td>
-      <td>3898747.0</td>
-      <td>3792621.0</td>
-      <td>469.5</td>
-    </tr>
-    <tr>
-      <th>745</th>
-      <td>2012</td>
-      <td>40</td>
-      <td>Fresno</td>
-      <td>4.9</td>
-      <td>10.0</td>
-      <td>2.1%</td>
-      <td>1.0</td>
-      <td>35%</td>
-      <td>8.0</td>
-      <td>$54.98</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>26.0</td>
-      <td>21.5</td>
-      <td>0.5</td>
-      <td>California</td>
-      <td>542107.0</td>
-      <td>494665.0</td>
-      <td>115.2</td>
-    </tr>
-  </tbody>
-</table>
-<p>129 rows × 31 columns</p>
-</div></div></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Be careful when passing a bool Series to either <code class="docutils literal notranslate"><span class="pre">[]</span></code> or <code class="docutils literal notranslate"><span class="pre">loc</span></code> that the indexes
-of the bool Series and the DataFrame match.
-For example we would get an error if we were to attempt to run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2020</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<p>To use a boolean array or list with <code class="docutils literal notranslate"><span class="pre">iloc</span></code> be sure to pass only the values:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -3040,7 +2679,7 @@ For example we would get an error if we were to attempt to run:</p>
 already seen:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -3064,7 +2703,7 @@ Name: pop2020, Length: 746, dtype: float64
 <p>We can also pass a list of column names, in any order:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -3156,7 +2795,7 @@ Name: pop2020, Length: 746, dtype: float64
 which we can index as we saw before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -3178,7 +2817,98 @@ Name: pop2020, dtype: float64
 <p>So, to combine with what we saw before with boolean indexing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;pop2020&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;pop2020&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city</th>
+      <th>pop2020</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>Irvine</td>
+      <td>307670.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>San Francisco</td>
+      <td>873965.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>San Diego</td>
+      <td>1386932.0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Long Beach</td>
+      <td>466742.0</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>Sacramento</td>
+      <td>524943.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>711</th>
+      <td>San Diego</td>
+      <td>1386932.0</td>
+    </tr>
+    <tr>
+      <th>715</th>
+      <td>San Jose</td>
+      <td>1013240.0</td>
+    </tr>
+    <tr>
+      <th>723</th>
+      <td>Long Beach</td>
+      <td>466742.0</td>
+    </tr>
+    <tr>
+      <th>729</th>
+      <td>Los Angeles</td>
+      <td>3898747.0</td>
+    </tr>
+    <tr>
+      <th>745</th>
+      <td>Fresno</td>
+      <td>542107.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>129 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>A more elegant approach to the above is to use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;pop2020&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -3270,7 +3000,7 @@ Name: pop2020, dtype: float64
 the paranthesis around the expressions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;pop2020&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">)]</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;pop2020&quot;</span><span class="p">]]</span> 
 </pre></div>
 </div>
 </div>
@@ -3390,27 +3120,101 @@ the paranthesis around the expressions:</p>
 </div>
 <div class="section" id="special-values">
 <h2><span class="section-number">2.6. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">¶</a></h2>
-<p>Often times, the data we import into pandas will have missing values.
-Or, over the course of the the analysis, missing values will be introduced.</p>
-<p>Pandas provides many methods for detecting, manipulating, and otherwise
-dealing with missing values.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There are several values that are considered missing. These include:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NA</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">np.nan</span></code></p></li>
-</ul>
+<p>Often times, the data we have will work with has missing, or invalid data.
+Its important to understand these values, and how to work with them in Pandas.</p>
+<p>There are many reasons that could cause these values to be missing or incomplete,
+and as a result, Pandas provides lots of flexibility for detecting and handling
+these values.</p>
+<p>In Pandas, these special values, are generally treated as missing values
+in the dataset, and are represented by the Numpy <code class="docutils literal notranslate"><span class="pre">nan</span></code> type. This reduces
+some of the nuance of data values and types, but was seemingly done
+for computational preformance reasons.</p>
+<div class="section" id="types-of-values-considered-missing-by-pandas">
+<h3><span class="section-number">2.6.1. </span>Types of Values Considered Missing by Pandas<a class="headerlink" href="#types-of-values-considered-missing-by-pandas" title="Permalink to this headline">¶</a></h3>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> (which displays as NaN), Pandas interprets
+several other values as missing.
+This includes Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type, as well as Pandas’ experimental <code class="docutils literal notranslate"><span class="pre">NA</span></code> types.</p>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type represents something that has no value.
+It often comes about as the return of a function, if something hasn’t
+been defined yet, or if something wasn’t found.</p>
+<p>When creating a Series, we can pass this value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">])</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    None
+1     one
+2     two
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Be aware that <code class="docutils literal notranslate"><span class="pre">None</span></code> is a python object, and in the above example, the
+datatype of the series became ‘object’. If we specify a datatype explicitly
+then Pandas will convert it to one of its representations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    1.5
+1    2.0
+2    3.0
+3    NaN
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Be aware that <code class="docutils literal notranslate"><span class="pre">None</span></code> is a python object, and in the above example, the
+datatype of the series became ‘object’. If we specify a datatype explicitly
+then Pandas will convert it to one of its representations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;the&quot;</span><span class="p">,</span> <span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     the
+1     and
+2    &lt;NA&gt;
+dtype: string
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="reading-in-missing-values-from-a-csv-file">
+<h3><span class="section-number">2.6.2. </span>Reading in Missing Values from a CSV file<a class="headerlink" href="#reading-in-missing-values-from-a-csv-file" title="Permalink to this headline">¶</a></h3>
+<p>An obvious source of missing or incomplete values is the data itself.
+When the data was collected, there may have been reasons to code missing data.
+For example, in collection of survey responses, there may be times where the
+answer was not applicable.
+Another example would be if a measurement was not taken on some of the samples.
+Obviously, there are no rules on how this was represented in the data set.
+However there are several conventions, and Pandas is aware of many of them.</p>
+<p>When reading data from a csv file, Pandas will automatically detect missing
+values.
+By default, it will convert any empty cell, or string such as ‘na’, ‘nan’, ‘null’,
+‘N/A’, and other variants to NaN.
+A full list can be found in the pandas documentation: <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html</a></p>
+</div>
+<div class="section" id="detecting-missing-values">
+<h3><span class="section-number">2.6.3. </span>Detecting Missing Values<a class="headerlink" href="#detecting-missing-values" title="Permalink to this headline">¶</a></h3>
 <p>To detect missing values, pandas provides two complementary methods -
 <code class="docutils literal notranslate"><span class="pre">isna</span></code> and <code class="docutils literal notranslate"><span class="pre">notna</span></code>.</p>
 <p>We can see information about missing values with the <code class="docutils literal notranslate"><span class="pre">count</span></code> method on
 DataFrames:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3455,7 +3259,7 @@ dtype: int64
 those missing values look like.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;park_benches&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span> <span class="o">=</span> <span class="n">parks</span><span class="p">[</span><span class="s2">&quot;park_benches&quot;</span><span class="p">]</span>
 <span class="n">pb</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3516,6 +3320,9 @@ Name: park_benches, Length: 746, dtype: bool
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="replacing-missing-values">
+<h3><span class="section-number">2.6.4. </span>Replacing Missing Values<a class="headerlink" href="#replacing-missing-values" title="Permalink to this headline">¶</a></h3>
 <p>We can use this boolean Series to subset.
 For example, to keep only the values that aren’t missing:</p>
 <div class="cell docutils container">
@@ -3617,6 +3424,7 @@ Name: park_benches, Length: 746, dtype: float64
 </div>
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -3670,7 +3478,7 @@ Name: park_benches, Length: 746, dtype: float64
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
