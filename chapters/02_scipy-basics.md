@@ -16,13 +16,11 @@ Scientific Python
 
 :::{admonition} Learning Objectives
 - create DataFrame from csv file
-- inspect structure of DataFrame
+- inspect the structure of DataFrame
 - learn python and pandas data types
 - index Series, using integer position, labels, and booleans
-- index DataFrame 
+- index DataFrames 
 - find and remove missing values in a Series and DataFrame
-- make modifications to a DataFrame
-- save a DataFrame to csv
 :::
 
 
