@@ -236,12 +236,15 @@ It is built on top of the numpy ndarray object, and as such, will
 perform much faster than the list object for numerical operations.
 
 Lets look at the year column of our data. We can access it with the following:
-TODO: explain
 ```{code-cell}
 year = parks["year"].copy()
 ```
 
-TODO: show index, show values
+In this case, we have assigned a copy of the year column from the parks 
+dataframe to a variable we call year. If we didn't use the copy method,
+then modifications we made to year, would also modify that column
+in the DataFrame. This way, we can make changes without effecting
+the original.
 
 As with DataFrames, there are several functions for exploring series.
 
@@ -282,56 +285,48 @@ year > 2014
 
 ### Indexing Series
 
-pandas `Series` provide multiple methods for accessing values of a Series
-based on label or value. The main ways are the `iloc` attribute for accessing
-values based on their integer location and the `loc` attribute for accessing
-values based on their labels. In addition, Series can be indexed with
-the `[]` operator, in a way similar to what we saw with python lists. 
+There are three main methods for accessing specific values in Pandas:
+1. by integer position
+2. by label/name
+3. based on a boolean array
 
-To see the labels of our Series we use the `index` attribute:
-```{code-cell}
-year.index
-```
+These methods apply to Series, and as we will see later, to DataFrames.
 
-We can modify this to use a different set of labels:
-```{code-cell}
-year.index = parks["city"]
-```
+### Selecting Values By Integer Position
 
-#### iloc
-`iloc` is an attribute of Series that we use to access elements based on
-their integer position. There are multiple values that can be used with `iloc`.
-
-First, we can access elements by passing a single integer:
+To access elements in a Series by integer position, use the `iloc` attribute:
 ```{code-cell}
 year.iloc[33]
 ```
-
-We can also pass a list or array of locations:
+We can also pass a list or array of integer locations:
 ```{code-cell}
 year.iloc[[33,0,23]]
 ```
-
 As with lists, we can use python's slice operator:
 ```{code-cell}
 year.iloc[3:10]
 ```
 
-Lastly, with `iloc`, we can pass a boolean list or array. Recall that the 
-comparison operator returned a series, so we need to extract just the values,
-which we can do with the .values attribute:
+### Selecting Values By Label
+
+A Series in Pandas has labels attached to each value, in what Pandas calls
+the index. 
+We can see the index of a Series with the `index` attribute:
 ```{code-cell}
-year.iloc[(year > 2014).values]
+year.index
+```
+Here we see that the index the index is a collection of integers. 
+We can change that to something a little more descriptive.
+```{code-cell}
+year.index = parks["city"]
+year.index
 ```
 
-#### loc
-`loc` is an attribute Series that we use to access elements based on their 
-label.
-
-First, we can access elements by passing a single label:
+To access elements based on label or name, we use the `loc` attribute:
 ```{code-cell}
 year.loc["St. Paul"]
 ```
+
 Notice that there were multiple values that matched with that label, so the
 Series returned all of them.
 
@@ -339,37 +334,31 @@ We can also pass a list or array of labels:
 ```{code-cell}
 year.loc[["St. Paul", "Mesa", "Fresno"]]
 ```
-We can use a boolean array or list:
-```{code-cell}
-year.loc[(parks["state"] == "California").values]
-```
-#### []
 
-Pandas also supports selecting values form the Series using the `[]` operator.
-The behavior is somewhat complex, and is inherently less clear than the `iloc`
-or `loc` attributes described above.
-
-We can access elements by passing a single label or list of labels:
+Additionally, Pandas supports the more conventional `[]` operator, directly
+on Series.
+We can pass labels to this operator:
 ```{code-cell}
-year[["Irvine", "San Diego"]]
-```
-We can also use a boolean array or list:
-```{code-cell}
-year[(parks["pop2010"] > 500000).values]
-```
-We can pass an integer, but be weary that it will first attempt to match
-based on the label. If there are integer labels, then it will match with 
-those, and not fall back on integer location. In this case, since the labels
-are the city names, it will fall back on integer location, and we can do
-most of the same methods as with `iloc`:
-```{code-cell}
-year[[-1, 0, 500]]
+year[["Irvine, "San Diego"]]
 ```
 
-```{code-cell}
-year[13:24]
-```
+### Selecting Values Based On A Boolean Array
 
+The third way to select values is based on a Boolean array. 
+The Boolean array must have the same length as the number of elements
+in the Series.
+
+This is a really powerful method, that ties in well with functions that 
+create Boolean Series.
+
+For example, with the example from earlier:
+```{code-cell}
+year.loc[year > 2014]
+```
+The `[]` operator also accepts Boolean Series:
+```{code-cell}
+year[year > 2014]
+```
 
 ## Indexing DataFrames
 
@@ -399,21 +388,6 @@ This also works with just the `[]` operator:
 parks[parks["state"] == "California"]
 ```
 
-:::{Note}
-Be careful when passing a bool Series to either `[]` or `loc` that the indexes 
-of the bool Series and the DataFrame match. 
-For example we would get an error if we were to attempt to run:
-
-```
-parks[year > 2020]
-```
-:::
-
-To use a boolean array or list with `iloc` be sure to pass only the values:
-```{code-cell}
-parks.iloc[(parks["state"] == "California").values]
-```
-
 To access columns from a DataFrame, we use the `[]` operator, as we have 
 already seen:
 ```{code-cell}
@@ -436,10 +410,15 @@ So, to combine with what we saw before with boolean indexing:
 parks[["city", "pop2020"]].loc[parks["state"] == "California"]
 ```
 
+A more elegant approach to the above is to use:
+```{code-cell}
+parks.loc[parks["state"] == "California", ["city", "pop2020"]]
+```
+
 We can combine multiple conditions with the `&` operator, note 
 the paranthesis around the expressions:
 ```{code-cell}
-parks[["city", "pop2020"]].loc[(parks["state"] == "California") & (parks["year"] == 2020)] 
+parks.loc[(parks["state"] == "California") & (parks["year"] == 2020), ["city", "pop2020"]] 
 ```
 
 ## Special Values
