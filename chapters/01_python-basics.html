@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,15 +42,15 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Pandas Data Structures" href="02_pandas-basics.html" />
@@ -72,6 +72,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -661,7 +665,7 @@ a call. So this code causes an error:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_58380</span><span class="o">/</span><span class="mf">3863254417.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">n2</span><span class="o">/</span><span class="n">c76_7mv17f3fsmk9zkzn_k480000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_62938</span><span class="o">/</span><span class="mf">3863254417.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">number</span> <span class="o">=</span> <span class="mf">4.755</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 
@@ -1525,7 +1529,7 @@ working directory, as a string. It doesn’t require any arguments:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/nick/workshop/datalab/workshops/workshop_python_basics&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/arthurkoehl/programs/workshop_python_basics&#39;
 </pre></div>
 </div>
 </div>
@@ -1546,7 +1550,7 @@ argument: a path to the new working directory. Here’s an example:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/nick/workshop/datalab/workshops&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/arthurkoehl/programs&#39;
 </pre></div>
 </div>
 </div>
@@ -1573,13 +1577,20 @@ path. For instance:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;remote-computing&#39;,
- &#39;template_workshop&#39;,
- &#39;jupyterbook-notes.md&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;jessie_owens&#39;,
+ &#39;nbs_python_basics&#39;,
+ &#39;tyler_scott&#39;,
+ &#39;.DS_Store&#39;,
+ &#39;old&#39;,
  &#39;workshop_python_basics&#39;,
- &#39;workshop_data_viz_principles&#39;,
- &#39;testing&#39;,
- &#39;workshop_r_basics&#39;]
+ &#39;emily_merchant_eugenics&#39;,
+ &#39;archv-py&#39;,
+ &#39;run_ldatune&#39;,
+ &#39;citationSearch&#39;,
+ &#39;.ipynb_checkpoints&#39;,
+ &#39;consult&#39;,
+ &#39;stephanie_mudge_strategy&#39;,
+ &#39;chronam&#39;]
 </pre></div>
 </div>
 </div>
@@ -1596,7 +1607,7 @@ an empty directory, Python raises a <code class="docutils literal notranslate"><
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_58380</span><span class="o">/</span><span class="mf">75073650.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">n2</span><span class="o">/</span><span class="n">c76_7mv17f3fsmk9zkzn_k480000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_62938</span><span class="o">/</span><span class="mf">75073650.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/this/path/is/fake/&quot;</span><span class="p">)</span>
 
 <span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/this/path/is/fake/&#39;
@@ -2126,7 +2137,7 @@ of inspecting a data set.</p>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

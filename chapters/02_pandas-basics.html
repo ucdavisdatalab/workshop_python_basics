@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -70,6 +70,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -271,8 +275,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-operators">
+     2.3.2. Comparison Operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#in-pandas">
-     2.3.2. In Pandas
+     2.3.3. In Pandas
     </a>
    </li>
   </ul>
@@ -362,6 +371,8 @@
 </div>
 <div class="section" id="recap">
 <h2><span class="section-number">2.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>Reader Link: <a class="reference external" href="https://ucdavisdatalab.github.io/workshop_python_basics/chapters/02_pandas-basics.html">https://ucdavisdatalab.github.io/workshop_python_basics/chapters/02_pandas-basics.html</a></p>
+<p>Data Link: <a class="reference external" href="https://raw.githubusercontent.com/ucdavisdatalab/workshop_python_basics/main/data/parks_final.csv">https://raw.githubusercontent.com/ucdavisdatalab/workshop_python_basics/main/data/parks_final.csv</a></p>
 <div class="section" id="packages">
 <h3><span class="section-number">2.1.1. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h3>
 <p>When packages are installed, they can be loaded into the Python session with
@@ -1366,12 +1377,24 @@ Booleans are used as values for expressions with yes-or-no responses.
 For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bool
 </pre></div>
 </div>
 </div>
@@ -1410,9 +1433,74 @@ with each type:</p>
 </div>
 </div>
 </div>
+<div class="section" id="comparison-operators">
+<h3><span class="section-number">2.3.2. </span>Comparison Operators<a class="headerlink" href="#comparison-operators" title="Permalink to this headline">¶</a></h3>
+<p>Comparison operators are extremely common in many programming tasks.
+They allow for comparing between two values.
+The operators are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code> for “less than”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code> for “greater than”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> for “less than or equal to”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> for “greater than or equal to”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">==</span></code> for “equal to”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!=</span></code> for “not equal to”</p></li>
+</ul>
+<p>Notice that the “equal to” operator is two equal signs, this is to distinguish
+it from the assignment operator.</p>
+<p>Comparison operators return boolean values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">==</span> <span class="s2">&quot;three&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">!=</span> <span class="s2">&quot;three&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="in-pandas">
-<h3><span class="section-number">2.3.2. </span>In Pandas<a class="headerlink" href="#in-pandas" title="Permalink to this headline">¶</a></h3>
-<p>Python’s built-in data types are very flexible at the cost of precision.
+<h3><span class="section-number">2.3.3. </span>In Pandas<a class="headerlink" href="#in-pandas" title="Permalink to this headline">¶</a></h3>
+<p>Python’s built-in data types are very flexible at the cost of specificity.
 NumPy provides more control to the programmer by adding many classes for
 storing numeric data that can be modified to best match the data, in order
 to improve memory and time performance.</p>
@@ -1423,7 +1511,7 @@ its own.</p>
 <li><p>boolean</p></li>
 <li><p>int</p></li>
 <li><p>float</p></li>
-<li><p>complex,</p></li>
+<li><p>complex</p></li>
 <li><p>datetime</p></li>
 <li><p>timedelta</p></li>
 <li><p>StringDtype</p></li>
@@ -1431,6 +1519,11 @@ its own.</p>
 </ul>
 <p>For <code class="docutils literal notranslate"><span class="pre">int</span></code> and <code class="docutils literal notranslate"><span class="pre">float</span></code> data, in Pandas we can specify the number the size of
 the int or float, such as int64 -&gt; a 64 bit integer.</p>
+<p>This number refers specifically to the number of bits that are used to store
+the data. 64 bit integers can hold values between -9,223,372,036,854,775,808 and
+9,223,372,036,854,775,807. Whereas a 16 bit integer can hold values between
+-32,768 and 32,767. Floating point numbers store the number, as well as the values
+after the decimal point.</p>
 </div>
 </div>
 <div class="section" id="series">
@@ -2982,127 +3075,6 @@ Name: pop2020, dtype: float64
 <p>129 rows × 2 columns</p>
 </div></div></div>
 </div>
-<p>We can combine multiple conditions with the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator, note
-the paranthesis around the expressions:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2020</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;pop2020&quot;</span><span class="p">]]</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>city</th>
-      <th>pop2020</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>6</th>
-      <td>Irvine</td>
-      <td>307670.0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>San Francisco</td>
-      <td>873965.0</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>San Diego</td>
-      <td>1386932.0</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Long Beach</td>
-      <td>466742.0</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Sacramento</td>
-      <td>524943.0</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>Fremont</td>
-      <td>230504.0</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>San Jose</td>
-      <td>1013240.0</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>Anaheim</td>
-      <td>346824.0</td>
-    </tr>
-    <tr>
-      <th>52</th>
-      <td>Los Angeles</td>
-      <td>3898747.0</td>
-    </tr>
-    <tr>
-      <th>53</th>
-      <td>Oakland</td>
-      <td>440646.0</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td>Riverside</td>
-      <td>314998.0</td>
-    </tr>
-    <tr>
-      <th>65</th>
-      <td>Bakersfield</td>
-      <td>403455.0</td>
-    </tr>
-    <tr>
-      <th>72</th>
-      <td>Chula Vista</td>
-      <td>275487.0</td>
-    </tr>
-    <tr>
-      <th>77</th>
-      <td>Glendale</td>
-      <td>196543.0</td>
-    </tr>
-    <tr>
-      <th>88</th>
-      <td>Santa Ana</td>
-      <td>310227.0</td>
-    </tr>
-    <tr>
-      <th>90</th>
-      <td>Stockton</td>
-      <td>320804.0</td>
-    </tr>
-    <tr>
-      <th>95</th>
-      <td>Fresno</td>
-      <td>542107.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
 </div>
 <div class="section" id="special-values">
 <h2><span class="section-number">2.6. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">¶</a></h2>
@@ -3464,7 +3436,7 @@ Name: park_benches, Length: 746, dtype: float64
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
