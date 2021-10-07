@@ -25,6 +25,11 @@ Pandas Data Structures
 
 
 ## Recap 
+
+Reader Link: https://ucdavisdatalab.github.io/workshop_python_basics/chapters/02_pandas-basics.html  
+
+Data Link: https://raw.githubusercontent.com/ucdavisdatalab/workshop_python_basics/main/data/parks_final.csv  
+
 ### Packages
 
 When packages are installed, they can be loaded into the Python session with
@@ -177,7 +182,11 @@ type(c)
 Booleans are used as values for expressions with yes-or-no responses.
 For example:
 ```{code-cell}
-5 < 2
+True
+```
+
+```{code-cell}
+type(True)
 ```
 
 In Python, text is stored in a String object called `str`. Strings are created
@@ -199,9 +208,41 @@ Another example:
 a = str(3)
 ```
 
+### Comparison Operators
+
+Comparison operators are extremely common in many programming tasks.
+They allow for comparing between two values.
+The operators are:
+- `<` for "less than"
+- `>` for "greater than"
+- `<=` for "less than or equal to"
+- `>=` for "greater than or equal to"
+- `==` for "equal to"
+- `!=` for "not equal to"
+
+Notice that the "equal to" operator is two equal signs, this is to distinguish
+it from the assignment operator.
+
+Comparison operators return boolean values:
+```{code-cell}
+5 > 2
+```
+
+```{code-cell}
+3 == 2
+```
+
+```{code-cell}
+3 == "three"
+```
+
+```{code-cell}
+3 != "three"
+```
+
 ### In Pandas
 
-Python's built-in data types are very flexible at the cost of precision. 
+Python's built-in data types are very flexible at the cost of specificity. 
 NumPy provides more control to the programmer by adding many classes for
 storing numeric data that can be modified to best match the data, in order
 to improve memory and time performance.
@@ -213,7 +254,7 @@ These include:
 - boolean
 - int
 - float
-- complex, 
+- complex
 - datetime
 - timedelta
 - StringDtype
@@ -222,6 +263,11 @@ These include:
 For `int` and `float` data, in Pandas we can specify the number the size of
 the int or float, such as int64 -> a 64 bit integer.
 
+This number refers specifically to the number of bits that are used to store
+the data. 64 bit integers can hold values between -9,223,372,036,854,775,808 and
+9,223,372,036,854,775,807. Whereas a 16 bit integer can hold values between
+-32,768 and 32,767. Floating point numbers store the number, as well as the values
+after the decimal point. 
 
 ## Series
 
@@ -411,12 +457,6 @@ parks[["city", "pop2020"]].loc[parks["state"] == "California"]
 A more elegant approach to the above is to use:
 ```{code-cell}
 parks.loc[parks["state"] == "California", ["city", "pop2020"]]
-```
-
-We can combine multiple conditions with the `&` operator, note 
-the paranthesis around the expressions:
-```{code-cell}
-parks.loc[(parks["state"] == "California") & (parks["year"] == 2020), ["city", "pop2020"]] 
 ```
 
 ## Special Values
