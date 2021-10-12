@@ -404,6 +404,7 @@ The `[]` operator also accepts Boolean Series:
 year[year > 2014]
 ```
 
+(indexing-dataframes)=
 ## Indexing DataFrames
 
 Conceptually, indexing DataFrames is very similar to the operations on Series. 

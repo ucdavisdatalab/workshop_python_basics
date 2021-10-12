@@ -247,7 +247,7 @@ do is change `base` and `height` and run the code again (Python will not update
 multiple problems can be a big time-saver in the long run. Later on, you'll see
 ways to make this code even easier to reuse.
 
-
+(calling-functions)=
 ### Calling Functions
 
 Python can do a lot more than just arithmetic. Most of Python's features are
@@ -581,7 +581,7 @@ You'll learn much more about NumPy, SciPy, and Pandas as you go through this
 reader. By using JupyterLab, you've already used IPython. You'll use Matplotlib
 indirectly later on, when you learn about visualization.
 
-
+(modules)=
 ### Modules
 
 In Python, packages are further subdivided into **modules**, collections of

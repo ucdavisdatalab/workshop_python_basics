@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Numpy" href="04_extension.html" />
-    <link rel="prev" title="2. Scientific Python" href="02_pandas-basics.html" />
+    <link rel="next" title="References" href="references.html" />
+    <link rel="prev" title="2. Pandas Data Structures" href="02_pandas-basics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -70,10 +70,6 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -106,17 +102,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_pandas-basics.html">
-   2. Scientific Python
+   2. Pandas Data Structures
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    3. Summarizing Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="04_extension.html">
-   4. Numpy
   </a>
  </li>
 </ul>
@@ -175,7 +166,10 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="../_sources/chapters/03_summarizing-data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../_sources/chapters/03_summarizing-data.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
@@ -210,6 +204,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/03_summarizing-data.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -224,62 +235,123 @@
   <a class="reference internal nav-link" href="#recap">
    3.1. Recap
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-python-data-visualization-landscape">
-   3.2. The Python Data Visualization Landscape
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-grammar-of-graphics">
-   3.3. The Grammar of Graphics
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#layer-1-data">
-     3.3.1. Layer 1: Data
+    <a class="reference internal nav-link" href="#data-structures-types">
+     3.1.1. Data Structures &amp; Types
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#layer-2-geometry">
-     3.3.2. Layer 2: Geometry
+    <a class="reference internal nav-link" href="#exploring-series-dataframes">
+     3.1.2. Exploring Series &amp; DataFrames
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#layer-3-aesthetics">
-     3.3.3. Layer 3: Aesthetics
+    <a class="reference internal nav-link" href="#indexing">
+     3.1.3. Indexing
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#layer-4-scales">
-     3.3.4. Layer 4: Scales
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#saving-plots">
-     3.3.5. Saving Plots
+    <a class="reference internal nav-link" href="#special-values">
+     3.1.4. Special Values
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#grouping-data">
-   3.4. Grouping Data
+  <a class="reference internal nav-link" href="#aggregating-data">
+   3.2. Aggregating Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregating-within-groups">
+     3.2.1. Aggregating within Groups
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization-in-python">
+   3.3. Visualization in Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuring-jupyter">
+     3.3.1. Configuring Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-packages">
+   3.4. Installing Packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-grammar-of-graphics">
+   3.5. The Grammar of Graphics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparing-the-data">
+     3.5.1. Preparing the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-1-data">
+     3.5.2. Layer 1: Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-2-geometry">
+     3.5.3. Layer 2: Geometry
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-3-aesthetics">
+     3.5.4. Layer 3: Aesthetics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#refining-visualizations">
+     3.5.5. Refining Visualizations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-4-scales">
+     3.5.6. Layer 4: Scales
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#saving-plots">
+     3.5.7. Saving Plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-statements">
+   3.6. Conditional Statements
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#functions">
-   3.5. Functions
+   3.7. Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practice-exercises">
+   3.8. Practice Exercises
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#returning-values">
-     3.5.1. Returning Values
+    <a class="reference internal nav-link" href="#exercise-1">
+     3.8.1. Exercise 1
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#planning-your-functions">
-     3.5.2. Planning Your Functions
+    <a class="reference internal nav-link" href="#exercise-2">
+     3.8.2. Exercise 2
     </a>
    </li>
   </ul>
@@ -310,24 +382,501 @@
 </div>
 <div class="section" id="recap">
 <h2><span class="section-number">3.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<p>You’ll need the parks data from previous sections again for this section:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">parks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/parks_final.csv&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="the-python-data-visualization-landscape">
-<h2><span class="section-number">3.2. </span>The Python Data Visualization Landscape<a class="headerlink" href="#the-python-data-visualization-landscape" title="Permalink to this headline">¶</a></h2>
-<p>Popular packages for creating visualizations in Python are</p>
-<p>The plotnine package
-The ggplot2 package is so popular that there are now knockoff packages for
-other data-science-oriented programming languages like Python and Julia.
-This reader
-we’ll use
-ggplot2 for visualizations in this and all future lessons.</p>
-<p>ggplot2 has detailed <a class="reference external" href="https://ggplot2.tidyverse.org/">documentation</a> and also a
-<a class="reference external" href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">cheatsheet</a>.</p>
+</div>
+</div>
+<div class="section" id="data-structures-types">
+<h3><span class="section-number">3.1.1. </span>Data Structures &amp; Types<a class="headerlink" href="#data-structures-types" title="Permalink to this headline">¶</a></h3>
+<p>Python provides several built-in data types such as <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>,
+<code class="docutils literal notranslate"><span class="pre">str</span></code>, and <code class="docutils literal notranslate"><span class="pre">list</span></code>. You can check the type of an object with the <code class="docutils literal notranslate"><span class="pre">type</span></code>
+function.</p>
+<p>Pandas provides a <code class="docutils literal notranslate"><span class="pre">Series</span></code> data structure, which is similar to a list, but has
+more features. For the elements of a Series, Pandas uses data types which are
+more specific than Python’s data types. These usually have the same names as
+Python’s data types but also specify the number of bits for the data (for
+example, <code class="docutils literal notranslate"><span class="pre">int64</span></code>). Pandas uses the <code class="docutils literal notranslate"><span class="pre">obj</span></code> data type for a Series which contains
+strings or a mix of several different types of elements. You can check the data
+type of a Series with the <code class="docutils literal notranslate"><span class="pre">.dtype</span></code> attribute.</p>
+<p>Pandas also provides a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> data strucure, which represents tabular
+data. Each column in a DataFrame is a Series. You can check the data types of
+the columns in a DataFrame with the <code class="docutils literal notranslate"><span class="pre">.dtypes</span></code> attribute.</p>
+</div>
+<div class="section" id="exploring-series-dataframes">
+<h3><span class="section-number">3.1.2. </span>Exploring Series &amp; DataFrames<a class="headerlink" href="#exploring-series-dataframes" title="Permalink to this headline">¶</a></h3>
+<p>Pandas Series and DataFrames have several descriptive attributes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.index</span></code> is the names of the elements or rows</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.shape</span></code> is the dimensions</p></li>
+</ul>
+<p>They also have several summary methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.head</span></code> selects the first 5 elements or rows</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.describe</span></code> computes common summary statistics</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.value_counts</span></code> computes the frequency of each unique value</p></li>
+</ul>
+<p>For a DataFrame, these three summary methods are computed per-column.
+DataFrames also have a <code class="docutils literal notranslate"><span class="pre">.columns</span></code> attribute for the names of the columns and a
+<code class="docutils literal notranslate"><span class="pre">.info</span></code> method which prints a summary of the structure.</p>
+</div>
+<div class="section" id="indexing">
+<h3><span class="section-number">3.1.3. </span>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h3>
+<p>Python’s built-in <strong>indexing operator</strong> is the square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>. Indexing
+an object retrieves elements from the object, but the details differ depending
+on the object’s type.</p>
+<p>For a list, the indexing operator selects elements by position. As the
+index, you can use a single integer, a list of integers, or a <strong>slice</strong>. A
+slice, written <code class="docutils literal notranslate"><span class="pre">a:b</span></code>, selects all elements from <code class="docutils literal notranslate"><span class="pre">a</span></code> up to but not including
+<code class="docutils literal notranslate"><span class="pre">b</span></code>. Negative indices count backwards from the right edge of the list (so
+<code class="docutils literal notranslate"><span class="pre">x[-1]</span></code> gets the <em>last</em> element of a list).</p>
+<p>Pandas provides three different ways to index Series and DataFrames:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.iloc[</span> <span class="pre">]</span></code> selects elements by position</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.loc[</span> <span class="pre">]</span></code> selects elements by name or by condition (a Boolean array)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> selects elements by position, name, or condition</p></li>
+</ul>
+<p>DataFrames are two-dimensional, so generally you need to provide two different
+arguments when you index them. A <code class="docutils literal notranslate"><span class="pre">:</span></code> argument, like the second argument in
+<code class="docutils literal notranslate"><span class="pre">parks.iloc[1,</span> <span class="pre">:]</span></code>, selects all elements along that axis (so this code selects
+the first row and all columns).</p>
+</div>
+<div class="section" id="special-values">
+<h3><span class="section-number">3.1.4. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">¶</a></h3>
+<p>Python represents the absence of a value with <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>NumPy represents the result of an undefined numerical computation such as
+<code class="docutils literal notranslate"><span class="pre">np.log(-1)</span></code> with <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>. “nan” stands for <strong>not a number</strong>.</p>
+<p>Pandas uses both <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> to represent <strong>missing values</strong>, values
+which were left out of a data set due to how the data was collected. Recent
+versions of Pandas also use <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> for this purpose.</p>
+<p>For a Series or DataFrame, you can use the <code class="docutils literal notranslate"><span class="pre">.isna</span></code> method to detect all three
+kinds of missing values.</p>
+</div>
+</div>
+<div class="section" id="aggregating-data">
+<h2><span class="section-number">3.2. </span>Aggregating Data<a class="headerlink" href="#aggregating-data" title="Permalink to this headline">¶</a></h2>
+<p>The Pandas <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> method <strong>aggregates</strong> the elements of a Series,
+reducing the Series to a smaller number of values (usually 1 value). For
+example, to compute the mean of the <code class="docutils literal notranslate"><span class="pre">restroom_data</span></code> column in the parks data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;restroom_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.129276315789474
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.agg</span></code> method is an alias for <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;restroom_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.129276315789474
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can pass <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> functions instead of names of functions. For
+instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;restroom_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.129276315789474
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also pass <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> a list of names or functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;restroom_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="s2">&quot;median&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean      2.129276
+median    1.900000
+Name: restroom_data, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pandas provides alias methods such as <code class="docutils literal notranslate"><span class="pre">.sum</span></code>, <code class="docutils literal notranslate"><span class="pre">.mean</span></code>, <code class="docutils literal notranslate"><span class="pre">.median</span></code>, and <code class="docutils literal notranslate"><span class="pre">.std</span></code>
+for the most common aggregation functions. For example, to compute the mean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;restroom_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.129276315789474
+</pre></div>
+</div>
+</div>
+</div>
+<p>The aggregation methods also work with DataFrames, where they are applied
+separately to each column. Here’s an example of computing medians for a few
+columns in the parks data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="p">[[</span><span class="s2">&quot;restroom_data&quot;</span><span class="p">,</span> <span class="s2">&quot;basketball_data&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>restroom_data      1.9
+basketball_data    2.7
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aggregating-within-groups">
+<h3><span class="section-number">3.2.1. </span>Aggregating within Groups<a class="headerlink" href="#aggregating-within-groups" title="Permalink to this headline">¶</a></h3>
+<p>Aggregation is especially useful when combined with grouping. The <code class="docutils literal notranslate"><span class="pre">.groupby</span></code>
+method groups the rows of a DataFrame using the columns you specify. The
+grouping columns should generally be categories rather than decimal numbers.
+For example, to group the parks data by city and then compute the mean number
+of restrooms per 10,000 people in each city:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;city&quot;</span><span class="p">)[</span><span class="s2">&quot;restroom_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>city
+Albuquerque       1.433333
+Anaheim           2.833333
+Anchorage         2.900000
+Arlington         2.300000
+Atlanta           0.466667
+                    ...   
+Tulsa             1.733333
+Virginia Beach    2.200000
+Washington        2.533333
+Wichita           3.300000
+Winston-Salem     2.233333
+Name: restroom_data, Length: 100, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, to group the parks data by state and year and compute the median
+number of basketball hoops per group:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">])[</span><span class="s2">&quot;basketball_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state      year
+Alaska     2015    2.70
+           2016    2.70
+           2017    2.60
+           2018    2.60
+           2019    1.70
+                   ... 
+Wisconsin  2016    8.25
+           2017    7.95
+           2018    8.15
+           2019    8.15
+           2020    8.10
+Name: basketball_data, Length: 289, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default, the grouping columns are moved into the index of the result. You
+can prevent this by setting <code class="docutils literal notranslate"><span class="pre">as_index</span> <span class="pre">=</span> <span class="pre">False</span></code> in <code class="docutils literal notranslate"><span class="pre">.groupby</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">as_index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)[</span><span class="s2">&quot;basketball_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>year</th>
+      <th>basketball_data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alaska</td>
+      <td>2015</td>
+      <td>2.70</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>2016</td>
+      <td>2.70</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alaska</td>
+      <td>2017</td>
+      <td>2.60</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Alaska</td>
+      <td>2018</td>
+      <td>2.60</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alaska</td>
+      <td>2019</td>
+      <td>1.70</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>284</th>
+      <td>Wisconsin</td>
+      <td>2016</td>
+      <td>8.25</td>
+    </tr>
+    <tr>
+      <th>285</th>
+      <td>Wisconsin</td>
+      <td>2017</td>
+      <td>7.95</td>
+    </tr>
+    <tr>
+      <th>286</th>
+      <td>Wisconsin</td>
+      <td>2018</td>
+      <td>8.15</td>
+    </tr>
+    <tr>
+      <th>287</th>
+      <td>Wisconsin</td>
+      <td>2019</td>
+      <td>8.15</td>
+    </tr>
+    <tr>
+      <th>288</th>
+      <td>Wisconsin</td>
+      <td>2020</td>
+      <td>8.10</td>
+    </tr>
+  </tbody>
+</table>
+<p>289 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also “reset” the index on a DataFrame, so that the current indexes
+become columns with the <code class="docutils literal notranslate"><span class="pre">.reset_index</span></code> method.</p>
+</div>
+<p>Leaving the grouping columns in the index is often convenient because then you
+can easily access results for the groups you’re interested in:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_medians</span> <span class="o">=</span> <span class="n">parks</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">])[</span><span class="s2">&quot;basketball_data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+
+<span class="c1"># All states, year 2017</span>
+<span class="n">state_medians</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="mi">2017</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state
+Alaska                  2.60
+Arizona                 2.10
+California              2.60
+Colorado                1.70
+District of Columbia    4.00
+Florida                 3.75
+Georgia                 2.35
+Hawaii                  5.70
+Idaho                   2.20
+Illinois                3.10
+Indiana                 2.00
+Kansas                  1.35
+Kentucky                3.10
+Louisiana               3.35
+Maryland                1.60
+Massachusetts           3.40
+Michigan                3.20
+Minnesota               7.30
+Missouri                2.15
+Nebraska                4.45
+Nevada                  2.90
+New Jersey              2.05
+New Mexico              2.30
+New York                4.95
+North Carolina          2.00
+Ohio                    3.45
+Oklahoma                2.20
+Oregon                  3.80
+Pennsylvania            3.85
+Tennessee               3.00
+Texas                   2.20
+Virginia                4.10
+Washington              1.90
+Wisconsin               7.95
+Name: basketball_data, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>A few aggregation functions only make sense when used together with groups. One
+is the <code class="docutils literal notranslate"><span class="pre">.first</span></code> method, which returns the first element or row. The <code class="docutils literal notranslate"><span class="pre">.first</span></code>
+method is especially useful if all the values in a group are the same and you
+want to reduce the data to one row per group. For instance, in the parks data
+set, the <code class="docutils literal notranslate"><span class="pre">pop2020</span></code> only has one value per city across all the years. So you can
+get the 2020 population for each city with this code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">])[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>state       city          
+Alaska      Anchorage          291247.0
+Arizona     Chandler           275987.0
+            Glendale           248325.0
+            Mesa               504258.0
+            Phoenix           1608139.0
+                                ...    
+Virginia    Richmond           226610.0
+            Virginia Beach     459470.0
+Washington  Seattle            737015.0
+Wisconsin   Madison            269840.0
+            Milwaukee          577222.0
+Name: pop2020, Length: 106, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="visualization-in-python">
+<h2><span class="section-number">3.3. </span>Visualization in Python<a class="headerlink" href="#visualization-in-python" title="Permalink to this headline">¶</a></h2>
+<img alt="A network of Python visualization packages." src="../_images/visualization_landscape.png" />
+<p><em>Image from <a class="reference external" href="http://vanderplas.com/">Jake VanderPlas</a>. See <a class="reference external" href="https://rougier.github.io/python-visualization-landscape/landscape-colors.html">here</a> for a version with links
+to all of the packages!</em></p>
+<p>So many visualization packages are available for Python that there is even <a class="reference external" href="https://pyviz.org/">a
+website</a> dedicated to helping people decide which to use. This reader
+focuses on <strong>static visualization</strong>, where the visualization is a still image.
+Some popular packages for creating static visualizations are:</p>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="https://matplotlib.org/">matplotlib</a></strong> is the foundation for most other visualization packages.
+matplotlib is low-level, meaning it’s flexible but even simple plots may take
+<a class="reference external" href="https://dsaber.com/2016/10/02/a-dramatic-tour-through-pythons-data-visualization-landscape-including-ggplot-and-altair/">5 lines of code or more</a>. It’s good to know a little bit about
+matplotlib, but it probably shouldn’t be your primary visualization package.
+Familiarity with MATLAB makes it easier to learn matplotlib.</p></li>
+<li><p><strong><a class="reference external" href="https://pandas.pydata.org/docs/user_guide/visualization.html">pandas</a></strong> provides built-in plotting functions, which can be convenient
+but are more limited than what you’ll find in dedicated visualization
+packages. They’re also inconsistent about the expected format of the data.</p></li>
+<li><p><strong><a class="reference external" href="https://plotnine.readthedocs.io/en/stable/">plotnine</a></strong> is a copy of the popular R package <a class="reference external" href="https://ggplot2.tidyverse.org/">ggplot2</a>. The package
+uses the <strong>grammar of graphics</strong>, a convenient way to describe visualizations
+in terms of layers. Familiarity with R’s <a class="reference external" href="https://ggplot2.tidyverse.org/">ggplot2</a> or Julia’s
+<a class="reference external" href="http://gadflyjl.org/stable/">Gadfly.jl</a> package makes it easier to learn plotnine (and
+vice-versa).</p></li>
+<li><p><strong><a class="reference external" href="https://seaborn.pydata.org/">seaborn</a></strong> is designed specifically for making statistical plots. It’s
+well-documented and stable.</p></li>
+</ul>
+<p>There are also many packages available for making <strong>interactive
+visualizations</strong>.</p>
+<p>This reader focuses on plotnine, so that the visualization skills you learn
+here will also be relevant if you end up using R or Julia. plotnine has
+detailed <a class="reference external" href="https://plotnine.readthedocs.io/en/stable/">documentation</a>. It’s also useful to look at the <a class="reference external" href="https://ggplot2.tidyverse.org/">ggplot2
+documentation</a> and <a class="reference external" href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">cheatsheet</a>.</p>
+<div class="section" id="configuring-jupyter">
+<h3><span class="section-number">3.3.1. </span>Configuring Jupyter<a class="headerlink" href="#configuring-jupyter" title="Permalink to this headline">¶</a></h3>
+<p>Jupyter notebooks can display most static visualizations and some interactive
+visualizations. If you’re going to use visualization packages that depend on
+matplotlib (such as plotnine), it’s a good idea to set up your notebook by
+running:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize matplotlib</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># We&#39;ll see what this code does later on:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The last line sets the default size of plots. You can increase the numbers to
+make plots larger, or decrease them to make plots smaller.</p>
+</div>
+</div>
+<div class="section" id="installing-packages">
+<h2><span class="section-number">3.4. </span>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h2>
+<p>Matplotlib is included with Anaconda, but plotnine is not. So you need to
+install the plotnine package in order to use it.</p>
+<p>You can use Anaconda’s conda utility to install packages. The conda utility
+is a program, not part of Python. In JupyterLab, open a Terminal (<code class="docutils literal notranslate"><span class="pre">File</span></code> -&gt;
+<code class="docutils literal notranslate"><span class="pre">New</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Terminal</span></code>). Then enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">plotnine</span>
+</pre></div>
+</div>
+<p>The command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">PACKAGE</span></code> installs the package called <code class="docutils literal notranslate"><span class="pre">PACKAGE</span></code>. The
+flag <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> tells conda to use a version from the conda-forge package
+repository. Packages on conda-forge are usually more up to date than the ones
+in Anaconda’s default package repository.</p>
+<p>You can learn more about Anaconda and conda in the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/tasks/install-packages/">official
+documentation</a>.</p>
 </div>
 <div class="section" id="the-grammar-of-graphics">
-<h2><span class="section-number">3.3. </span>The Grammar of Graphics<a class="headerlink" href="#the-grammar-of-graphics" title="Permalink to this headline">¶</a></h2>
-<p>The “gg” in ggplot2 stands for <em>grammar of graphics</em>. The idea of a grammar of
-graphics is that visualizations can be built up in layers. In ggplot2, the
-three layers every plot must have are:</p>
+<h2><span class="section-number">3.5. </span>The Grammar of Graphics<a class="headerlink" href="#the-grammar-of-graphics" title="Permalink to this headline">¶</a></h2>
+<p>plotnine is based on the grammar of graphics. The idea of a grammar of graphics
+is that visualizations can be built up in layers. In plotnine, the three layers
+every plot must have are:</p>
 <ul class="simple">
 <li><p>Data</p></li>
 <li><p>Geometry</p></li>
@@ -358,17 +907,212 @@ three layers every plot must have are:</p>
 </tr>
 </tbody>
 </table>
-<p>As an example, let’s plot the earnings data. First, we need to load ggplot2. As
-always, if this is your first time using the package, you’ll have to install
-it. Then you can load the package:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotnine</span>
+<p>In <a class="reference internal" href="01_python-basics.html#modules"><span class="std std-numref">Section 1.4.2</span></a>, you learned to import a module in a Python package with
+the <code class="docutils literal notranslate"><span class="pre">import</span></code> keyword. Python also provides a <code class="docutils literal notranslate"><span class="pre">from</span></code> keyword to import specific
+objects within a module. The syntax is <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">Y</span></code>, so for example you
+can write <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pandas</span> <span class="pre">import</span> <span class="pre">DataFrame</span></code>. When you import an object this way,
+you can access the object without the module name as a prefix. For instance,
+you can then write <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> instead of <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>.</p>
+<p>You can also use the <code class="docutils literal notranslate"><span class="pre">from</span></code> keyword to import all objects in a module with the
+wildcard syntax <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">X</span> <span class="pre">import</span> <span class="pre">*</span></code>. You generally shouldn’t do this, because
+objects in the module will overwrite objects in your code if they have the same
+name. However, the plotnine package is designed to be imported this way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
+</div>
+</div>
+<p>To learn how to use the package, let’s make a plot with the parks data.</p>
 <p>What kind of plot should we make? It depends on what data we want the plot to
-show. Let’s make a line plot that shows median earnings for each quarter in
-2019, with separate lines for men and women.</p>
+show. Let’s make a line plot that shows the number of playgrounds per 10,000
+residents over the years for major cities in California.</p>
+<div class="section" id="preparing-the-data">
+<h3><span class="section-number">3.5.1. </span>Preparing the Data<a class="headerlink" href="#preparing-the-data" title="Permalink to this headline">¶</a></h3>
+<p>Before making a plot, you’ll generally have to prepare the data by getting a
+subset of the rows and columns in which you’re interested. You can get a subset
+by using the indexing techniques that were covered in
+<a class="reference internal" href="02_pandas-basics.html#indexing-dataframes"><span class="std std-numref">Section 2.5</span></a>. Here’s one way to get the rows for only the
+cities in California:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca_parks</span> <span class="o">=</span> <span class="n">parks</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">parks</span><span class="p">[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;California&quot;</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">ca_parks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>rank</th>
+      <th>city</th>
+      <th>med_park_size_data</th>
+      <th>med_park_size_points</th>
+      <th>park_pct_city_data</th>
+      <th>park_pct_city_points</th>
+      <th>pct_near_park_data</th>
+      <th>pct_near_park_points</th>
+      <th>spend_per_resident_data</th>
+      <th>...</th>
+      <th>splashground_data</th>
+      <th>splashground_points</th>
+      <th>amenities_points</th>
+      <th>total_points</th>
+      <th>total_pct</th>
+      <th>park_benches</th>
+      <th>state</th>
+      <th>pop2020</th>
+      <th>pop2010</th>
+      <th>area2020</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>2020</td>
+      <td>7</td>
+      <td>Irvine</td>
+      <td>6.1</td>
+      <td>28.0</td>
+      <td>27%</td>
+      <td>50.0</td>
+      <td>82%</td>
+      <td>73.0</td>
+      <td>$215</td>
+      <td>...</td>
+      <td>0.7</td>
+      <td>25.0</td>
+      <td>67.3</td>
+      <td>318.0</td>
+      <td>79.6</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>307670.0</td>
+      <td>212375.0</td>
+      <td>65.6</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2020</td>
+      <td>8</td>
+      <td>San Francisco</td>
+      <td>1.3</td>
+      <td>4.0</td>
+      <td>21%</td>
+      <td>50.0</td>
+      <td>100%</td>
+      <td>100.0</td>
+      <td>$399</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>36.0</td>
+      <td>61.7</td>
+      <td>316.0</td>
+      <td>78.9</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>873965.0</td>
+      <td>805235.0</td>
+      <td>46.9</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2020</td>
+      <td>18</td>
+      <td>San Diego</td>
+      <td>6.8</td>
+      <td>32.0</td>
+      <td>19%</td>
+      <td>50.0</td>
+      <td>81%</td>
+      <td>71.0</td>
+      <td>$153</td>
+      <td>...</td>
+      <td>0.1</td>
+      <td>2.0</td>
+      <td>37.2</td>
+      <td>276.0</td>
+      <td>69.0</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>1386932.0</td>
+      <td>1307402.0</td>
+      <td>325.9</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2020</td>
+      <td>23</td>
+      <td>Long Beach</td>
+      <td>3.2</td>
+      <td>14.0</td>
+      <td>10%</td>
+      <td>25.0</td>
+      <td>84%</td>
+      <td>76.0</td>
+      <td>$180</td>
+      <td>...</td>
+      <td>0.2</td>
+      <td>4.0</td>
+      <td>50.0</td>
+      <td>265.0</td>
+      <td>66.3</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>466742.0</td>
+      <td>462257.0</td>
+      <td>50.7</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>2020</td>
+      <td>30</td>
+      <td>Sacramento</td>
+      <td>5.4</td>
+      <td>25.0</td>
+      <td>9%</td>
+      <td>21.0</td>
+      <td>83%</td>
+      <td>75.0</td>
+      <td>$122</td>
+      <td>...</td>
+      <td>4.5</td>
+      <td>100.0</td>
+      <td>60.2</td>
+      <td>248.0</td>
+      <td>62.0</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>524943.0</td>
+      <td>466488.0</td>
+      <td>98.6</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div></div></div>
+</div>
+</div>
 <div class="section" id="layer-1-data">
-<h3><span class="section-number">3.3.1. </span>Layer 1: Data<a class="headerlink" href="#layer-1-data" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.2. </span>Layer 1: Data<a class="headerlink" href="#layer-1-data" title="Permalink to this headline">¶</a></h3>
 <p>The data layer determines the data set used to make the plot. plotnine is
 designed for working with <strong>tidy</strong> data frames. Tidy means:</p>
 <ol class="simple">
@@ -377,33 +1121,146 @@ designed for working with <strong>tidy</strong> data frames. Tidy means:</p>
 <li><p>Each value has its own cell.</p></li>
 </ol>
 <p>To set up the data layer, call the <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> function on a data frame:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">parks</span><span class="p">)</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">parks</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_summarizing-data_32_0.png" src="../_images/03_summarizing-data_32_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792622102673)&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <p>This returns a blank plot. We still need to add a few more layers.</p>
 </div>
 <div class="section" id="layer-2-geometry">
-<h3><span class="section-number">3.3.2. </span>Layer 2: Geometry<a class="headerlink" href="#layer-2-geometry" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.3. </span>Layer 2: Geometry<a class="headerlink" href="#layer-2-geometry" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>geom</strong>etry layer determines the shape or appearance of the visual
 elements of the plot. In other words, the geometry layer determines what kind
 of plot to make: one with points, lines, boxes, or something else.</p>
-<p>There are many different geometries available in ggplot2. The package provides
+<p>There are many different geometries available in plotnine. The package provides
 a function for each geometry, always prefixed with <code class="docutils literal notranslate"><span class="pre">geom_</span></code>.</p>
 <p>To add a geometry layer to the plot, choose the <code class="docutils literal notranslate"><span class="pre">geom_</span></code> function you want and
-add it to the plot with the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">earn19</span><span class="p">)</span> <span class="o">+</span> <span class="n">geom_line</span><span class="p">()</span>
+add it to the plot with the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator.</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">parks</span><span class="p">)</span> <span class="o">+</span> <span class="n">geom_line</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>This returns an error message that we’re missing aesthetics <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. We’ll
-learn more about aesthetics in the next section, but this error message is
-especially helpful: it tells us exactly what we’re missing. When you use a
-geometry you’re unfamiliar with, it can be helpful to run the code for just the
-data and geometry layer like this, to see exactly which aesthetics need to be
-set.</p>
-<p>As we’ll see later, it’s possible to add multiple geometries to a plot.</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>                 <span class="n">type_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type_printers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>                 <span class="n">deferred_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deferred_printers</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">702</span>             <span class="n">printer</span><span class="o">.</span><span class="n">pretty</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="n">printer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>             <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/IPython/lib/pretty.py</span> in <span class="ni">pretty</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">392</span>                         <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">object</span> \
+<span class="g g-Whitespace">    </span><span class="mi">393</span>                                 <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">)):</span>
+<span class="ne">--&gt; </span><span class="mi">394</span>                             <span class="k">return</span> <span class="n">_repr_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span> 
+<span class="g g-Whitespace">    </span><span class="mi">396</span>             <span class="k">return</span> <span class="n">_default_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/IPython/lib/pretty.py</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span>     <span class="sd">&quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">699</span>     <span class="c1"># Find newlines and replace them with p.break_()</span>
+<span class="ne">--&gt; </span><span class="mi">700</span>     <span class="n">output</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>     <span class="n">lines</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">group</span><span class="p">():</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/ggplot.py</span> in <span class="ni">__repr__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>         <span class="n">Print</span><span class="o">/</span><span class="n">show</span> <span class="n">the</span> <span class="n">plot</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span>         <span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">97</span><span class="sd">         self.__str__()</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="sd">         return &#39;&lt;ggplot: (%d)&gt;&#39; % self.__hash__()</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span><span class="sd"> </span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/ggplot.py</span> in <span class="ni">__str__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span><span class="sd">         Print/show the plot</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">88</span>         <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span> 
+<span class="g g-Whitespace">     </span><span class="mi">90</span>         <span class="c1"># Return and empty string so that print(p) is &quot;pretty&quot;</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/ggplot.py</span> in <span class="ni">draw</span><span class="nt">(self, return_ggplot, show)</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span>         <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>         <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">205</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span> 
+<span class="g g-Whitespace">    </span><span class="mi">207</span>             <span class="c1"># setup</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/ggplot.py</span> in <span class="ni">_build</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>         <span class="c1"># Prepare data in geoms</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="c1"># e.g. from y and width to ymin and ymax</span>
+<span class="ne">--&gt; </span><span class="mi">308</span>         <span class="n">layers</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span> 
+<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="c1"># Apply position adjustments</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/layer.py</span> in <span class="ni">setup_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span>         <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">59</span>             <span class="n">l</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> 
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">coord</span><span class="p">):</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/layer.py</span> in <span class="ni">setup_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>             <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)()</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span> 
+<span class="ne">--&gt; </span><span class="mi">363</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">setup_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span> 
+<span class="g g-Whitespace">    </span><span class="mi">365</span>         <span class="n">check_required_aesthetics</span><span class="p">(</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/geoms/geom_line.py</span> in <span class="ni">setup_data</span><span class="nt">(self, data)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> 
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">22</span>         <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;PANEL&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">])</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">sort_values</span><span class="nt">(self, by, axis, ascending, inplace, kind, na_position, ignore_index, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6235</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6236</span> 
+<span class="ne">-&gt; </span><span class="mi">6237</span>             <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6238</span> 
+<span class="g g-Whitespace">   </span><span class="mi">6239</span>             <span class="c1"># need to rewrap columns in Series to apply key function</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6235</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6236</span> 
+<span class="ne">-&gt; </span><span class="mi">6237</span>             <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6238</span> 
+<span class="g g-Whitespace">   </span><span class="mi">6239</span>             <span class="c1"># need to rewrap columns in Series to apply key function</span>
+
+<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_get_label_or_level_values</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1777</span>             <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1778</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1779</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1780</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1781</span>         <span class="c1"># Check for duplicates</span>
+
+<span class="ne">KeyError</span>: &#39;x&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This returns the error message <code class="docutils literal notranslate"><span class="pre">KeyError:</span> <span class="pre">'x'</span></code>, which means the geometry needs
+to know which column of data to use for the aesthetic <code class="docutils literal notranslate"><span class="pre">x</span></code>. We’ll learn more
+about aesthetics in the next section.</p>
 </div>
 <div class="section" id="layer-3-aesthetics">
-<h3><span class="section-number">3.3.3. </span>Layer 3: Aesthetics<a class="headerlink" href="#layer-3-aesthetics" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.4. </span>Layer 3: Aesthetics<a class="headerlink" href="#layer-3-aesthetics" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>aes</strong>thetic layer determines the relationship between the data and the
 geometry. Use the aesthetic layer to map features in the data to <strong>aesthetics</strong>
 (visual elements) of the geometry.</p>
@@ -414,28 +1271,280 @@ geometry. Use the aesthetic layer to map features in the data to <strong>aesthet
 <p>The names of the aesthetics depend on the geometry, but some common ones are
 <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">color</span></code>, <code class="docutils literal notranslate"><span class="pre">fill</span></code>, <code class="docutils literal notranslate"><span class="pre">shape</span></code>, and <code class="docutils literal notranslate"><span class="pre">size</span></code>. There is more information about
 and examples of aesthetic names in the documentation.</p>
-<p>For example, we want to put <code class="docutils literal notranslate"><span class="pre">quarter</span></code> on the x-axis and <code class="docutils literal notranslate"><span class="pre">median_weekly_earn</span></code> on
-the y-axis. We also want to use a separate line style for each <code class="docutils literal notranslate"><span class="pre">sex</span></code> category.
-So the aesthetic layer should be:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">quarter</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">median_weekly_earn</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="n">sex</span><span class="p">)</span>
+<p>For example, we want to put <code class="docutils literal notranslate"><span class="pre">year</span></code> on the x-axis and <code class="docutils literal notranslate"><span class="pre">playground_data</span></code> on the
+y-axis. We also want to use a separate color for each <code class="docutils literal notranslate"><span class="pre">city</span></code>. So the aesthetic
+layer should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;playground_data&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In the <code class="docutils literal notranslate"><span class="pre">aes</span></code> function, column names are never quoted.</p>
 <p>Unlike most layers, the aesthetic layer is not added to the plot with the <code class="docutils literal notranslate"><span class="pre">+</span></code>
-operator. Instead, you can pass the aesthetic layer as the second argument to
-the <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> function:</p>
+operator. Instead, pass the aesthetic layer as the second argument to the
+<code class="docutils literal notranslate"><span class="pre">ggplot</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ggplot</span><span class="p">(</span><span class="n">ca_parks</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;playground_data&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">geom_line</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_summarizing-data_36_0.png" src="../_images/03_summarizing-data_36_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792613480780)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Long lines of code tend to be hard to read, just like long lines of text. You
+can break a line of code across multiple lines as long as you put the code
+inside of parentheses, like the code above.</p>
+</div>
+</div>
+<div class="section" id="refining-visualizations">
+<h3><span class="section-number">3.5.5. </span>Refining Visualizations<a class="headerlink" href="#refining-visualizations" title="Permalink to this headline">¶</a></h3>
+<p>Making a <em>good</em> plot is usually a refinement process, where you go through
+several drafts before getting to one that communicates the information clearly.</p>
+<p>For example, the plot above is visually cluttered. As a rule of thumb, line
+plots shouldn’t have more than 5 to 7 lines. The plot may also be difficult to
+read for colorblind people, since the lines are only distinguished by color.</p>
+<p>Let’s change the plot so that it only shows California’s 5 most populous
+cities. You can use the <code class="docutils literal notranslate"><span class="pre">pop2020</span></code> column and grouping to determine which cities
+those are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_cities</span> <span class="o">=</span> <span class="n">ca_parks</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;city&quot;</span><span class="p">)[</span><span class="s2">&quot;pop2020&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="n">top_cities</span> <span class="o">=</span> <span class="n">top_cities</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span>
+<span class="n">top_cities</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0           Fresno
+1    San Francisco
+2         San Jose
+3        San Diego
+4      Los Angeles
+Name: city, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now change the subset of the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca5_parks</span> <span class="o">=</span> <span class="n">ca_parks</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ca_parks</span><span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top_cities</span><span class="p">)]</span>
+<span class="n">ca5_parks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>rank</th>
+      <th>city</th>
+      <th>med_park_size_data</th>
+      <th>med_park_size_points</th>
+      <th>park_pct_city_data</th>
+      <th>park_pct_city_points</th>
+      <th>pct_near_park_data</th>
+      <th>pct_near_park_points</th>
+      <th>spend_per_resident_data</th>
+      <th>...</th>
+      <th>splashground_data</th>
+      <th>splashground_points</th>
+      <th>amenities_points</th>
+      <th>total_points</th>
+      <th>total_pct</th>
+      <th>park_benches</th>
+      <th>state</th>
+      <th>pop2020</th>
+      <th>pop2010</th>
+      <th>area2020</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>2020</td>
+      <td>8</td>
+      <td>San Francisco</td>
+      <td>1.3</td>
+      <td>4.0</td>
+      <td>21%</td>
+      <td>50.0</td>
+      <td>100%</td>
+      <td>100.0</td>
+      <td>$399</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>36.0</td>
+      <td>61.7</td>
+      <td>316.0</td>
+      <td>78.9</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>873965.0</td>
+      <td>805235.0</td>
+      <td>46.9</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2020</td>
+      <td>18</td>
+      <td>San Diego</td>
+      <td>6.8</td>
+      <td>32.0</td>
+      <td>19%</td>
+      <td>50.0</td>
+      <td>81%</td>
+      <td>71.0</td>
+      <td>$153</td>
+      <td>...</td>
+      <td>0.1</td>
+      <td>2.0</td>
+      <td>37.2</td>
+      <td>276.0</td>
+      <td>69.0</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>1386932.0</td>
+      <td>1307402.0</td>
+      <td>325.9</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>2020</td>
+      <td>36</td>
+      <td>San Jose</td>
+      <td>3.0</td>
+      <td>13.0</td>
+      <td>15%</td>
+      <td>40.0</td>
+      <td>82%</td>
+      <td>74.0</td>
+      <td>$108</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>75.0</td>
+      <td>47.2</td>
+      <td>232.0</td>
+      <td>58.0</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>1013240.0</td>
+      <td>945942.0</td>
+      <td>178.3</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>2020</td>
+      <td>49</td>
+      <td>Los Angeles</td>
+      <td>4.8</td>
+      <td>22.0</td>
+      <td>13%</td>
+      <td>32.0</td>
+      <td>62%</td>
+      <td>42.0</td>
+      <td>$132</td>
+      <td>...</td>
+      <td>0.4</td>
+      <td>12.0</td>
+      <td>30.3</td>
+      <td>199.0</td>
+      <td>49.8</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>3898747.0</td>
+      <td>3792621.0</td>
+      <td>469.5</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>2020</td>
+      <td>92</td>
+      <td>Fresno</td>
+      <td>2.2</td>
+      <td>9.0</td>
+      <td>4%</td>
+      <td>8.0</td>
+      <td>67%</td>
+      <td>51.0</td>
+      <td>$42</td>
+      <td>...</td>
+      <td>0.9</td>
+      <td>33.0</td>
+      <td>42.0</td>
+      <td>127.0</td>
+      <td>31.8</td>
+      <td>NaN</td>
+      <td>California</td>
+      <td>542107.0</td>
+      <td>494665.0</td>
+      <td>115.2</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div></div></div>
+</div>
+<p>Finally, recreate the plot. Showing only the top 5 cities reduces the number of
+lines. To make the plot colorblind-friendly, add points with different shapes
+to each line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">ggplot</span><span class="p">(</span><span class="n">ca5_parks</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;playground_data&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">geom_point</span><span class="p">()</span> <span class="o">+</span> <span class="n">geom_line</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_summarizing-data_42_0.png" src="../_images/03_summarizing-data_42_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792613512458)&gt;
+</pre></div>
+</div>
+</div>
+</div>
 <p>If you want to set an aesthetic to a constant value, rather than one that’s
 data dependent, do so <em>outside</em> of the aesthetic layer. For instance, suppose
-we want to make the lines blue:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">earn19</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">quarter</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">median_weekly_earn</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
-  <span class="n">geom_line</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+you want to make the points bigger:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">ggplot</span><span class="p">(</span><span class="n">ca5_parks</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;playground_data&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">geom_line</span><span class="p">()</span>
+<span class="p">)</span>
 </pre></div>
 </div>
-<p>If you set an aesthetic to a constant value inside of the aesthetic layer, the
-results you get might not be what you expect:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">earn19</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">quarter</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">median_weekly_earn</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="n">sex</span><span class="p">,</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">))</span> <span class="o">+</span> <span class="n">geom_line</span><span class="p">()</span>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_summarizing-data_44_0.png" src="../_images/03_summarizing-data_44_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792613296740)&gt;
 </pre></div>
+</div>
+</div>
 </div>
 <!--
 #### Per-geometry Aesthetics {-}
@@ -469,148 +1578,343 @@ Where we put the aesthetics matters:
 -->
 </div>
 <div class="section" id="layer-4-scales">
-<h3><span class="section-number">3.3.4. </span>Layer 4: Scales<a class="headerlink" href="#layer-4-scales" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.5.6. </span>Layer 4: Scales<a class="headerlink" href="#layer-4-scales" title="Permalink to this headline">¶</a></h3>
 <p>The scales layer controls the title, axis labels, and axis scales of the plot.
 Most of the functions in the scales layer are prefixed with <code class="docutils literal notranslate"><span class="pre">scale_</span></code>, but not
 all of them.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">labs</span></code> function is especially important, because it’s used to set the title
 and axis labels:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">earn19</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">quarter</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">median_weekly_earn</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="n">sex</span><span class="p">))</span> <span class="o">+</span>
-  <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span> <span class="n">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Quarter&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Median Weekly Salary (USD)&quot;</span><span class="p">,</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;2019 Median Weekly Salaries, by Sex&quot;</span><span class="p">,</span> <span class="n">linetype</span> <span class="o">=</span> <span class="s2">&quot;Sex&quot;</span><span class="p">)</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+  <span class="n">ggplot</span><span class="p">(</span><span class="n">ca5_parks</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;playground_data&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+  <span class="n">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Playgrounds / 10,000 Residents&quot;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Playgrounds in CA&#39;s 5 Most Populous Cities&quot;</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/03_summarizing-data_46_0.png" src="../_images/03_summarizing-data_46_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8792612134075)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="saving-plots">
-<h3><span class="section-number">3.3.5. </span>Saving Plots<a class="headerlink" href="#saving-plots" title="Permalink to this headline">¶</a></h3>
-<p>In ggplot2, use the <code class="docutils literal notranslate"><span class="pre">ggsave</span></code> function to save the most recent plot you created:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ggsave</span><span class="p">(</span><span class="s2">&quot;line.png&quot;</span><span class="p">)</span>
+<h3><span class="section-number">3.5.7. </span>Saving Plots<a class="headerlink" href="#saving-plots" title="Permalink to this headline">¶</a></h3>
+<p>If you save a plot into a variable, you can use the <code class="docutils literal notranslate"><span class="pre">.save</span></code> method or the
+<code class="docutils literal notranslate"><span class="pre">ggsave</span></code> function to save it to a file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="n">ggplot</span><span class="p">(</span><span class="n">ca5_parks</span><span class="p">,</span> <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;playground_data&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;city&quot;</span><span class="p">))</span> <span class="o">+</span>
+  <span class="n">geom_point</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">geom_line</span><span class="p">()</span> <span class="o">+</span>
+  <span class="n">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Playgrounds / 10,000 Residents&quot;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Playgrounds in CA&#39;s 5 Most Populous Cities&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">ggsave</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="s2">&quot;line.pdf&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The file format is selected automatically based on the extension. Common
 formats are PNG and PDF.</p>
 </div>
 </div>
-<div class="section" id="grouping-data">
-<h2><span class="section-number">3.4. </span>Grouping Data<a class="headerlink" href="#grouping-data" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="functions">
-<h2><span class="section-number">3.5. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<p>The main way to interact with Python is by calling functions, which was first
-explained way back in TODO. This section explains how you can write your own
-functions.</p>
-<p>First, a review of what functions are, and some of the jargon associated with
-them. It’s useful to think of functions as factories: raw materials (inputs) go
-in, products (outputs) come out. Here’s a visual representation of this idea:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="o">+-------+</span>
-<span class="o">--</span> <span class="ow">in</span> <span class="o">--&gt;|</span>   <span class="n">f</span>   <span class="o">|--</span> <span class="n">out</span> <span class="o">--&gt;</span>
-         <span class="o">+-------+</span>
+<div class="section" id="conditional-statements">
+<h2><span class="section-number">3.6. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you’ll need code to do different things depending on a condition. You
+can use an <strong>if-statement</strong> to write conditional code.</p>
+<p>An if-statement begins with the <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword, followed by a condition and a
+colon <code class="docutils literal notranslate"><span class="pre">:</span></code>. The condition must be an expression that returns a Boolean value
+(<code class="docutils literal notranslate"><span class="pre">False</span></code> or <code class="docutils literal notranslate"><span class="pre">True</span></code>). The <strong>body</strong> of the if-statement is the code that will run
+when the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>. Code in the body must be indented by 4 spaces.</p>
+<p>For example, suppose you want your code to generate a different greeting
+depending on an input name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="c1"># Default greeting</span>
+<span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+
+<span class="n">greeting</span>
 </pre></div>
 </div>
-<p>Programmers use several specific terms to describe the parts and usage of
-functions:</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hi Nick, nice to see you again!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">else</span></code> keyword (and a colon <code class="docutils literal notranslate"><span class="pre">:</span></code>) if you want to add an alternative when
+the condition is false. So the previous code can also be written as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Default greeting</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hi Nick, nice to see you again!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">elif</span></code> keyword with a condition (and a colon <code class="docutils literal notranslate"><span class="pre">:</span></code>) if you want to add an
+alternative to the first condition that also has its own condition. Only the
+first case where a condition is <code class="docutils literal notranslate"><span class="pre">True</span></code> will run. You can use <code class="docutils literal notranslate"><span class="pre">elif</span></code> as many
+times as you want, and can also use <code class="docutils literal notranslate"><span class="pre">else</span></code>. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Susan&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+<span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Peter&quot;</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Go away Peter, I&#39;m busy!&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Nice to meet you!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can create compound conditions with the keywords <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">not</span></code> keyword inverts a condition. The <code class="docutils literal notranslate"><span class="pre">and</span></code> keyword combines two conditions
+and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> only if both are <code class="docutils literal notranslate"><span class="pre">True</span></code>. The <code class="docutils literal notranslate"><span class="pre">or</span></code> keyword combines two
+conditions and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if either or both are <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name1</span> <span class="o">=</span> <span class="s2">&quot;Arthur&quot;</span>
+<span class="n">name2</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="k">if</span> <span class="n">name1</span> <span class="o">==</span> <span class="s2">&quot;Arthur&quot;</span> <span class="ow">and</span> <span class="n">name2</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+  <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;These are the authors.&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Who are these people?!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;These are the authors.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can write an if-statement inside of another if-statement. This is called
+<strong>nesting</strong> if-statements. Nesting is useful when you want to check a
+condition, do some computations, and then check another condition under the
+assumption that the first condition was <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If-statements correspond to <strong>special cases</strong> in your code. Lots of special
+cases in code makes the code harder to understand and maintain. If you find
+yourself using lots of if-statements, especially nested if-statements, consider
+whether there is a more general strategy or way to write the code.</p>
+</div>
+</div>
+<div class="section" id="functions">
+<h2><span class="section-number">3.7. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<p>The main way to interact with Python is by calling functions, which was first
+explained back in <a class="reference internal" href="01_python-basics.html#calling-functions"><span class="std std-numref">Section 1.2.2</span></a>. This section explains how to
+write your own functions.</p>
+<p>First, a review of what functions are and some of the vocabulary associated
+with them:</p>
 <ul class="simple">
 <li><p><strong>Parameters</strong> are placeholder variables for inputs.</p>
 <ul>
-<li><p><strong>Argument</strong> are the actual values assigned to the parameters in a call.</p></li>
+<li><p><strong>Arguments</strong> are the actual values assigned to the parameters in a call.</p></li>
 </ul>
 </li>
 <li><p>The <strong>return value</strong> is the output.</p></li>
-<li><p>The <strong>body</strong> is the code inside.</p></li>
 <li><p><strong>Calling</strong> a function means using a function to compute something.</p></li>
+<li><p>The <strong>body</strong> is the code inside.</p></li>
 </ul>
-<!--
-You can view the body of a function by typing its name without trailing
-parentheses (in contrast to how you call functions). The body of a function is
-usually surrounded by curly braces `{}`, although they're optional if the body
-only contains one line of code. Indenting code inside of curly
-braces by 2-4 spaces also helps make it visually distinct from other code.
-
-For example, let's look at the body of the `append` function, which appends a
-value to the end of a list or vector:
-
-```{r}
-append
-```
-
-Don't worry if you can't understand everything the `append` function's code
-does yet. It will make more sense later on, after you've written a few
-functions of your own.
-
-Many of R's built-in functions are not entirely written in R code. You can spot
-these by calls to the special `.Primitive` or `.Internal` functions in their
-code.
-
-For instance, the `sum` function is not written in R code:
-
-```{r}
-sum
-```
--->
-<p>The <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword creates a new function. Here’s the syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">):</span>
-  <span class="c1"># Your code goes here</span>
-  
-  <span class="c1"># The result goes here</span>
+<p>It’s useful to think of functions as factories, meaning arguments go in and a
+return value comes out. Here’s a visual representation of the idea for a
+function <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
+<img alt="A diagram which shows arguments go into a function and a return value comes out." src="../_images/functions.png" />
+<p>A function definition begins with the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword, followed by:</p>
+<ul class="simple">
+<li><p>The name of the function</p></li>
+<li><p>A list of parameters surrounded by parentheses</p></li>
+<li><p>A colon <code class="docutils literal notranslate"><span class="pre">:</span></code></p></li>
+</ul>
+<p>A function can have any number of parameters. Code in the body of the function
+must be indented by 4 spaces. Use the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword to return a result. The
+<code class="docutils literal notranslate"><span class="pre">return</span></code> keyword causes the function to return a result immediately, without
+running any subsequent code in its body.</p>
+<p>For example, let’s create a function that detects negative numbers. It should
+take a Series of numbers as input, compare them to zero, and then return the
+logical result from the comparison as output. Here’s the code to do that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_negative</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span>
 </pre></div>
 </div>
-<p>A function can have any number of parameters. Use the <code class="docutils literal notranslate"><span class="pre">return</span></code> key</p>
-<p>Like variables, functions have names. Choosing descriptive names is a good
-habit. For functions, that means choosing a name that describes what the
-function does. It often makes sense to use verbs in function names.</p>
-<p>Let’s create a function that detects negative numbers. It should take a Series
-of numbers as input, compare them to zero, and then return the logical result
-from the comparison as output. Here’s the code to do that:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_negative</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-  <span class="k">return</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span>
-</pre></div>
+</div>
 </div>
 <p>The name of the function, <code class="docutils literal notranslate"><span class="pre">is_negative</span></code>, describes what the function does and
 includes a verb. The parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> is the input. The return value is the result
 of <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">0</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Choosing descriptive names is a good habit. For functions, that means choosing
+a name that describes what the function does. It often makes sense to use verbs
+in function names.</p>
+</div>
 <p>Any time you write a function, the first thing you should do afterwards is test
 that it actually works. Try the <code class="docutils literal notranslate"><span class="pre">is_negative</span></code> function on a few test cases:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
 <span class="n">is_negative</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">is_negative</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">)</span>
-<span class="n">is_negative</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_negative</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_negative</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    False
+1     True
+2     True
+3    False
+4    False
+dtype: bool
+</pre></div>
+</div>
+</div>
 </div>
 <p>Notice that the parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> inside the function is different from the
 variable <code class="docutils literal notranslate"><span class="pre">x</span></code> you created outside the function. Remember that parameters and
 variables inside of a function are separate from variables outside of a
 function.</p>
-<p>A <strong>default argument</strong> is an argument assigned to a parameter if no argument is
-assigned in the call to the function. You can use <code class="docutils literal notranslate"><span class="pre">=</span></code> to assign default
-arguments to parameters when you define a function with the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword.</p>
+<p>Recall that a default argument is an argument assigned to a parameter if no
+argument is assigned in the call to the function. You can use <code class="docutils literal notranslate"><span class="pre">=</span></code> to assign
+default arguments to parameters when you define a function with the <code class="docutils literal notranslate"><span class="pre">def</span></code>
+keyword.</p>
 <p>For example, suppose you want to write a function that gets the largest values
 in a Series. You can make a parameter for the number of values to get, with a
 default argument of <code class="docutils literal notranslate"><span class="pre">5</span></code>. Here’s the code and some test cases:</p>
-<div class="section" id="returning-values">
-<h3><span class="section-number">3.5.1. </span>Returning Values<a class="headerlink" href="#returning-values" title="Permalink to this headline">¶</a></h3>
-<p>We’ve already seen that a function will automatically return the value of its
-last line.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword causes a function to return a result immediately, without
-running any subsequent code in its body. It only makes sense to use <code class="docutils literal notranslate"><span class="pre">return</span></code>
-from inside of an if-statement. If your function doesn’t have any
-if-statements, you don’t need to use <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p>
-<p>For example, suppose we want the <code class="docutils literal notranslate"><span class="pre">is_negative</span></code> function to return <code class="docutils literal notranslate"><span class="pre">NA</span></code> if the
-argument isn’t a number. This is an ideal case to use <code class="docutils literal notranslate"><span class="pre">return</span></code>, since we skip
-the computation <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> when the argument isn’t a number. Here’s the new
-version of the function, as well as a new test case:</p>
-<p>It’s idiomatic to only use <code class="docutils literal notranslate"><span class="pre">return</span></code> when strictly necessary.</p>
-<p>A function returns one R object, but sometimes computations have multiple
-results. In that case, return the results in a vector, list, or other data
-structure.</p>
-<p>For example, let’s make a function that computes the mean and median for a
-vector. We’ll return the results in a named list, although we could also use a
-named vector:</p>
-<p>The names make the result easier to understand for the caller of the function,
-although they certainly aren’t required here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">top_n</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="nb">sorted</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">top_n</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="planning-your-functions">
-<h3><span class="section-number">3.5.2. </span>Planning Your Functions<a class="headerlink" href="#planning-your-functions" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   -6
+6   -2
+4    1
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_n</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   -6
+6   -2
+4    1
+3    3
+1    7
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword causes a function to return a result immediately, without
+running any subsequent code in its body. So before the end of the function, it
+only makes sense to use <code class="docutils literal notranslate"><span class="pre">return</span></code> from inside of an if-statement.</p>
+</div>
+<p>A function returns one object, but sometimes computations have multiple
+results. In that case, return the results in a <strong>tuple</strong>, list, or other data
+structure. A tuple is a container for multiple values, similar to a list, but
+cannot be modified after it is created (so it is more efficient).</p>
+<p>For example, let’s make a function that computes the mean and median for a
+vector. We’ll return the results in a tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">compute_mean_med</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span>
+
+<span class="n">compute_mean_med</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.75, 1.5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>Before you write a function, it’s useful to go through several steps:</p>
 <ol class="simple">
 <li><p>Write down what you want to do, in detail. It can also help to
@@ -620,14 +1924,7 @@ R documentation.</p></li>
 <li><p>Write the code to handle a simple case first. For data science
 problems, use a small dataset at this step.</p></li>
 </ol>
-<p>Let’s apply this in one final example: a function that detects leap years. A
-year is a leap year if either of these conditions is true:</p>
-<ul class="simple">
-<li><p>It is divisible by 4 and not 100</p></li>
-<li><p>It is divisible by 400</p></li>
-</ul>
-<p>That means the years 2004 and 2000 are leap years, but the year 2200 is not.
-Here’s the code and a few test cases:</p>
+</div>
 <p>Functions are the building blocks for solving larger problems. Take a
 divide-and-conquer approach, breaking large problems into smaller steps. Use a
 short function for each step. This approach makes it easier to:</p>
@@ -635,6 +1932,40 @@ short function for each step. This approach makes it easier to:</p>
 <li><p>Test that each step works correctly.</p></li>
 <li><p>Modify, reuse, or repurpose a step.</p></li>
 </ul>
+</div>
+<div class="section" id="practice-exercises">
+<h2><span class="section-number">3.8. </span>Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-1">
+<h3><span class="section-number">3.8.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+<p>Use plotnine and the parks data to make a bar plot that shows the number of
+basketball hoops per 10,000 people in 2018 for 7 cities of your choosing.</p>
+<div class="admonition-hint admonition">
+<p class="admonition-title">Hint</p>
+<p>When you want to make a bar plot and you’ve already computed the values that go
+on the y-axis, make sure to set <code class="docutils literal notranslate"><span class="pre">stat</span> <span class="pre">=</span> <span class="pre">&quot;identity&quot;</span></code> in the geometry function.</p>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h3><span class="section-number">3.8.2. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+<p>Try writing a function <code class="docutils literal notranslate"><span class="pre">is_leap</span></code> that detects leap years. The input to your
+function should be an integer year (or a Series of years), and the output
+should be a Boolean value. A year is a leap year if either of these conditions
+is true:</p>
+<ul class="simple">
+<li><p>It is divisible by 4 and not 100</p></li>
+<li><p>It is divisible by 400</p></li>
+</ul>
+<p>That means the years 2004 and 2000 are leap years, but the year 2200 is not.</p>
+<div class="admonition-hint admonition">
+<p class="admonition-title">Hint</p>
+<p>The modulo operator <code class="docutils literal notranslate"><span class="pre">%</span></code> returns the remainder after divding a number, so
+for example <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">%</span> <span class="pre">3</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</div>
+<p>Here’s a few test cases for your function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">is_leap</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">is_leap</span><span class="p">(</span><span class="mi">1997</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -673,15 +2004,15 @@ short function for each step. This approach makes it easier to:</p>
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">2. </span>Scientific Python</p>
+                <p class="prevnext-title"><span class="section-number">2. </span>Pandas Data Structures</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="04_extension.html" title="next page">
+        <a class="right-next" href="references.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">4. </span>Numpy</p>
+                <p class="prevnext-title">References</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
@@ -691,7 +2022,7 @@ short function for each step. This approach makes it easier to:</p>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         
