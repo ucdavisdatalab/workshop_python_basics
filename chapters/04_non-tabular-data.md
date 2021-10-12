@@ -138,7 +138,48 @@ can be used a time
 
 ## Loops
 
-In python, loops are used to iterate through values.
+In python, loops are used to iterate through items in a sequence.
+
+Loops are used when we want to perform a task many times.
+
+The syntax is to have the `for` keyword followed by a name followed by
+`in` keyword and lastly the object we want to sequence through. The expression
+is followed by a colon, and each subsequent line within the loop is indented:
+```{code-cell}
+for k in d.keys():
+    print(k)
+```
+
+A really common technique in python is to iterate over a sequence of numbers,
+by using the `range` function:
+```{code-cell}
+for i in range(10):
+    print(i)
+```
+
+To iterate through a list with a for loop:
+```{code-cell}
+a_list = [0,23,2]
+for elem in a:
+    print(a)
+```
+
+We can do more than just print within a loop:
+```{code-cell}
+a_list = [0,23,2]
+for elem in a:
+    b = a * 2
+    print(b)
+```
+
+Often times, we create a new list based on the outcome of element wise operation
+on another list:
+```{code-cell}
+a_list = [0,23,2]
+b_list = []
+for elem in a:
+    b.append(a * 2)
+```
 
 ## List Comprehension
 
