@@ -6,6 +6,7 @@ parts:
     chapters:
       - file: chapters/01_python-basics
       - file: chapters/02_pandas-basics
+      - file: chapters/03_summarizing-data
   - caption: Afterword
     chapters:
       - file: chapters/references
