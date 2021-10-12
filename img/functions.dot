@@ -1,0 +1,10 @@
+digraph {
+  rankdir = "LR"
+
+  arg[label = "Arguments", shape = "plaintext"]
+  ret[label = "Return Value", shape = "plaintext"]
+  f[shape = "square"]
+
+  arg -> f
+  f -> ret
+}
