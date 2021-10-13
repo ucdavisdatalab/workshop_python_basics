@@ -21,7 +21,11 @@ kernelspec:
 - Write a text file using python's io functions
 :::
 
-## Downloading Data Using Requests Module
+## Recap
+
+TODO: go over problem solutions + high level explanation of session 3
+
+## Downloading JSON Data Using Requests Module 
 
 Python is a very flexible programming language that supports many different 
 tasks.
@@ -133,8 +137,20 @@ as an argument:
 luke["name"]
 ```
 
-TODO: describe why integer indexing isnt used, and that only one value
-can be used a time
+In python, dictionaries are created using `{}`:
+```{code-cell}
+davis = {'city': "Davis", 'state': "CA"}
+```
+
+We can change values by assigning a new value to the key:
+```{code-cell}
+davis['state'] = "California"
+```
+
+We can add new keys:
+```{code-cell}
+davis['population'] = 50000
+```
 
 ## Loops
 
@@ -146,8 +162,14 @@ The syntax is to have the `for` keyword followed by a name followed by
 `in` keyword and lastly the object we want to sequence through. The expression
 is followed by a colon, and each subsequent line within the loop is indented:
 ```{code-cell}
-for k in d.keys():
+for k in luke.keys():
     print(k)
+```
+
+Dictionaries also have an items attribute, which we can iterate through:
+```
+for key,value in luke.items():
+    print(key, ->, value)
 ```
 
 A really common technique in python is to iterate over a sequence of numbers,
@@ -172,6 +194,14 @@ for elem in a:
     print(b)
 ```
 
+A really handy function often used with loops in python is `enumerate`, 
+which adds a counter that can be used within the loop:
+```{code-cell}
+colors = ["red", "green", "blue"]
+for i,color in enumerate(colors):
+   print(i, color)
+```
+
 Often times, we create a new list based on the outcome of element wise operation
 on another list:
 ```{code-cell}
@@ -181,8 +211,113 @@ for elem in a:
     b.append(a * 2)
 ```
 
-## List Comprehension
+Heres the same example with a function:
+```{code-cell}
+def times_four(x):
+    return x * 4
+b = []
+for elem in a:
+    b.append(times_four(elem))
+```
 
-## Loops Applied
 
+### List Comprehension
+
+To concisely create a new list based on values of an existing list, you
+can use `list comprehension`.
+
+`list comprehension` allows you to simplify the syntax of the above loops
+into a single line of code.
+In addition, list compehension has the added benefit of generally being
+noticeably faster than the traditional syntax demonstrated in the previous 
+section.
+
+The simplest syntax for list comprehension looks like:
+```{code-cell}
+a_list = [0,23,2]
+new_list = [x for x in a_list]
+```
+
+You can add a condition to the loop within the list comprehension:
+```{code-cell}
+new_list = [x for x in a_list if x > 10]
+new_list
+```
+
+You can also add expressions to modify the values:
+```{code-cell}
+new_list = [x + 4 for x in a_list if x > 10]
+new_list
+```
+
+## More Functions
+
+Lets write some functions to get the homeworld of each character in swapi.
+
+First, lets write a function to get the homeworld of a single character.
+We can practice with the our 'luke' data we parsed earlier.
+
+```{code-cell}
+luke["homeworld"]
+hw_url = homeworld
+```
+
+```{code-cell}
+hw_content = requests.get(hw_url).content
+hw_content
+```
+
+```{code-cell}
+hw_json = json.loads(hw_content)
+name = hw_json["name"]
+```
+
+```{code-cell}
+def get_homeworld(person):
+    url = person["homeworld"]
+    content = requests.get(url).content
+    js = json.loads(content)
+    return js["name"]
+
+name = get_homeworld(luke)
+```
+
+Now we need to get a list of all the people:
+```{code-cell}
+n_people = json.loads(requests.get("https://swapi.dev/api/people/").content)["count"]
+```
+
+```{code-cell}
+def get_person(id):
+    url = "https://swapi.dev/api/people/" + str(id)
+    content = requests.get(url).content
+    js = json.loads(content)
+    return js
+```
+
+```{code-cell}
+person_list = [get_person(i) for i in range(1,5)]
+homeworlds = [get_homeworld(person) for person in person_list]
+homeworlds
+```
+    
 ## Exporting Data
+
+### Using Python File IO
+
+Save as list using file io
+
+Read from the file
+
+### Using Python Pickle
+
+### Using Pandas
+
+save using pandas
+
+## Challenge Problems
+
+Create a csv containing of name, height, mass, gender for each character that 
+was born in tattoine.
+
+Create a histogram plot of character heights, in inches.
