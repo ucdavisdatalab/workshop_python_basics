@@ -669,6 +669,7 @@ whether there is a more general strategy or way to write the code.
 :::
 
 
+(functions)=
 ## Functions
 
 The main way to interact with Python is by calling functions, which was first
