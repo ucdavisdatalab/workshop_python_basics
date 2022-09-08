@@ -10,6 +10,7 @@ parts:
       - file: chapters/04_non-tabular-data
   - caption: Afterword
     chapters:
+      - file: chapters/assessment
       - file: chapters/references
       - file: chapters/acknowledgements
 
