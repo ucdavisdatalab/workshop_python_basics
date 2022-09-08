@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>2. Pandas Data Structures &#8212; Python Basics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,46 +20,63 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Summarizing Data" href="03_summarizing-data.html" />
     <link rel="prev" title="1. Getting Started" href="01_python-basics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -66,10 +85,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -82,14 +106,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   Overview
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Notes
  </span>
@@ -116,12 +141,17 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Afterword
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="assessment.html">
+   Assessment
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="references.html">
    References
@@ -135,107 +165,194 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/chapters/02_pandas-basics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapters/02_pandas-basics.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ucdavisdatalab/workshop_python_basics"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/02_pandas-basics.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/02_pandas-basics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapters/02_pandas-basics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/chapters/02_pandas-basics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#recap">
    2.1. Recap
@@ -353,17 +470,150 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Pandas Data Structures</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   2.1. Recap
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#packages">
+     2.1.1. Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas">
+     2.1.2. Pandas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-in-data">
+     2.1.3. Load in data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataframes">
+   2.2. DataFrames
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#methods-for-exploring-dataframes">
+     2.2.1. Methods for Exploring DataFrames
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-types">
+   2.3. Data Types
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#built-in-python">
+     2.3.1. Built-In Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-operators">
+     2.3.2. Comparison Operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-pandas">
+     2.3.3. In Pandas
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#series">
+   2.4. Series
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indexing-series">
+     2.4.1. Indexing Series
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-values-by-integer-position">
+     2.4.2. Selecting Values By Integer Position
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-values-by-label">
+     2.4.3. Selecting Values By Label
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-values-based-on-a-boolean-array">
+     2.4.4. Selecting Values Based On A Boolean Array
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing-dataframes">
+   2.5. Indexing DataFrames
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#special-values">
+   2.6. Special Values
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-values-considered-missing-by-pandas">
+     2.6.1. Types of Values Considered Missing by Pandas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-in-missing-values-from-a-csv-file">
+     2.6.2. Reading in Missing Values from a CSV file
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#detecting-missing-values">
+     2.6.3. Detecting Missing Values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#replacing-missing-values">
+     2.6.4. Replacing Missing Values
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="pandas-data-structures">
-<h1><span class="section-number">2. </span>Pandas Data Structures<a class="headerlink" href="#pandas-data-structures" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas-data-structures">
+<h1><span class="section-number">2. </span>Pandas Data Structures<a class="headerlink" href="#pandas-data-structures" title="Permalink to this headline">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <ul class="simple">
@@ -375,12 +625,12 @@
 <li><p>Find and remove missing values in a Series and DataFrame</p></li>
 </ul>
 </div>
-<div class="section" id="recap">
-<h2><span class="section-number">2.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<section id="recap">
+<h2><span class="section-number">2.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">#</a></h2>
 <p>Reader Link: <a class="reference external" href="https://ucdavisdatalab.github.io/workshop_python_basics/chapters/02_pandas-basics.html">https://ucdavisdatalab.github.io/workshop_python_basics/chapters/02_pandas-basics.html</a></p>
 <p>Data Link: <a class="reference external" href="https://raw.githubusercontent.com/ucdavisdatalab/workshop_python_basics/main/data/parks_final.csv">https://raw.githubusercontent.com/ucdavisdatalab/workshop_python_basics/main/data/parks_final.csv</a></p>
-<div class="section" id="packages">
-<h3><span class="section-number">2.1.1. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h3>
+<section id="packages">
+<h3><span class="section-number">2.1.1. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">#</a></h3>
 <p>When packages are installed, they can be loaded into the Python session with
 the <code class="docutils literal notranslate"><span class="pre">import</span></code> command. To avoid having to type the full name of the module
 we define an alias using the <code class="docutils literal notranslate"><span class="pre">as</span></code> keyword. By convention, the alias for
@@ -394,9 +644,9 @@ we define an alias using the <code class="docutils literal notranslate"><span cl
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="pandas">
-<h3><span class="section-number">2.1.2. </span>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pandas">
+<h3><span class="section-number">2.1.2. </span>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">#</a></h3>
 <p><strong>Pandas</strong> is a package that provides objects and many functions for working
 with data. It is very popular and used for tasks such as:</p>
 <ul class="simple">
@@ -407,9 +657,9 @@ with data. It is very popular and used for tasks such as:</p>
 <li><p>subsetting and filtering data</p></li>
 <li><p>merging and combining datasets</p></li>
 </ul>
-</div>
-<div class="section" id="load-in-data">
-<h3><span class="section-number">2.1.3. </span>Load in data<a class="headerlink" href="#load-in-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="load-in-data">
+<h3><span class="section-number">2.1.3. </span>Load in data<a class="headerlink" href="#load-in-data" title="Permalink to this headline">#</a></h3>
 <p>First, we will load in the dataset from a CSV file using the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>
 function from Pandas:</p>
 <div class="admonition tip">
@@ -606,15 +856,15 @@ name as a shorthand for the help function: <code class="docutils literal notrans
 <p>Here we see a DataFrame, which is the really important part of Pandas, which we
 will spend lots of time with during this lesson and the next.
 The dataframe is the tool we can merge, join, summarize, etc.</p>
-</div>
-</div>
-<div class="section" id="dataframes">
-<h2><span class="section-number">2.2. </span>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="dataframes">
+<h2><span class="section-number">2.2. </span>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this headline">#</a></h2>
 <p>A <strong>DataFrame</strong> is how Pandas structures tabular data - data structured as rows
 and columns. In general rows are observations, and columns are variables.
 Each entry is called a cell.</p>
-<div class="section" id="methods-for-exploring-dataframes">
-<h3><span class="section-number">2.2.1. </span>Methods for Exploring DataFrames<a class="headerlink" href="#methods-for-exploring-dataframes" title="Permalink to this headline">¶</a></h3>
+<section id="methods-for-exploring-dataframes">
+<h3><span class="section-number">2.2.1. </span>Methods for Exploring DataFrames<a class="headerlink" href="#methods-for-exploring-dataframes" title="Permalink to this headline">#</a></h3>
 <p>As with the <code class="docutils literal notranslate"><span class="pre">head</span></code> method there are many other methods for looking
 at the contents of a Pandas DataFrame.</p>
 <p><code class="docutils literal notranslate"><span class="pre">head</span></code> shows the first rows of the DataFrame, to see the last rows, use
@@ -1279,12 +1529,12 @@ dtype: object
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="data-types">
-<h2><span class="section-number">2.3. </span>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="built-in-python">
-<h3><span class="section-number">2.3.1. </span>Built-In Python<a class="headerlink" href="#built-in-python" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="data-types">
+<h2><span class="section-number">2.3. </span>Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">#</a></h2>
+<section id="built-in-python">
+<h3><span class="section-number">2.3.1. </span>Built-In Python<a class="headerlink" href="#built-in-python" title="Permalink to this headline">#</a></h3>
 <p>Python has built-in objects for handling different types of data, including
 numeric and non numeric data.</p>
 <p>Numeric data can be represented as either an <code class="docutils literal notranslate"><span class="pre">int</span></code> (integer) or <code class="docutils literal notranslate"><span class="pre">float</span></code> object.
@@ -1438,9 +1688,9 @@ with each type:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="comparison-operators">
-<h3><span class="section-number">2.3.2. </span>Comparison Operators<a class="headerlink" href="#comparison-operators" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="comparison-operators">
+<h3><span class="section-number">2.3.2. </span>Comparison Operators<a class="headerlink" href="#comparison-operators" title="Permalink to this headline">#</a></h3>
 <p>Comparison operators are extremely common in many programming tasks.
 They allow for comparing between two values.
 The operators are:</p>
@@ -1503,9 +1753,9 @@ it from the assignment operator.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="in-pandas">
-<h3><span class="section-number">2.3.3. </span>In Pandas<a class="headerlink" href="#in-pandas" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="in-pandas">
+<h3><span class="section-number">2.3.3. </span>In Pandas<a class="headerlink" href="#in-pandas" title="Permalink to this headline">#</a></h3>
 <p>Python’s built-in data types are very flexible at the cost of specificity.
 NumPy provides more control to the programmer by adding many classes for
 storing numeric data that can be modified to best match the data, in order
@@ -1530,10 +1780,10 @@ the data. 64 bit integers can hold values between -9,223,372,036,854,775,808 and
 9,223,372,036,854,775,807. Whereas a 16 bit integer can hold values between
 -32,768 and 32,767. Floating point numbers store the number, as well as the values
 after the decimal point.</p>
-</div>
-</div>
-<div class="section" id="series">
-<h2><span class="section-number">2.4. </span>Series<a class="headerlink" href="#series" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="series">
+<h2><span class="section-number">2.4. </span>Series<a class="headerlink" href="#series" title="Permalink to this headline">#</a></h2>
 <p>Each column in the DataFrame is a Pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> object.
 A Series is a collection of values that all share the same data type.
 In addition, each value has a label, these labels don’t need to be unique
@@ -1695,8 +1945,8 @@ Name: year, Length: 746, dtype: bool
 </div>
 </div>
 </div>
-<div class="section" id="indexing-series">
-<h3><span class="section-number">2.4.1. </span>Indexing Series<a class="headerlink" href="#indexing-series" title="Permalink to this headline">¶</a></h3>
+<section id="indexing-series">
+<h3><span class="section-number">2.4.1. </span>Indexing Series<a class="headerlink" href="#indexing-series" title="Permalink to this headline">#</a></h3>
 <p>There are three main methods for accessing specific values in Pandas:</p>
 <ol class="simple">
 <li><p>by integer position</p></li>
@@ -1704,9 +1954,9 @@ Name: year, Length: 746, dtype: bool
 <li><p>based on a boolean array</p></li>
 </ol>
 <p>These methods apply to Series, and as we will see later, to DataFrames.</p>
-</div>
-<div class="section" id="selecting-values-by-integer-position">
-<h3><span class="section-number">2.4.2. </span>Selecting Values By Integer Position<a class="headerlink" href="#selecting-values-by-integer-position" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="selecting-values-by-integer-position">
+<h3><span class="section-number">2.4.2. </span>Selecting Values By Integer Position<a class="headerlink" href="#selecting-values-by-integer-position" title="Permalink to this headline">#</a></h3>
 <p>To access elements in a Series by integer position, use the <code class="docutils literal notranslate"><span class="pre">iloc</span></code> attribute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1756,9 +2006,9 @@ Name: year, dtype: int64
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="selecting-values-by-label">
-<h3><span class="section-number">2.4.3. </span>Selecting Values By Label<a class="headerlink" href="#selecting-values-by-label" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="selecting-values-by-label">
+<h3><span class="section-number">2.4.3. </span>Selecting Values By Label<a class="headerlink" href="#selecting-values-by-label" title="Permalink to this headline">#</a></h3>
 <p>A Series in Pandas has labels attached to each value, in what Pandas calls
 the index.
 We can see the index of a Series with the <code class="docutils literal notranslate"><span class="pre">index</span></code> attribute:</p>
@@ -1884,9 +2134,9 @@ Name: year, dtype: int64
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="selecting-values-based-on-a-boolean-array">
-<h3><span class="section-number">2.4.4. </span>Selecting Values Based On A Boolean Array<a class="headerlink" href="#selecting-values-based-on-a-boolean-array" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="selecting-values-based-on-a-boolean-array">
+<h3><span class="section-number">2.4.4. </span>Selecting Values Based On A Boolean Array<a class="headerlink" href="#selecting-values-based-on-a-boolean-array" title="Permalink to this headline">#</a></h3>
 <p>The third way to select values is based on a Boolean array.
 The Boolean array must have the same length as the number of elements
 in the Series.</p>
@@ -1942,10 +2192,10 @@ Name: year, Length: 589, dtype: int64
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="indexing-dataframes">
-<span id="id1"></span><h2><span class="section-number">2.5. </span>Indexing DataFrames<a class="headerlink" href="#indexing-dataframes" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="indexing-dataframes">
+<span id="id1"></span><h2><span class="section-number">2.5. </span>Indexing DataFrames<a class="headerlink" href="#indexing-dataframes" title="Permalink to this headline">#</a></h2>
 <p>Conceptually, indexing DataFrames is very similar to the operations on Series.
 However, whereas Series are one dimensional, DataFrames are two dimensional.
 A DataFrame is a collection of Series, organized as columns.</p>
@@ -3081,9 +3331,9 @@ Name: pop2020, dtype: float64
 <p>129 rows × 2 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="special-values">
-<h2><span class="section-number">2.6. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="special-values">
+<h2><span class="section-number">2.6. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">#</a></h2>
 <p>Often times, the data we have will work with has missing, or invalid data.
 Its important to understand these values, and how to work with them in Pandas.</p>
 <p>There are many reasons that could cause these values to be missing or incomplete,
@@ -3093,8 +3343,8 @@ these values.</p>
 in the dataset, and are represented by the NumPy <code class="docutils literal notranslate"><span class="pre">nan</span></code> type. This reduces
 some of the nuance of data values and types, but was seemingly done
 for computational preformance reasons.</p>
-<div class="section" id="types-of-values-considered-missing-by-pandas">
-<h3><span class="section-number">2.6.1. </span>Types of Values Considered Missing by Pandas<a class="headerlink" href="#types-of-values-considered-missing-by-pandas" title="Permalink to this headline">¶</a></h3>
+<section id="types-of-values-considered-missing-by-pandas">
+<h3><span class="section-number">2.6.1. </span>Types of Values Considered Missing by Pandas<a class="headerlink" href="#types-of-values-considered-missing-by-pandas" title="Permalink to this headline">#</a></h3>
 <p>In addition to <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> (which displays as NaN), Pandas interprets
 several other values as missing.
 This includes Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type, as well as Pandas’ experimental <code class="docutils literal notranslate"><span class="pre">NA</span></code> types.</p>
@@ -3154,9 +3404,9 @@ dtype: string
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="reading-in-missing-values-from-a-csv-file">
-<h3><span class="section-number">2.6.2. </span>Reading in Missing Values from a CSV file<a class="headerlink" href="#reading-in-missing-values-from-a-csv-file" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="reading-in-missing-values-from-a-csv-file">
+<h3><span class="section-number">2.6.2. </span>Reading in Missing Values from a CSV file<a class="headerlink" href="#reading-in-missing-values-from-a-csv-file" title="Permalink to this headline">#</a></h3>
 <p>An obvious source of missing or incomplete values is the data itself.
 When the data was collected, there may have been reasons to code missing data.
 For example, in collection of survey responses, there may be times where the
@@ -3169,9 +3419,9 @@ values.
 By default, it will convert any empty cell, or string such as ‘na’, ‘nan’, ‘null’,
 ‘N/A’, and other variants to NaN.
 A full list can be found in the Pandas documentation: <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html</a></p>
-</div>
-<div class="section" id="detecting-missing-values">
-<h3><span class="section-number">2.6.3. </span>Detecting Missing Values<a class="headerlink" href="#detecting-missing-values" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="detecting-missing-values">
+<h3><span class="section-number">2.6.3. </span>Detecting Missing Values<a class="headerlink" href="#detecting-missing-values" title="Permalink to this headline">#</a></h3>
 <p>To detect missing values, Pandas provides two complementary methods -
 <code class="docutils literal notranslate"><span class="pre">isna</span></code> and <code class="docutils literal notranslate"><span class="pre">notna</span></code>.</p>
 <p>We can see information about missing values with the <code class="docutils literal notranslate"><span class="pre">count</span></code> method on
@@ -3284,9 +3534,9 @@ Name: park_benches, Length: 746, dtype: bool
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="replacing-missing-values">
-<h3><span class="section-number">2.6.4. </span>Replacing Missing Values<a class="headerlink" href="#replacing-missing-values" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="replacing-missing-values">
+<h3><span class="section-number">2.6.4. </span>Replacing Missing Values<a class="headerlink" href="#replacing-missing-values" title="Permalink to this headline">#</a></h3>
 <p>We can use this boolean Series to subset.
 For example, to keep only the values that aren’t missing:</p>
 <div class="cell docutils container">
@@ -3386,9 +3636,9 @@ Name: park_benches, Length: 746, dtype: float64
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3412,54 +3662,48 @@ Name: park_benches, Length: 746, dtype: float64
 
               </div>
               
-        
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="01_python-basics.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">1. </span>Getting Started</p>
-            </div>
-        </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01_python-basics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Getting Started</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03_summarizing-data.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Summarizing Data</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="03_summarizing-data.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">3. </span>Summarizing Data</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Arthur Koehl and Nick Ulle<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Arthur Koehl and Nick Ulle<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

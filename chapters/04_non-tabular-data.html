@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>4. Non-tabular Data &#8212; Python Basics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,46 +20,63 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="References" href="references.html" />
+    <link rel="next" title="Assessment" href="assessment.html" />
     <link rel="prev" title="3. Summarizing Data" href="03_summarizing-data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -66,10 +85,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -82,14 +106,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   Overview
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Notes
  </span>
@@ -116,12 +141,17 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Afterword
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="assessment.html">
+   Assessment
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="references.html">
    References
@@ -135,107 +165,194 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/chapters/04_non-tabular-data.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapters/04_non-tabular-data.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ucdavisdatalab/workshop_python_basics"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/04_non-tabular-data.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/04_non-tabular-data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapters/04_non-tabular-data.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/chapters/04_non-tabular-data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#recap">
    4.1. Recap
@@ -358,17 +475,155 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Non-tabular Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   4.1. Recap
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregation">
+     4.1.1. Aggregation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-packages">
+     4.1.2. Installing Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualization">
+     4.1.3. Visualization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conditional-statements">
+     4.1.4. Conditional Statements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions">
+     4.1.5. Functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#containers">
+   4.2. Containers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lists">
+     4.2.1. Lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuples">
+     4.2.2. Tuples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dictionaries">
+     4.2.3. Dictionaries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#surfing-the-web">
+   4.3. Surfing the Web
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-requests-package">
+     4.3.1. The requests Package
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#request-etiquette">
+     4.3.2. Request Etiquette
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#web-apis">
+     4.3.3. Web APIs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#javascript-object-notation">
+     4.3.4. JavaScript Object Notation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-endpoints">
+     4.3.5. Using Endpoints
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loops">
+   4.4. Loops
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comprehensions">
+     4.4.1. Comprehensions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exporting-data">
+   4.5. Exporting Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practice-exercises">
+   4.6. Practice Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1">
+     4.6.1. Exercise 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     4.6.2. Exercise 2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="non-tabular-data">
-<h1><span class="section-number">4. </span>Non-tabular Data<a class="headerlink" href="#non-tabular-data" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="non-tabular-data">
+<h1><span class="section-number">4. </span>Non-tabular Data<a class="headerlink" href="#non-tabular-data" title="Permalink to this headline">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <ul class="simple">
@@ -386,10 +641,10 @@
 <p>The goal and motivation for today’s workshop is to use Python to download some
 non-tabular data from the internet, convert it into a tabular format, and save
 it as a CSV file.</p>
-<div class="section" id="recap">
-<h2><span class="section-number">4.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="aggregation">
-<h3><span class="section-number">4.1.1. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h3>
+<section id="recap">
+<h2><span class="section-number">4.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">#</a></h2>
+<section id="aggregation">
+<h3><span class="section-number">4.1.1. </span>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">#</a></h3>
 <p>The Pandas method <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> <strong>aggregates</strong> a Series, meaning it computes a
 summary of the series (usually one or two values, such). The mean, median, max,
 standard deviation, and range are all examples of aggregate statistics. You can
@@ -409,17 +664,17 @@ methods for commonly used aggregate statistics, such as <code class="docutils li
 <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code>. The argument to <code class="docutils literal notranslate"><span class="pre">.groupby</span></code> should be a name or list of names of
 columns to use for grouping. It usually only makes sense to group by
 categorical columns (so that there’s more than one row in each group).</p>
-</div>
-<div class="section" id="installing-packages">
-<h3><span class="section-number">4.1.2. </span>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="installing-packages">
+<h3><span class="section-number">4.1.2. </span>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">#</a></h3>
 <p>Some packages are not installed by default with Anaconda.</p>
 <p>To install a package, open a JupyterLab Terminal (<code class="docutils literal notranslate"><span class="pre">File</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">New</span></code> -&gt;
 <code class="docutils literal notranslate"><span class="pre">Terminal</span></code>). Then use the command <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">PACKAGE</span></code> where <code class="docutils literal notranslate"><span class="pre">PACKAGE</span></code> is
 the name of the package you want. You can add <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">conda-forge</span></code> to this command
 to get a more recent version of the package.</p>
-</div>
-<div class="section" id="visualization">
-<h3><span class="section-number">4.1.3. </span>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="visualization">
+<h3><span class="section-number">4.1.3. </span>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">#</a></h3>
 <p>A wide variety of visualization packages are available for Python. You can read
 more about them on the <a class="reference external" href="https://pyviz.org/">PyViz website</a>. This reader only covers the
 <strong><a class="reference external" href="https://plotnine.readthedocs.io/en/stable/">plotnine</a></strong> package.</p>
@@ -438,16 +693,16 @@ specifies which column of data is associated with each aesthetic property
 <p>Several other layers are also available for further customizing visualizations.</p>
 <p>You can save a plotnine visualization to a file by calling the <code class="docutils literal notranslate"><span class="pre">.save</span></code> method
 on the object returned by the call to <code class="docutils literal notranslate"><span class="pre">ggplot</span></code>.</p>
-</div>
-<div class="section" id="conditional-statements">
-<h3><span class="section-number">4.1.4. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="conditional-statements">
+<h3><span class="section-number">4.1.4. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">#</a></h3>
 <p><strong>If-statements</strong>, written with the keywords <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>, and <code class="docutils literal notranslate"><span class="pre">else</span></code>, provide
 a way to run code only when some condition is satisfied. The condition must be
 an expression that returns a Boolean (<code class="docutils literal notranslate"><span class="pre">False</span></code> or <code class="docutils literal notranslate"><span class="pre">True</span></code>) value. Code in the
 body of an if-statement must be indented by 4 spaces.</p>
-</div>
-<div class="section" id="functions">
-<h3><span class="section-number">4.1.5. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="functions">
+<h3><span class="section-number">4.1.5. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h3>
 <p>You can define your own functions with the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword. Code in the body of
 the function must be indented by 4 spaces. You can make your function return a
 value with the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword. Parameters and variables inside of a
@@ -480,15 +735,15 @@ function’s body are not accessible from outside of the function’s body.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="containers">
-<span id="id1"></span><h2><span class="section-number">4.2. </span>Containers<a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="containers">
+<span id="id1"></span><h2><span class="section-number">4.2. </span>Containers<a class="headerlink" href="#containers" title="Permalink to this headline">#</a></h2>
 <p>Python provides a variety of containers for data. This section describes the
 three most widely-used containers. You can find even more types of containers
 in the <a class="reference external" href="https://docs.python.org/3/library/collections.html">collections module</a>.</p>
-<div class="section" id="lists">
-<h3><span class="section-number">4.2.1. </span>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
+<section id="lists">
+<h3><span class="section-number">4.2.1. </span>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">#</a></h3>
 <p>Lists were introduced in <a class="reference internal" href="01_python-basics.html#lists"><span class="std std-numref">Section 1.2.4</span></a>. A list is an ordered collection of
 values. Lists are <strong>mutable</strong>, which means that the elements can be changed.</p>
 <p>Here’s a quick recap of things you can do with lists:</p>
@@ -523,9 +778,9 @@ values. Lists are <strong>mutable</strong>, which means that the elements can be
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">del</span></code> keyword can also be used with dictionaries, which are described in
 <a class="reference internal" href="#dictionaries"><span class="std std-numref">Section 4.2.3</span></a>.</p>
-</div>
-<div class="section" id="tuples">
-<h3><span class="section-number">4.2.2. </span>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tuples">
+<h3><span class="section-number">4.2.2. </span>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">#</a></h3>
 <p>A <strong>tuple</strong> is an ordered collection of values. Think of coordinates. Tuples
 are <strong>immutable</strong>, which means that the elements of a tuple can’t be changed.</p>
 <div class="cell docutils container">
@@ -576,7 +831,7 @@ are <strong>immutable</strong>, which means that the elements of a tuple can’t
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_27468</span><span class="o">/</span><span class="mf">1047260052.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
@@ -628,9 +883,9 @@ structure on the right-hand side:</p>
 <p>Unpacking also works with lists.</p>
 <p>Tuples are slightly more efficient than lists, and are generally the best way
 to return a fixed number of results from a function (see <a class="reference internal" href="03_summarizing-data.html#functions"><span class="std std-numref">Section 3.7</span></a>).</p>
-</div>
-<div class="section" id="dictionaries">
-<span id="id2"></span><h3><span class="section-number">4.2.3. </span>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="dictionaries">
+<span id="id2"></span><h3><span class="section-number">4.2.3. </span>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">#</a></h3>
 <p>A <strong>dictionary</strong> (or <code class="docutils literal notranslate"><span class="pre">dict</span></code>) is a one-to-one map from <strong>keys</strong> to <strong>values</strong>.
 That means that you use keys to look up values in a dictionary. Like lists,
 dictionaries are mutable.</p>
@@ -744,10 +999,10 @@ methods respectfully:</p>
 </div>
 <p>Common use cases for dictionaries include creating lookup tables and returning
 named results from a function.</p>
-</div>
-</div>
-<div class="section" id="surfing-the-web">
-<h2><span class="section-number">4.3. </span>Surfing the Web<a class="headerlink" href="#surfing-the-web" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="surfing-the-web">
+<h2><span class="section-number">4.3. </span>Surfing the Web<a class="headerlink" href="#surfing-the-web" title="Permalink to this headline">#</a></h2>
 <p>The <strong>hypertext transfer protocol</strong> (HTTP) is a set of rules for communication
 between computers on a network. HTTP has a request-response model:</p>
 <ol class="simple">
@@ -824,8 +1079,8 @@ formats for the content are:</p>
 <li><p>Extensible Markup Language (XML)</p></li>
 <li><p>JavaScript Object Notation (JSON)</p></li>
 </ul>
-<div class="section" id="the-requests-package">
-<h3><span class="section-number">4.3.1. </span>The requests Package<a class="headerlink" href="#the-requests-package" title="Permalink to this headline">¶</a></h3>
+<section id="the-requests-package">
+<h3><span class="section-number">4.3.1. </span>The requests Package<a class="headerlink" href="#the-requests-package" title="Permalink to this headline">#</a></h3>
 <p>The <strong>requests</strong> package provides functions for making HTTP requests from
 Python. You can use requests to make a GET request with the <code class="docutils literal notranslate"><span class="pre">get</span></code> function:</p>
 <div class="cell docutils container">
@@ -885,9 +1140,9 @@ the DataLab site it makes more sense to use <code class="docutils literal notran
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="request-etiquette">
-<span id="id3"></span><h3><span class="section-number">4.3.2. </span>Request Etiquette<a class="headerlink" href="#request-etiquette" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="request-etiquette">
+<span id="id3"></span><h3><span class="section-number">4.3.2. </span>Request Etiquette<a class="headerlink" href="#request-etiquette" title="Permalink to this headline">#</a></h3>
 <p>Making an HTTP request is not free. It has a real cost in CPU time and
 electricity. Server administrators will not appreciate it if you make too many
 requests or make requests too quickly. So:</p>
@@ -908,9 +1163,9 @@ data when you make the same request twice.</p></li>
 <span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s2">&quot;my_cache&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="web-apis">
-<h3><span class="section-number">4.3.3. </span>Web APIs<a class="headerlink" href="#web-apis" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="web-apis">
+<h3><span class="section-number">4.3.3. </span>Web APIs<a class="headerlink" href="#web-apis" title="Permalink to this headline">#</a></h3>
 <p>An <strong>application programming interface</strong> (API) is a collection of functions and
 data structures for communicating with other software. For instance, whenever
 you use a Python package, you’re using the API created by the package’s
@@ -976,9 +1231,9 @@ documentation, all of the SWAPI endpoints return text.</p>
 full of curly braces, square brackets, quotes, and other punctuation. If you
 think back to the beginning (<a class="reference internal" href="#containers"><span class="std std-numref">Section 4.2</span></a>) of this chapter, the way the
 punctuation is arranged might start to look familiar…</p>
-</div>
-<div class="section" id="javascript-object-notation">
-<h3><span class="section-number">4.3.4. </span>JavaScript Object Notation<a class="headerlink" href="#javascript-object-notation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="javascript-object-notation">
+<h3><span class="section-number">4.3.4. </span>JavaScript Object Notation<a class="headerlink" href="#javascript-object-notation" title="Permalink to this headline">#</a></h3>
 <p>The response content looks a lot like Python lists and dictionaries! The
 response is not actually Python code, but it <em>is</em> JavaScript code. In
 JavaScript, lists and dictionaries are written the same way as in Python. The
@@ -1088,9 +1343,9 @@ his eye color, you can use indexing:</p>
 <p>Sometimes data in JSON format will contain several layers of dictionaries and
 lists. Remember that you can use indexing with square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> to
 navigate these.</p>
-</div>
-<div class="section" id="using-endpoints">
-<h3><span class="section-number">4.3.5. </span>Using Endpoints<a class="headerlink" href="#using-endpoints" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="using-endpoints">
+<h3><span class="section-number">4.3.5. </span>Using Endpoints<a class="headerlink" href="#using-endpoints" title="Permalink to this headline">#</a></h3>
 <p>The SWAPI endpoint <code class="docutils literal notranslate"><span class="pre">/people/</span></code> returns information in JSON format about
 different people in the Star Wars universe. An ID number after <code class="docutils literal notranslate"><span class="pre">/people/</span></code>
 determines the person for which the endpoint returns information. Think of the
@@ -1208,10 +1463,10 @@ example:</p>
 <p>When you’re working with a web API, it’s generally a good idea to create
 <strong>wrapper functions</strong>, like <code class="docutils literal notranslate"><span class="pre">get_swapi_person</span></code>, that turn each endpoint into an
 actual Python function by wrapping up (or encapsulating) the requests code.</p>
-</div>
-</div>
-<div class="section" id="loops">
-<span id="id4"></span><h2><span class="section-number">4.4. </span>Loops<a class="headerlink" href="#loops" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="loops">
+<span id="id4"></span><h2><span class="section-number">4.4. </span>Loops<a class="headerlink" href="#loops" title="Permalink to this headline">#</a></h2>
 <p>Now suppose you want to get the information for the first 15 people in SWAPI.
 You could do this by writing 15 calls to <code class="docutils literal notranslate"><span class="pre">get_swapi_person</span></code>, but that would be
 very tedious.</p>
@@ -1380,8 +1635,8 @@ first 15 people:</p>
 </div>
 </div>
 </div>
-<div class="section" id="comprehensions">
-<h3><span class="section-number">4.4.1. </span>Comprehensions<a class="headerlink" href="#comprehensions" title="Permalink to this headline">¶</a></h3>
+<section id="comprehensions">
+<h3><span class="section-number">4.4.1. </span>Comprehensions<a class="headerlink" href="#comprehensions" title="Permalink to this headline">#</a></h3>
 <p>Python provides an efficient and powerful alternative to loops called
 <strong>comprehensions</strong>. Comprehensions automatically create a list or dictionary. A
 <strong>list comprehension</strong> creates a list, and a <strong>dictionary comprehension</strong>
@@ -1435,10 +1690,10 @@ here’s the code to get lists of names and heights for each person in the list:
 </div>
 <p>You can learn more about comprehensions in the <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">official Python
 documentation</a>.</p>
-</div>
-</div>
-<div class="section" id="exporting-data">
-<h2><span class="section-number">4.5. </span>Exporting Data<a class="headerlink" href="#exporting-data" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="exporting-data">
+<h2><span class="section-number">4.5. </span>Exporting Data<a class="headerlink" href="#exporting-data" title="Permalink to this headline">#</a></h2>
 <p>The extracted <code class="docutils literal notranslate"><span class="pre">names</span></code>, <code class="docutils literal notranslate"><span class="pre">heights</span></code>, and <code class="docutils literal notranslate"><span class="pre">eye_colors</span></code> lists are like columns in a
 DataFrame where each row is one person, so you might as well put them in a
 DataFrame. You can use the <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> function and a dictionary of columns
@@ -1581,24 +1836,24 @@ the <code class="docutils literal notranslate"><span class="pre">.to_csv</span><
 </div>
 <p>It’s a good idea to save your data sets like this whenever you reach a
 checkpoint in the problem you’re trying to solve.</p>
-</div>
-<div class="section" id="practice-exercises">
-<h2><span class="section-number">4.6. </span>Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="exercise-1">
-<h3><span class="section-number">4.6.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="practice-exercises">
+<h2><span class="section-number">4.6. </span>Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permalink to this headline">#</a></h2>
+<section id="exercise-1">
+<h3><span class="section-number">4.6.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h3>
 <p>Create a CSV file for the first 15 <em>vehicles</em> in SWAPI. The file should include
 columns for cargo capacity, cost, length, manufacturer, model, and passengers.</p>
-</div>
-<div class="section" id="exercise-2">
-<h3><span class="section-number">4.6.2. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exercise-2">
+<h3><span class="section-number">4.6.2. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h3>
 <p>Create a histogram from the heights of the first 30 people in SWAPI.</p>
 <div class="admonition-hint admonition">
 <p class="admonition-title">Hint</p>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">float</span></code> function to convert a string to a decimal number.</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1622,54 +1877,48 @@ columns for cargo capacity, cost, length, manufacturer, model, and passengers.</
 
               </div>
               
-        
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="03_summarizing-data.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">3. </span>Summarizing Data</p>
-            </div>
-        </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03_summarizing-data.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Summarizing Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="assessment.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Assessment</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="references.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">References</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Arthur Koehl and Nick Ulle<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Arthur Koehl and Nick Ulle<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

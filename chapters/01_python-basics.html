@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>1. Getting Started &#8212; Python Basics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,48 +20,65 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Pandas Data Structures" href="02_pandas-basics.html" />
     <link rel="prev" title="Overview" href="index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -68,10 +87,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -84,14 +108,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   Overview
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Notes
  </span>
@@ -118,12 +143,17 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Afterword
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="assessment.html">
+   Assessment
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="references.html">
    References
@@ -137,107 +167,194 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/chapters/01_python-basics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapters/01_python-basics.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ucdavisdatalab/workshop_python_basics"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/01_python-basics.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/01_python-basics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapters/01_python-basics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/chapters/01_python-basics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#prerequisites">
    1.1. Prerequisites
@@ -347,17 +464,142 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Getting Started</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   1.1. Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-python-console">
+   1.2. The Python Console
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variables">
+     1.2.1. Variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calling-functions">
+     1.2.2. Calling Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#objects-attributes">
+     1.2.3. Objects &amp; Attributes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lists">
+     1.2.4. Lists
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     1.2.5. References
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-help">
+   1.3. Getting Help
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-something-goes-wrong">
+     1.3.1. When Something Goes Wrong
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#packages">
+   1.4. Packages
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-scipy-ecosystem">
+     1.4.1. The SciPy Ecosystem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modules">
+     1.4.2. Modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-systems">
+   1.5. File Systems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#absolute-relative-paths">
+     1.5.1. Absolute &amp; Relative Paths
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#saving-code">
+     1.5.2. Saving Code
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#jupyter-notebooks">
+       1.5.2.1. Jupyter Notebooks
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-working-directory">
+     1.5.3. The Working Directory
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-files">
+   1.6. Reading Files
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hello-data">
+     1.6.1. Hello, Data!
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="getting-started">
-<h1><span class="section-number">1. </span>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
+<h1><span class="section-number">1. </span>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <ul class="simple">
@@ -402,8 +644,8 @@ other programming languages, Python’s particular strengths are its:</p>
 <li><p>Broad base of user-contributed packages</p></li>
 <li><p>Syntax which resembles pseudocode and encourages good habits</p></li>
 </ul>
-<div class="section" id="prerequisites">
-<h2><span class="section-number">1.1. </span>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<section id="prerequisites">
+<h2><span class="section-number">1.1. </span>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
 <p>Rather than installing Python directly, install <strong><a class="reference external" href="https://www.anaconda.com/">Anaconda</a></strong>, a collection
 of free and open-source data science software. Anaconda includes three things
 you’ll need to follow along with this reader:</p>
@@ -431,9 +673,9 @@ an install guide [here][vscode-guide].
 [vscode]: https://code.visualstudio.com/Download
 [vscode-guide]: TODO
 -->
-</div>
-<div class="section" id="the-python-console">
-<h2><span class="section-number">1.2. </span>The Python Console<a class="headerlink" href="#the-python-console" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-python-console">
+<h2><span class="section-number">1.2. </span>The Python Console<a class="headerlink" href="#the-python-console" title="Permalink to this headline">#</a></h2>
 <p>The first time you open JupyterLab, you’ll see a window that looks like this:</p>
 <img alt="The JupyterLab startup screen." src="../_images/jupyterlab_startup.png" />
 <p>Don’t worry if the text in the panes isn’t exactly the same on your computer;
@@ -495,8 +737,8 @@ text, putting spaces in your code makes it easier for you and others to read,
 so it’s good to make it a habit. Put a single space on each side of most
 operators, after commas, and after keywords. Later on, you’ll learn about other
 kinds of expressions where the spacing does matter.</p>
-<div class="section" id="variables">
-<h3><span class="section-number">1.2.1. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
+<section id="variables">
+<h3><span class="section-number">1.2.1. </span>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">#</a></h3>
 <p>Python and most other programming languages allow you to create named values
 called <strong>variables</strong>. You can create a variable with the assignment operator
 <code class="docutils literal notranslate"><span class="pre">=</span></code> by writing a name on the left-hand side and a value or expression on the
@@ -559,9 +801,9 @@ do is change <code class="docutils literal notranslate"><span class="pre">base</
 <code class="docutils literal notranslate"><span class="pre">area</span></code> until you do this). Writing code that’s general enough to reuse across
 multiple problems can be a big time-saver in the long run. Later on, you’ll see
 ways to make this code even easier to reuse.</p>
-</div>
-<div class="section" id="calling-functions">
-<span id="id1"></span><h3><span class="section-number">1.2.2. </span>Calling Functions<a class="headerlink" href="#calling-functions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="calling-functions">
+<span id="id1"></span><h3><span class="section-number">1.2.2. </span>Calling Functions<a class="headerlink" href="#calling-functions" title="Permalink to this headline">#</a></h3>
 <p>Python can do a lot more than just arithmetic. Most of Python’s features are
 provided through <strong>functions</strong>, pieces of reusable code. You can think of a
 function as a machine that takes some inputs and uses them to produce some
@@ -671,7 +913,7 @@ a call. So this code causes an error:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_27405</span><span class="o">/</span><span class="mf">3863254417.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">number</span> <span class="o">=</span> <span class="mf">4.755</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 
@@ -711,9 +953,9 @@ making <code class="docutils literal notranslate"><span class="pre">number</span
 <p>The point is that variables and parameters are distinct, even if they happen to
 have the same name. The variable <code class="docutils literal notranslate"><span class="pre">number</span></code> is not the same thing as the
 parameter <code class="docutils literal notranslate"><span class="pre">number</span></code>.</p>
-</div>
-<div class="section" id="objects-attributes">
-<h3><span class="section-number">1.2.3. </span>Objects &amp; Attributes<a class="headerlink" href="#objects-attributes" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="objects-attributes">
+<h3><span class="section-number">1.2.3. </span>Objects &amp; Attributes<a class="headerlink" href="#objects-attributes" title="Permalink to this headline">#</a></h3>
 <p>Python represents data as <strong>objects</strong>. Numbers, strings, data structures, and
 functions are all examples of objects.</p>
 <p>An <strong>attribute</strong> is an object attached to another object. An attribute usually
@@ -829,9 +1071,9 @@ an object. Here are the attributes for a string:</p>
 </div>
 <p>Attributes which begin with two underscores <code class="docutils literal notranslate"><span class="pre">__</span></code> are used by Python internally
 and usually not intended to be accessed directly.</p>
-</div>
-<div class="section" id="lists">
-<span id="id2"></span><h3><span class="section-number">1.2.4. </span>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="lists">
+<span id="id2"></span><h3><span class="section-number">1.2.4. </span>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">#</a></h3>
 <p>A <strong>list</strong> is a container for zero or more values. The values in a list are
 called <strong>elements</strong>, and the <strong>length</strong> of a list is the number of elements.
 Lists are ordered, so there is a first element, second element, and so on up to
@@ -939,9 +1181,9 @@ change the first element of <code class="docutils literal notranslate"><span cla
 </div>
 <p>Lists are a fundamental data structure in Python, so you’ll see many more
 examples of them as you go through this reader.</p>
-</div>
-<div class="section" id="references">
-<h3><span class="section-number">1.2.5. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="references">
+<h3><span class="section-number">1.2.5. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
 <p>When you assign a Python object to a variable, Python usually creates a
 <strong>reference</strong> to the object. This means that if you assign an object to
 multiple variables and change one, all of them will change.</p>
@@ -995,10 +1237,10 @@ variables. Here’s an example:</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="getting-help">
-<span id="id3"></span><h2><span class="section-number">1.3. </span>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="getting-help">
+<span id="id3"></span><h2><span class="section-number">1.3. </span>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">#</a></h2>
 <p>Learning and using a language is hard, so it’s important to know how to get
 help. The first place to look for help is Python’s built-in documentation. In
 the console, you can access the help pages with the <code class="docutils literal notranslate"><span class="pre">help</span></code> function.</p>
@@ -1068,7 +1310,7 @@ described in the Comparisons section.
 | &quot;x[index]&quot;, &quot;x[index:index]&quot;,                   | Subscription, slicing, call,          |
 | &quot;x(arguments...)&quot;, &quot;x.attribute&quot;                | attribute reference                   |
 +-------------------------------------------------+---------------------------------------+
-| &quot;await&quot; &quot;x&quot;                                     | Await expression                      |
+| &quot;await x&quot;                                       | Await expression                      |
 +-------------------------------------------------+---------------------------------------+
 | &quot;**&quot;                                            | Exponentiation [5]                    |
 +-------------------------------------------------+---------------------------------------+
@@ -1091,7 +1333,7 @@ described in the Comparisons section.
 | &quot;in&quot;, &quot;not in&quot;, &quot;is&quot;, &quot;is not&quot;, &quot;&lt;&quot;, &quot;&lt;=&quot;, &quot;&gt;&quot;, | Comparisons, including membership     |
 | &quot;&gt;=&quot;, &quot;!=&quot;, &quot;==&quot;                                | tests and identity tests              |
 +-------------------------------------------------+---------------------------------------+
-| &quot;not&quot; &quot;x&quot;                                       | Boolean NOT                           |
+| &quot;not x&quot;                                         | Boolean NOT                           |
 +-------------------------------------------------+---------------------------------------+
 | &quot;and&quot;                                           | Boolean AND                           |
 +-------------------------------------------------+---------------------------------------+
@@ -1175,8 +1417,8 @@ documentation shows the version in the upper left corner.</p>
 <p>Sometimes you might not know the name of the help page you want to look up. In
 that case it’s best to use an online search engine. When you search for help
 with Python online, include “Python” as a search term.</p>
-<div class="section" id="when-something-goes-wrong">
-<h3><span class="section-number">1.3.1. </span>When Something Goes Wrong<a class="headerlink" href="#when-something-goes-wrong" title="Permalink to this headline">¶</a></h3>
+<section id="when-something-goes-wrong">
+<h3><span class="section-number">1.3.1. </span>When Something Goes Wrong<a class="headerlink" href="#when-something-goes-wrong" title="Permalink to this headline">#</a></h3>
 <p>As a programmer, sooner or later you’ll run some code and get an error message
 or result you didn’t expect. Don’t panic! Even experienced programmers make
 mistakes regularly, so learning how to diagnose and fix problems is vital.</p>
@@ -1195,15 +1437,15 @@ you expect. Try to determine the exact line where the problem originates
 <p>If none of these steps help, try asking online. <a class="reference external" href="https://stackoverflow.com/">Stack Overflow</a> is a
 popular question and answer website for programmers. Before posting, make sure
 to read about <a class="reference external" href="https://stackoverflow.com/help/how-to-ask">how to ask a good question</a>.</p>
-</div>
-</div>
-<div class="section" id="packages">
-<span id="modules-packages"></span><h2><span class="section-number">1.4. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="packages">
+<span id="modules-packages"></span><h2><span class="section-number">1.4. </span>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">#</a></h2>
 <p>A <strong>package</strong> is a reusable bundle of code. Packages usually include
 documentation, and can also contain examples and data sets. Most packages are
 developed by members of the Python community, so quality varies.</p>
-<div class="section" id="the-scipy-ecosystem">
-<h3><span class="section-number">1.4.1. </span>The SciPy Ecosystem<a class="headerlink" href="#the-scipy-ecosystem" title="Permalink to this headline">¶</a></h3>
+<section id="the-scipy-ecosystem">
+<h3><span class="section-number">1.4.1. </span>The SciPy Ecosystem<a class="headerlink" href="#the-scipy-ecosystem" title="Permalink to this headline">#</a></h3>
 <p>The SciPy ecosystem is a collection of scientific computing software for Python
 introduced in 2001. SciPy is divided into several different Python packages.</p>
 <p>Some of the most important packages in the SciPy ecosystem are:</p>
@@ -1218,9 +1460,9 @@ of math functions</p></li>
 <p>You’ll learn much more about NumPy, SciPy, and Pandas as you go through this
 reader. By using JupyterLab, you’ve already used IPython. You’ll use Matplotlib
 indirectly later on, when you learn about visualization.</p>
-</div>
-<div class="section" id="modules">
-<span id="id4"></span><h3><span class="section-number">1.4.2. </span>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="modules">
+<span id="id4"></span><h3><span class="section-number">1.4.2. </span>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h3>
 <p>In Python, packages are further subdivided into <strong>modules</strong>, collections of
 related functions and data structures. The best way to learn about the modules
 provided by a package is to read the package’s documentation. There are also
@@ -1286,10 +1528,10 @@ because it makes it easier for other people to understand your code. Use the
 built-in <code class="docutils literal notranslate"><span class="pre">round</span></code> function, even though they do the same thing. NumPy’s math
 functions are generally faster, more precise, and more convenient than Python’s
 built-in math functions.</p>
-</div>
-</div>
-<div class="section" id="file-systems">
-<h2><span class="section-number">1.5. </span>File Systems<a class="headerlink" href="#file-systems" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="file-systems">
+<h2><span class="section-number">1.5. </span>File Systems<a class="headerlink" href="#file-systems" title="Permalink to this headline">#</a></h2>
 <p>Most of the time, you won’t just write code directly into the Python console.
 Reproducibility and reusability are important benefits of Python over
 point-and-click software, and in order to realize these, you have to save your
@@ -1355,8 +1597,8 @@ on all other operating systems. Python’s built-in <a class="reference external
 helper functions to edit paths that account for differences between operating
 systems.</p>
 </div>
-<div class="section" id="absolute-relative-paths">
-<span id="id5"></span><h3><span class="section-number">1.5.1. </span>Absolute &amp; Relative Paths<a class="headerlink" href="#absolute-relative-paths" title="Permalink to this headline">¶</a></h3>
+<section id="absolute-relative-paths">
+<span id="id5"></span><h3><span class="section-number">1.5.1. </span>Absolute &amp; Relative Paths<a class="headerlink" href="#absolute-relative-paths" title="Permalink to this headline">#</a></h3>
 <p>A path that starts from the root directory, like all of the ones we’ve seen so
 far, is called an <strong>absolute path</strong>. The path is “absolute” because it
 unambiguously describes where a file or directory is located. The downside is
@@ -1437,9 +1679,9 @@ means the current directory, a path like <code class="docutils literal notransla
 <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>, and the latter is preferable for being simpler. There are a few
 specific situations where <code class="docutils literal notranslate"><span class="pre">.</span></code> is necessary, but they fall outside the scope of
 this text.</p>
-</div>
-<div class="section" id="saving-code">
-<h3><span class="section-number">1.5.2. </span>Saving Code<a class="headerlink" href="#saving-code" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="saving-code">
+<h3><span class="section-number">1.5.2. </span>Saving Code<a class="headerlink" href="#saving-code" title="Permalink to this headline">#</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>When you start a new project, it’s a good idea to create a specific directory
@@ -1472,8 +1714,8 @@ you try but ultimately decide you don’t need. Make sure to save the file
 periodically so that you don’t lose your work. Following these guidelines will
 help you stay organized and make it easier to share your code with others
 later.</p>
-<div class="section" id="jupyter-notebooks">
-<span id="id6"></span><h4><span class="section-number">1.5.2.1. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h4>
+<section id="jupyter-notebooks">
+<span id="id6"></span><h4><span class="section-number">1.5.2.1. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">#</a></h4>
 <p>For data science tasks, it is also common to use a <a class="reference external" href="https://jupyter.org/"><strong>Jupyter
 notebook</strong></a> with extension <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> to store code. In addition to
 Python code, Jupyter notebooks have full support for formatted text, images,
@@ -1515,10 +1757,10 @@ makes the surrounded word italic. You can find a short, interactive tutorial
 about Markdown <a class="reference external" href="https://www.markdowntutorial.com/">here</a>. If you “run” a text cell by pressing
 <code class="docutils literal notranslate"><span class="pre">Shift</span></code>-<code class="docutils literal notranslate"><span class="pre">Enter</span></code>, the notebook will display the text with any formatting you
 added.</p>
-</div>
-</div>
-<div class="section" id="the-working-directory">
-<h3><span class="section-number">1.5.3. </span>The Working Directory<a class="headerlink" href="#the-working-directory" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="the-working-directory">
+<h3><span class="section-number">1.5.3. </span>The Working Directory<a class="headerlink" href="#the-working-directory" title="Permalink to this headline">#</a></h3>
 <p><a class="reference internal" href="#absolute-relative-paths"><span class="std std-numref">Section 1.5.1</span></a> explained that relative paths have a
 starting point that depends on the context where the path is used. The <em>working
 directory</em> is the starting point Python uses for relative paths. Think of the
@@ -1535,7 +1777,7 @@ working directory, as a string. It doesn’t require any arguments:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/nick/workshop/datalab/workshops/workshop_python_basics&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/nick/workshop/datalab/workshops/python_basics&#39;
 </pre></div>
 </div>
 </div>
@@ -1586,10 +1828,19 @@ path. For instance:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;remote-computing&#39;,
  &#39;template_workshop&#39;,
  &#39;jupyterbook-notes.md&#39;,
- &#39;workshop_python_basics&#39;,
- &#39;workshop_data_viz_principles&#39;,
+ &#39;ocr&#39;,
+ &#39;data_viz.md&#39;,
+ &#39;r_basics&#39;,
+ &#39;python_intensive_training&#39;,
+ &#39;workshop_ocr_python&#39;,
+ &#39;python_basics&#39;,
+ &#39;intermediate_r&#39;,
+ &#39;2022_python_bootcamp&#39;,
+ &#39;intro_to_sql&#39;,
+ &#39;template_python_workshop&#39;,
  &#39;testing&#39;,
- &#39;workshop_r_basics&#39;]
+ &#39;data_viz_principles&#39;,
+ &#39;intermediate_python&#39;]
 </pre></div>
 </div>
 </div>
@@ -1606,7 +1857,7 @@ an empty directory, Python raises a <code class="docutils literal notranslate"><
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_27405</span><span class="o">/</span><span class="mf">75073650.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">37</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/this/path/is/fake/&quot;</span><span class="p">)</span>
 
 <span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/this/path/is/fake/&#39;
@@ -1614,10 +1865,10 @@ an empty directory, Python raises a <code class="docutils literal notranslate"><
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="reading-files">
-<span id="id7"></span><h2><span class="section-number">1.6. </span>Reading Files<a class="headerlink" href="#reading-files" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="reading-files">
+<span id="id7"></span><h2><span class="section-number">1.6. </span>Reading Files<a class="headerlink" href="#reading-files" title="Permalink to this headline">#</a></h2>
 <p>The first step in most data analyses is loading the data. The Pandas package
 provides functions to read a variety of data formats. In order to know which
 function to use, you need to identify the data’s file format.</p>
@@ -1734,8 +1985,8 @@ above in a CSV file and open the file in a text editor, here’s what you’ll s
 data if you open a binary file in a text editor, but they have a number of
 other advantages. Compared to text files, binary files are often faster to read
 and take up less storage space (bytes).</p>
-<div class="section" id="hello-data">
-<h3><span class="section-number">1.6.1. </span>Hello, Data!<a class="headerlink" href="#hello-data" title="Permalink to this headline">¶</a></h3>
+<section id="hello-data">
+<h3><span class="section-number">1.6.1. </span>Hello, Data!<a class="headerlink" href="#hello-data" title="Permalink to this headline">#</a></h3>
 <p>Over the next few sections, you’ll explore data from <a class="reference external" href="https://www.tpl.org/parks-and-an-equitable-recovery-parkscore-report">The Trust for Public
 Land</a> about park access in major American cities. The data set was
 prepared as part of the Tidy Tuesday community data project. You can find more
@@ -2080,9 +2331,9 @@ incorrectly specifying the path, so first check that you got the path right.</p>
 table of data, then congratulations, you’ve read your first data set into
 Python! The next session will pick up from this point and introduce the basics
 of inspecting a data set.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2106,54 +2357,48 @@ of inspecting a data set.</p>
 
               </div>
               
-        
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="index.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Overview</p>
-            </div>
-        </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Overview</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="02_pandas-basics.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Pandas Data Structures</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="02_pandas-basics.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">2. </span>Pandas Data Structures</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Arthur Koehl and Nick Ulle<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Arthur Koehl and Nick Ulle<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

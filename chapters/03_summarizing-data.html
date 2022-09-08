@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>3. Summarizing Data &#8212; Python Basics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,46 +20,63 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Non-tabular Data" href="04_non-tabular-data.html" />
     <link rel="prev" title="2. Pandas Data Structures" href="02_pandas-basics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -66,10 +85,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
       
@@ -82,14 +106,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="index.html">
-   Overview
-  </a>
- </li>
-</ul>
-<p class="caption">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Notes
  </span>
@@ -116,12 +141,17 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Afterword
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="assessment.html">
+   Assessment
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="references.html">
    References
@@ -135,107 +165,194 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/chapters/03_summarizing-data.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapters/03_summarizing-data.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ucdavisdatalab/workshop_python_basics"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/03_summarizing-data.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/03_summarizing-data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapters/03_summarizing-data.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/chapters/03_summarizing-data.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#recap">
    3.1. Recap
@@ -363,17 +480,160 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Summarizing Data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   3.1. Recap
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-structures-types">
+     3.1.1. Data Structures &amp; Types
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-series-dataframes">
+     3.1.2. Exploring Series &amp; DataFrames
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indexing">
+     3.1.3. Indexing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#special-values">
+     3.1.4. Special Values
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregating-data">
+   3.2. Aggregating Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggregating-within-groups">
+     3.2.1. Aggregating within Groups
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization-in-python">
+   3.3. Visualization in Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuring-jupyter">
+     3.3.1. Configuring Jupyter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-packages">
+   3.4. Installing Packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-grammar-of-graphics">
+   3.5. The Grammar of Graphics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparing-the-data">
+     3.5.1. Preparing the Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-1-data">
+     3.5.2. Layer 1: Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-2-geometry">
+     3.5.3. Layer 2: Geometry
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-3-aesthetics">
+     3.5.4. Layer 3: Aesthetics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#refining-visualizations">
+     3.5.5. Refining Visualizations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#layer-4-scales">
+     3.5.6. Layer 4: Scales
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#saving-plots">
+     3.5.7. Saving Plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-statements">
+   3.6. Conditional Statements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   3.7. Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practice-exercises">
+   3.8. Practice Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1">
+     3.8.1. Exercise 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-2">
+     3.8.2. Exercise 2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="summarizing-data">
-<h1><span class="section-number">3. </span>Summarizing Data<a class="headerlink" href="#summarizing-data" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="summarizing-data">
+<h1><span class="section-number">3. </span>Summarizing Data<a class="headerlink" href="#summarizing-data" title="Permalink to this headline">#</a></h1>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <ul class="simple">
@@ -385,8 +645,8 @@
 <li><p>Save a visualization to a file</p></li>
 </ul>
 </div>
-<div class="section" id="recap">
-<h2><span class="section-number">3.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+<section id="recap">
+<h2><span class="section-number">3.1. </span>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">#</a></h2>
 <p>You’ll need the parks data from previous sections again for this section:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -398,8 +658,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="data-structures-types">
-<h3><span class="section-number">3.1.1. </span>Data Structures &amp; Types<a class="headerlink" href="#data-structures-types" title="Permalink to this headline">¶</a></h3>
+<section id="data-structures-types">
+<h3><span class="section-number">3.1.1. </span>Data Structures &amp; Types<a class="headerlink" href="#data-structures-types" title="Permalink to this headline">#</a></h3>
 <p>Python provides several built-in data types such as <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>,
 <code class="docutils literal notranslate"><span class="pre">str</span></code>, and <code class="docutils literal notranslate"><span class="pre">list</span></code>. You can check the type of an object with the <code class="docutils literal notranslate"><span class="pre">type</span></code>
 function.</p>
@@ -413,9 +673,9 @@ type of a Series with the <code class="docutils literal notranslate"><span class
 <p>Pandas also provides a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> data strucure, which represents tabular
 data. Each column in a DataFrame is a Series. You can check the data types of
 the columns in a DataFrame with the <code class="docutils literal notranslate"><span class="pre">.dtypes</span></code> attribute.</p>
-</div>
-<div class="section" id="exploring-series-dataframes">
-<h3><span class="section-number">3.1.2. </span>Exploring Series &amp; DataFrames<a class="headerlink" href="#exploring-series-dataframes" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exploring-series-dataframes">
+<h3><span class="section-number">3.1.2. </span>Exploring Series &amp; DataFrames<a class="headerlink" href="#exploring-series-dataframes" title="Permalink to this headline">#</a></h3>
 <p>Pandas Series and DataFrames have several descriptive attributes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">.index</span></code> is the names of the elements or rows</p></li>
@@ -430,9 +690,9 @@ the columns in a DataFrame with the <code class="docutils literal notranslate"><
 <p>For a DataFrame, these three summary methods are computed per-column.
 DataFrames also have a <code class="docutils literal notranslate"><span class="pre">.columns</span></code> attribute for the names of the columns and a
 <code class="docutils literal notranslate"><span class="pre">.info</span></code> method which prints a summary of the structure.</p>
-</div>
-<div class="section" id="indexing">
-<h3><span class="section-number">3.1.3. </span>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="indexing">
+<h3><span class="section-number">3.1.3. </span>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">#</a></h3>
 <p>Python’s built-in <strong>indexing operator</strong> is the square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>. Indexing
 an object retrieves elements from the object, but the details differ depending
 on the object’s type.</p>
@@ -451,9 +711,9 @@ slice, written <code class="docutils literal notranslate"><span class="pre">a:b<
 arguments when you index them. A <code class="docutils literal notranslate"><span class="pre">:</span></code> argument, like the second argument in
 <code class="docutils literal notranslate"><span class="pre">parks.iloc[1,</span> <span class="pre">:]</span></code>, selects all elements along that axis (so this code selects
 the first row and all columns).</p>
-</div>
-<div class="section" id="special-values">
-<h3><span class="section-number">3.1.4. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="special-values">
+<h3><span class="section-number">3.1.4. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">#</a></h3>
 <p>Python represents the absence of a value with <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 <p>NumPy represents the result of an undefined numerical computation such as
 <code class="docutils literal notranslate"><span class="pre">np.log(-1)</span></code> with <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>. “nan” stands for <strong>not a number</strong>.</p>
@@ -462,10 +722,10 @@ which were left out of a data set due to how the data was collected. Recent
 versions of Pandas also use <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> for this purpose.</p>
 <p>For a Series or DataFrame, you can use the <code class="docutils literal notranslate"><span class="pre">.isna</span></code> method to detect all three
 kinds of missing values.</p>
-</div>
-</div>
-<div class="section" id="aggregating-data">
-<h2><span class="section-number">3.2. </span>Aggregating Data<a class="headerlink" href="#aggregating-data" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="aggregating-data">
+<h2><span class="section-number">3.2. </span>Aggregating Data<a class="headerlink" href="#aggregating-data" title="Permalink to this headline">#</a></h2>
 <p>The Pandas <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> method <strong>aggregates</strong> the elements of a Series,
 reducing the Series to a smaller number of values (usually 1 value). For
 example, to compute the mean of the <code class="docutils literal notranslate"><span class="pre">restroom_data</span></code> column in the parks data:</p>
@@ -554,8 +814,8 @@ dtype: float64
 </div>
 </div>
 </div>
-<div class="section" id="aggregating-within-groups">
-<h3><span class="section-number">3.2.1. </span>Aggregating within Groups<a class="headerlink" href="#aggregating-within-groups" title="Permalink to this headline">¶</a></h3>
+<section id="aggregating-within-groups">
+<h3><span class="section-number">3.2.1. </span>Aggregating within Groups<a class="headerlink" href="#aggregating-within-groups" title="Permalink to this headline">#</a></h3>
 <p>Aggregation is especially useful when combined with grouping. The <code class="docutils literal notranslate"><span class="pre">.groupby</span></code>
 method groups the rows of a DataFrame using the columns you specify. The
 grouping columns should generally be categories rather than decimal numbers.
@@ -802,10 +1062,10 @@ Name: pop2020, Length: 106, dtype: float64
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="visualization-in-python">
-<h2><span class="section-number">3.3. </span>Visualization in Python<a class="headerlink" href="#visualization-in-python" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="visualization-in-python">
+<h2><span class="section-number">3.3. </span>Visualization in Python<a class="headerlink" href="#visualization-in-python" title="Permalink to this headline">#</a></h2>
 <img alt="A network of Python visualization packages." src="../_images/visualization_landscape.png" />
 <p><em>Image from <a class="reference external" href="http://vanderplas.com/">Jake VanderPlas</a>. See <a class="reference external" href="https://rougier.github.io/python-visualization-landscape/landscape-colors.html">here</a> for a version with links
 to all of the packages!</em></p>
@@ -836,8 +1096,8 @@ visualizations</strong>.</p>
 here will also be relevant if you end up using R or Julia. plotnine has
 detailed <a class="reference external" href="https://plotnine.readthedocs.io/en/stable/">documentation</a>. It’s also useful to look at the <a class="reference external" href="https://ggplot2.tidyverse.org/">ggplot2
 documentation</a> and <a class="reference external" href="https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf">cheatsheet</a>.</p>
-<div class="section" id="configuring-jupyter">
-<h3><span class="section-number">3.3.1. </span>Configuring Jupyter<a class="headerlink" href="#configuring-jupyter" title="Permalink to this headline">¶</a></h3>
+<section id="configuring-jupyter">
+<h3><span class="section-number">3.3.1. </span>Configuring Jupyter<a class="headerlink" href="#configuring-jupyter" title="Permalink to this headline">#</a></h3>
 <p>Jupyter notebooks can display most static visualizations and some interactive
 visualizations. If you’re going to use visualization packages that depend on
 matplotlib (such as plotnine), it’s a good idea to set up your notebook by
@@ -858,10 +1118,10 @@ running:</p>
 </div>
 <p>The last line sets the default size of plots. You can increase the numbers to
 make plots larger, or decrease them to make plots smaller.</p>
-</div>
-</div>
-<div class="section" id="installing-packages">
-<h2><span class="section-number">3.4. </span>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="installing-packages">
+<h2><span class="section-number">3.4. </span>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this headline">#</a></h2>
 <p>Matplotlib is included with Anaconda, but plotnine is not. So you need to
 install the plotnine package in order to use it.</p>
 <p>You can use Anaconda’s conda utility to install packages. The conda utility
@@ -876,9 +1136,9 @@ repository. Packages on conda-forge are usually more up to date than the ones
 in Anaconda’s default package repository.</p>
 <p>You can learn more about Anaconda and conda in the <a class="reference external" href="https://docs.anaconda.com/anaconda/user-guide/tasks/install-packages/">official
 documentation</a>.</p>
-</div>
-<div class="section" id="the-grammar-of-graphics">
-<h2><span class="section-number">3.5. </span>The Grammar of Graphics<a class="headerlink" href="#the-grammar-of-graphics" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="the-grammar-of-graphics">
+<h2><span class="section-number">3.5. </span>The Grammar of Graphics<a class="headerlink" href="#the-grammar-of-graphics" title="Permalink to this headline">#</a></h2>
 <p>plotnine is based on the grammar of graphics. The idea of a grammar of graphics
 is that visualizations can be built up in layers. In plotnine, the three layers
 every plot must have are:</p>
@@ -933,8 +1193,8 @@ name. However, the plotnine package is designed to be imported this way:</p>
 <p>What kind of plot should we make? It depends on what data we want the plot to
 show. Let’s make a line plot that shows the number of playgrounds per 10,000
 residents over the years for major cities in California.</p>
-<div class="section" id="preparing-the-data">
-<h3><span class="section-number">3.5.1. </span>Preparing the Data<a class="headerlink" href="#preparing-the-data" title="Permalink to this headline">¶</a></h3>
+<section id="preparing-the-data">
+<h3><span class="section-number">3.5.1. </span>Preparing the Data<a class="headerlink" href="#preparing-the-data" title="Permalink to this headline">#</a></h3>
 <p>Before making a plot, you’ll generally have to prepare the data by getting a
 subset of the rows and columns in which you’re interested. You can get a subset
 by using the indexing techniques that were covered in
@@ -1115,9 +1375,9 @@ cities in California:</p>
 <p>5 rows × 31 columns</p>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="layer-1-data">
-<h3><span class="section-number">3.5.2. </span>Layer 1: Data<a class="headerlink" href="#layer-1-data" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="layer-1-data">
+<h3><span class="section-number">3.5.2. </span>Layer 1: Data<a class="headerlink" href="#layer-1-data" title="Permalink to this headline">#</a></h3>
 <p>The data layer determines the data set used to make the plot. plotnine is
 designed for working with <strong>tidy</strong> data frames. Tidy means:</p>
 <ol class="simple">
@@ -1134,15 +1394,15 @@ designed for working with <strong>tidy</strong> data frames. Tidy means:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_32_0.png" src="../_images/03_summarizing-data_32_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8790190495148)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756517099025)&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <p>This returns a blank plot. We still need to add a few more layers.</p>
-</div>
-<div class="section" id="layer-2-geometry">
-<h3><span class="section-number">3.5.3. </span>Layer 2: Geometry<a class="headerlink" href="#layer-2-geometry" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="layer-2-geometry">
+<h3><span class="section-number">3.5.3. </span>Layer 2: Geometry<a class="headerlink" href="#layer-2-geometry" title="Permalink to this headline">#</a></h3>
 <p>The <strong>geom</strong>etry layer determines the shape or appearance of the visual
 elements of the plot. In other words, the geometry layer determines what kind
 of plot to make: one with points, lines, boxes, or something else.</p>
@@ -1159,101 +1419,122 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span>                 <span class="n">type_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type_printers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span>                 <span class="n">deferred_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deferred_printers</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">702</span>             <span class="n">printer</span><span class="o">.</span><span class="n">pretty</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="n">printer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span>             <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/IPython/core/formatters.py:707,</span> in <span class="ni">PlainTextFormatter.__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span> <span class="n">printer</span> <span class="o">=</span> <span class="n">pretty</span><span class="o">.</span><span class="n">RepresentationPrinter</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="bp">self</span><span class="o">.</span><span class="n">max_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newline</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="n">max_seq_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_seq_length</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="n">singleton_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">singleton_printers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="n">type_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type_printers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="n">deferred_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deferred_printers</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">707</span> <span class="n">printer</span><span class="o">.</span><span class="n">pretty</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span> <span class="n">printer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/IPython/lib/pretty.py</span> in <span class="ni">pretty</span><span class="nt">(self, obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">392</span>                         <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">object</span> \
-<span class="g g-Whitespace">    </span><span class="mi">393</span>                                 <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">)):</span>
-<span class="ne">--&gt; </span><span class="mi">394</span>                             <span class="k">return</span> <span class="n">_repr_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">395</span> 
-<span class="g g-Whitespace">    </span><span class="mi">396</span>             <span class="k">return</span> <span class="n">_default_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/IPython/lib/pretty.py:410,</span> in <span class="ni">RepresentationPrinter.pretty</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span>                         <span class="k">return</span> <span class="n">meth</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">408</span>                 <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">object</span> \
+<span class="g g-Whitespace">    </span><span class="mi">409</span>                         <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">)):</span>
+<span class="ne">--&gt; </span><span class="mi">410</span>                     <span class="k">return</span> <span class="n">_repr_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="k">return</span> <span class="n">_default_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">413</span> <span class="k">finally</span><span class="p">:</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/IPython/lib/pretty.py</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
-<span class="g g-Whitespace">    </span><span class="mi">698</span>     <span class="sd">&quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">699</span>     <span class="c1"># Find newlines and replace them with p.break_()</span>
-<span class="ne">--&gt; </span><span class="mi">700</span>     <span class="n">output</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span>     <span class="n">lines</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">group</span><span class="p">():</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/IPython/lib/pretty.py:778,</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
+<span class="g g-Whitespace">    </span><span class="mi">776</span> <span class="sd">&quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span> <span class="c1"># Find newlines and replace them with p.break_()</span>
+<span class="ne">--&gt; </span><span class="mi">778</span> <span class="n">output</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">779</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span> <span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">group</span><span class="p">():</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/ggplot.py</span> in <span class="ni">__repr__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>         <span class="n">Print</span><span class="o">/</span><span class="n">show</span> <span class="n">the</span> <span class="n">plot</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>         <span class="sd">&quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">97</span><span class="sd">         self.__str__()</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="sd">         return &#39;&lt;ggplot: (%d)&gt;&#39; % self.__hash__()</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span><span class="sd"> </span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:95,</span> in <span class="ni">ggplot.__repr__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span><span class="sd">     Print/show the plot</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">95</span>     <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">return</span> <span class="s1">&#39;&lt;ggplot: (</span><span class="si">%d</span><span class="s1">)&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/ggplot.py</span> in <span class="ni">__str__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span><span class="sd">         Print/show the plot</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">88</span>         <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span> 
-<span class="g g-Whitespace">     </span><span class="mi">90</span>         <span class="c1"># Return and empty string so that print(p) is &quot;pretty&quot;</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:86,</span> in <span class="ni">ggplot.__str__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span><span class="sd">     Print/show the plot</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">86</span>     <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="c1"># Return and empty string so that print(p) is &quot;pretty&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">return</span> <span class="s1">&#39;&#39;</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/ggplot.py</span> in <span class="ni">draw</span><span class="nt">(self, return_ggplot, show)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>         <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span>         <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">205</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span> 
-<span class="g g-Whitespace">    </span><span class="mi">207</span>             <span class="c1"># setup</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:203,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, return_ggplot, show)</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span> <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">203</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>     <span class="c1"># setup</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">figure</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_figure</span><span class="p">()</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/ggplot.py</span> in <span class="ni">_build</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>         <span class="c1"># Prepare data in geoms</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="c1"># e.g. from y and width to ymin and ymax</span>
-<span class="ne">--&gt; </span><span class="mi">308</span>         <span class="n">layers</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span> 
-<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="c1"># Apply position adjustments</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:308,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span> <span class="n">layers</span><span class="o">.</span><span class="n">map_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span> <span class="c1"># Prepare data in geoms</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span> <span class="c1"># e.g. from y and width to ymin and ymax</span>
+<span class="ne">--&gt; </span><span class="mi">308</span> <span class="n">layers</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="c1"># Apply position adjustments</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="n">layers</span><span class="o">.</span><span class="n">compute_position</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/layer.py</span> in <span class="ni">setup_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>         <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">59</span>             <span class="n">l</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> 
-<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">coord</span><span class="p">):</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/layer.py:57,</span> in <span class="ni">Layers.setup_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">57</span>         <span class="n">l</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/layer.py</span> in <span class="ni">setup_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">361</span>             <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)()</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span> 
-<span class="ne">--&gt; </span><span class="mi">363</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">setup_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">364</span> 
-<span class="g g-Whitespace">    </span><span class="mi">365</span>         <span class="n">check_required_aesthetics</span><span class="p">(</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/layer.py:373,</span> in <span class="ni">layer.setup_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span>     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)()</span>
+<span class="ne">--&gt; </span><span class="mi">373</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">setup_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span> <span class="n">check_required_aesthetics</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span>     <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">REQUIRED_AES</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span>     <span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">aes_params</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span>     <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+<span class="g g-Whitespace">    </span><span class="mi">379</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/plotnine/geoms/geom_line.py</span> in <span class="ni">setup_data</span><span class="nt">(self, data)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> 
-<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">22</span>         <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;PANEL&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">])</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/geoms/geom_line.py:22,</span> in <span class="ni">geom_line.setup_data</span><span class="nt">(self, data)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">22</span>     <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;PANEL&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">])</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> 
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/pandas/util/_decorators.py:311,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">sort_values</span><span class="nt">(self, by, axis, ascending, inplace, kind, na_position, ignore_index, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6235</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6236</span> 
-<span class="ne">-&gt; </span><span class="mi">6237</span>             <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">6238</span> 
-<span class="g g-Whitespace">   </span><span class="mi">6239</span>             <span class="c1"># need to rewrap columns in Series to apply key function</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/pandas/core/frame.py:6304,</span> in <span class="ni">DataFrame.sort_values</span><span class="nt">(self, by, axis, ascending, inplace, kind, na_position, ignore_index, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6299</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">6300</span>         <span class="sa">f</span><span class="s2">&quot;Length of ascending (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ascending</span><span class="p">)</span><span class="si">}</span><span class="s2">) != length of by (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">6301</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6302</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">6304</span>     <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6306</span>     <span class="c1"># need to rewrap columns in Series to apply key function</span>
+<span class="g g-Whitespace">   </span><span class="mi">6307</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6308</span>         <span class="c1"># error: List comprehension has incompatible type List[Series];</span>
+<span class="g g-Whitespace">   </span><span class="mi">6309</span>         <span class="c1"># expected List[ndarray]</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6235</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6236</span> 
-<span class="ne">-&gt; </span><span class="mi">6237</span>             <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">6238</span> 
-<span class="g g-Whitespace">   </span><span class="mi">6239</span>             <span class="c1"># need to rewrap columns in Series to apply key function</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/pandas/core/frame.py:6304,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6299</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">6300</span>         <span class="sa">f</span><span class="s2">&quot;Length of ascending (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ascending</span><span class="p">)</span><span class="si">}</span><span class="s2">) != length of by (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">6301</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6302</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">6304</span>     <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6306</span>     <span class="c1"># need to rewrap columns in Series to apply key function</span>
+<span class="g g-Whitespace">   </span><span class="mi">6307</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6308</span>         <span class="c1"># error: List comprehension has incompatible type List[Series];</span>
+<span class="g g-Whitespace">   </span><span class="mi">6309</span>         <span class="c1"># expected List[ndarray]</span>
 
-<span class="nn">~/garden/miniconda3/envs/py-workshop/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_get_label_or_level_values</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1777</span>             <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
-<span class="g g-Whitespace">   </span><span class="mi">1778</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1779</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1780</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1781</span>         <span class="c1"># Check for duplicates</span>
+<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/pandas/core/generic.py:1840,</span> in <span class="ni">NDFrame._get_label_or_level_values</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1838</span>     <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1839</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1840</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1842</span> <span class="c1"># Check for duplicates</span>
+<span class="g g-Whitespace">   </span><span class="mi">1843</span> <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
 
 <span class="ne">KeyError</span>: &#39;x&#39;
 </pre></div>
@@ -1263,9 +1544,9 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <p>This returns the error message <code class="docutils literal notranslate"><span class="pre">KeyError:</span> <span class="pre">'x'</span></code>, which means the geometry needs
 to know which column of data to use for the aesthetic <code class="docutils literal notranslate"><span class="pre">x</span></code>. We’ll learn more
 about aesthetics in the next section.</p>
-</div>
-<div class="section" id="layer-3-aesthetics">
-<h3><span class="section-number">3.5.4. </span>Layer 3: Aesthetics<a class="headerlink" href="#layer-3-aesthetics" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="layer-3-aesthetics">
+<h3><span class="section-number">3.5.4. </span>Layer 3: Aesthetics<a class="headerlink" href="#layer-3-aesthetics" title="Permalink to this headline">#</a></h3>
 <p>The <strong>aes</strong>thetic layer determines the relationship between the data and the
 geometry. Use the aesthetic layer to map features in the data to <strong>aesthetics</strong>
 (visual elements) of the geometry.</p>
@@ -1294,7 +1575,7 @@ operator. Instead, pass the aesthetic layer as the second argument to the
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_36_0.png" src="../_images/03_summarizing-data_36_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8790181873493)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756504938136)&gt;
 </pre></div>
 </div>
 </div>
@@ -1305,9 +1586,9 @@ operator. Instead, pass the aesthetic layer as the second argument to the
 can break a line of code across multiple lines as long as you put the code
 inside of parentheses, like the code above.</p>
 </div>
-</div>
-<div class="section" id="refining-visualizations">
-<h3><span class="section-number">3.5.5. </span>Refining Visualizations<a class="headerlink" href="#refining-visualizations" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="refining-visualizations">
+<h3><span class="section-number">3.5.5. </span>Refining Visualizations<a class="headerlink" href="#refining-visualizations" title="Permalink to this headline">#</a></h3>
 <p>Making a <em>good</em> plot is usually a refinement process, where you go through
 several drafts before getting to one that communicates the information clearly.</p>
 <p>For example, the plot above is visually cluttered. As a rule of thumb, line
@@ -1526,7 +1807,7 @@ to each line:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_42_0.png" src="../_images/03_summarizing-data_42_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8790182052343)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756504871924)&gt;
 </pre></div>
 </div>
 </div>
@@ -1546,7 +1827,7 @@ you want to make the points bigger:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_44_0.png" src="../_images/03_summarizing-data_44_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8790180069087)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756504839718)&gt;
 </pre></div>
 </div>
 </div>
@@ -1581,9 +1862,9 @@ Where we put the aesthetics matters:
 #  geom_point() + geom_text(aes(color = major), size = 2)
 ```
 -->
-</div>
-<div class="section" id="layer-4-scales">
-<h3><span class="section-number">3.5.6. </span>Layer 4: Scales<a class="headerlink" href="#layer-4-scales" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="layer-4-scales">
+<h3><span class="section-number">3.5.6. </span>Layer 4: Scales<a class="headerlink" href="#layer-4-scales" title="Permalink to this headline">#</a></h3>
 <p>The scales layer controls the title, axis labels, and axis scales of the plot.
 Most of the functions in the scales layer are prefixed with <code class="docutils literal notranslate"><span class="pre">scale_</span></code>, but not
 all of them.</p>
@@ -1603,14 +1884,14 @@ and axis labels:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_46_0.png" src="../_images/03_summarizing-data_46_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8790180003142)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756503257146)&gt;
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="saving-plots">
-<h3><span class="section-number">3.5.7. </span>Saving Plots<a class="headerlink" href="#saving-plots" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="saving-plots">
+<h3><span class="section-number">3.5.7. </span>Saving Plots<a class="headerlink" href="#saving-plots" title="Permalink to this headline">#</a></h3>
 <p>If you save a plot into a variable, you can use the <code class="docutils literal notranslate"><span class="pre">.save</span></code> method or the
 <code class="docutils literal notranslate"><span class="pre">ggsave</span></code> function to save it to a file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span> <span class="o">=</span> <span class="p">(</span>
@@ -1626,10 +1907,10 @@ and axis labels:</p>
 </div>
 <p>The file format is selected automatically based on the extension. Common
 formats are PNG and PDF.</p>
-</div>
-</div>
-<div class="section" id="conditional-statements">
-<h2><span class="section-number">3.6. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="conditional-statements">
+<h2><span class="section-number">3.6. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">#</a></h2>
 <p>Sometimes you’ll need code to do different things depending on a condition. You
 can use an <strong>if-statement</strong> to write conditional code.</p>
 <p>An if-statement begins with the <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword, followed by a condition and a
@@ -1741,9 +2022,9 @@ cases in code makes the code harder to understand and maintain. If you find
 yourself using lots of if-statements, especially nested if-statements, consider
 whether there is a more general strategy or way to write the code.</p>
 </div>
-</div>
-<div class="section" id="functions">
-<span id="id1"></span><h2><span class="section-number">3.7. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="functions">
+<span id="id1"></span><h2><span class="section-number">3.7. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
 <p>The main way to interact with Python is by calling functions, which was first
 explained back in <a class="reference internal" href="01_python-basics.html#calling-functions"><span class="std std-numref">Section 1.2.2</span></a>. This section explains how to
 write your own functions.</p>
@@ -1937,11 +2218,11 @@ short function for each step. This approach makes it easier to:</p>
 <li><p>Test that each step works correctly.</p></li>
 <li><p>Modify, reuse, or repurpose a step.</p></li>
 </ul>
-</div>
-<div class="section" id="practice-exercises">
-<h2><span class="section-number">3.8. </span>Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="exercise-1">
-<h3><span class="section-number">3.8.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="practice-exercises">
+<h2><span class="section-number">3.8. </span>Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permalink to this headline">#</a></h2>
+<section id="exercise-1">
+<h3><span class="section-number">3.8.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h3>
 <p>Use plotnine and the parks data to make a bar plot that shows the number of
 basketball hoops per 10,000 people in 2018 for 7 cities of your choosing.</p>
 <div class="admonition-hint admonition">
@@ -1949,9 +2230,9 @@ basketball hoops per 10,000 people in 2018 for 7 cities of your choosing.</p>
 <p>When you want to make a bar plot and you’ve already computed the values that go
 on the y-axis, make sure to set <code class="docutils literal notranslate"><span class="pre">stat</span> <span class="pre">=</span> <span class="pre">&quot;identity&quot;</span></code> in the geometry function.</p>
 </div>
-</div>
-<div class="section" id="exercise-2">
-<h3><span class="section-number">3.8.2. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="exercise-2">
+<h3><span class="section-number">3.8.2. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">#</a></h3>
 <p>Try writing a function <code class="docutils literal notranslate"><span class="pre">is_leap</span></code> that detects leap years. The input to your
 function should be an integer year (or a Series of years), and the output
 should be a Boolean value. A year is a leap year if either of these conditions
@@ -1971,9 +2252,9 @@ for example <code class="docutils literal notranslate"><span class="pre">4</span
 <span class="n">is_leap</span><span class="p">(</span><span class="mi">1997</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1997,54 +2278,48 @@ for example <code class="docutils literal notranslate"><span class="pre">4</span
 
               </div>
               
-        
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="02_pandas-basics.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">2. </span>Pandas Data Structures</p>
-            </div>
-        </a>
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="02_pandas-basics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Pandas Data Structures</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="04_non-tabular-data.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Non-tabular Data</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="04_non-tabular-data.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">4. </span>Non-tabular Data</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Arthur Koehl and Nick Ulle<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Arthur Koehl and Nick Ulle<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>
