@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-Cleaning script for preparing data from the HCN land-grab universities project for the Python/R
+Cleaning script for preparing data from the HCN Land-Grab Universities project for the Python/R
 workshop series. The data is available at https://github.com/HCN-Digital-Projects/landgrabu-data
 
-Usage: `python3 input.csv output.csv`
+Usage: `python3 clean_landgrabu.py input.csv output.csv`
 """
 
 import sys
