@@ -10,8 +10,8 @@ kernelspec:
   name: python3
 ---
 
-Pandas Data Structures
-======================
+Data Structures
+===============
 
 
 :::{admonition} Learning Objectives
