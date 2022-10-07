@@ -1394,7 +1394,7 @@ designed for working with <strong>tidy</strong> data frames. Tidy means:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_32_0.png" src="../_images/03_summarizing-data_32_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756517099025)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (324383069)&gt;
 </pre></div>
 </div>
 </div>
@@ -1419,7 +1419,7 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/IPython/core/formatters.py:707,</span> in <span class="ni">PlainTextFormatter.__call__</span><span class="nt">(self, obj)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/core/formatters.py:707,</span> in <span class="ni">PlainTextFormatter.__call__</span><span class="nt">(self, obj)</span>
 <span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">701</span> <span class="n">printer</span> <span class="o">=</span> <span class="n">pretty</span><span class="o">.</span><span class="n">RepresentationPrinter</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="bp">self</span><span class="o">.</span><span class="n">max_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newline</span><span class="p">,</span>
@@ -1431,7 +1431,7 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <span class="g g-Whitespace">    </span><span class="mi">708</span> <span class="n">printer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/IPython/lib/pretty.py:410,</span> in <span class="ni">RepresentationPrinter.pretty</span><span class="nt">(self, obj)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/lib/pretty.py:410,</span> in <span class="ni">RepresentationPrinter.pretty</span><span class="nt">(self, obj)</span>
 <span class="g g-Whitespace">    </span><span class="mi">407</span>                         <span class="k">return</span> <span class="n">meth</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">408</span>                 <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">object</span> \
 <span class="g g-Whitespace">    </span><span class="mi">409</span>                         <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">)):</span>
@@ -1439,14 +1439,14 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="k">return</span> <span class="n">_default_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">413</span> <span class="k">finally</span><span class="p">:</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/IPython/lib/pretty.py:778,</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/lib/pretty.py:778,</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
 <span class="g g-Whitespace">    </span><span class="mi">776</span> <span class="sd">&quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">    </span><span class="mi">777</span> <span class="c1"># Find newlines and replace them with p.break_()</span>
 <span class="ne">--&gt; </span><span class="mi">778</span> <span class="n">output</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">779</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">780</span> <span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">group</span><span class="p">():</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:95,</span> in <span class="ni">ggplot.__repr__</span><span class="nt">(self)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:95,</span> in <span class="ni">ggplot.__repr__</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="sd">&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">     </span><span class="mi">93</span><span class="sd">     Print/show the plot</span>
@@ -1454,7 +1454,7 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <span class="ne">---&gt; </span><span class="mi">95</span>     <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">return</span> <span class="s1">&#39;&lt;ggplot: (</span><span class="si">%d</span><span class="s1">)&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:86,</span> in <span class="ni">ggplot.__str__</span><span class="nt">(self)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:86,</span> in <span class="ni">ggplot.__str__</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="sd">&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">     </span><span class="mi">84</span><span class="sd">     Print/show the plot</span>
@@ -1463,14 +1463,14 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="c1"># Return and empty string so that print(p) is &quot;pretty&quot;</span>
 <span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">return</span> <span class="s1">&#39;&#39;</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:203,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, return_ggplot, show)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:203,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, return_ggplot, show)</span>
 <span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">202</span> <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
 <span class="ne">--&gt; </span><span class="mi">203</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">205</span>     <span class="c1"># setup</span>
 <span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">figure</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_figure</span><span class="p">()</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:308,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:308,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">    </span><span class="mi">304</span> <span class="n">layers</span><span class="o">.</span><span class="n">map_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">306</span> <span class="c1"># Prepare data in geoms</span>
 <span class="g g-Whitespace">    </span><span class="mi">307</span> <span class="c1"># e.g. from y and width to ymin and ymax</span>
@@ -1478,12 +1478,12 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="c1"># Apply position adjustments</span>
 <span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="n">layers</span><span class="o">.</span><span class="n">compute_position</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/layer.py:57,</span> in <span class="ni">Layers.setup_data</span><span class="nt">(self)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/layer.py:57,</span> in <span class="ni">Layers.setup_data</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
 <span class="ne">---&gt; </span><span class="mi">57</span>         <span class="n">l</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/layer.py:373,</span> in <span class="ni">layer.setup_data</span><span class="nt">(self)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/layer.py:373,</span> in <span class="ni">layer.setup_data</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">    </span><span class="mi">370</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">371</span>     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)()</span>
 <span class="ne">--&gt; </span><span class="mi">373</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">setup_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -1494,47 +1494,53 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <span class="g g-Whitespace">    </span><span class="mi">379</span> <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/plotnine/geoms/geom_line.py:22,</span> in <span class="ni">geom_line.setup_data</span><span class="nt">(self, data)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/geoms/geom_line.py:22,</span> in <span class="ni">geom_line.setup_data</span><span class="nt">(self, data)</span>
 <span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">22</span>     <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;PANEL&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">])</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/pandas/util/_decorators.py:311,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/util/_decorators.py:317,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()),</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">317</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/pandas/core/frame.py:6304,</span> in <span class="ni">DataFrame.sort_values</span><span class="nt">(self, by, axis, ascending, inplace, kind, na_position, ignore_index, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6299</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">6300</span>         <span class="sa">f</span><span class="s2">&quot;Length of ascending (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ascending</span><span class="p">)</span><span class="si">}</span><span class="s2">) != length of by (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">6301</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6302</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">6304</span>     <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">6306</span>     <span class="c1"># need to rewrap columns in Series to apply key function</span>
-<span class="g g-Whitespace">   </span><span class="mi">6307</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6308</span>         <span class="c1"># error: List comprehension has incompatible type List[Series];</span>
-<span class="g g-Whitespace">   </span><span class="mi">6309</span>         <span class="c1"># expected List[ndarray]</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/core/frame.py:6886,</span> in <span class="ni">DataFrame.sort_values</span><span class="nt">(self, by, axis, ascending, inplace, kind, na_position, ignore_index, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6880</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">6881</span>         <span class="sa">f</span><span class="s2">&quot;Length of ascending (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ascending</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6882</span>         <span class="sa">f</span><span class="s2">&quot; != length of by (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">6883</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6884</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">6886</span>     <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6888</span>     <span class="c1"># need to rewrap columns in Series to apply key function</span>
+<span class="g g-Whitespace">   </span><span class="mi">6889</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6890</span>         <span class="c1"># error: List comprehension has incompatible type List[Series];</span>
+<span class="g g-Whitespace">   </span><span class="mi">6891</span>         <span class="c1"># expected List[ndarray]</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/pandas/core/frame.py:6304,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6299</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">6300</span>         <span class="sa">f</span><span class="s2">&quot;Length of ascending (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ascending</span><span class="p">)</span><span class="si">}</span><span class="s2">) != length of by (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">6301</span>     <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">6302</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">6304</span>     <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">6306</span>     <span class="c1"># need to rewrap columns in Series to apply key function</span>
-<span class="g g-Whitespace">   </span><span class="mi">6307</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">6308</span>         <span class="c1"># error: List comprehension has incompatible type List[Series];</span>
-<span class="g g-Whitespace">   </span><span class="mi">6309</span>         <span class="c1"># expected List[ndarray]</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/core/frame.py:6886,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6880</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">6881</span>         <span class="sa">f</span><span class="s2">&quot;Length of ascending (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ascending</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6882</span>         <span class="sa">f</span><span class="s2">&quot; != length of by (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">6883</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6884</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">6886</span>     <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_label_or_level_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">by</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6888</span>     <span class="c1"># need to rewrap columns in Series to apply key function</span>
+<span class="g g-Whitespace">   </span><span class="mi">6889</span>     <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6890</span>         <span class="c1"># error: List comprehension has incompatible type List[Series];</span>
+<span class="g g-Whitespace">   </span><span class="mi">6891</span>         <span class="c1"># expected List[ndarray]</span>
 
-<span class="nn">File ~/garden/miniconda3/envs/python-basics/lib/python3.10/site-packages/pandas/core/generic.py:1840,</span> in <span class="ni">NDFrame._get_label_or_level_values</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1838</span>     <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
-<span class="g g-Whitespace">   </span><span class="mi">1839</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1840</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1842</span> <span class="c1"># Check for duplicates</span>
-<span class="g g-Whitespace">   </span><span class="mi">1843</span> <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/core/generic.py:1849,</span> in <span class="ni">NDFrame._get_label_or_level_values</span><span class="nt">(self, key, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1843</span>     <span class="n">values</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1844</span>         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1845</span>         <span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1846</span>         <span class="o">.</span><span class="n">_values</span>
+<span class="g g-Whitespace">   </span><span class="mi">1847</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1848</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1849</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1851</span> <span class="c1"># Check for duplicates</span>
+<span class="g g-Whitespace">   </span><span class="mi">1852</span> <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
 
 <span class="ne">KeyError</span>: &#39;x&#39;
 </pre></div>
@@ -1575,7 +1581,7 @@ operator. Instead, pass the aesthetic layer as the second argument to the
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_36_0.png" src="../_images/03_summarizing-data_36_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756504938136)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328558947)&gt;
 </pre></div>
 </div>
 </div>
@@ -1807,7 +1813,7 @@ to each line:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_42_0.png" src="../_images/03_summarizing-data_42_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756504871924)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328630387)&gt;
 </pre></div>
 </div>
 </div>
@@ -1827,7 +1833,7 @@ you want to make the points bigger:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_44_0.png" src="../_images/03_summarizing-data_44_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756504839718)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328709090)&gt;
 </pre></div>
 </div>
 </div>
@@ -1884,7 +1890,7 @@ and axis labels:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_summarizing-data_46_0.png" src="../_images/03_summarizing-data_46_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (8756503257146)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328772041)&gt;
 </pre></div>
 </div>
 </div>

@@ -380,16 +380,6 @@ title="Print to PDF"
      1.2.3. Objects &amp; Attributes
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lists">
-     1.2.4. Lists
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#references">
-     1.2.5. References
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -458,6 +448,45 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#hello-data">
      1.6.1. Hello, Data!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inspecting-a-dataframe">
+   1.7. Inspecting a DataFrame
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summarizing-data">
+     1.7.1. Summarizing Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-columns">
+     1.7.2. Selecting Columns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   1.8. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     1.8.1. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     1.8.2. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     1.8.3. Exercise
     </a>
    </li>
   </ul>
@@ -506,16 +535,6 @@ title="Print to PDF"
      1.2.3. Objects &amp; Attributes
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lists">
-     1.2.4. Lists
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#references">
-     1.2.5. References
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -584,6 +603,45 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#hello-data">
      1.6.1. Hello, Data!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inspecting-a-dataframe">
+   1.7. Inspecting a DataFrame
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summarizing-data">
+     1.7.1. Summarizing Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-columns">
+     1.7.2. Selecting Columns
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   1.8. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     1.8.1. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     1.8.2. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     1.8.3. Exercise
     </a>
    </li>
   </ul>
@@ -642,7 +700,7 @@ other programming languages, Python’s particular strengths are its:</p>
 <li><p>Interactivity</p></li>
 <li><p>Use in a wide variety of disciplines, not just data science</p></li>
 <li><p>Broad base of user-contributed packages</p></li>
-<li><p>Syntax which resembles pseudocode and encourages good habits</p></li>
+<li><p>Easy to learn syntax that encourages good habits</p></li>
 </ul>
 <section id="prerequisites">
 <h2><span class="section-number">1.1. </span>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
@@ -752,8 +810,8 @@ variable called <code class="docutils literal notranslate"><span class="pre">are
 </div>
 </div>
 <p>In Python, variable names can contain any combination of letters, numbers, and
-underscores <code class="docutils literal notranslate"><span class="pre">_</span></code>, but must always start with a letter. Spaces, dots, and other
-symbols are not allowed in variable names.</p>
+underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>). Variables cannot start with a number; spaces, dots, and
+other symbols are not allowed in variable names.</p>
 <p>The main reason to use variables is to temporarily save results from
 expressions so that you can use them in other expressions. For instance, now
 you can use the <code class="docutils literal notranslate"><span class="pre">area</span></code> variable anywhere you want the area of the triangle.</p>
@@ -775,9 +833,8 @@ have to enter the variable’s name as a separate expression:</p>
 <p>Another reason to use variables is to make an expression clearer and more
 general. For instance, you might want to compute the area of several triangles
 with different bases and heights. Then the expression <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">/</span> <span class="pre">2</span></code> is too
-specific.
-Instead, you can create variables <code class="docutils literal notranslate"><span class="pre">base</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>, then rewrite the
-expression as <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">*</span> <span class="pre">height</span> <span class="pre">/</span> <span class="pre">2</span></code>. This makes the expression easier to
+specific. Instead, you can create variables <code class="docutils literal notranslate"><span class="pre">base</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>, then rewrite
+the expression as <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">*</span> <span class="pre">height</span> <span class="pre">/</span> <span class="pre">2</span></code>. This makes the expression easier to
 understand, because the reader does not have to intuit that <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code> are the
 base and height in the formula. Here’s the new code to compute and display the
 area of a triangle with base 3 and height 4:</p>
@@ -1069,178 +1126,12 @@ an object. Here are the attributes for a string:</p>
 </div>
 </div>
 </div>
-<p>Attributes which begin with two underscores <code class="docutils literal notranslate"><span class="pre">__</span></code> are used by Python internally
-and usually not intended to be accessed directly.</p>
-</section>
-<section id="lists">
-<span id="id2"></span><h3><span class="section-number">1.2.4. </span>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">#</a></h3>
-<p>A <strong>list</strong> is a container for zero or more values. The values in a list are
-called <strong>elements</strong>, and the <strong>length</strong> of a list is the number of elements.
-Lists are ordered, so there is a first element, second element, and so on up to
-the length of the list.</p>
-<p>You can make a list by enclosing comma-separated values in square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>, like this:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Lists can be empty:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
-</pre></div>
-</div>
-</div>
-</div>
-<p>The elements of a list can also be qualitatively different. For instance,
-here’s a list where the first element is a number, the second is a string, and
-the third is another list (with one element):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]]</span>
-<span class="n">x</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8, &#39;hello&#39;, [&#39;a&#39;]]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> also serve as the <strong>indexing operator</strong> in Python. The
-indexing operator gets or sets an element of a list based on the element’s
-position. Python uses <strong>zero-based indexing</strong>, which means the first element of
-a data structure is at position 0. The code to get the first element of the
-list <code class="docutils literal notranslate"><span class="pre">x</span></code> is:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
-</pre></div>
-</div>
-</div>
-</div>
-<p>Similarly, the code to get the third element of <code class="docutils literal notranslate"><span class="pre">x</span></code> is:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;a&#39;]
-</pre></div>
-</div>
-</div>
-</div>
-<p>You can set an element of a list by assigning at that index. So the code to
-change the first element of <code class="docutils literal notranslate"><span class="pre">x</span></code> to the string <code class="docutils literal notranslate"><span class="pre">&quot;hi&quot;</span></code> is:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;hi&quot;</span>
-<span class="n">x</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hi&#39;, &#39;hello&#39;, [&#39;a&#39;]]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Notice that this changes the overall list.</p>
-<p>You can get the length of a list with the built-in <code class="docutils literal notranslate"><span class="pre">len</span></code> function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-</pre></div>
-</div>
-</div>
-</div>
-<p>Lists are a fundamental data structure in Python, so you’ll see many more
-examples of them as you go through this reader.</p>
-</section>
-<section id="references">
-<h3><span class="section-number">1.2.5. </span>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
-<p>When you assign a Python object to a variable, Python usually creates a
-<strong>reference</strong> to the object. This means that if you assign an object to
-multiple variables and change one, all of them will change.</p>
-<p>For example, suppose you assign a list to variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, then change an
-element of <code class="docutils literal notranslate"><span class="pre">y</span></code>. Doing so also changes <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
-<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">x</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 2]
-</pre></div>
-</div>
-</div>
-</div>
-<p>If you want to make a copy of an object, use the object’s <code class="docutils literal notranslate"><span class="pre">copy</span></code> method:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">x</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Reassigning a variable, as opposed to modifying elements, does not affect other
-variables. Here’s an example:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">x</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-</pre></div>
-</div>
-</div>
-</div>
+<p>Attributes that begin with two underscores <code class="docutils literal notranslate"><span class="pre">__</span></code> are used by Python internally
+and are usually not intended to be accessed directly.</p>
 </section>
 </section>
 <section id="getting-help">
-<span id="id3"></span><h2><span class="section-number">1.3. </span>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">#</a></h2>
+<span id="id2"></span><h2><span class="section-number">1.3. </span>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">#</a></h2>
 <p>Learning and using a language is hard, so it’s important to know how to get
 help. The first place to look for help is Python’s built-in documentation. In
 the console, you can access the help pages with the <code class="docutils literal notranslate"><span class="pre">help</span></code> function.</p>
@@ -1453,7 +1344,7 @@ introduced in 2001. SciPy is divided into several different Python packages.</p>
 <li><p><strong>NumPy</strong>, which provides an n-dimensional array data structure and a variety
 of math functions</p></li>
 <li><p><strong>SciPy</strong>, which provides additional math functions</p></li>
-<li><p><strong>Pandas</strong>, which provides data frames</p></li>
+<li><p><strong>Pandas</strong>, which provides DataFrames</p></li>
 <li><p><strong>IPython</strong>, which makes it possible to run Python code in Jupyter</p></li>
 <li><p><strong>Matplotlib</strong>, which provides data visualization functions</p></li>
 </ul>
@@ -1462,7 +1353,7 @@ reader. By using JupyterLab, you’ve already used IPython. You’ll use Matplot
 indirectly later on, when you learn about visualization.</p>
 </section>
 <section id="modules">
-<span id="id4"></span><h3><span class="section-number">1.4.2. </span>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h3>
+<span id="id3"></span><h3><span class="section-number">1.4.2. </span>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">#</a></h3>
 <p>In Python, packages are further subdivided into <strong>modules</strong>, collections of
 related functions and data structures. The best way to learn about the modules
 provided by a package is to read the package’s documentation. There are also
@@ -1598,7 +1489,7 @@ helper functions to edit paths that account for differences between operating
 systems.</p>
 </div>
 <section id="absolute-relative-paths">
-<span id="id5"></span><h3><span class="section-number">1.5.1. </span>Absolute &amp; Relative Paths<a class="headerlink" href="#absolute-relative-paths" title="Permalink to this headline">#</a></h3>
+<span id="id4"></span><h3><span class="section-number">1.5.1. </span>Absolute &amp; Relative Paths<a class="headerlink" href="#absolute-relative-paths" title="Permalink to this headline">#</a></h3>
 <p>A path that starts from the root directory, like all of the ones we’ve seen so
 far, is called an <strong>absolute path</strong>. The path is “absolute” because it
 unambiguously describes where a file or directory is located. The downside is
@@ -1623,8 +1514,7 @@ can use a relative path in her code:</p>
 <p>The context is the location of <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code>, the file that contains the
 code. In other words, the starting point on Ada’s computer is the <code class="docutils literal notranslate"><span class="pre">ada</span></code>
 directory. On other computers, the starting point will be different, depending
-on where the
-code is stored.</p>
+on where the code is stored.</p>
 <p>Now suppose Ada sends her corrected code in <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code> to Gladys, and
 tells Gladys to put it in the same directory as <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>. Since the path
 <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code> is relative, the code will still work on Gladys’ computer, as long
@@ -1715,7 +1605,7 @@ periodically so that you don’t lose your work. Following these guidelines will
 help you stay organized and make it easier to share your code with others
 later.</p>
 <section id="jupyter-notebooks">
-<span id="id6"></span><h4><span class="section-number">1.5.2.1. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">#</a></h4>
+<span id="id5"></span><h4><span class="section-number">1.5.2.1. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">#</a></h4>
 <p>For data science tasks, it is also common to use a <a class="reference external" href="https://jupyter.org/"><strong>Jupyter
 notebook</strong></a> with extension <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> to store code. In addition to
 Python code, Jupyter notebooks have full support for formatted text, images,
@@ -1777,7 +1667,7 @@ working directory, as a string. It doesn’t require any arguments:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/nick/workshop/datalab/workshops/python_basics&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tyler/DataLab/workshops/workshop_python_basics&#39;
 </pre></div>
 </div>
 </div>
@@ -1798,7 +1688,7 @@ argument: a path to the new working directory. Here’s an example:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/nick/workshop/datalab/workshops&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tyler/DataLab/workshops&#39;
 </pre></div>
 </div>
 </div>
@@ -1825,22 +1715,17 @@ path. For instance:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;remote-computing&#39;,
- &#39;template_workshop&#39;,
- &#39;jupyterbook-notes.md&#39;,
- &#39;ocr&#39;,
- &#39;data_viz.md&#39;,
- &#39;r_basics&#39;,
- &#39;python_intensive_training&#39;,
- &#39;workshop_ocr_python&#39;,
- &#39;python_basics&#39;,
- &#39;intermediate_r&#39;,
- &#39;2022_python_bootcamp&#39;,
- &#39;intro_to_sql&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;workshop_r_basics&#39;,
+ &#39;workshop_introduction_to_version_control&#39;,
+ &#39;analytics_and_misc&#39;,
+ &#39;.DS_Store&#39;,
+ &#39;workshop_getting_started_with_textual_data&#39;,
+ &#39;workshop_introduction_to_the_command_line&#39;,
+ &#39;workshop_python_basics&#39;,
  &#39;template_python_workshop&#39;,
- &#39;testing&#39;,
- &#39;data_viz_principles&#39;,
- &#39;intermediate_python&#39;]
+ &#39;workshop_nlp_with_python&#39;,
+ &#39;template_workshop&#39;,
+ &#39;workshop_git_for_teams&#39;]
 </pre></div>
 </div>
 </div>
@@ -1857,7 +1742,7 @@ an empty directory, Python raises a <code class="docutils literal notranslate"><
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">37</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/this/path/is/fake/&quot;</span><span class="p">)</span>
 
 <span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/this/path/is/fake/&#39;
@@ -1868,7 +1753,7 @@ an empty directory, Python raises a <code class="docutils literal notranslate"><
 </section>
 </section>
 <section id="reading-files">
-<span id="id7"></span><h2><span class="section-number">1.6. </span>Reading Files<a class="headerlink" href="#reading-files" title="Permalink to this headline">#</a></h2>
+<span id="id6"></span><h2><span class="section-number">1.6. </span>Reading Files<a class="headerlink" href="#reading-files" title="Permalink to this headline">#</a></h2>
 <p>The first step in most data analyses is loading the data. The Pandas package
 provides functions to read a variety of data formats. In order to know which
 function to use, you need to identify the data’s file format.</p>
@@ -1987,24 +1872,23 @@ other advantages. Compared to text files, binary files are often faster to read
 and take up less storage space (bytes).</p>
 <section id="hello-data">
 <h3><span class="section-number">1.6.1. </span>Hello, Data!<a class="headerlink" href="#hello-data" title="Permalink to this headline">#</a></h3>
-<p>Over the next few sections, you’ll explore data from <a class="reference external" href="https://www.tpl.org/parks-and-an-equitable-recovery-parkscore-report">The Trust for Public
-Land</a> about park access in major American cities. The data set was
-prepared as part of the Tidy Tuesday community data project. You can find more
-details about the data set <a class="reference external" href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-06-22">here</a>, and you can download the data set
-<a class="reference external" href="https://raw.githubusercontent.com/ucdavisdatalab/workshop_python_basics/main/data/parks_final.csv">here</a> (you may need to choose <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Save</span> <span class="pre">As...</span></code> in your browser’s
-menu).</p>
-<p>The data set is a file called <code class="docutils literal notranslate"><span class="pre">parks_final.csv</span></code>, which suggests it’s a CSV
-file. In this case, the extension is correct, so you can read the file with
-Pandas’ <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function. The first argument is the path to where you saved
-the file, which may be different on your computer. The <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function
-returns the data set, but Python won’t keep the data in memory unless you
-assign the returned result to a variable:</p>
-<div class="cell docutils container">
+<p>Over the next few sections, you’ll explore data about banknotes and the people
+depicted on them. This data is derived from a data set compiled by <a class="reference external" href="https://pudding.cool/">The
+Pudding</a>, which features <a class="reference external" href="https://pudding.cool/2022/04/banknotes/">an article</a> about it. To download the
+version you’ll need for this workshop, click <a class="reference external" href="https://raw.githubusercontent.com/ucdavisdatalab/workshop_r_basics/dev/data/banknotes.csv">here</a>. You may need to
+choose <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Save</span> <span class="pre">As...</span></code> in your browser’s menu.</p>
+<p>The data set is a file called <code class="docutils literal notranslate"><span class="pre">banknotes.csv</span></code>, which suggests it’s a CSV file.
+In this case, the extension is correct, so you can read the file with Pandas’
+<code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function. The first argument is the path to where you saved the
+file, which may be different on your computer. The <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function returns
+the data set, but Python won’t keep the data in memory unless you assign the
+returned result to a variable:</p>
+<div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">parks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/parks_final.csv&quot;</span><span class="p">)</span>
-<span class="n">parks</span>
+<span class="n">banknotes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/banknotes.csv&quot;</span><span class="p">)</span>
+<span class="n">banknotes</span>
 </pre></div>
 </div>
 </div>
@@ -2027,149 +1911,125 @@ assign the returned result to a variable:</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>year</th>
-      <th>rank</th>
-      <th>city</th>
-      <th>med_park_size_data</th>
-      <th>med_park_size_points</th>
-      <th>park_pct_city_data</th>
-      <th>park_pct_city_points</th>
-      <th>pct_near_park_data</th>
-      <th>pct_near_park_points</th>
-      <th>spend_per_resident_data</th>
-      <th>...</th>
-      <th>splashground_data</th>
-      <th>splashground_points</th>
-      <th>amenities_points</th>
-      <th>total_points</th>
-      <th>total_pct</th>
-      <th>park_benches</th>
-      <th>state</th>
-      <th>pop2020</th>
-      <th>pop2010</th>
-      <th>area2020</th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2020</td>
-      <td>1</td>
-      <td>Minneapolis</td>
-      <td>5.7</td>
-      <td>26.0</td>
-      <td>15%</td>
-      <td>38.0</td>
-      <td>98%</td>
-      <td>98.0</td>
-      <td>$319</td>
-      <td>...</td>
-      <td>4.0</td>
-      <td>100.0</td>
-      <td>79.3</td>
-      <td>341.0</td>
-      <td>85.3</td>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Eva Perón</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Activist</td>
+      <td>No</td>
+      <td>100</td>
       <td>NaN</td>
-      <td>Minnesota</td>
-      <td>429954.0</td>
-      <td>382578.0</td>
-      <td>54.0</td>
+      <td>2012</td>
+      <td>1952</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Evita</td>
+      <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2020</td>
-      <td>2</td>
-      <td>Washington</td>
-      <td>1.4</td>
-      <td>5.0</td>
-      <td>24%</td>
-      <td>50.0</td>
-      <td>98%</td>
-      <td>98.0</td>
-      <td>$307</td>
-      <td>...</td>
-      <td>4.1</td>
-      <td>100.0</td>
-      <td>80.3</td>
-      <td>333.0</td>
-      <td>83.3</td>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Julio Argentino Roca</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>100</td>
       <td>NaN</td>
-      <td>District of Columbia</td>
-      <td>689545.0</td>
-      <td>601723.0</td>
-      <td>61.1</td>
+      <td>1988</td>
+      <td>1914</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Argentino</td>
+      <td>1.000000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2020</td>
-      <td>3</td>
-      <td>St. Paul</td>
-      <td>3.2</td>
-      <td>14.0</td>
-      <td>15%</td>
-      <td>39.0</td>
-      <td>99%</td>
-      <td>99.0</td>
-      <td>$219</td>
-      <td>...</td>
-      <td>1.3</td>
-      <td>47.0</td>
-      <td>78.0</td>
-      <td>330.0</td>
-      <td>82.5</td>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Domingo Faustino Sarmiento</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>50</td>
       <td>NaN</td>
-      <td>Minnesota</td>
-      <td>311527.0</td>
-      <td>285068.0</td>
-      <td>52.0</td>
+      <td>1999</td>
+      <td>1888</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Domingo</td>
+      <td>0.444444</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2020</td>
-      <td>4</td>
-      <td>Arlington</td>
-      <td>2.4</td>
-      <td>10.0</td>
-      <td>11%</td>
-      <td>28.0</td>
-      <td>99%</td>
-      <td>99.0</td>
-      <td>$301</td>
-      <td>...</td>
-      <td>2.2</td>
-      <td>81.0</td>
-      <td>89.0</td>
-      <td>326.0</td>
-      <td>81.5</td>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Juan Manuel de Rosas</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
       <td>NaN</td>
-      <td>Virginia</td>
+      <td>1992</td>
+      <td>1877</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Rosas</td>
+      <td>0.111111</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2020</td>
-      <td>5</td>
-      <td>Cincinnati</td>
-      <td>4.4</td>
-      <td>20.0</td>
-      <td>14%</td>
-      <td>36.0</td>
-      <td>82%</td>
-      <td>74.0</td>
-      <td>$190</td>
-      <td>...</td>
-      <td>4.5</td>
-      <td>100.0</td>
-      <td>92.5</td>
-      <td>323.0</td>
-      <td>80.6</td>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Manuel Belgrano</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Founder</td>
+      <td>Yes</td>
+      <td>10</td>
       <td>NaN</td>
-      <td>Ohio</td>
-      <td>309317.0</td>
-      <td>296943.0</td>
-      <td>77.8</td>
+      <td>1970</td>
+      <td>1820</td>
+      <td>Came up with the first Argentine flag.</td>
+      <td>Designed first Argentine flag</td>
+      <td>True</td>
+      <td>ARS_Belgrano</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2190,147 +2050,1041 @@ assign the returned result to a variable:</p>
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
-      <th>741</th>
-      <td>2012</td>
-      <td>36</td>
-      <td>Indianapolis</td>
-      <td>10.3</td>
-      <td>20.0</td>
-      <td>4.8%</td>
-      <td>4.0</td>
-      <td>32%</td>
-      <td>6.0</td>
-      <td>$43.61</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>37.0</td>
-      <td>31.0</td>
-      <td>1.5</td>
-      <td>Indiana</td>
-      <td>887642.0</td>
-      <td>820445.0</td>
-      <td>361.6</td>
-    </tr>
-    <tr>
-      <th>742</th>
-      <td>2012</td>
-      <td>36</td>
-      <td>Mesa</td>
-      <td>3.2</td>
-      <td>7.0</td>
-      <td>2.6%</td>
+      <th>274</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
       <td>1.0</td>
-      <td>60%</td>
-      <td>22.0</td>
-      <td>$60.96</td>
-      <td>...</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>10</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>37.0</td>
-      <td>31.0</td>
-      <td>1.5</td>
-      <td>Arizona</td>
-      <td>504258.0</td>
-      <td>439041.0</td>
-      <td>138.7</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.000000</td>
     </tr>
     <tr>
-      <th>743</th>
-      <td>2012</td>
-      <td>38</td>
-      <td>Louisville</td>
-      <td>7.3</td>
-      <td>15.0</td>
-      <td>6.7%</td>
-      <td>6.0</td>
-      <td>32%</td>
-      <td>6.0</td>
-      <td>$50.76</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>35.0</td>
-      <td>29.0</td>
+      <th>275</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
       <td>1.0</td>
-      <td>Kentucky</td>
-      <td>633045.0</td>
-      <td>597337.0</td>
-      <td>263.5</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.052632</td>
     </tr>
     <tr>
-      <th>744</th>
-      <td>2012</td>
-      <td>39</td>
-      <td>Charlotte</td>
-      <td>19.9</td>
-      <td>20.0</td>
-      <td>4.1%</td>
-      <td>3.0</td>
-      <td>26%</td>
-      <td>2.0</td>
-      <td>$78.94</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>34.0</td>
-      <td>28.5</td>
+      <th>276</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
       <td>1.0</td>
-      <td>North Carolina</td>
-      <td>874579.0</td>
-      <td>731424.0</td>
-      <td>308.3</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.210526</td>
     </tr>
     <tr>
-      <th>745</th>
-      <td>2012</td>
-      <td>40</td>
-      <td>Fresno</td>
-      <td>4.9</td>
-      <td>10.0</td>
-      <td>2.1%</td>
+      <th>277</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
       <td>1.0</td>
-      <td>35%</td>
-      <td>8.0</td>
-      <td>$54.98</td>
-      <td>...</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>100</td>
       <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>200</td>
       <td>NaN</td>
-      <td>NaN</td>
-      <td>26.0</td>
-      <td>21.5</td>
-      <td>0.5</td>
-      <td>California</td>
-      <td>542107.0</td>
-      <td>494665.0</td>
-      <td>115.2</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>1.000000</td>
     </tr>
   </tbody>
 </table>
-<p>746 rows × 31 columns</p>
+<p>279 rows × 17 columns</p>
 </div></div></div>
 </div>
-<p>The variable name <code class="docutils literal notranslate"><span class="pre">parks</span></code> here is arbitrary; you can choose something different
-if you want. However, in general, it’s a good habit to choose variable names
-that describe the contents of the variable somehow.</p>
+<p>The variable name <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> here is arbitrary; you can choose something
+different if you want. However, in general, it’s a good habit to choose
+variable names that describe the contents of the variable somehow.</p>
 <p>If you tried running the line of code above and got an error message, pay
 attention to what the error message says, and remember the strategies to get
 help in <a class="reference internal" href="#getting-help"><span class="std std-numref">Section 1.3</span></a>. The most common mistake when reading a file is
 incorrectly specifying the path, so first check that you got the path right.</p>
 <p>If you ran the line of code, there was no error message, and you can see a
 table of data, then congratulations, you’ve read your first data set into
-Python! The next session will pick up from this point and introduce the basics
-of inspecting a data set.</p>
+Python!</p>
+</section>
+</section>
+<section id="inspecting-a-dataframe">
+<span id="inspecting-dataframe"></span><h2><span class="section-number">1.7. </span>Inspecting a DataFrame<a class="headerlink" href="#inspecting-a-dataframe" title="Permalink to this headline">#</a></h2>
+<p>Now that you’ve loaded the data, you can take a look at it. When working with a
+new data set, it often isn’t a good idea to print the whole thing to screen, at
+least until you know how big it is. Large data sets can take a long time to
+print, and the output can be difficult to read.</p>
+<p>Instead, use the Pandas <code class="docutils literal notranslate"><span class="pre">head</span></code> method to print only the beginning, or head, of
+the data.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Eva Perón</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Activist</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1952</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Evita</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Julio Argentino Roca</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1988</td>
+      <td>1914</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Argentino</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Domingo Faustino Sarmiento</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1999</td>
+      <td>1888</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Domingo</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Juan Manuel de Rosas</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1877</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Rosas</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Manuel Belgrano</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Founder</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1970</td>
+      <td>1820</td>
+      <td>Came up with the first Argentine flag.</td>
+      <td>Designed first Argentine flag</td>
+      <td>True</td>
+      <td>ARS_Belgrano</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This data is tabular, as you might have already guessed, since it came from a
+CSV file. Pandas represents it as a <strong>DataFrame</strong>: data structured as rows and
+columns. In general rows are observations and columns are variables. Each entry
+is called a cell.</p>
+<p>You can check to make sure Pandas has indeed created a DataFrame with the
+<code class="docutils literal notranslate"><span class="pre">type</span></code> function, which is discussed in more detail in the next chapter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">banknotes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>Everything looks good here. To see the bottom of this data, use <code class="docutils literal notranslate"><span class="pre">tail</span></code>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>274</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>275</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>276</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.210526</td>
+    </tr>
+    <tr>
+      <th>277</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>200</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Both <code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> accept an optional argument that specifies the number of
+rows to print to screen:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Eva Perón</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Activist</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1952</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Evita</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Julio Argentino Roca</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1988</td>
+      <td>1914</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Argentino</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Domingo Faustino Sarmiento</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1999</td>
+      <td>1888</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Domingo</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Juan Manuel de Rosas</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1877</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Rosas</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Manuel Belgrano</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Founder</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1970</td>
+      <td>1820</td>
+      <td>Came up with the first Argentine flag.</td>
+      <td>Designed first Argentine flag</td>
+      <td>True</td>
+      <td>ARS_Belgrano</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>David Unaipon</td>
+      <td>M</td>
+      <td>0.5</td>
+      <td>STEM</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>0.48</td>
+      <td>1995</td>
+      <td>1967</td>
+      <td>Shares with another person. In 1927 when his b...</td>
+      <td>First Australian Aboriginal writer to be publi...</td>
+      <td>True</td>
+      <td>AUD_Unaipon</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>Mary Gilmore</td>
+      <td>F</td>
+      <td>0.5</td>
+      <td>Writer</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>0.08</td>
+      <td>1993</td>
+      <td>1962</td>
+      <td>Shares with another person. She became the fir...</td>
+      <td>First person appointed Dame Commander of the B...</td>
+      <td>True</td>
+      <td>AUD_Gilmore</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>Reverend John Flynn</td>
+      <td>M</td>
+      <td>0.5</td>
+      <td>Religious figure</td>
+      <td>Yes</td>
+      <td>20</td>
+      <td>0.10</td>
+      <td>1994</td>
+      <td>1951</td>
+      <td>Shares with another person. Founded Royal Flyi...</td>
+      <td>Founded Royal Flying Doctor Service, the world...</td>
+      <td>True</td>
+      <td>AUD_Flynn</td>
+      <td>0.157895</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>Banjo Paterson</td>
+      <td>M</td>
+      <td>0.5</td>
+      <td>Writer</td>
+      <td>No</td>
+      <td>10</td>
+      <td>0.08</td>
+      <td>1993</td>
+      <td>1941</td>
+      <td>Shares with another person</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>AUD_Banjo</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>Edith Cowan</td>
+      <td>F</td>
+      <td>0.5</td>
+      <td>Politician</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>0.48</td>
+      <td>1995</td>
+      <td>1932</td>
+      <td>Shares with another person. She is best known ...</td>
+      <td>First Australian woman to serve as a member of...</td>
+      <td>True</td>
+      <td>AUD_Edith</td>
+      <td>0.473684</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If there are many columns in your DataFrame, as is the case here, Pandas will
+often squeeze the output into a condensed display, with <code class="docutils literal notranslate"><span class="pre">...</span></code> representing
+additional columns.</p>
+<p>One way to get a quick idea of what your data looks like without having to
+shuffle through all the columns and rows is by inspecting its <strong>shape</strong>. This
+is the number of rows and columns in a DataFrame, and you can access this
+information with the <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(279, 17)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice how you accessed this DataFrame’s <code class="docutils literal notranslate"><span class="pre">shape</span></code> attribute using a very similar
+syntax to the way you called one of its methods. The key difference to watch
+for is the presence of parenthesis <code class="docutils literal notranslate"><span class="pre">()</span></code> characters. Object methods have them,
+while object attributes do not.</p>
+</div>
+<p>To display the names of each column, access the <code class="docutils literal notranslate"><span class="pre">columns</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;currency_code&#39;, &#39;country&#39;, &#39;currency_name&#39;, &#39;name&#39;, &#39;gender&#39;,
+       &#39;bill_count&#39;, &#39;profession&#39;, &#39;known_for_being_first&#39;,
+       &#39;current_bill_value&#39;, &#39;prop_total_bills&#39;, &#39;first_appearance_year&#39;,
+       &#39;death_year&#39;, &#39;comments&#39;, &#39;hover_text&#39;, &#39;has_portrait&#39;, &#39;id&#39;,
+       &#39;scaled_bill_value&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="summarizing-data">
+<h3><span class="section-number">1.7.1. </span>Summarizing Data<a class="headerlink" href="#summarizing-data" title="Permalink to this headline">#</a></h3>
+<p>More granular information about a DataFrame and its contents is available with
+the <code class="docutils literal notranslate"><span class="pre">info</span></code> method. In addition to attributes like the DataFrame’s shape and its
+column names, <code class="docutils literal notranslate"><span class="pre">info</span></code> provides a brief summary of the number of cells that
+contain data, the type of data in each cell, and the total memory usage of the
+DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 279 entries, 0 to 278
+Data columns (total 17 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   currency_code          279 non-null    object 
+ 1   country                279 non-null    object 
+ 2   currency_name          279 non-null    object 
+ 3   name                   279 non-null    object 
+ 4   gender                 279 non-null    object 
+ 5   bill_count             279 non-null    float64
+ 6   profession             279 non-null    object 
+ 7   known_for_being_first  279 non-null    object 
+ 8   current_bill_value     279 non-null    int64  
+ 9   prop_total_bills       59 non-null     float64
+ 10  first_appearance_year  279 non-null    int64  
+ 11  death_year             272 non-null    object 
+ 12  comments               119 non-null    object 
+ 13  hover_text             89 non-null     object 
+ 14  has_portrait           279 non-null    bool   
+ 15  id                     279 non-null    object 
+ 16  scaled_bill_value      278 non-null    float64
+dtypes: bool(1), float64(3), int64(2), object(11)
+memory usage: 35.3+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next chapter discusses data types in more detail. For now, just take note
+that there are multiple types (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">float64</span></code>, <code class="docutils literal notranslate"><span class="pre">int64</span></code>, and <code class="docutils literal notranslate"><span class="pre">object</span></code> in
+<code class="docutils literal notranslate"><span class="pre">banknotes</span></code>).</p>
+<p>In contrast to <code class="docutils literal notranslate"><span class="pre">info</span></code>, <code class="docutils literal notranslate"><span class="pre">describe</span></code> provides summary statistics about a
+DataFrame. The latter method will only produce information about numeric data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bill_count</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>279.000000</td>
+      <td>279.000000</td>
+      <td>59.000000</td>
+      <td>279.000000</td>
+      <td>278.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.845556</td>
+      <td>4038.956989</td>
+      <td>0.166949</td>
+      <td>1992.318996</td>
+      <td>0.306058</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.259463</td>
+      <td>14336.386917</td>
+      <td>0.163573</td>
+      <td>25.369968</td>
+      <td>0.364860</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.250000</td>
+      <td>1.000000</td>
+      <td>0.010000</td>
+      <td>1869.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.500000</td>
+      <td>20.000000</td>
+      <td>0.055000</td>
+      <td>1980.000000</td>
+      <td>0.018282</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.000000</td>
+      <td>100.000000</td>
+      <td>0.100000</td>
+      <td>1996.000000</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.000000</td>
+      <td>1000.000000</td>
+      <td>0.230000</td>
+      <td>2012.000000</td>
+      <td>0.489142</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000</td>
+      <td>100000.000000</td>
+      <td>0.750000</td>
+      <td>2021.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="selecting-columns">
+<h3><span class="section-number">1.7.2. </span>Selecting Columns<a class="headerlink" href="#selecting-columns" title="Permalink to this headline">#</a></h3>
+<p>Individual columns may be selected with <strong>bracket notation</strong>. Put the name of
+the column in quotes and place that inside of square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      100
+1      100
+2       50
+3       20
+4       10
+      ... 
+274     10
+275     20
+276     50
+277    100
+278    200
+Name: current_bill_value, Length: 279, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just as with <code class="docutils literal notranslate"><span class="pre">describe</span></code>, you can compute information about a column using
+Pandas methods. Here is the mean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4038.956989247312
+</pre></div>
+</div>
+</div>
+</div>
+<p>And here is the smallest value in the column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Functions from other libraries, especially those in the SciPy ecosystem, can
+also (but not always) work with Pandas. Here is the largest value in the
+column, computed with NumPy’s <code class="docutils literal notranslate"><span class="pre">max</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, you can assign new values to a DataFrame using the same notation as
+above. Below, this code overwrites all the values in the <code class="docutils literal notranslate"><span class="pre">currency_code</span></code>
+column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;currency_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;USD&quot;</span>
+<span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;currency_code&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      USD
+1      USD
+2      USD
+3      USD
+4      USD
+      ... 
+274    USD
+275    USD
+276    USD
+277    USD
+278    USD
+Name: currency_code, Length: 279, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next chapter will return to working with columns, showing you how to
+generate new data from a DataFrame. You’ll also learn how to select rows and
+subsets of the data, as well as groups of columns.</p>
+</section>
+</section>
+<section id="exercises">
+<span id="id7"></span><h2><span class="section-number">1.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h2>
+<section id="exercise">
+<h3><span class="section-number">1.8.1. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<p>In a string, an <strong>escape sequence</strong> or <strong>escape code</strong> consists of a backslash
+<code class="docutils literal notranslate"><span class="pre">\</span></code> followed by one or more characters. Escape characters make it possible to:</p>
+<ul class="simple">
+<li><p>Write quotes or backslashes in a string</p></li>
+<li><p>Use spaces in file paths</p></li>
+<li><p>Write characters that don’t appear on your keyboard (for example characters
+in a different script system)</p></li>
+</ul>
+<p>For example, the escape sequence <code class="docutils literal notranslate"><span class="pre">\n</span></code> means “newline character.” A full list of
+these sequences is available at <a class="reference external" href="https://www.w3schools.com/python/gloss_python_escape_characters.asp">W3Schools</a>.</p>
+<ol class="simple">
+<li><p>Assign a string that contains a newline to the variable <code class="docutils literal notranslate"><span class="pre">newline</span></code>. Then
+display <code class="docutils literal notranslate"><span class="pre">newline</span></code> via the Python console.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> function renders output in a properly formatted manner. Use this
+function to print <code class="docutils literal notranslate"><span class="pre">newline</span></code>.</p></li>
+<li><p>How does the output between these two displays differ? Why do you think this
+is?</p></li>
+</ol>
+</section>
+<section id="id8">
+<h3><span class="section-number">1.8.2. </span>Exercise<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Chose a directory on your computer that you’re familiar with, such as your
+current working directory. Determine the path to the directory, then use
+<code class="docutils literal notranslate"><span class="pre">os.listdir</span></code> to display its contents. Do the files displayed match what you see
+in your systems file browser?</p></li>
+<li><p>Send a path to <code class="docutils literal notranslate"><span class="pre">os.path.exists</span></code> and inspect its output. What does this
+function do? See if you can change its output. If you can, why did it change?</p></li>
+</ol>
+</section>
+<section id="id9">
+<h3><span class="section-number">1.8.3. </span>Exercise<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Open the help file for the Pandas <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function. The <code class="docutils literal notranslate"><span class="pre">sep</span></code> parameter
+controls which characters Pandas looks for when determining the columns in a
+file. What is the default character?</p></li>
+<li><p>A TSV file is similar to CSV files, except it uses tabs to delimit columns.
+Tabs are represented by escape sequences in Python. Find the right sequence
+and explain how you would load a TSV file with <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>.</p></li>
+<li><p>Reload the <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> data, but this time specify <code class="docutils literal notranslate"><span class="pre">\s</span></code> for the <code class="docutils literal notranslate"><span class="pre">sep</span></code>
+parameter. <code class="docutils literal notranslate"><span class="pre">\s</span></code> represents a space. When you load the data using this
+sequence, what happens? Why?</p></li>
+</ol>
 </section>
 </section>
 </section>
