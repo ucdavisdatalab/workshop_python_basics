@@ -17,83 +17,88 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-parks = pd.read_csv("../data/parks_final.csv")
+banknotes[banknotes["current_bill_value"] == 10.0, "currency_name"]
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-Cell [0;32mIn [45], line 1[0m
-[0;32m----> 1[0m parks [38;5;241m=[39m [43mpd[49m[38;5;241;43m.[39;49m[43mread_csv[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43m../data/parks_final.csv[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/core/indexes/base.py:3800[0m, in [0;36mIndex.get_loc[0;34m(self, key, method, tolerance)[0m
+[1;32m   3799[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 3800[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_engine[49m[38;5;241;43m.[39;49m[43mget_loc[49m[43m([49m[43mcasted_key[49m[43m)[49m
+[1;32m   3801[0m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m [38;5;28;01mas[39;00m err:
 
-File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/util/_decorators.py:211[0m, in [0;36mdeprecate_kwarg.<locals>._deprecate_kwarg.<locals>.wrapper[0;34m(*args, **kwargs)[0m
-[1;32m    209[0m     [38;5;28;01melse[39;00m:
-[1;32m    210[0m         kwargs[new_arg_name] [38;5;241m=[39m new_arg_value
-[0;32m--> 211[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/_libs/index.pyx:138[0m, in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
 
-File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/util/_decorators.py:317[0m, in [0;36mdeprecate_nonkeyword_arguments.<locals>.decorate.<locals>.wrapper[0;34m(*args, **kwargs)[0m
-[1;32m    311[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(args) [38;5;241m>[39m num_allow_args:
-[1;32m    312[0m     warnings[38;5;241m.[39mwarn(
-[1;32m    313[0m         msg[38;5;241m.[39mformat(arguments[38;5;241m=[39marguments),
-[1;32m    314[0m         [38;5;167;01mFutureWarning[39;00m,
-[1;32m    315[0m         stacklevel[38;5;241m=[39mfind_stack_level(inspect[38;5;241m.[39mcurrentframe()),
-[1;32m    316[0m     )
-[0;32m--> 317[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/_libs/index.pyx:144[0m, in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
 
-File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/io/parsers/readers.py:950[0m, in [0;36mread_csv[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)[0m
-[1;32m    935[0m kwds_defaults [38;5;241m=[39m _refine_defaults_read(
-[1;32m    936[0m     dialect,
-[1;32m    937[0m     delimiter,
-[0;32m   (...)[0m
-[1;32m    946[0m     defaults[38;5;241m=[39m{[38;5;124m"[39m[38;5;124mdelimiter[39m[38;5;124m"[39m: [38;5;124m"[39m[38;5;124m,[39m[38;5;124m"[39m},
-[1;32m    947[0m )
-[1;32m    948[0m kwds[38;5;241m.[39mupdate(kwds_defaults)
-[0;32m--> 950[0m [38;5;28;01mreturn[39;00m [43m_read[49m[43m([49m[43mfilepath_or_buffer[49m[43m,[49m[43m [49m[43mkwds[49m[43m)[49m
+[0;31mTypeError[0m: '(country
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina        True
+                ...  
+South Africa     True
+South Africa    False
+South Africa    False
+South Africa    False
+South Africa    False
+Name: current_bill_value, Length: 279, dtype: bool, 'currency_name')' is an invalid key
 
-File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/io/parsers/readers.py:605[0m, in [0;36m_read[0;34m(filepath_or_buffer, kwds)[0m
-[1;32m    602[0m _validate_names(kwds[38;5;241m.[39mget([38;5;124m"[39m[38;5;124mnames[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m))
-[1;32m    604[0m [38;5;66;03m# Create the parser.[39;00m
-[0;32m--> 605[0m parser [38;5;241m=[39m [43mTextFileReader[49m[43m([49m[43mfilepath_or_buffer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwds[49m[43m)[49m
-[1;32m    607[0m [38;5;28;01mif[39;00m chunksize [38;5;129;01mor[39;00m iterator:
-[1;32m    608[0m     [38;5;28;01mreturn[39;00m parser
+During handling of the above exception, another exception occurred:
 
-File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1442[0m, in [0;36mTextFileReader.__init__[0;34m(self, f, engine, **kwds)[0m
-[1;32m   1439[0m     [38;5;28mself[39m[38;5;241m.[39moptions[[38;5;124m"[39m[38;5;124mhas_index_names[39m[38;5;124m"[39m] [38;5;241m=[39m kwds[[38;5;124m"[39m[38;5;124mhas_index_names[39m[38;5;124m"[39m]
-[1;32m   1441[0m [38;5;28mself[39m[38;5;241m.[39mhandles: IOHandles [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[0;32m-> 1442[0m [38;5;28mself[39m[38;5;241m.[39m_engine [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_make_engine[49m[43m([49m[43mf[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mengine[49m[43m)[49m
+[0;31mInvalidIndexError[0m                         Traceback (most recent call last)
+Cell [0;32mIn [68], line 1[0m
+[0;32m----> 1[0m [43mbanknotes[49m[43m[[49m[43mbanknotes[49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mcurrent_bill_value[39;49m[38;5;124;43m"[39;49m[43m][49m[43m [49m[38;5;241;43m==[39;49m[43m [49m[38;5;241;43m10.0[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mcurrency_name[39;49m[38;5;124;43m"[39;49m[43m][49m
 
-File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1729[0m, in [0;36mTextFileReader._make_engine[0;34m(self, f, engine)[0m
-[1;32m   1727[0m     is_text [38;5;241m=[39m [38;5;28;01mFalse[39;00m
-[1;32m   1728[0m     mode [38;5;241m=[39m [38;5;124m"[39m[38;5;124mrb[39m[38;5;124m"[39m
-[0;32m-> 1729[0m [38;5;28mself[39m[38;5;241m.[39mhandles [38;5;241m=[39m [43mget_handle[49m[43m([49m
-[1;32m   1730[0m [43m    [49m[43mf[49m[43m,[49m
-[1;32m   1731[0m [43m    [49m[43mmode[49m[43m,[49m
-[1;32m   1732[0m [43m    [49m[43mencoding[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mencoding[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
-[1;32m   1733[0m [43m    [49m[43mcompression[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mcompression[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
-[1;32m   1734[0m [43m    [49m[43mmemory_map[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mmemory_map[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m[43m,[49m
-[1;32m   1735[0m [43m    [49m[43mis_text[49m[38;5;241;43m=[39;49m[43mis_text[49m[43m,[49m
-[1;32m   1736[0m [43m    [49m[43merrors[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mencoding_errors[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mstrict[39;49m[38;5;124;43m"[39;49m[43m)[49m[43m,[49m
-[1;32m   1737[0m [43m    [49m[43mstorage_options[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43moptions[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mstorage_options[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;28;43;01mNone[39;49;00m[43m)[49m[43m,[49m
-[1;32m   1738[0m [43m[49m[43m)[49m
-[1;32m   1739[0m [38;5;28;01massert[39;00m [38;5;28mself[39m[38;5;241m.[39mhandles [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
-[1;32m   1740[0m f [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mhandles[38;5;241m.[39mhandle
+File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/core/frame.py:3805[0m, in [0;36mDataFrame.__getitem__[0;34m(self, key)[0m
+[1;32m   3803[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mcolumns[38;5;241m.[39mnlevels [38;5;241m>[39m [38;5;241m1[39m:
+[1;32m   3804[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_getitem_multilevel(key)
+[0;32m-> 3805[0m indexer [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcolumns[49m[38;5;241;43m.[39;49m[43mget_loc[49m[43m([49m[43mkey[49m[43m)[49m
+[1;32m   3806[0m [38;5;28;01mif[39;00m is_integer(indexer):
+[1;32m   3807[0m     indexer [38;5;241m=[39m [indexer]
 
-File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/io/common.py:857[0m, in [0;36mget_handle[0;34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)[0m
-[1;32m    852[0m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(handle, [38;5;28mstr[39m):
-[1;32m    853[0m     [38;5;66;03m# Check whether the filename is to be opened in binary mode.[39;00m
-[1;32m    854[0m     [38;5;66;03m# Binary mode does not support 'encoding' and 'newline'.[39;00m
-[1;32m    855[0m     [38;5;28;01mif[39;00m ioargs[38;5;241m.[39mencoding [38;5;129;01mand[39;00m [38;5;124m"[39m[38;5;124mb[39m[38;5;124m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m ioargs[38;5;241m.[39mmode:
-[1;32m    856[0m         [38;5;66;03m# Encoding[39;00m
-[0;32m--> 857[0m         handle [38;5;241m=[39m [38;5;28;43mopen[39;49m[43m([49m
-[1;32m    858[0m [43m            [49m[43mhandle[49m[43m,[49m
-[1;32m    859[0m [43m            [49m[43mioargs[49m[38;5;241;43m.[39;49m[43mmode[49m[43m,[49m
-[1;32m    860[0m [43m            [49m[43mencoding[49m[38;5;241;43m=[39;49m[43mioargs[49m[38;5;241;43m.[39;49m[43mencoding[49m[43m,[49m
-[1;32m    861[0m [43m            [49m[43merrors[49m[38;5;241;43m=[39;49m[43merrors[49m[43m,[49m
-[1;32m    862[0m [43m            [49m[43mnewline[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43m"[39;49m[43m,[49m
-[1;32m    863[0m [43m        [49m[43m)[49m
-[1;32m    864[0m     [38;5;28;01melse[39;00m:
-[1;32m    865[0m         [38;5;66;03m# Binary mode[39;00m
-[1;32m    866[0m         handle [38;5;241m=[39m [38;5;28mopen[39m(handle, ioargs[38;5;241m.[39mmode)
+File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/core/indexes/base.py:3807[0m, in [0;36mIndex.get_loc[0;34m(self, key, method, tolerance)[0m
+[1;32m   3802[0m         [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m(key) [38;5;28;01mfrom[39;00m [38;5;21;01merr[39;00m
+[1;32m   3803[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mTypeError[39;00m:
+[1;32m   3804[0m         [38;5;66;03m# If we have a listlike key, _check_indexing_error will raise[39;00m
+[1;32m   3805[0m         [38;5;66;03m#  InvalidIndexError. Otherwise we fall through and re-raise[39;00m
+[1;32m   3806[0m         [38;5;66;03m#  the TypeError.[39;00m
+[0;32m-> 3807[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_check_indexing_error[49m[43m([49m[43mkey[49m[43m)[49m
+[1;32m   3808[0m         [38;5;28;01mraise[39;00m
+[1;32m   3810[0m [38;5;66;03m# GH#42269[39;00m
 
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../data/parks_final.csv'
-FileNotFoundError: [Errno 2] No such file or directory: '../data/parks_final.csv'
+File [0;32m~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/pandas/core/indexes/base.py:5963[0m, in [0;36mIndex._check_indexing_error[0;34m(self, key)[0m
+[1;32m   5959[0m [38;5;28;01mdef[39;00m [38;5;21m_check_indexing_error[39m([38;5;28mself[39m, key):
+[1;32m   5960[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m is_scalar(key):
+[1;32m   5961[0m         [38;5;66;03m# if key is not a scalar, directly raise an error (the code below[39;00m
+[1;32m   5962[0m         [38;5;66;03m# would convert to numpy arrays and raise later any way) - GH29926[39;00m
+[0;32m-> 5963[0m         [38;5;28;01mraise[39;00m InvalidIndexError(key)
+
+[0;31mInvalidIndexError[0m: (country
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina        True
+                ...  
+South Africa     True
+South Africa    False
+South Africa    False
+South Africa    False
+South Africa    False
+Name: current_bill_value, Length: 279, dtype: bool, 'currency_name')
+InvalidIndexError: (country
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina        True
+                ...  
+South Africa     True
+South Africa    False
+South Africa    False
+South Africa    False
+South Africa    False
+Name: current_bill_value, Length: 279, dtype: bool, 'currency_name')
 

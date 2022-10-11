@@ -395,15 +395,22 @@ Use double `"` or single `'` quotes to construct a string:
 "Hello, world!"
 ```
 
-Back in Pandas, strings are stored under the `object` data type.
+Back in Pandas, strings are stored under the `object` data type. Look at the
+`dtype` readout below.
 
 ```{code-cell}
 banknotes["name"]
 ```
 
-This is because strings aren't fixed-length sequences, like numbers are. So
-Pandas has to provide extra room for the possibility that a string will become
-shorter or longer.
+Alternatively, use the `dtype` attribute of a Series:
+
+```{code-cell}
+banknotes["name"].dtype
+```
+
+Pandas uses this special data type because strings aren't fixed-length
+sequences, like numbers are. So Pandas has to build in the possibility that a
+string will become shorter or longer.
 
 
 (coercion-and-conversion)=
@@ -498,201 +505,223 @@ bill_value == banknotes["current_bill_value"]
 bill_value % 25 != 0
 ```
 
+
+(indexing-in-pandas)=
+Indexing in Pandas
+------------------
+
+In the last cell above, the readout values change depending on the underlying
+data. If you want to inspect that data more closely, you can index the Series.
+Conceptually, indexing a Series is very similar to indexing a list or tuple,
+but Pandas offers additional ways to select and subset data via indexes.
+
+
+(the-pandas-index)=
+### What's an Index?
+
+It can do so because a Pandas index is more than just a positional location.
+Indexes serve three important roles:
+
+1. As metadata to provide additional context about a data set
+2. As a way to explicitly and automatically align data
+3. As a convenience for getting and setting subsets of data
+
+The index of a series is available via the `index` attribute:
+
+```{code-cell}
+bill_value.index
+```
+
+Index labels can be numbers, strings, dates, or other values. Pandas provides
+subclasses of `Index` for specific purposes, which you can read more about
+[here][].
+
+[here]: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Index.html
+
+Indexes, like tuples, are **immutable**. Each of its labels cannot be changed.
+But every index also has a name, and you can change this.
+
+```{code-cell}
+bill_value.name = "bill_value"
+bill_value
+```
+
+The above also applies to DataFrames.
+
+```{code-cell}
+banknotes.index
+```
+
+Oftentimes, an index is a range of numbers. But this can be changed. The code
+below uses the `set_index` method to change the index of `banknotes` to
+`country`. We use `inplace` to make this change without having to reassign the
+result
+
+```{code-cell}
+banknotes.set_index("country", inplace=True)
+banknotes.index
+```
+
+
+(indexing-by-position)=
+### Indexing by Position
+
+Changing the index affects how you select elements. There are three main
+methods for accessing specific values in Pandas:
+1. By integer position
+2. By label/name
+3. By a condition
+
+To access elements in a series by integer position, use `iloc`:
+
+```{code-cell}
+bill_value.iloc[5]
+```
+
+Using `iloc` is extensible to sequences of values:
+
+```{code-cell}
+bill_value.iloc[[5, 15, 25, 35]]
+```
+
+Use a **slice** to select a range of elements. The syntax for a slice is
+`start:stop:step`, with the second colon `:` and arguments being optional. This
+syntax also applies to lists.
+
+```{code-cell}
+bill_value.iloc[0:5]
+```
+
+Below, we use a slice to get every twentieth element in the Series:
+
+```{code-cell}
+bill_value.iloc[::20]
+```
+
+Slices also accept negative values. This counts back from the end of a
+sequence.
+
+```{code-cell}
+bill_value.iloc[-5:]
+```
+
+That makes the above output the same as the output below:
+
+```{code-cell}
+bill_value.tail()
+```
+
+
+(indexing-by-label)=
+### Indexing by Label
+
+Use `loc` to index a Series or DataFrame by label.
+
+```{code-cell}
+:tags: [output_scroll]
+banknotes.loc["Peru"]
+```
+
+You can select specific columns as well:
+
+```{code-cell}
+:tags: [output_scroll]
+banknotes.loc["Peru", "name"]
+```
+
+Just as with `iloc`, it's possible to feed sequences into `loc`:
+
+```{code-cell}
+:tags: [output_scroll]
+banknotes.loc[["Peru", "Serbia", "Ukraine"]]
+```
+
+This can be a very powerful operation, but it's easy to get mixed up when
+labels are integers, as with the `bill_value` data.
+
+This:
+
+```{code-cell}
+bill_value.loc[0:5]
+```
+
+Is the same as this:
+
+```{code-cell}
+bill_value.iloc[0:5]
+```
+
+Recall that bracket notation selects columns in DataFrames. With a Series, the
+same notation acts as another way to perform `loc` operations.
+
+```{code-cell}
+bill_value[0:5]
+```
+
+Finally, `iloc` and `loc` can be used in tandem with one another. This is
+called **chaining**. Below, we use the country-indexed `banknotes` DataFrame to
+select all rows with "Peru." Then, we select the second row from this subset.
+
+```{code-cell}
+banknotes.loc["Peru"].iloc[1]
+```
+
+
+(indexing-by-condition)=
+### Indexing by a Condition
+
+The last way to index in Pandas is by condition. Pandas does this by evaluating
+statements and returning a sequence of Boolean values. This is by far the most
+powerful method of indexing in Pandas.
+
+Earlier, we used this method to look for bill values that are not divisible by
+25.
+
+```{code-cell}
+bill_value % 25 != 0
+```
+
+It's possible to perform a similar operation with `loc`:
+
+```{code-cell}
+bill_value.loc[bill_value % 25 != 0]
+```
+
+Notice though that not all the data is here. Only those entries where the above
+condition is True are returned. This is a **subset** of the Series.
+
+Using square brackets works in the same way with a Series:
+
+```{code-cell}
+bill_value[bill_value - 100 > 5]
+```
+
+With a DataFrame, you can use square brackets to subset:
+
+```{code-cell}
+:tags: [output_scroll]
+banknotes[banknotes["currency_code"] == "MWK"]
+```
+
+If you want to specify specific columns, use `loc`:
+
+```{code-cell}
+banknotes.loc[banknotes["current_bill_value"] == 10.0, "currency_name"]
+```
+
+The above lets you select multiple columns, but you could also do the
+following:
+
+```{code-cell}
+cols = ["currency_code", "currency_name"]
+banknotes[cols].loc[banknotes["current_bill_value"] == 10.0]
+```
+
+
+
 ```{code-cell}
 parks = pd.read_csv("data/parks_final.csv")
 ```
-
-## Series
-
-Each column in the DataFrame is a Pandas `Series` object.
-A Series is a collection of values that all share the same data type. 
-In addition, each value has a label, these labels don't need to be unique
-and by default are integers starting at 0.
-
-It is built on top of the NumPy ndarray object, and as such, will
-perform much faster than the list object for numerical operations.
-
-Lets look at the year column of our data. We can access it with the following:
-```{code-cell}
-year = parks["year"].copy()
-```
-
-In this case, we have assigned a copy of the year column from the parks 
-dataframe to a variable we call year. If we didn't use the copy method,
-then modifications we made to year, would also modify that column
-in the DataFrame. This way, we can make changes without effecting
-the original.
-
-As with DataFrames, there are several functions for exploring series.
-
-To get the first values, we can once again use `head`:
-```{code-cell}
-year.head()
-```
-And again, to get the last values we can use `tail`:
-```{code-cell}
-year.tail()
-```
-
-Since the data is numeric we can also get some summary data:
-```{code-cell}
-year.describe()
-```
-
-To see just the unique set of values we can use the `unique` method:
-```{code-cell}
-year.unique()
-```
-
-Another very useful summary is `value_counts`:
-```{code-cell}
-year.value_counts()
-```
-
-Series are powerful because we can apply operations on them in an element wise
-fashion very easily and efficiently. For example:
-```{code-cell}
-year + 10
-```
-
-In addition, we can also use comparison operators:
-```{code-cell}
-year > 2014
-```
-
-### Indexing Series
-
-There are three main methods for accessing specific values in Pandas:
-1. by integer position
-2. by label/name
-3. based on a boolean array
-
-These methods apply to Series, and as we will see later, to DataFrames.
-
-### Selecting Values By Integer Position
-
-To access elements in a Series by integer position, use the `iloc` attribute:
-```{code-cell}
-year.iloc[33]
-```
-We can also pass a list or array of integer locations:
-```{code-cell}
-year.iloc[[33,0,23]]
-```
-As with lists, we can use Python's slice operator:
-```{code-cell}
-year.iloc[3:10]
-```
-
-### Selecting Values By Label
-
-A Series in Pandas has labels attached to each value, in what Pandas calls
-the index. 
-We can see the index of a Series with the `index` attribute:
-```{code-cell}
-year.index
-```
-Here we see that the index the index is a collection of integers. 
-We can change that to something a little more descriptive.
-```{code-cell}
-year.index = parks["city"]
-year.index
-```
-
-To access elements based on label or name, we use the `loc` attribute:
-```{code-cell}
-year.loc["St. Paul"]
-```
-
-Notice that there were multiple values that matched with that label, so the
-Series returned all of them.
-
-We can also pass a list or array of labels:
-```{code-cell}
-year.loc[["St. Paul", "Mesa", "Fresno"]]
-```
-
-Additionally, Pandas supports the more conventional `[]` operator, directly
-on Series.
-We can pass labels to this operator:
-```{code-cell}
-year[["Irvine", "San Diego"]]
-```
-
-### Selecting Values Based On A Boolean Array
-
-The third way to select values is based on a Boolean array. 
-The Boolean array must have the same length as the number of elements
-in the Series.
-
-This is a really powerful method, that ties in well with functions that 
-create Boolean Series.
-
-For example, with the example from earlier:
-```{code-cell}
-year.loc[year > 2014]
-```
-The `[]` operator also accepts Boolean Series:
-```{code-cell}
-year[year > 2014]
-```
-
-(indexing-dataframes)=
-## Indexing DataFrames
-
-Conceptually, indexing DataFrames is very similar to the operations on Series. 
-However, whereas Series are one dimensional, DataFrames are two dimensional.
-A DataFrame is a collection of Series, organized as columns.
-
-As with Series, we can use `iloc` to select rows based on their integer 
-position:
-```{code-cell}
-parks.iloc[[300, 200, -1]]
-```
-
-And we can use `loc` to select based on label, in this case the label is 
-also integers:
-```{code-cell}
-parks.loc[732]
-```
-
-Again, as with Series, we can use boolean arrays or lists to index:
-```{code-cell}
-parks.loc[parks["state"] == "California"]
-```
-
-This also works with just the `[]` operator:
-```{code-cell}
-parks[parks["state"] == "California"]
-```
-
-To access columns from a DataFrame, we use the `[]` operator, as we have 
-already seen:
-```{code-cell}
-parks["pop2020"]
-```
-
-We can also pass a list of column names, in any order:
-```{code-cell}
-parks[["pop2020", "city"]]
-```
-
-If we select a single column from the DataFrame, we get a Series, 
-which we can index as we saw before:
-```{code-cell}
-parks["pop2020"].iloc[1:10]
-```
-
-So, to combine with what we saw before with boolean indexing:
-```{code-cell}
-parks[["city", "pop2020"]].loc[parks["state"] == "California"]
-```
-
-A more elegant approach to the above is to use:
-```{code-cell}
-parks.loc[parks["state"] == "California", ["city", "pop2020"]]
-```
-
 ## Special Values
 
 Often times, the data we have will work with has missing, or invalid data.
