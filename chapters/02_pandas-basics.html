@@ -483,6 +483,28 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   2.6. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     2.6.1. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     2.6.2. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     2.6.3. Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </nav>
@@ -632,6 +654,28 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   2.6. Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     2.6.1. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     2.6.2. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     2.6.3. Exercise
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
                         </nav>
@@ -656,11 +700,10 @@ analysis.</p>
 <li><p>Create lists, arrays, and Pandas Series</p></li>
 <li><p>Check the type and class of an object</p></li>
 <li><p>Coerce an object into a different type</p></li>
-<li><p>Describe and differentiate <code class="docutils literal notranslate"><span class="pre">NA</span></code>, <code class="docutils literal notranslate"><span class="pre">NaN</span></code>, <code class="docutils literal notranslate"><span class="pre">Inf</span></code>, and <code class="docutils literal notranslate"><span class="pre">NULL</span></code></p></li>
+<li><p>Describe and differentiate <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">NA</span></code>, and <code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></li>
 <li><p>Index sequences with empty, integer, string, and logical arguments</p></li>
 <li><p>Negate or combine conditions with logic operations</p></li>
-<li><p>Subset DataFrames</p></li>
-<li><p>Apply functions across DataFrames and Series objects</p></li>
+<li><p>Subset Series objects and DataFrames</p></li>
 <li><p>Find and remove missing values in a DataFrame and Series</p></li>
 </ul>
 </div>
@@ -743,6 +786,8 @@ learn in this chapter, both a Series and a DataFrame allow you to:</p>
 <li><p>subset and filter data</p></li>
 <li><p>merge and combine data</p></li>
 </ul>
+<p>Here are a few examples of the extra metadata a Series contains (more on this
+later):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">name</span>
@@ -3426,34 +3471,56 @@ following:</p>
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/parks_final.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="special-values">
-<h2><span class="section-number">2.5. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">#</a></h2>
-<p>Often times, the data we have will work with has missing, or invalid data.
-Its important to understand these values, and how to work with them in Pandas.</p>
+<span id="id14"></span><h2><span class="section-number">2.5. </span>Special Values<a class="headerlink" href="#special-values" title="Permalink to this headline">#</a></h2>
+<p>You may have noticed that some of the data in <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> is missing. This is
+common, and it’s important to understand how to handle missing or invalid
+values.</p>
 <p>There are many reasons that could cause these values to be missing or incomplete,
 and as a result, Pandas provides lots of flexibility for detecting and handling
 these values.</p>
 <p>In Pandas, these special values, are generally treated as missing values
 in the dataset, and are represented by the NumPy <code class="docutils literal notranslate"><span class="pre">nan</span></code> type. This reduces
 some of the nuance of data values and types, but was seemingly done
-for computational preformance reasons.</p>
+for computational performance reasons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">25</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>currency_code                        USD
+currency_name                  US dollar
+name                     Abraham Lincoln
+gender                                 M
+bill_count                           1.0
+profession                 Head of Gov&#39;t
+known_for_being_first                 No
+current_bill_value                     5
+prop_total_bills                    0.06
+first_appearance_year               1914
+death_year                          1865
+comments                             NaN
+hover_text                           NaN
+has_portrait                        True
+id                           USD_Lincoln
+scaled_bill_value               0.040404
+Name: United States, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
 <section id="types-of-values-considered-missing-by-pandas">
-<h3><span class="section-number">2.5.1. </span>Types of Values Considered Missing by Pandas<a class="headerlink" href="#types-of-values-considered-missing-by-pandas" title="Permalink to this headline">#</a></h3>
-<p>In addition to <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> (which displays as NaN), Pandas interprets
-several other values as missing.
-This includes Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type, as well as Pandas’ experimental <code class="docutils literal notranslate"><span class="pre">NA</span></code> types.</p>
-<p>Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type represents something that has no value.
-It often comes about as the return of a function, if something hasn’t
-been defined yet, or if something wasn’t found.</p>
+<span id="missing-values-in-pandas"></span><h3><span class="section-number">2.5.1. </span>Types of Values Considered Missing by Pandas<a class="headerlink" href="#types-of-values-considered-missing-by-pandas" title="Permalink to this headline">#</a></h3>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> (which displays as NaN), Pandas interprets several
+other values as missing.  This includes Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type, as well as
+Pandas’ experimental <code class="docutils literal notranslate"><span class="pre">NA</span></code> types.</p>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type represents something that has no value. It often comes
+about as the return of a function, if something hasn’t been defined yet, or if
+something wasn’t found.</p>
 <p>When creating a Series, we can pass this value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3475,7 +3542,7 @@ datatype of the series became ‘object’. If we specify a datatype explicitly
 then Pandas will convert it to one of its representations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3489,125 +3556,92 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>Be aware that <code class="docutils literal notranslate"><span class="pre">None</span></code> is a Python object, and in the above example, the
-datatype of the series became ‘object’. If we specify a datatype explicitly
-then Pandas will convert it to one of its representations:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;the&quot;</span><span class="p">,</span> <span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     the
-1     and
-2    &lt;NA&gt;
-dtype: string
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="reading-in-missing-values-from-a-csv-file">
-<h3><span class="section-number">2.5.2. </span>Reading in Missing Values from a CSV file<a class="headerlink" href="#reading-in-missing-values-from-a-csv-file" title="Permalink to this headline">#</a></h3>
+<span id="missing-values-in-csvs"></span><h3><span class="section-number">2.5.2. </span>Reading in Missing Values from a CSV file<a class="headerlink" href="#reading-in-missing-values-from-a-csv-file" title="Permalink to this headline">#</a></h3>
 <p>An obvious source of missing or incomplete values is the data itself.
 When the data was collected, there may have been reasons to code missing data.
 For example, in collection of survey responses, there may be times where the
-answer was not applicable.
-Another example would be if a measurement was not taken on some of the samples.
+answer was not applicable.</p>
+<p>Another example would be if a measurement was not taken on some of the samples.
 Obviously, there are no rules on how this was represented in the data set.
 However there are several conventions, and Pandas is aware of many of them.</p>
 <p>When reading data from a CSV file, Pandas will automatically detect missing
-values.
-By default, it will convert any empty cell, or string such as ‘na’, ‘nan’, ‘null’,
-‘N/A’, and other variants to NaN.
-A full list can be found in the Pandas documentation: <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html</a></p>
+values. By default, it will convert any empty cell, or string such as ‘na’,
+‘nan’, ‘null’, ‘N/A’, and other variants to NaN.  A full list can be found in
+the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">Pandas documentation</a>.</p>
 </section>
 <section id="detecting-missing-values">
-<h3><span class="section-number">2.5.3. </span>Detecting Missing Values<a class="headerlink" href="#detecting-missing-values" title="Permalink to this headline">#</a></h3>
-<p>To detect missing values, Pandas provides two complementary methods -
-<code class="docutils literal notranslate"><span class="pre">isna</span></code> and <code class="docutils literal notranslate"><span class="pre">notna</span></code>.</p>
+<span id="id15"></span><h3><span class="section-number">2.5.3. </span>Detecting Missing Values<a class="headerlink" href="#detecting-missing-values" title="Permalink to this headline">#</a></h3>
+<p>To detect missing values, Pandas provides two complementary methods: <code class="docutils literal notranslate"><span class="pre">isna</span></code> and
+<code class="docutils literal notranslate"><span class="pre">notna</span></code>.</p>
 <p>We can see information about missing values with the <code class="docutils literal notranslate"><span class="pre">count</span></code> method on
 DataFrames:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parks</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year                         746
-rank                         746
-city                         746
-med_park_size_data           746
-med_park_size_points         746
-park_pct_city_data           746
-park_pct_city_points         746
-pct_near_park_data           746
-pct_near_park_points         746
-spend_per_resident_data      746
-spend_per_resident_points    746
-basketball_data              589
-basketball_points            589
-dogpark_data                 589
-dogpark_points               589
-playground_data              746
-playground_points            746
-rec_sr_data                  589
-rec_sr_points                589
-restroom_data                304
-restroom_points              304
-splashground_data            304
-splashground_points          304
-amenities_points             589
-total_points                 582
-total_pct                    642
-park_benches                 442
-state                        746
-pop2020                      739
-pop2010                      739
-area2020                     739
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>currency_code            279
+currency_name            279
+name                     279
+gender                   279
+bill_count               279
+profession               279
+known_for_being_first    279
+current_bill_value       279
+prop_total_bills          59
+first_appearance_year    279
+death_year               272
+comments                 119
+hover_text                89
+has_portrait             279
+id                       279
+scaled_bill_value        278
 dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
-<p>If we look at the <code class="docutils literal notranslate"><span class="pre">park_benches</span></code> columns of the DataFrame, we can see what
+<p>If we look at the <code class="docutils literal notranslate"><span class="pre">hover_text</span></code> columns of the DataFrame, we can see what
 those missing values look like.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span> <span class="o">=</span> <span class="n">parks</span><span class="p">[</span><span class="s2">&quot;park_benches&quot;</span><span class="p">]</span>
-<span class="n">pb</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span> <span class="o">=</span> <span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;hover_text&quot;</span><span class="p">]</span>
+<span class="n">ht</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>442
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>89
 </pre></div>
 </div>
 </div>
 </div>
-<p>The return of <code class="docutils literal notranslate"><span class="pre">isna</span></code> is a boolean Series indicating which of the values
-are considered missing:</p>
+<p>The return of <code class="docutils literal notranslate"><span class="pre">isna</span></code> is a Boolean Series indicating which of the values are
+considered missing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       True
-1       True
-2       True
-3       True
-4       True
-       ...  
-741    False
-742    False
-743    False
-744    False
-745    False
-Name: park_benches, Length: 746, dtype: bool
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina        True
+Argentina        True
+Argentina        True
+Argentina        True
+Argentina       False
+                ...  
+South Africa    False
+South Africa    False
+South Africa    False
+South Africa    False
+South Africa    False
+Name: hover_text, Length: 279, dtype: bool
 </pre></div>
 </div>
 </div>
@@ -3616,51 +3650,53 @@ Name: park_benches, Length: 746, dtype: bool
 with <code class="docutils literal notranslate"><span class="pre">notna</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      False
-1      False
-2      False
-3      False
-4      False
-       ...  
-741     True
-742     True
-743     True
-744     True
-745     True
-Name: park_benches, Length: 746, dtype: bool
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina        True
+                ...  
+South Africa     True
+South Africa     True
+South Africa     True
+South Africa     True
+South Africa     True
+Name: hover_text, Length: 279, dtype: bool
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="replacing-missing-values">
-<h3><span class="section-number">2.5.4. </span>Replacing Missing Values<a class="headerlink" href="#replacing-missing-values" title="Permalink to this headline">#</a></h3>
-<p>We can use this boolean Series to subset.
-For example, to keep only the values that aren’t missing:</p>
+<span id="id16"></span><h3><span class="section-number">2.5.4. </span>Replacing Missing Values<a class="headerlink" href="#replacing-missing-values" title="Permalink to this headline">#</a></h3>
+<p>We can use this Boolean Series to subset with <code class="docutils literal notranslate"><span class="pre">loc</span></code>. For example, to keep only
+the values that aren’t missing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pb</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ht</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>304    5.0
-305    5.0
-306    5.0
-307    4.5
-308    4.5
-      ... 
-741    1.5
-742    1.5
-743    1.0
-744    1.0
-745    0.5
-Name: park_benches, Length: 442, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina                           Designed first Argentine flag
+Australia       First Australian Aboriginal writer to be publi...
+Australia       First person appointed Dame Commander of the B...
+Australia       Founded Royal Flying Doctor Service, the world...
+Australia       First Australian woman to serve as a member of...
+                                      ...                        
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+Name: hover_text, Length: 89, dtype: object
 </pre></div>
 </div>
 </div>
@@ -3668,23 +3704,24 @@ Name: park_benches, Length: 442, dtype: float64
 <p>Pandas also provides a shortcut with the <code class="docutils literal notranslate"><span class="pre">dropna</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>304    5.0
-305    5.0
-306    5.0
-307    4.5
-308    4.5
-      ... 
-741    1.5
-742    1.5
-743    1.0
-744    1.0
-745    0.5
-Name: park_benches, Length: 442, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina                           Designed first Argentine flag
+Australia       First Australian Aboriginal writer to be publi...
+Australia       First person appointed Dame Commander of the B...
+Australia       Founded Royal Flying Doctor Service, the world...
+Australia       First Australian woman to serve as a member of...
+                                      ...                        
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+Name: hover_text, Length: 89, dtype: object
 </pre></div>
 </div>
 </div>
@@ -3693,52 +3730,99 @@ Name: park_benches, Length: 442, dtype: float64
 <code class="docutils literal notranslate"><span class="pre">fillna</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ht</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     -1.0
-1     -1.0
-2     -1.0
-3     -1.0
-4     -1.0
-      ... 
-741    1.5
-742    1.5
-743    1.0
-744    1.0
-745    0.5
-Name: park_benches, Length: 746, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina                                                      -1
+Argentina                                                      -1
+Argentina                                                      -1
+Argentina                                                      -1
+Argentina                           Designed first Argentine flag
+                                      ...                        
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+Name: hover_text, Length: 279, dtype: object
 </pre></div>
 </div>
 </div>
 </div>
-<p>Additionally, the data set may have its own indicator for missing values,
-e.g “” or 0. We can convert those to missing using the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method:</p>
+<p>Additionally, the data set may have its own indicator for missing values, e.g
+“” or 0. We can convert those to missing using the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pb</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      NaN
-1      NaN
-2      NaN
-3      NaN
-4      NaN
-      ... 
-741    1.5
-742    1.5
-743    1.0
-744    1.0
-745    0.5
-Name: park_benches, Length: 746, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina                                                     NaN
+Argentina                                                     NaN
+Argentina                                                     NaN
+Argentina                                                     NaN
+Argentina                           Designed first Argentine flag
+                                      ...                        
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+Name: hover_text, Length: 279, dtype: object
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">2.6. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h2>
+<section id="exercise">
+<h3><span class="section-number">2.6.1. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">range</span></code> function offers another way to create a sequence. Read the
+help file for this function.</p>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">range</span></code> function offers another way to create a sequence of numbers.
+Read the help file for this function.</p>
+<ol class="simple">
+<li><p>Create an example range. How does this differ from a list?</p></li>
+<li><p>Describe the three arguments that you can use in <code class="docutils literal notranslate"><span class="pre">range</span></code>. Give examples of
+each.</p></li>
+<li><p>Convert one of those ranges to a list and print it to screen. What changes
+in the way Python represents this sequence?</p></li>
+</ol>
+</section>
+<section id="id17">
+<h3><span class="section-number">2.6.2. </span>Exercise<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h3>
+<p>Return to the discussion in <a class="reference internal" href="#coercion-and-conversion"><span class="std std-numref">Section 2.3.4</span></a>.</p>
+<ol class="simple">
+<li><p>Why does <code class="docutils literal notranslate"><span class="pre">&quot;3&quot;</span> <span class="pre">+</span> <span class="pre">4</span></code> raise an error?</p></li>
+<li><p>Why does <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">-</span> <span class="pre">1</span></code> return 0?</p></li>
+<li><p>Why does <code class="docutils literal notranslate"><span class="pre">int(4.6)</span> <span class="pre">&lt;</span> <span class="pre">4.6</span></code> return <code class="docutils literal notranslate"><span class="pre">True</span></code>?</p></li>
+</ol>
+</section>
+<section id="id18">
+<h3><span class="section-number">2.6.3. </span>Exercise<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h3>
+<p>Use a search engine or consult StackOverflow to figure out how to subset a
+DataFrame with multiple conditions.</p>
+<ol class="simple">
+<li><p>Create a new DataFrame from <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> with the following conditions:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Current bill value is less than or equal to 20</p></li>
+<li><p>Gender is female</p></li>
+<li><p>Contains the columns <code class="docutils literal notranslate"><span class="pre">country</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">comments</span></code>, <code class="docutils literal notranslate"><span class="pre">has_portrait</span></code></p></li>
+</ul>
+<ol class="simple">
+<li><p>Use a Pandas function to count the number of entries that have portraits.
+How many are there?</p></li>
+<li><p>Return the last available comment. What does it say?</p></li>
+</ol>
 </section>
 </section>
 </section>
