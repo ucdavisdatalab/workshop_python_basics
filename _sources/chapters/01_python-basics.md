@@ -1091,6 +1091,7 @@ To display the names of each column, access the `columns` attribute:
 banknotes.columns
 ```
 
+(summarizing-data)=
 ### Summarizing Data
 
 More granular information about a DataFrame and its contents is available with
@@ -1114,6 +1115,7 @@ DataFrame. The latter method will only produce information about numeric data.
 banknotes.describe()
 ```
 
+(summarizing-columns)=
 ### Selecting Columns
 
 Individual columns may be selected with **bracket notation**. Put the name of
@@ -1158,7 +1160,6 @@ generate new data from a DataFrame. You'll also learn how to select rows and
 subsets of the data, as well as groups of columns.
 
 
-(exercises)=
 Exercises
 ---------
 
