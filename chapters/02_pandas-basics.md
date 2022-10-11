@@ -886,9 +886,8 @@ Use a search engine or consult StackOverflow to figure out how to subset a
 DataFrame with multiple conditions.
 
 1. Create a new DataFrame from `banknotes` with the following conditions:
-  * Current bill value is less than or equal to 20
-  * Gender is female
-  * Contains the columns `country`, `name`, `comments`, `has_portrait`
+  current bill value is less than or equal to 20; gender is female; contains
+  the columns `country`, `name`, `comments`, `has_portrait`
 2. Use a Pandas function to count the number of entries that have portraits.
   How many are there?
 3. Return the last available comment. What does it say?
