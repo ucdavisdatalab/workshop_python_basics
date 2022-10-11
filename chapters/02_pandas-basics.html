@@ -3811,14 +3811,9 @@ in the way Python represents this sequence?</p></li>
 <p>Use a search engine or consult StackOverflow to figure out how to subset a
 DataFrame with multiple conditions.</p>
 <ol class="simple">
-<li><p>Create a new DataFrame from <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> with the following conditions:</p></li>
-</ol>
-<ul class="simple">
-<li><p>Current bill value is less than or equal to 20</p></li>
-<li><p>Gender is female</p></li>
-<li><p>Contains the columns <code class="docutils literal notranslate"><span class="pre">country</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">comments</span></code>, <code class="docutils literal notranslate"><span class="pre">has_portrait</span></code></p></li>
-</ul>
-<ol class="simple">
+<li><p>Create a new DataFrame from <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> with the following conditions:
+current bill value is less than or equal to 20; gender is female; contains
+the columns <code class="docutils literal notranslate"><span class="pre">country</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">comments</span></code>, <code class="docutils literal notranslate"><span class="pre">has_portrait</span></code></p></li>
 <li><p>Use a Pandas function to count the number of entries that have portraits.
 How many are there?</p></li>
 <li><p>Return the last available comment. What does it say?</p></li>
