@@ -858,9 +858,6 @@ Exercises
 
 ### Exercise
 
-Python's `range` function offers another way to create a sequence. Read the
-help file for this function.
-
 Python's `range` function offers another way to create a sequence of numbers.
 Read the help file for this function.
 
