@@ -48,7 +48,7 @@ if it does.
 Code you write is **reproducible**: you can share it with someone else, and if
 they run it with the same inputs, they'll get the same results. By writing
 code, you create an unambiguous record of every step taken in your analysis.
-This it one of the major advantages of Python and other programming languages
+This is one of the major advantages of Python and other programming languages
 over point-and-click software like *Tableau* or *Microsoft Excel*. 
 
 Another advantage of writing code is that it's often **reusable**. This means
@@ -68,7 +68,7 @@ other programming languages, Python's particular strengths are its:
 * Interactivity
 * Use in a wide variety of disciplines, not just data science
 * Broad base of user-contributed packages
-* Easy to learn syntax that encourages good habits
+* Easy-to-learn syntax that encourages good habits
 
 
 Prerequisites
@@ -1080,9 +1080,9 @@ banknotes.shape
 
 ```{note}
 Notice how you accessed this DataFrame's `shape` attribute using a very similar
-syntax to the way you called one of its methods. The key difference to watch
-for is the presence of parenthesis `()` characters. Object methods have them,
-while object attributes do not.
+syntax to the way you called one of its methods. The key difference is the
+parentheses `()` at the end. Parentheses are necesary when you want to call a
+method, but not when you want just want to access the value of attribute.
 ```
 
 To display the names of each column, access the `columns` attribute:
@@ -1098,7 +1098,7 @@ More granular information about a DataFrame and its contents is available with
 the `info` method. In addition to attributes like the DataFrame's shape and its
 column names, `info` provides a brief summary of the number of cells that
 contain data, the type of data in each cell, and the total memory usage of the
-DataFrame.
+DataFrame:
 
 ```{code-cell}
 banknotes.info()
@@ -1108,8 +1108,9 @@ The next chapter discusses data types in more detail. For now, just take note
 that there are multiple types (`bool`, `float64`, `int64`, and `object` in
 `banknotes`).
 
-In contrast to `info`, `describe` provides summary statistics about a
-DataFrame. The latter method will only produce information about numeric data.
+In contrast to `info`, the `describe` method provides summary statistics about
+a DataFrame. The latter will only return information about numeric
+columns:
 
 ```{code-cell}
 banknotes.describe()
@@ -1119,7 +1120,7 @@ banknotes.describe()
 ### Selecting Columns
 
 Individual columns may be selected with **bracket notation**. Put the name of
-the column in quotes and place that inside of square brackets `[]`.
+the column in quotes and place that inside of square brackets `[]`:
 
 ```{code-cell}
 banknotes["current_bill_value"]
