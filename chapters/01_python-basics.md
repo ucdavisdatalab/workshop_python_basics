@@ -1044,7 +1044,7 @@ columns. In general rows are observations and columns are variables. Each entry
 is called a cell.
 
 You can check to make sure Pandas has indeed created a DataFrame with the
-`type` function, which is discussed in more detail in the next chapter:
+`type` function, which is discussed in more detail in {numref}`data-types`:
 
 ```{code-cell}
 type(banknotes)
