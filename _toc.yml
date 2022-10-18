@@ -7,7 +7,8 @@ parts:
       - file: chapters/01_python-basics
       - file: chapters/02_pandas-basics
       - file: chapters/03_summarizing-data
-      - file: chapters/04_non-tabular-data
+      - file: chapters/04_organizing-code
+      - file: chapters/05_appendix
   - caption: Afterword
     chapters:
       - file: chapters/assessment

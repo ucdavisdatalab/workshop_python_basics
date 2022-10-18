@@ -18,8 +18,8 @@ os.chdir("..")
 ```
 
 
-Non-tabular Data
-================
+Appendix
+========
 
 :::{admonition} Learning Objectives
 * Create and access elements of tuples
