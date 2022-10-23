@@ -17,7 +17,7 @@ import os
 os.chdir("..")
 ```
 
-
+(getting-started)=
 Getting Started
 ===============
 
@@ -245,6 +245,79 @@ do is change `base` and `height` and run the code again (Python will not update
 multiple problems can be a big time-saver in the long run. Later on, you'll see
 ways to make this code even easier to reuse.
 
+
+(strings)=
+### Strings
+
+Python treats anything inside single or double quotes as literal text rather
+than as an expression to evaluate. In programming jargon, a piece of literal
+text is called a **string**. You can use whichever kind of quotes you prefer,
+but the quote at the beginning of the string must match the quote at the end. 
+
+```{code-cell}
+'Hi'
+```
+
+```{code-cell}
+"Hello!"
+```
+
+Numbers and strings are not the same thing, so for example Python considers `1`
+different from `"1"`.
+
+
+(comparisons)=
+### Comparisons
+
+Besides arithmetic, you an also use Python to compare values. Programming tasks
+often involve comparing values. Use **comparison operators** to do so:
+
+| Symbol | Meaning                  |
+| :----: | :----------------------- |
+| `<`    | less than                |
+| `>`    | greater than             |
+| `<=`   | less than or equal to    |
+| `>=`   | greater than or equal to |
+| `==`   | equal to                 |
+| `!=`   | not equal to             |
+
+Notice that the "equal to" operator is two equal signs. This is to distinguish
+it from the assignment `=` operator.
+
+Here are a few examples:
+
+```{code-cell}
+1.5 < 3
+```
+
+```{code-cell}
+"a" > "b"
+```
+
+```{code-cell}
+3 == 3.14
+```
+
+```{code-cell}
+"hi" == "hi"
+```
+
+When you make a comparison, Python returns a **Boolean value**. There are only
+two possible Boolean values: `True` and `False`. Booleans are commonly used for
+expressions with yes-or-no responses.
+
+Boolean values are values, so you can use them in other computations. For
+example:
+
+```{code-cell}
+True
+```
+
+```{code-cell}
+True == False
+```
+
+
 (calling-functions)=
 ### Calling Functions
 
@@ -341,6 +414,7 @@ have the same name. The variable `number` is not the same thing as the
 parameter `number`.
 
 
+(objects-attributes)=
 ### Objects & Attributes
 
 Python represents data as **objects**. Numbers, strings, data structures, and
@@ -394,14 +468,8 @@ that there are two parameters `number` and `ndigits`. It also says that
 There are also help pages for other topics, such as built-in operators and
 modules (you'll learn more about modules in {numref}`modules-packages`). To
 look up the help page for an operator, put the operator's name in single or
-double quotes. 
-
-Python treats anything inside single or double quotes as literal text rather
-than as an expression to evaluate. In programming jargon, a piece of literal
-text is called a **string**. You can use whichever kind of quotes you prefer,
-but the quote at the beginning of the string must match the quote at the end. 
-
-For example, this code opens the help page for the arithmetic operators:
+double quotes. For example, this code opens the help page for the arithmetic
+operators:
 
 ```{code-cell}
 help("+")

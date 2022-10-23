@@ -28,9 +28,9 @@ Python and Pandas. Then, it explains how to use this knowledge during data
 analysis.
 
 :::{admonition} Learning Objectives
-* Create lists, arrays, and Pandas Series
+* Create Pandas Series, NumPy arrays, lists, and tuples
 * Check the type and class of an object
-* Coerce an object into a different type
+* Convert an object into a different type
 * Describe and differentiate `None`, `NA`, and `NaN`
 * Index sequences with empty, integer, string, and logical arguments
 * Negate or combine conditions with logic operations
@@ -39,64 +39,95 @@ analysis.
 :::
 
 
-Getting Started
----------------
+Setup
+-----
 
 ### Packages
 
 We will be working with two packages in this chapter, NumPy and Pandas. Start
 by using what you learned in {numref}`modules` to load these packages with
-their conventional aliases.
+their conventional aliases:
 
 ```{code-cell}
 import numpy as np
 import pandas as pd
 ```
 
-### Loading Data
-
-In the last chapter, you used Pandas to load tabular data into Python.
+{numref}`getting-started` described how to use the Pandas package to load a
+tabular dataset into a DataFrame. As an example, you saw how to load the
+banknotes dataset. You'll need that dataset for the examples in this chapter as
+well, so load a fresh copy of it:
 
 ```{code-cell}
 banknotes = pd.read_csv("data/banknotes.csv")
+banknotes.head()
 ```
 
-Recall that you can select a single column with bracket notation. For the next
-little while, you will be working with the `current_bill_value` column. Select
-it and assign it to a variable.
-
-```{code-cell}
-bill_value = banknotes["current_bill_value"]
-```
+Now you're ready for the chapter.
 
 
 (arrays-lists-sequences)=
-Arrays, Lists, and Other Sequences
-----------------------------------
+Containers for Data
+-------------------
+
+A **data structure** is a collection of data organized in a particular way. In
+Python, data structures are also called **containers**, because they contain
+data. Containers make working with lots of data manageable and efficient.
+DataFrames, introduced in the previous chapter, are an example of a
+two-dimensional data structure. In this section, you'll learn about several
+one-dimensional data structures that are fundamental to programming in Python.
+
 
 (pandas-series)=
 ### Pandas Series
 
-Now examine the variable you created.
+Recall that you can select a single column from a DataFrame with the square
+brackets `[ ]`. Select the `current_bill_value` column from the banknotes
+dataset:
 
 ```{code-cell}
-bill_value
+banknotes["current_bill_value"]
 ```
 
-You may notice that the data looks a little different from how it displays in a
-DataFrame. This is a visual clue: instead of being its own DataFrame,
-`bill_value` is a Pandas **Series**. Series objects in Pandas are
-one-dimensional **arrays**, data elements stored in an ordered sequence. They
-also contain additional metadata and a lot of extra functionality. As you will
-learn in this chapter, both a Series and a DataFrame allow you to:
+Notice that Python prints the column differently from the `banknotes`
+DataFrame. For instance, the length of the column is displayed rather than the
+number of rows. This is a visual clue: the column is not a DataFrame. Instead,
+it's a Pandas **Series**, a one-dimensional container for values. Every column
+in a DataFrame is a Series.
+
+Series and DataFrames are the fundamental data structures for data analysis in
+Pandas, and they have many common features. As you'll learn in this chapter,
+both allow you to:
 * summarize data
 * handle missing data
 * reshape and transform data
 * subset and filter data
 * merge and combine data
 
-Here are a few examples of the extra metadata a Series contains (more on this
-later):
+You'll be working with the `current_bill_value` column for the next few
+examples, so go ahead and assign it to a variable:
+
+```{code-cell}
+bill_value = banknotes["current_bill_value"]
+```
+
+The values in a Series (and many other kinds of data structures) are called
+**elements**, and the **length** of a Series is the number of elements it
+contains. Series are **ordered**, which means the elements have specific
+positions. The 1st element in `bill_value` is `100`, the 2nd element is again
+`100`, the 3rd element is `50`, the 4th is `20`, and so on.
+
+You can get the length of a Series and many other types of objects with
+Python's built-in `len` function:
+
+```{code-cell}
+len(bill_value)
+```
+
+A Series can also contain **metadata**, extra information about its elements.
+Metadata can usually be accessed through attributes (see
+{numref}`objects-attributes`). Here are a few examples of metadata this Series
+contains (more on this later):
 
 ```{code-cell}
 bill_value.name
@@ -106,22 +137,63 @@ bill_value.name
 bill_value.shape
 ```
 
+Finally, notice that the elements of `bill_value` are all integers. For any
+given Series, the elements will usually all be the same qualitative type of
+data (integers, decimal numbers, strings, and so on). In other words, the
+elements are usually **homogeneous**. There are some exceptions, and you'll
+learn more about element types in {numref}`data-types`.
+
+
+(numpy-arrays)=
+### NumPy Arrays
+
+Under the hood, Pandas Series are based on other data structure, the NumPy
+**array** (or `ndarray`). You can think of a NumPy array as a stripped-down
+Series: an ordered, one-dimensional container for values without the extra
+metadata and functionality.
+
+:::{tip}
+Series tend to be a good choice for data analysis, while arrays tend to be a
+good choice for sophisticated mathematical computations (such as simulations).
+:::
+
+Most examples in this reader use Series and DataFrames, but it will be pointed
+out anywhere it's important to use a NumPy array.
+
+You can convert a Series to an array with the `.to_numpy` method:
+
+```{code-cell}
+bill_value.to_numpy()
+```
+
+Conversely, you can convert an array into a Series with the `pd.Series`
+function. You'll see some examples of this function later on.
+
 
 (lists)=
 ### Lists
 
-In actuality, a Series is just one kind of sequence object available to you in
-Python. The most common such object is a **list**. A list is a container for
-zero or more values. Its values are called **elements**, and its **length** is
-the number of elements it contains. Like a Series, a list is ordered, so it has
-a first element, second element, and so on up to the length of the list.
+Series and arrays are designed for data analysis and mathematical computations,
+respectively. In contrast, a **list** is a general-purpose one-dimensional
+container. Lists are built into Python, so they're probably the most common
+kind of container, and you don't need to load any modules in order to use them.
 
 You can make a list by enclosing comma-separated values in square brackets
 `[]`, like this:
 
 ```{code-cell}
-[1, 2, 3]
+x = [1, 2, 3]
+x
 ```
+
+Like a Series, a list is ordered, so it has a first element, second element,
+and so on up to the length of the list. You can get the length of a list with
+the `len` function:
+
+```{code-cell}
+len(x)
+```
+
 
 Lists can be empty:
 
@@ -129,70 +201,84 @@ Lists can be empty:
 []
 ```
 
-You can also convert certain objects to lists with `list`:
+You can convert many types objects into lists with the `list` function:
 
 ```{code-cell}
 :tags: [output_scroll]
 list(bill_value)
 ```
 
-Unlike a Series, which is built on top of NumPy arrays, the elements of a list
-can be qualitatively different. For instance, this list contains a number,
-string, and another list (with one element):
+Unlike a Series, the elements of a list can be qualitatively different. There
+is no expectation that they will be homogeneous. For instance, this list
+contains a number, string, and another list (with one element):
 
 ```{code-cell}
-l = [8, "hello", [4.2]]
-l
-```
-
-You can get the length of a list with the built-in `len` function:
-
-```{code-cell}
-len(l)
+li = [8, "hello", [4.2]]
+li
 ```
 
 
 (indexing)=
 ### Indexing
 
-Square brackets `[]` also serve as the **indexing operator** in Python. The
-indexing operator gets or sets an element of a list based on the element's
-position. Python uses **zero-based indexing**, which means the first element of
-a data structure is at position 0. The code to get the first element of the
-list `l` is:
+So far you've learned two ways to use square brackets `[]`:
+
+1. To select columns from a DataFrame, as in `banknotes["country"]`
+2. To create lists, as in `["a", "b", 1]`
+
+The first case is an example of **indexing**, which means getting or setting
+elements of a container. The square brackets `[]` are Python's indexing
+operator.
+
+You can use indexing to get an element of a list based on the element's
+position. Python uses **zero-based indexing**, which means the positions of
+elements are counted starting from 0 rather than 1. So the first element of
+a list is at position 0, the second is at position 1, and so on.
+
+:::{note}
+Many programming languages use zero-based indexing. It may seem strange at
+first, but it makes some kinds of computations simpler by eliminating the need
+to add or subtract 1.
+:::
+
+The indexing operator requires at least one argument, called the **index**,
+which goes inside of the square brackets `[]`. The index says which elements
+you want to get. For DataFrames, you used column names as the index. For a
+list, you can use a position. So the code to get the first element of the list
+`li` is:
 
 ```{code-cell}
-l[0]
+li[0]
 ```
 
-Likewise, getting the third element is:
+Likewise, to get the third element:
 
 ```{code-cell}
-l[2]
+li[2]
 ```
 
-The above logic extends to sequences stored inside sequences. Below, we get the
-value  stored in the sublist of `l`.
+The same idea extends to containers stored inside of other containers. For
+example, to get the value stored in the list inside of `x`:
 
 ```{code-cell}
-l[2][0]
+li[2][0]
 ```
 
 You can set the element of a list by assigning a value at that index. So the
-code to change the first element of `l` to the string "hi" is:
+code to change the first element of `x` to the string "hi" is:
 
 ```{code-cell}
-l[0] = "hi"
-l
+li[0] = "hi"
+li
 ```
 
 
 (references)=
 ### References
 
-Assigning values to a list by its index positions is not without complication.
-Suppose you assign a list to a variable `x` and then create a new variable,
-`y`, from `x`. If you change an element of `y`, it will also change `x`:
+Assigning elements of a container is not without complication. Suppose you
+assign a list to a variable `x` and then create a new variable, `y`, from `x`.
+If you change an element of `y`, it will also change `x`:
 
 ```{code-cell}
 x = [1, 2]
@@ -201,17 +287,21 @@ y[0] = 10
 x
 ```
 
-This happens because of the way Python handles variables. In Python, variables
-point, or **refer**, to a location in your computer's memory. New variables
-created from the same data continue to point to that data unless directed
-otherwise, and thus operations on separate variables, or **references** can
-affect the same data.
+This happens because of how Python handles containers. When you create a
+container, Python stores it in your computer's memory. If you then assign the
+container to a variable, the variable points, or **refers**, to the location of
+the container in memory. If you create a second variable from the first, both
+will refer to the same location. As a result, operations on one variable will
+affect the value of the other, because there's really only one container in
+memory and both variables refer to it.
 
-The same holds true for Pandas objects. The variable `bill_value` is only a
-reference to a portion of the data `banknotes` represents.
+The example above uses lists, but other containers such as Series and
+DataFrames behave the same way. The variable `bill_value` is just reference to
+a column in the `banknotes` DataFrame.
 
-We take a **copy** of objects to create a new reference when assigning
-variables:
+If you want to assign an independent copy of a container to a variable rather
+than a reference, you need to use a function or method to explicitly make a
+copy. Many containers have a `.copy` method that makes a copy:
 
 ```{code-cell}
 x = [1, 2]
@@ -220,9 +310,23 @@ y[0] = 10
 x
 ```
 
-You can also convert your list to a **tuple** to prevent problems with value
-assignments. Tuples operate similarly to lists, but they are **immutable**.
-That is, once you create one, you cannot alter it.
+
+### Tuples
+
+References can be confusing, and if you know that the elements of a container
+shouldn't change, one way to prevent problems is to use a **tuple**. Like a
+list, a tuple is a one-dimensional container. The key difference is that tuples
+are **immutable**: once you create a tuple, you cannot alter it nor its
+elements.
+
+You can make a tuple by enclosing comma-separated values in parentheses `()`,
+like this:
+
+```{code-cell}
+(1, 2)
+```
+
+You can also convert another container into a tuple with the `tuple` function:
 
 ```{code-cell}
 x = [1, 2]
@@ -232,234 +336,283 @@ y[0] = 10
 x
 ```
 
-To check what kind of object, or **class**, a variable represents, use the
-built-in `type` function.
+
+(data-types)=
+Data Types
+----------
+
+Data can be categorized into different **types** based on sets of shared
+characteristics. For instance, statisticians tend to think about whether data
+are numeric or categorical:
+
+* numeric
+    + continuous (real or complex numbers)
+    + discrete (integers)
+* categorical
+    + nominal (categories with no ordering)
+    + ordinal (categories with some ordering)
+
+Of course, other types of data, like graphs (networks) and natural language
+(books, speech, and so on), are also possible. Categorizing data this way is
+useful for reasoning about which methods to apply to which data.
+
+Python and most other programming languages also categorize data by type. To
+check the type of an object in Python, use the built-in `type` function. Recall
+you used this function to check the type of the banknotes DataFrame in
+{numref}`inspecting-dataframe`:
 
 ```{code-cell}
-type(y)
+type(banknotes)
+```
+
+Take a look at the types of a few other objects:
+
+```{code-cell}
+type(bill_value)
+```
+
+```{code-cell}
+type(bill_value[0])
+```
+
+```{code-cell}
+type("hi")
 ```
 
 ```{code-cell}
 type(x)
 ```
 
-```{code-cell}
-type(bill_value)
-```
+:::{note}
+In Python 3, **class** is just another word for type. The `type` function
+returns the class of an object. Python also provides a `class` keyword to
+create your own classes. Creating classes is beyond the scope of this reader,
+but is explained in detail in most Python programming textbooks.
+:::
 
+For Pandas Series and DataFrames, the `type` function returns the type of
+container, but doesn't return any information about the types of the elements.
+The same is true for the NumPy arrays.
 
-(data-types)=
-Data Types
-----------
-
-Recall that a list can contain qualitatively different objects, whereas a
-Series cannot. What happens, then, if you were to convert `l` into a Series?
-
-```{code-cell}
-pd.Series(l)
-```
-
-Notice that the `dtype` value, which applies to all values in the Series, is
-`object`. This is a Pandas catchall for columns with mixed data types and for
-ones with strings. Why did converting `l` to a Series change the data type?
-
-To answer this, you need to know about how Python handles different types of
-data, including numeric and non-numeric data. You already caught a glimpse of
-these data types in {numref}`summarizing-data`, when you used `info` to inspect
-a DataFrame. Types are listed in the `Dtype` column.
+{numref}`summarizing-data` described one way to print the types of the
+elements in a Pandas object: by calling the `info` method. In the printout, the
+element types are listed in the `Dtype` column:
 
 ```{code-cell}
 banknotes.info()
 ```
 
-Some of these types are built into Python, while others are specific to Pandas.
-Pandas does more work than Python to ensure consistency and specificity across
-data types. This is because Pandas is built around NumPy, which provides more
-control to the programmer by adding extra data types to best match programming
-tasks. This also comes with improved memory and time performance.
-
-A list of data types that you will often encounter in data analysis is below.
-Entries marked with \* are NumPy/Pandas extensions to base Python types.
-* Boolean
-* Integer
-* Float
-* String
-* Complex
-* Datetime\*
-* Time Delta\*
-* StringDtype\*
-* Object\*
-
-
-(numeric-types)=
-### Numeric Types
-
-From `banknotes.info()` we learn that `current_bill_value` has an `int64` type.
-Integers are one of the two ways that Python stores numeric data. When storing
-whole numbers, such as 0, 3, 3000, etc., Python uses integers
-
-The `64` part is an add-on from Pandas. Here, `64` refers to the number of bits
-used to store the data, which in turn affects the range of numbers a variable
-can hold. Normally though, Python just records the `int`, as in the case below,
-where we use `type` to identify a data type:
+The column label `Dtype` is short for "data types". You can also access the
+element types for a DataFrame with the `.dtypes` attribute:
 
 ```{code-cell}
-type(4)
+banknotes.dtypes
 ```
 
-Typically, `int` numbers are 32 bits.
-
-Why is bit size important? Consider the fact that a 64-bit integer can hold
-values between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807,
-whereas a 16-bit integer covers everything between -32,768 and 32,767. Knowing
-this information really matters when you're working with large numbers. Without
-that knowledge, you might assign 32,768 to an `int16` variable and find that
-you've caused an **overflow** error.
-
-The same holds for instances where you need a certain amount of precision in
-your data. For example, Python and NumPy have the ability to represent
-irrational numbers, like pi. Ultimately, your computer has to represent such
-numbers with decimal values, so the number of decimal places a variable can
-hold will affect what pi "means" in your code:
+For a Series or NumPy array, you can instead use `.dtype` to get the element
+type:
 
 ```{code-cell}
-np.pi
+bill_value.dtype
 ```
 
-The above is an example of a `float` (for floating point number) type. Use this
-when you need decimal precision of any kind:
+Some of the element types listed for the `banknotes` DataFrame are built into
+Python, while others are provided by Pandas and NumPy. At the expense of being
+more complicated, the Pandas/NumPy types tend to be more specific and
+consistent. They provide programmers with greater control over how data are
+stored in memory, which makes it possible to write more efficient code. For
+computations that generate or process a large amount of data, as is often the
+case in research computing, efficiency is a major concern.
 
-```{code-cell}
-banknotes["bill_count"]
-```
+Here's a non-exhaustive table of data types that you'll often encounter in data
+analysis:
 
-You can explicitly construct both numeric data types in Python. Here is an
-integer:
+Built-in   | Pandas/NumPy              | Example         | Description
+---------- | ------------------------- | --------------- | -----------
+`bool`     |                           | `True`, `False` | Boolean values
+`int`      | `int32`, `int64`          | `-8`, `0`, `42` | Whole numbers 
+`float`    | `float32`, `float64`      | `-2.1`, `0.5`   | Decimal numbers
+`complex`  | `complex64`, `complex128` | `3j`, `1-2j`    | Complex numbers
+`str`      |                           | `"hi"`, `"2.1"` | Text strings
+`datetime` | `datetime64`              |                 | Dates and times
+
+For most of the built-in types, you can explicitly construct an object with
+that type by calling the function with the same name as the type. For instance,
+here's a way to construct an integer (type `int`):
 
 ```{code-cell}
 n = int(4)
+type(n)
 ```
 
-Importantly, this doesn't allow for decimal points:
+This example is a bit silly, since you could just write `4` instead of `int(4)`
+and you'd still get an integer:
+
+```{code-cell}
+n = 4
+type(n)
+```
+
+That said, suppose you want to construct an integer from a decimal number:
+
 
 ```{code-cell}
 n = int(4.67)
+type(n)
+```
+
+```{code-cell}
 n
 ```
 
-The `float` constructor will, however:
+Calling `int` forces the value to be an integer, and the numbers after the
+decimal point are removed.
+
+Decimal numbers like `4.67` are better represented by a floating point number,
+or `float`. Use this when you need decimal precision of any kind:
 
 ```{code-cell}
-n = float(4.67)
+n = 4.67
+type(n)
+```
+
+```{code-cell}
 n
 ```
 
-Though `int` won't accept a decimal, you can perform arithmetic operations
-across numeric types. For example, multiply `current_bill_value` by one and a
-half times its current value:
-
-```{code-cell}
-bill_value * 1.5
-```
-
-Notice that the `dtype` has changed from `int64` to `float64`. Python does this
-automatically, converting the more limited data type to match the more complex
-one. In this case, that means converting integers, which can't hold decimals,
-to floats, which can.
+Notice that the Pandas/NumPy types have the same names as the built-in types,
+but with a number appended to the end. {numref}`bit-sizes` explains what those
+numbers mean.
 
 
-(booleans)=
-### Booleans
+(strings-the-object-dtype)=
+### Strings & The `object` Dtype
 
-The most limited data type is `bool`, or a Boolean. It is a logical value that
-stores either True or False. Booleans are commonly used for expressions with
-yes-or-no responses, or for storing the state of your code. 
+Strings (type `str`), which were introduced in {numref}`getting-help`, are a
+bit more complicated than Boolean values and numbers because they have many
+attributes and methods associated with them.
 
-```{code-cell}
-banknotes["has_portrait"]
-```
+<!--
+, and they also tend to use much more memory.
+-->
 
-```{code-cell}
-coded_in_java = False
-type(coded_in_java)
-```
-
-(strings)=
-### Strings
-
-String objects, or `str`, are the most complex data type. They have the most
-attributes and methods associated with them, and they also take up the most
-amount of memory.
-
-Use double `"` or single `'` quotes to construct a string:
+Recall that you can use double `"` or single `'` quotes to construct a string:
 
 ```{code-cell}
 "Hello, world!"
 ```
 
-Back in Pandas, strings are stored under the `object` data type. Look at the
-`dtype` readout below.
+In Pandas and NumPy, strings usually associated with the `object` data type
+(printed as `object` or `O`). For example, look at the `names` column in the
+`banknotes` data:
 
 ```{code-cell}
 banknotes["name"]
 ```
 
-Alternatively, use the `dtype` attribute of a Series:
+The `object` data type is provided as a catch-all for non-numeric data
+types. For example, if you create a Series from several different types of
+data, Pandas will choose `object` as the element type:
 
 ```{code-cell}
-banknotes["name"].dtype
+mixed = pd.Series(["hi", 1, True])
+mixed
 ```
 
-Pandas uses this special data type because strings aren't fixed-length
-sequences, like numbers are. So Pandas has to build in the possibility that a
-string will become shorter or longer.
-
-
-(coercion-and-conversion)=
-### Coercion and Conversion
-
-Since arrays like a Series have to contain the same data type throughout,
-Pandas will automatically convert all elements in a Series to an `object` when
-even just one element is a string. This is known as implicit **type coercion**.
-It's why all the components of the list `l` became `objects`.
-
-You've actually seen a few examples of this already. Multiplying the `int64`
-Series `bill_value` by the `float` 1.5 produced `float` numbers. The same holds
-for:
+The individual elements of an `object` Series retain their original data types:
 
 ```{code-cell}
-8 / 0.25
+type(mixed[0])
 ```
-
-And:
 
 ```{code-cell}
-True + 2
+type(mixed[2])
 ```
 
-In the above, Python converts `True` to `1` and then performs the arithmetic.
+So one way to think about the `object` data type is as an invisble wrapper
+around each element's original type. The Series can claim all of its elements
+are generic "objects", but when you access an element the wrapper is peeled off
+and you get the original type.
 
-**Type conversion** is when you change an object's data type in an explicit
-manner.
+You're most likely to encounter the `object` type when working with Series or
+arrays of strings. In that case, you can generally assume all of the elements
+are type `str`. If you're ever unsure of the type of an element, you can always
+use `type` to check.
+
+:::{note}
+NumPy doesn't have a dedicated string type because the way strings are stored
+in memory is very different from the way numbers are stored. Since Pandas is
+based on NumPy, until recently Pandas didn't have a dedicated string type
+either. So both use `object` as the element type for Series and arrays of
+strings.
+
+As of Pandas 1.0, the developers have added an [experimental `string`
+type][pd-string] so that users can distinguish Series of strings from Series of
+mixed types. Hopefully in the future the `string` type will become the main way
+to handle strings rather than an experimental feature.
+
+[pd-string]: https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html
+:::
+
+
+(coercion-conversion)=
+### Coercion & Conversion
+
+Although `bool`, `int`, and `float` are different types, in most situations
+Python will automatically convert between them as needed. For example, you can
+multiply a floating point number by an integer and then add a Boolean value:
 
 ```{code-cell}
-b = int(4.5)
-b
+n = 3.1 * 2 + True
+n
 ```
 
-...is the example you saw earlier. Here is another:
+First, the integer `2` is converted to floating point number and multiplied by
+`3.1`, yielding `6.2`. Then the Boolean `True` is converted to a floating point
+number and added to `6.2`. In Python and most other programming languages,
+`False` corresponds to `0` and `True` corresponds to `1`. Thus the result is
+`7.2`, a floating point number:
+
+```{code-cell}
+type(n)
+```
+
+This automatic conversion of types is known as **implicit coercion**.
+Conversion always proceeds from less general to more general types, so that no
+information is lost.
+
+Implicit coercion usually only applies to numeric types (including Boolean
+values). Mixing other types will usually cause an error. For instance, you
+can't add a number to a string:
+
+```{code-cell}
+:tags: [raises-exception]
+"hi" + 1
+```
+
+Implicit coercion also works for numeric Pandas/NumPy types. For example, you
+can multiply `bill_value` by one and a half times its current value:
+
+```{code-cell}
+bill_value * 1.5
+```
+
+Notice that the `dtype` has changed from `int64` to `float64`.
+
+
+**Type conversion** is when you explicitly convert an object from one type to
+another. You already saw examples of this with the `int` and `float` functions
+in {numref}`data-types`. Here are a few more:
 
 ```{code-cell}
 bool(0)
 ```
 
-And one more:
-
 ```{code-cell}
 str(105)
 ```
 
-Python can even read strings like numbers and Boolean values:
+Python can even convert strings into numbers and Boolean values:
 
 ```{code-cell}
 float("7.3")
@@ -477,23 +630,73 @@ work:
 int("Hello world!")
 ```
 
-(comparison-operators)=
-### Comparison Operators
+For a Pandas Series or NumPy array, you can use the `.astype` method to convert
+the elements to a specific type. Pass the name of the target type to the method
+as a string. For example, here's how to convert the `bill_value` elements to
+`float64`:
 
-Programming tasks often involve comparing variables. Use **comparison
-operators** to do so.
+```{code-cell}
+bill_value.astype("float64")
+```
 
-| Symbol | Meaning                  |
-| :----: | :----------------------- |
-| `<`    | less than                |
-| `>`    | greater than             |
-| `<=`   | less than or equal to    |
-| `>=`   | greater than or equal to |
-| `==`   | equal to                 |
-| `!=`   | not equal to             |
 
-Notice that the "equal to" operator is two equal signs. This is to distinguish
-it from the assignment `=` operator.
+(bit-sizes)=
+### Bit Sizes & Memory
+
+Recall the table of types from the beginning of this Section
+({numref}`data-types`). The names of the Pandas/NumPy types in the table all
+end in numbers such as `32` or `64`. These numbers indicate the **bit size**,
+the number of bits of memory used to store a value of that type.
+
+For example, a single value with type `int64` uses 64 bits of memory. So the
+`int64` series `bill_value` uses about 64 bits per element, for a total of:
+
+```{code-cell}
+64 * len(bill_value) # bits
+```
+
+In contrast, Python's built-in data types don't specify how much memory they
+use:
+
+```{code-cell}
+type(3)
+```
+
+In fact, the amount of memory can vary depending on your computer's hardware
+and operating system!
+
+Why is bit size important? Your computer has a limited amount of memory, so
+it's a good habit to only use what you need. The tradeoff is that using more
+memory allows you to use larger or more precise numbers.
+
+For instance, a 64-bit integer can hold values between
+`-9,223,372,036,854,775,808` and `9,223,372,036,854,775,807`, whereas a 16-bit
+integer can only hold values between `-32,768` and `32,767`. Understanding this
+matters when you're working with large numbers. Without that knowledge, you
+might assign `32,768` to an `int16` variable and find that you've caused an
+**overflow error**.
+
+The same holds for instances where you need a certain amount of precision in
+your data. For example, Python and NumPy have the ability to represent
+irrational numbers, like pi. Ultimately, your computer has to represent such
+numbers with decimal values, so the number of decimal places a variable can
+hold will affect what pi "means" in your code:
+
+```{code-cell}
+np.pi
+```
+
+:::{tip}
+You can also use bit sizes to estimate the amount of memory your data will
+require, as we did for the `bill_value` object. When a computation runs out of
+memory, an estimate of how much memory is necessary can help you understand
+whether to get better hardware or to change your computing strategy.
+:::
+
+
+<!--
+(booleans)=
+### Booleans
 
 ```{code-cell}
 sum(bill_value) < 10000
@@ -507,22 +710,34 @@ bill_value == banknotes["current_bill_value"]
 bill_value % 25 != 0
 ```
 
+```{code-cell}
+banknotes["has_portrait"]
+```
+
+```{code-cell}
+coded_in_java = False
+type(coded_in_java)
+```
+-->
+
+
+
+
 
 (indexing-in-pandas)=
 Indexing in Pandas
 ------------------
 
-In the last cell above, the readout values change depending on the underlying
-data. If you want to inspect that data more closely, you can index the Series.
-Conceptually, indexing a Series is very similar to indexing a list or tuple,
-but Pandas offers additional ways to select and subset data via indexes.
+If you want to inspect the elements of a Series more closely, you can use
+indexing. Conceptually, indexing a Series is very similar to indexing a list or
+tuple, but Pandas offers additional ways to select and subset data via indexes.
 
 
 (the-pandas-index)=
 ### What's an Index?
 
-It can do so because a Pandas index is more than just a positional location.
-Indexes serve three important roles:
+A Pandas index is more than just a positional location. Indexes serve three
+important roles:
 
 1. As metadata to provide additional context about a data set
 2. As a way to explicitly and automatically align data
@@ -536,33 +751,36 @@ bill_value.index
 
 Index labels can be numbers, strings, dates, or other values. Pandas provides
 subclasses of `Index` for specific purposes, which you can read more about
-[here][].
+[here][pd-index].
 
-[here]: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Index.html
+[pd-index]: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Index.html
 
-Indexes, like tuples, are **immutable**. Each of its labels cannot be changed.
-But every index also has a name, and you can change this.
+Indexes, like tuples, are **immutable**. The labels in an index cannot be
+changed. That said, every index also has a name that _can_ be changed:
 
 ```{code-cell}
 bill_value.name = "bill_value"
 bill_value
 ```
 
-The above also applies to DataFrames.
+The above also applies to DataFrames:
 
 ```{code-cell}
 banknotes.index
 ```
 
-Oftentimes, an index is a range of numbers. But this can be changed. The code
+Oftentimes, an index is a range of numbers, but this can be changed. The code
 below uses the `set_index` method to change the index of `banknotes` to
-`country`. We use `inplace` to make this change without having to reassign the
-result
+`country`:
 
 ```{code-cell}
-banknotes.set_index("country", inplace=True)
+banknotes.set_index("country", inplace = True)
 banknotes.index
 ```
+
+The `inplace` argument instructs Pandas to change the index directly without
+making a copy first, so that we don't have to reassign `banknotes.index`
+explicitly.
 
 
 (indexing-by-position)=
@@ -574,13 +792,13 @@ methods for accessing specific values in Pandas:
 2. By label/name
 3. By a condition
 
-To access elements in a series by integer position, use `iloc`:
+To access elements in a series by integer position, use `.iloc`:
 
 ```{code-cell}
 bill_value.iloc[5]
 ```
 
-Using `iloc` is extensible to sequences of values:
+Using `.iloc` is extensible to sequences of values:
 
 ```{code-cell}
 bill_value.iloc[[5, 15, 25, 35]]
@@ -588,7 +806,7 @@ bill_value.iloc[[5, 15, 25, 35]]
 
 Use a **slice** to select a range of elements. The syntax for a slice is
 `start:stop:step`, with the second colon `:` and arguments being optional. This
-syntax also applies to lists.
+syntax also applies to lists. For example:
 
 ```{code-cell}
 bill_value.iloc[0:5]
@@ -601,13 +819,13 @@ bill_value.iloc[::20]
 ```
 
 Slices also accept negative values. This counts back from the end of a
-sequence.
+sequence. For instance:
 
 ```{code-cell}
 bill_value.iloc[-5:]
 ```
 
-That makes the above output the same as the output below:
+The result is the same as if you had used the `.tail` method:
 
 ```{code-cell}
 bill_value.tail()
@@ -617,7 +835,7 @@ bill_value.tail()
 (indexing-by-label)=
 ### Indexing by Label
 
-Use `loc` to index a Series or DataFrame by label.
+Use `.loc` to index a Series or DataFrame by label:
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -631,7 +849,7 @@ You can select specific columns as well:
 banknotes.loc["Peru", "name"]
 ```
 
-Just as with `iloc`, it's possible to feed sequences into `loc`:
+Just as with `.iloc`, it's possible to pass sequences into `.loc`:
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -641,26 +859,26 @@ banknotes.loc[["Peru", "Serbia", "Ukraine"]]
 This can be a very powerful operation, but it's easy to get mixed up when
 labels are integers, as with the `bill_value` data.
 
-This:
+For example, this:
 
 ```{code-cell}
 bill_value.loc[0:5]
 ```
 
-Is the same as this:
+Is *NOT* the same as this:
 
 ```{code-cell}
 bill_value.iloc[0:5]
 ```
 
 Recall that bracket notation selects columns in DataFrames. With a Series, the
-same notation acts as another way to perform `loc` operations.
+same notation acts as another way to perform `.loc` operations:
 
 ```{code-cell}
 bill_value[0:5]
 ```
 
-Finally, `iloc` and `loc` can be used in tandem with one another. This is
+Finally, `.iloc` and `.loc` can be used in tandem with one another. This is
 called **chaining**. Below, we use the country-indexed `banknotes` DataFrame to
 select all rows with "Peru." Then, we select the second row from this subset.
 
@@ -673,39 +891,43 @@ banknotes.loc["Peru"].iloc[1]
 ### Indexing by a Condition
 
 The last way to index in Pandas is by condition. Pandas does this by evaluating
-statements and returning a sequence of Boolean values. This is by far the most
+a condition and returning a Boolean Series or array. This is by far the most
 powerful method of indexing in Pandas.
 
-Earlier, we used this method to look for bill values that are not divisible by
-25.
+For example, suppose you want to find bill values that are divisible by 25. You
+can use the modulo operator `%` to get the remainder when one positive integer
+is divided by another. So the condition to test for divisibility by 25 is:
 
 ```{code-cell}
-bill_value % 25 != 0
+bill_value % 25 == 0
 ```
 
-It's possible to perform a similar operation with `loc`:
+The result is a Boolean Series with as many elements as `bill_value`. You can
+use this condition in `.loc` to get only the elements where the result was
+`True`:
 
 ```{code-cell}
-bill_value.loc[bill_value % 25 != 0]
+bill_value.loc[bill_value % 25 == 0]
 ```
 
-Notice though that not all the data is here. Only those entries where the above
-condition is True are returned. This is a **subset** of the Series.
+<!--
+This is a **subset** of the Series.
+-->
 
-Using square brackets works in the same way with a Series:
+You can also use square brackets `[]` without `.loc` to index by condition:
 
 ```{code-cell}
 bill_value[bill_value - 100 > 5]
 ```
 
-With a DataFrame, you can use square brackets to subset:
+With a DataFrame, indexing by condition gives you a subset of the rows:
 
 ```{code-cell}
 :tags: [output_scroll]
 banknotes[banknotes["currency_code"] == "MWK"]
 ```
 
-If you want to specify specific columns, use `loc`:
+If you want to specify specific columns, use `.loc`:
 
 ```{code-cell}
 banknotes.loc[banknotes["current_bill_value"] == 10.0, "currency_name"]
@@ -728,14 +950,14 @@ You may have noticed that some of the data in `banknotes` is missing. This is
 common, and it's important to understand how to handle missing or invalid
 values.
 
-There are many reasons that could cause these values to be missing or incomplete,
-and as a result, Pandas provides lots of flexibility for detecting and handling
-these values.
+There are many reasons that could cause these values to be missing or
+incomplete, and as a result, Pandas provides lots of flexibility for detecting
+and handling these values.
 
-In Pandas, these special values, are generally treated as missing values
-in the dataset, and are represented by the NumPy `nan` type. This reduces
-some of the nuance of data values and types, but was seemingly done
-for computational performance reasons.
+In Pandas, these special values are generally treated as missing values in the
+dataset, and are represented by the NumPy `nan` type. This reduces some of the
+nuance of data values and types, but was seemingly done for computational
+performance reasons.
 
 ```{code-cell}
 banknotes.iloc[-25]
@@ -814,7 +1036,7 @@ considered missing:
 ht.isna()
 ```
 
-The reverse - to see which values are not considered missing - is returned 
+The reverse---to see which values are not considered missing---is returned 
 with `notna`:
 
 ```{code-cell}
@@ -870,7 +1092,7 @@ Read the help file for this function.
 
 ### Exercise
 
-Return to the discussion in {numref}`coercion-and-conversion`.
+Return to the discussion in {numref}`coercion-conversion`.
 
 1. Why does `"3" + 4` raise an error?
 2. Why does `True - 1` return 0?
