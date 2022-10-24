@@ -53,12 +53,16 @@ import numpy as np
 import pandas as pd
 ```
 
+
+### Data
+
 {numref}`getting-started` described how to use the Pandas package to load a
 tabular dataset into a DataFrame. As an example, you saw how to load the
 banknotes dataset. You'll need that dataset for the examples in this chapter as
 well, so load a fresh copy of it:
 
 ```{code-cell}
+:tags: [output_scroll]
 banknotes = pd.read_csv("data/banknotes.csv")
 banknotes.head()
 ```

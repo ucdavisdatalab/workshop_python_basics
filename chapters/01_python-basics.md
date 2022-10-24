@@ -456,6 +456,7 @@ same name as the function itself. So the code to open the help page for the
 `round` function is:
 
 ```{code-cell}
+:tags: [output_scroll]
 help(round)
 ```
 
@@ -472,6 +473,7 @@ double quotes. For example, this code opens the help page for the arithmetic
 operators:
 
 ```{code-cell}
+:tags: [output_scroll]
 help("+")
 ```
 
@@ -547,6 +549,27 @@ You'll learn much more about NumPy, SciPy, and Pandas as you go through this
 reader. By using JupyterLab, you've already used IPython. You'll use Matplotlib
 indirectly later on, when you learn about visualization.
 
+
+(installing-packages)=
+### Installing packages
+
+You can use Anaconda's conda utility to install additional packages. The conda
+utility is a program, not part of Python. In JupyterLab, open a Terminal
+(`File` -> `New` -> `Terminal`). Then enter:
+
+```
+conda install -c conda-forge <package-name>
+```
+
+The command `conda install <package-name>` installs the package called
+`<package-name>`. The flag `-c conda-forge` tells conda to use a version from
+the conda-forge package repository. Packages on conda-forge are usually more up
+to date than the ones in Anaconda's default package repository.
+
+You can learn more about Anaconda and conda in the [official
+documentation][condadoc].
+
+[condadoc]: https://docs.anaconda.com/anaconda/user-guide/tasks/install-packages/
 
 (modules)=
 ### Modules
@@ -1140,7 +1163,7 @@ additional columns.
 One way to get a quick idea of what your data looks like without having to
 shuffle through all the columns and rows is by inspecting its **shape**. This
 is the number of rows and columns in a DataFrame, and you can access this
-information with the `shape` attribute:
+information with the `.shape` attribute:
 
 ```{code-cell}
 banknotes.shape
@@ -1153,7 +1176,7 @@ the parentheses `()` at the end. Parentheses are necesary when you want to call
 a method, but not when you want just want to access the value of attribute.
 ```
 
-To display the names of each column, access the `columns` attribute:
+To display the names of each column, access the `.columns` attribute:
 
 ```{code-cell}
 banknotes.columns
@@ -1164,7 +1187,7 @@ banknotes.columns
 
 More granular information about a DataFrame and its contents is available with
 the `.info` method. In addition to attributes like the DataFrame's shape and
-its column names, `info` provides a brief summary of the number of cells that
+its column names, `.info` provides a brief summary of the number of cells that
 contain data, the type of data in each cell, and the total memory usage of the
 DataFrame:
 
