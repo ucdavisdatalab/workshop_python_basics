@@ -24,25 +24,241 @@ Now that you have a solid foundation in the basic functions and data structures
 of Python, you can move on to using it for data analysis. In this chapter,
 you'll learn how to efficiently explore and summarize with visualizations and
 statistics. Along the way, you'll also learn how to write and apply functions
-along entire sets of data in Pandas Data Frames and Series.
+along entire sets of data in Pandas DataFrames and Series.
 
-Indexing Data Frames
---------------------
 
-This section explains how to get and set data in a DataFrame, expanding on the
-indexing technique you learned in {numref}`indexing-in-pandas`. To begin, load
-the banknotes data with Pandas. Load NumPy as well.
+Setup
+-----
+
+### Packages
+
+As in the last chapter, you will be working with two primary packages: NumPy
+and Pandas. Later, you will load another set of packages to visualize your
+data.
 
 ```{code-cell}
 import numpy as np
 import pandas as pd
+```
 
+
+### Data
+
+We will continue working with the banknotes data set. Once you've imported your
+packages, load this data in as well.
+
+```{code-cell}
 banknotes = pd.read_csv("data/banknotes.csv")
 ```
 
-(data-visualization)=
-Data Visualization
-------------------
+You're now ready to go.
+
+
+(iteration)=
+Iterating Over Data
+-------------------
+
+Before we go into data exploration in full, it's important to understand how
+Python/Pandas computes summary statistics about a data set.
+{numref}`summarizing-columns` introduced column-wise operations in Pandas; you
+will learn more of them below. These operations are a convenient and efficient
+way to compute multiple results at once, and with only a few lines of code.
+
+Under the hood, Pandas has to **iterate** over each value in a cell to perform
+operations like `.mean` or `.min`. We can do this too using a **for-loop**.
+
+
+### For-Loops
+
+For-loops iterate over some object and compute something for each element. Each
+one of these computations is one **iteration**. A for-loop begins with the
+`for` keyword, followed by:
+
+* A placeholder variable, which will be automatically signed to an element at
+  the beginning of each iteration
+* The `in` keyword
+* An object with elements
+* A colon `:`
+
+Code in the body of the loop must be indented by 4 spaces.
+
+For example, to print out all the column names in `banknotes.columns`, you can
+write:
+
+```{code-cell}
+for column in banknotes.columns:
+    print(column)
+```
+
+Within the indented part of a for-loop, you can compute values, check
+conditions, etc.
+
+```{code-cell}
+:tags: [output_scroll]
+for value in banknotes["bill_count"]:
+    if value < 1:
+        print(value)
+```
+
+Oftentimes you want to save the result of the code you perform within a
+for-loop. The easiest way to do this is by creating an empty list and using
+`append` to add values to it.
+
+```{code-cell}
+:tags: [output_scroll]
+result = []
+for value in banknotes["current_bill_value"]:
+    if value % 25 == 0:
+        result.append(value)
+
+result
+```
+
+
+### List Comprehensions
+
+A more succinct way to perform certain `append` operations is with a **list
+comprehension**. A list comprehension is very similar to a for-loop, but it
+automatically creates a new list based on what your iterations do. This means
+you do not need to create an empty list ahead of time.
+
+Below, this comprehension divides each value in the `current_bill_value` column
+by 2.
+
+```{code-cell}
+:tags: [output_scroll]
+[value / 2 for value in banknotes["current_bill_value"]]
+```
+
+Folding comparisons into list comprehensions works similar to subsetting in
+Pandas:
+
+```{code-cell}
+:tags: [output_scroll]
+[year for year in banknotes["first_appearance_year"] if year > 2012]
+```
+
+You can assign the results to a new variable and perform further computations
+on them:
+
+```{code-cell}
+recent_years = [year for year in banknotes["first_appearance_year"] if year > 2012]
+np.median(recent_years)
+```
+
+
+(aggregate-functions)=
+Aggregate Functions
+-------------------
+
+
+(aggregating-a-column)=
+### Aggregating a Column
+
+In {numref}`summarizing-columns`, you learned how to compute the mean, minimum,
+and maximum values from a Series. Pandas offers a more generalized way to
+handle these functions through its `.aggregate` method. This method
+**aggregates** the elements of Series, reducing the Series to a smaller number
+of values (usually one value).
+
+For example, to compute the median of all values in `first_appearance_year`:
+
+```{code-cell}
+banknotes["first_appearance_year"].aggregate('median')
+```
+
+The `.agg` method is an alias for `.aggregate`. The [Pandas
+documentation][pandasdocs] advises that you use the alias:
+
+[pandasdocs]: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.aggregate.html
+
+```{code-cell}
+banknotes["first_appearance_year"].agg('median')
+```
+
+You can pass functions to `.agg` in addition to names of functions:
+
+```{code-cell}
+banknotes["first_appearance_year"].agg(np.median)
+```
+
+The method is particularly powerful for its ability to handle multiple
+functions at once, using a list. Below, we compute the mean, median, and
+standard deviation for `bill_count`:
+
+```{code-cell}
+banknotes["current_bill_value"].agg([np.mean, np.median, np.std])
+```
+
+Aggregation methods can also work on multiple columns at once:
+
+```{code-cell}
+banknotes[["current_bill_value", "scaled_bill_value"]].agg(np.mean)
+```
+
+
+(aggregating-within-groups)=
+### Aggregating within Groups
+
+Aggregation is especially useful when combined with grouping. The `.groupby`
+method groups rows of a DataFrame using the columns you specify. The grouping
+columns should generally be categories rather than decimal numbers. For
+example, to group the banknotes by `gender` and then count how many entries are
+in each group:
+
+```{code-cell}
+banknotes.groupby("gender").size()
+```
+
+Use bracket notation to look at a specific column for each group:
+
+```{code-cell}
+banknotes.groupby("gender")["current_bill_value"].mean()
+```
+
+It's also possible to group by multiple conditions:
+
+```{code-cell}
+banknotes.groupby(["gender", "profession"]).size()
+```
+
+By default, the grouping columns are moved to the index of the result. You can
+prevent this by setting `as_index = False` in `.groupby`:
+
+```{code-cell}
+banknotes.groupby(["gender", "profession"], as_index = False).size()
+```
+
+:::{tip}
+You can also "reset the index on a DataFrame, so that the current indexes
+become columns with the `.reset_index` method.
+:::
+
+Leaving the grouping columns in the index is often convenient because you can
+easily access results for the groups you're interested in:
+
+```{code-cell}
+grouped = banknotes.groupby(["gender", "profession"]).size()
+
+grouped.loc[:, "Visual Artist"]
+```
+
+A few aggregation functions only make sense when used together with groups. One
+is the `.first` method, which returns the first element or row. The `.first`
+method is especially useful if all the values in a group are the same and you
+want to reduce the data to one row per group. For instance, the same country
+appears across multiple rows in our data set. With `.first`, you can select the
+corresponding currency code:
+
+```{code-cell}
+banknotes.groupby(["country"])["currency_code"].first()
+```
+
+
+(data-visualization-in-python)=
+Data Visualization in Python
+----------------------------
+
 
 ```{image} ../img/visualization_landscape.png
 :alt: A network of Python visualization packages.
@@ -54,7 +270,10 @@ to all of the packages!_
 [jake]: http://vanderplas.com/
 [viz]: https://rougier.github.io/python-visualization-landscape/landscape-colors.html
 
-So many visualization packages are available for Python that there is even [a
+Creating aggregated information about a data set is often done with the intent
+to share your results. A data visualization is an effective medium for
+displaying results, and there are many ways to create one in Python. In fact,
+so many visualization packages are available that there is even [a
 website][pyviz] dedicated to helping people decide which to use. This reader
 focuses on **static visualization**, where the visualization is a still image.
 Some popular packages for creating static visualizations are:
@@ -99,80 +318,26 @@ documentation][ggplot2] and [cheatsheet][ggplot2-cheat].
 [ggplot2-cheat]: https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf
 
 
-### Configuring Jupyter
+(preparing-to-visualize)=
+Preparing to Visualize
+----------------------
 
-Jupyter notebooks can display most static visualizations and some interactive
-visualizations. If you're going to use visualization packages that depend on
-matplotlib (such as plotnine), it's a good idea to set up your notebook by
-running:
+Before building a visualization, you will need to do a few preparatory steps.
 
-```{code-cell}
-# Initialize matplotlib
+(install-import-plotnine)=
+### Install and Import plotnine
 
-%matplotlib inline
-
-import matplotlib.pyplot as plt
-
-# We'll see what this code does later on:
-plt.rcParams["figure.figsize"] = [10, 8]
-```
-
-The last line sets the default size of plots. You can increase the numbers to
-make plots larger, or decrease them to make plots smaller.
-
-
-(installing-packages)=
-Installing Packages
--------------------
-
-Matplotlib is included with Anaconda, but plotnine is not. So you need to
-install the plotnine package in order to use it.
-
-You can use Anaconda's conda utility to install packages. The conda utility
-is a program, not part of Python. In JupyterLab, open a Terminal (`File` ->
-`New` -> `Terminal`). Then enter:
+While Matplotlib is included with Anaconda, plotnine is not. You will need to
+install the plotnine package in order to use it. {numref}`installing-packages`
+showed you how to install packages with conda via the Terminal:
 
 ```
 conda install -c conda-forge plotnine
 ```
 
-The command `conda install PACKAGE` installs the package called `PACKAGE`. The
-flag `-c conda-forge` tells conda to use a version from the conda-forge package
-repository. Packages on conda-forge are usually more up to date than the ones
-in Anaconda's default package repository.
-
-You can learn more about Anaconda and conda in the [official
-documentation][conda].
-
-[conda]: https://docs.anaconda.com/anaconda/user-guide/tasks/install-packages/
-
-
-(grammar-of-graphics)=
-The Grammar of Graphics
------------------------
-
-Recall that plotnine is a clone of ggplot2. The "gg" in ggplot2 stands for
-*grammar of graphics*. The idea of a grammar of graphics is that visualizations
-can be built up in layers. Visualizations that adhere to this grammar must
-have:
-
-* Data
-* Geometry
-* Aesthetics
-
-There are also several optional layers. Here are a few:
-
-| Layer       | Description                                        |
-| :---------- | :------------------------------------------------- |
-| scales      | Title, label, and axis value settings              |
-| facets      | Side-by-side plots                                 |
-| guides      | Axis and legend position settings                  |
-| annotations | Shapes that are not mapped to data                 |
-| coordinates | Coordinate systems (Cartesian, logarithmic, polar) |
-
 In {numref}`modules`, you learned how to import a module in a Python package
 with the `import` keyword. Python also provides a `from` keyword to import
-specific objects within a module. The syntax is
+specific objects within a module. The syntax is:
 
 ```python
 from <module> import <object>
@@ -200,24 +365,89 @@ the plotnine package is designed to be imported this way:
 from plotnine import *
 ```
 
-From here, we can make a plot. But what kind of plot should we make? It depends
-on what we want to know about the data set. Suppose we want to understand the
-relationship between a banknote's value and how long ago the person on the
-banknote died, as well as whether this is affected by gender. One way to show
-this is to make a scatter plot.
 
-Before plotting, we need to do a tiny amount of data cleaning. The
-visualizations below use values from `death_year`, but some rows do not contain
-information for this variable. We will remove those rows and then convert the
-column to an integer type.
+(configure-jupyter)=
+### Configure Jupyter
+
+Jupyter notebooks can display most static visualizations and some interactive
+visualizations. If you're going to use visualization packages that depend on
+Matplotlib (such as plotnine), it's a good idea to set up your notebook by
+running:
 
 ```{code-cell}
-is_blank = banknotes["death_year"].isin([np.nan, "-"])
-banknotes = banknotes[is_blank == False]
-banknotes["death_year"] = banknotes["death_year"].astype(int)
+# Initialize matplotlib
+
+%matplotlib inline
+
+import matplotlib.pyplot as plt
+
+# We'll see what this code does later on:
+plt.rcParams["figure.figsize"] = [10, 8]
 ```
 
-Now we're ready to make the plot.
+The last line sets the default size of plots. You can increase the numbers to
+make plots larger, or decrease them to make plots smaller.
+
+
+(data-cleaning)=
+### Data Cleaning
+
+Finally, we need to do a small amount of data cleaning. The plots below will
+focus on two variables, `death_year` and `scaled_bill_value`. But some rows
+lack information for these variables, so they need to be removed. Along the
+way, we will ensure that the variables' datatypes are set correctly.
+
+:::{tip}
+When making potentially destructive changes to a data set, it's a good idea to
+reassign the altered data to a new variable.
+:::
+
+**Death year**
+
+```{code-cell}
+no_death = banknotes["death_year"].isin([np.nan, "-"])
+to_plot = banknotes[no_death == False].copy()
+to_plot["death_year"] = to_plot["death_year"].astype(int)
+```
+
+**Scaled bill value**
+
+```{code-cell}
+no_scaled = to_plot["scaled_bill_value"].isna()
+to_plot = to_plot[no_scaled == False]
+```
+
+you are now ready to make a plot.
+
+
+(grammar-of-graphics)=
+The Grammar of Graphics
+-----------------------
+
+Recall that plotnine is a clone of ggplot2. The "gg" in ggplot2 stands for
+*grammar of graphics*. The idea of a grammar of graphics is that visualizations
+can be built up in layers. Visualizations that adhere to this grammar must
+have:
+
+* Data
+* Geometry
+* Aesthetics
+
+There are also several optional layers. Here are a few:
+
+| Layer       | Description                                        |
+| :---------- | :------------------------------------------------- |
+| scales      | Title, label, and axis value settings              |
+| facets      | Side-by-side plots                                 |
+| guides      | Axis and legend position settings                  |
+| annotations | Shapes that are not mapped to data                 |
+| coordinates | Coordinate systems (Cartesian, logarithmic, polar) |
+
+With all this in mind, it's time to make a plot. But what kind of plot should
+we make? It depends on what we want to know about the data set. Suppose we want
+to understand the relationship between a banknote's value and how long ago the
+person on the banknote died, as well as whether this is affected by gender. One
+way to show this is to make a scatter plot.
 
 
 ### Layer 1: Data
@@ -235,7 +465,7 @@ sets we work with are tidy.
 To set up the data layer, call the ``ggplot` function on a Data Frame:
 
 ```{code-cell}
-ggplot(banknotes)
+ggplot(to_plot)
 ```
 
 This returns a blank plot. We still need to add a few more layers.
@@ -255,7 +485,7 @@ add it to the plot with the `+` operator:
 
 ```{code-cell}
 :tags: [raises-exception]
-ggplot(banknotes) + geom_point()
+ggplot(to_plot) + geom_point()
 ```
 
 This returns an error message that we're missing aesthetics `x` and `y`. We'll
@@ -295,7 +525,7 @@ function:
 
 ```{code-cell}
 ggplot(
-    banknotes,
+    to_plot,
     aes(x = "death_year", y = "scaled_bill_value")
 ) + geom_point()
 ```
@@ -308,7 +538,7 @@ for each geometry by passing the layer as the first argument in the `geom_`
 function:
 
 ```{code-cell}
-(ggplot(banknotes) +
+(ggplot(to_plot) +
     geom_point(aes(x = "death_year", y = "scaled_bill_value"))
 )
 ```
@@ -325,7 +555,7 @@ let's color-code the points by gender. To do so, we need to convert `gender` to
 *categorical* data, which measures a qualitative category.
 
 ```{code-cell}
-(ggplot(banknotes) +
+(ggplot(to_plot) +
     geom_point(aes(x = "death_year", y = "scaled_bill_value", color = "factor(gender)"))
 )
 ```
@@ -334,7 +564,7 @@ Now let's add labels to each point. To do this, we need to add another
 geometry:
 
 ```{code-cell}
-(ggplot(banknotes,
+(ggplot(to_plot,
     aes(x = "death_year", y = "scaled_bill_value", color = "factor(gender)",
         label = "name")) +
     geom_point() + 
@@ -345,7 +575,7 @@ geometry:
 Where you put the aesthetics matters:
 
 ```{code-cell}
-(ggplot(banknotes,
+(ggplot(to_plot,
     aes(x = "death_year", y = "scaled_bill_value", label = "name")) + 
     geom_point() + 
     geom_text(aes(color = "factor(gender)"))
@@ -360,7 +590,7 @@ For instance, suppose you want to use point shape rather than color to indicate
 gender, and you want to make all of the points blue.
 
 ```{code-cell}
-(ggplot(banknotes,
+(ggplot(to_plot,
     aes(x = "death_year", y = "scaled_bill_value", shape = "factor(gender)")) +
     geom_point(color = "blue")
 )
@@ -371,7 +601,7 @@ results you get might not be what you expect:
 
 ```{code-cell}
 :tags: [raises-exception]
-(ggplot(banknotes,
+(ggplot(to_plot,
     aes(x = "death_year", y = "scaled_bill_value", shape = "factor(gender)",
         color = "blue")) +
     geom_point()
@@ -389,7 +619,7 @@ The `labs` function is especially important, because it's used to set the title
 and axis labels. All graphs need a title and axis labels.
 
 ```{code-cell}
-(ggplot(banknotes,
+(ggplot(to_plot,
     aes(x = "death_year", y = "scaled_bill_value", shape = "factor(gender)")) + 
     geom_point() +
     labs(x = "Death Year", y = "Scaled Bill Value",
@@ -404,7 +634,7 @@ If you assign a plot to a variable, you can use the `save` method or the
 
 ```
 plot = (
-    ggplot(banknotes,
+    ggplot(to_plot,
     aes(x = "death_year", y = "scaled_bill_value", shape = "factor(gender)")) +
     geom_point() +
     labs(x = "Death Year", y = "Scaled Bill Value", 
@@ -433,7 +663,7 @@ We can also use a fill color to further breakdown the bars by gender. Here's
 the code to make the bar plot:
 
 ```{code-cell}
-(ggplot(banknotes,
+(ggplot(to_plot,
     aes(x = "factor(profession)", fill = "factor(gender)")) +
     geom_bar(position = "dodge")
 )
@@ -495,98 +725,4 @@ it. One resource where you can learn more is DataLab's [Principle's of Data
 Visualization Workshop Reader][rdr].
 
 [rdr]: https://ucdavisdatalab.github.io/workshop_data_viz_principles/
-
-
-(for-loops-list-comprehensions)=
-For-Loops and List Comprehensions
----------------------------------
-
-
-### For-Loops
-
-{numref}`summarizing-columns` introduced column-wise operations in Pandas.
-These operations are a convenient and efficient way to compute multiple results
-at once, and with only a few lines of code.
-
-Under the hood, Pandas has to **iterate** over each value in a cell to perform
-functions like `mean` or `min`. We can do this too using a **for-loop**.
-For-loops iterate over some object and compute something for each element. Each
-one of these computations is one **iteration**. A for-loop begins with the
-`for` keyword, followed by:
-
-* A placeholder variable, which will be automatically signed to an element at
-  the beginning of each iteration
-* The `in` keyword
-* An object with elements
-* A colon `:`
-
-Code in the body of the loop must be indented by 4 spaces.
-
-For example, to print out all the column names in `banknotes.columns`, you can
-write:
-
-```{code-cell}
-for column in banknotes.columns:
-    print(column)
-```
-
-Within the indented part of a for-loop, you can compute values, check
-conditions, etc.
-
-```{code-cell}
-:tags: [output_scroll]
-for value in banknotes["bill_count"]:
-    if value < 1:
-        print(value)
-```
-
-Oftentimes you want to save the result of the code you perform within a
-for-loop. The easiest way to do this is by creating an empty list and using
-`append` to add values to it.
-
-```{code-cell}
-:tags: [output_scroll]
-result = []
-for value in banknotes["current_bill_value"]:
-    if value % 25 == 0:
-        result.append(value)
-
-result
-```
-
-
-### List Comprehensions
-
-A more succint way to perform certain `append` operations is with a **list
-comprehension**. A List comprehension is very similar to a for-loop, but it
-automatically creates a new list based on what your iterations do. This means
-you do not need to create an empty list ahead of time.
-
-Below, this comprehsion divides each value in the `current_bill_value` column
-by 2.
-
-```{code-cell}
-:tags: [output_scroll]
-[value / 2 for value in banknotes["current_bill_value"]]
-```
-
-Folding comparisons into list comprehensions works similar to subsetting in
-Pandas:
-
-```{code-cell}
-[year for year in banknotes["death_year"] if year > 2000]
-```
-
-You can assign the results to a new variable and perform further computations
-on them:
-
-```{code-cell}
-recent_deaths = [year for year in banknotes["death_year"] if year > 2000]
-np.median(recent_deaths)
-```
-
-
-(aggregate-functions)=
-Aggregate Functions
--------------------
 
