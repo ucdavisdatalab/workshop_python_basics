@@ -529,7 +529,7 @@ type(mixed[0])
 type(mixed[2])
 ```
 
-So one way to think about the `object` data type is as an invisble wrapper
+So one way to think about the `object` data type is as an invisible wrapper
 around each element's original type. The Series can claim all of its elements
 are generic "objects", but when you access an element the wrapper is peeled off
 and you get the original type.
