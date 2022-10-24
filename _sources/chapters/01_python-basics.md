@@ -17,7 +17,7 @@ import os
 os.chdir("..")
 ```
 
-
+(getting-started)=
 Getting Started
 ===============
 
@@ -48,7 +48,7 @@ if it does.
 Code you write is **reproducible**: you can share it with someone else, and if
 they run it with the same inputs, they'll get the same results. By writing
 code, you create an unambiguous record of every step taken in your analysis.
-This it one of the major advantages of Python and other programming languages
+This is one of the major advantages of Python and other programming languages
 over point-and-click software like *Tableau* or *Microsoft Excel*. 
 
 Another advantage of writing code is that it's often **reusable**. This means
@@ -68,7 +68,7 @@ other programming languages, Python's particular strengths are its:
 * Interactivity
 * Use in a wide variety of disciplines, not just data science
 * Broad base of user-contributed packages
-* Easy to learn syntax that encourages good habits
+* Easy-to-learn syntax that encourages good habits
 
 
 Prerequisites
@@ -245,6 +245,79 @@ do is change `base` and `height` and run the code again (Python will not update
 multiple problems can be a big time-saver in the long run. Later on, you'll see
 ways to make this code even easier to reuse.
 
+
+(strings)=
+### Strings
+
+Python treats anything inside single or double quotes as literal text rather
+than as an expression to evaluate. In programming jargon, a piece of literal
+text is called a **string**. You can use whichever kind of quotes you prefer,
+but the quote at the beginning of the string must match the quote at the end. 
+
+```{code-cell}
+'Hi'
+```
+
+```{code-cell}
+"Hello!"
+```
+
+Numbers and strings are not the same thing, so for example Python considers `1`
+different from `"1"`.
+
+
+(comparisons)=
+### Comparisons
+
+Besides arithmetic, you an also use Python to compare values. Programming tasks
+often involve comparing values. Use **comparison operators** to do so:
+
+| Symbol | Meaning                  |
+| :----: | :----------------------- |
+| `<`    | less than                |
+| `>`    | greater than             |
+| `<=`   | less than or equal to    |
+| `>=`   | greater than or equal to |
+| `==`   | equal to                 |
+| `!=`   | not equal to             |
+
+Notice that the "equal to" operator is two equal signs. This is to distinguish
+it from the assignment `=` operator.
+
+Here are a few examples:
+
+```{code-cell}
+1.5 < 3
+```
+
+```{code-cell}
+"a" > "b"
+```
+
+```{code-cell}
+3 == 3.14
+```
+
+```{code-cell}
+"hi" == "hi"
+```
+
+When you make a comparison, Python returns a **Boolean value**. There are only
+two possible Boolean values: `True` and `False`. Booleans are commonly used for
+expressions with yes-or-no responses.
+
+Boolean values are values, so you can use them in other computations. For
+example:
+
+```{code-cell}
+True
+```
+
+```{code-cell}
+True == False
+```
+
+
 (calling-functions)=
 ### Calling Functions
 
@@ -341,6 +414,7 @@ have the same name. The variable `number` is not the same thing as the
 parameter `number`.
 
 
+(objects-attributes)=
 ### Objects & Attributes
 
 Python represents data as **objects**. Numbers, strings, data structures, and
@@ -382,6 +456,7 @@ same name as the function itself. So the code to open the help page for the
 `round` function is:
 
 ```{code-cell}
+:tags: [output_scroll]
 help(round)
 ```
 
@@ -394,16 +469,11 @@ that there are two parameters `number` and `ndigits`. It also says that
 There are also help pages for other topics, such as built-in operators and
 modules (you'll learn more about modules in {numref}`modules-packages`). To
 look up the help page for an operator, put the operator's name in single or
-double quotes. 
-
-Python treats anything inside single or double quotes as literal text rather
-than as an expression to evaluate. In programming jargon, a piece of literal
-text is called a **string**. You can use whichever kind of quotes you prefer,
-but the quote at the beginning of the string must match the quote at the end. 
-
-For example, this code opens the help page for the arithmetic operators:
+double quotes. For example, this code opens the help page for the arithmetic
+operators:
 
 ```{code-cell}
+:tags: [output_scroll]
 help("+")
 ```
 
@@ -479,6 +549,27 @@ You'll learn much more about NumPy, SciPy, and Pandas as you go through this
 reader. By using JupyterLab, you've already used IPython. You'll use Matplotlib
 indirectly later on, when you learn about visualization.
 
+
+(installing-packages)=
+### Installing packages
+
+You can use Anaconda's conda utility to install additional packages. The conda
+utility is a program, not part of Python. In JupyterLab, open a Terminal
+(`File` -> `New` -> `Terminal`). Then enter:
+
+```
+conda install -c conda-forge <package-name>
+```
+
+The command `conda install <package-name>` installs the package called
+`<package-name>`. The flag `-c conda-forge` tells conda to use a version from
+the conda-forge package repository. Packages on conda-forge are usually more up
+to date than the ones in Anaconda's default package repository.
+
+You can learn more about Anaconda and conda in the [official
+documentation][condadoc].
+
+[condadoc]: https://docs.anaconda.com/anaconda/user-guide/tasks/install-packages/
 
 (modules)=
 ### Modules
@@ -1030,7 +1121,7 @@ new data set, it often isn't a good idea to print the whole thing to screen, at
 least until you know how big it is. Large data sets can take a long time to
 print, and the output can be difficult to read.
 
-Instead, use the Pandas `head` method to print only the beginning, or head, of
+Instead, use the Pandas `.head` method to print only the beginning, or head, of
 the data.
 
 ```{code-cell}
@@ -1044,7 +1135,7 @@ columns. In general rows are observations and columns are variables. Each entry
 is called a cell.
 
 You can check to make sure Pandas has indeed created a DataFrame with the
-`type` function, which is discussed in more detail in the next chapter:
+`type` function, which is discussed in more detail in {numref}`data-types`:
 
 ```{code-cell}
 type(banknotes)
@@ -1072,20 +1163,20 @@ additional columns.
 One way to get a quick idea of what your data looks like without having to
 shuffle through all the columns and rows is by inspecting its **shape**. This
 is the number of rows and columns in a DataFrame, and you can access this
-information with the `shape` attribute:
+information with the `.shape` attribute:
 
 ```{code-cell}
 banknotes.shape
 ```
 
 ```{note}
-Notice how you accessed this DataFrame's `shape` attribute using a very similar
-syntax to the way you called one of its methods. The key difference to watch
-for is the presence of parenthesis `()` characters. Object methods have them,
-while object attributes do not.
+Notice how you accessed this DataFrame's `.shape` attribute using a very
+similar syntax to the way you called one of its methods. The key difference is
+the parentheses `()` at the end. Parentheses are necesary when you want to call
+a method, but not when you want just want to access the value of attribute.
 ```
 
-To display the names of each column, access the `columns` attribute:
+To display the names of each column, access the `.columns` attribute:
 
 ```{code-cell}
 banknotes.columns
@@ -1095,10 +1186,10 @@ banknotes.columns
 ### Summarizing Data
 
 More granular information about a DataFrame and its contents is available with
-the `info` method. In addition to attributes like the DataFrame's shape and its
-column names, `info` provides a brief summary of the number of cells that
+the `.info` method. In addition to attributes like the DataFrame's shape and
+its column names, `.info` provides a brief summary of the number of cells that
 contain data, the type of data in each cell, and the total memory usage of the
-DataFrame.
+DataFrame:
 
 ```{code-cell}
 banknotes.info()
@@ -1108,8 +1199,9 @@ The next chapter discusses data types in more detail. For now, just take note
 that there are multiple types (`bool`, `float64`, `int64`, and `object` in
 `banknotes`).
 
-In contrast to `info`, `describe` provides summary statistics about a
-DataFrame. The latter method will only produce information about numeric data.
+In contrast to `.info`, the `.describe` method provides summary statistics
+about a DataFrame. The latter will only return information about numeric
+columns:
 
 ```{code-cell}
 banknotes.describe()
@@ -1119,13 +1211,13 @@ banknotes.describe()
 ### Selecting Columns
 
 Individual columns may be selected with **bracket notation**. Put the name of
-the column in quotes and place that inside of square brackets `[]`.
+the column in quotes and place that inside of square brackets `[]`:
 
 ```{code-cell}
 banknotes["current_bill_value"]
 ```
 
-Just as with `describe`, you can compute information about a column using
+Just as with `.describe`, you can compute information about a column using
 Pandas methods. Here is the mean:
 
 ```{code-cell}

@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4. Organizing Code &#8212; Python Basics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Appendix" href="05_appendix.html" />
+    <link rel="prev" title="3. Exploring Data" href="03_exploring-data.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Python Basics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_python-basics.html">
+   1. Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_pandas-basics.html">
+   2. Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_exploring-data.html">
+   3. Exploring Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Organizing Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_appendix.html">
+   5. Appendix
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Afterword
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="assessment.html">
+   Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="references.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/ucdavisdatalab/workshop_python_basics/master?urlpath=tree/chapters/04_organizing-code.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapters/04_organizing-code.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/chapters/04_organizing-code.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-statements">
+   4.1. Conditional Statements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   4.2. Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practice-exercises">
+   4.3. Practice Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1">
+     4.3.1. Exercise 1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Organizing Code</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-statements">
+   4.1. Conditional Statements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   4.2. Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#practice-exercises">
+   4.3. Practice Exercises
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-1">
+     4.3.1. Exercise 1
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="organizing-code">
+<h1><span class="section-number">4. </span>Organizing Code<a class="headerlink" href="#organizing-code" title="Permalink to this headline">#</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<ul class="simple">
+<li><p>Write functions to organize and encapsulate reusable code</p></li>
+</ul>
+</div>
+<section id="conditional-statements">
+<h2><span class="section-number">4.1. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Permalink to this headline">#</a></h2>
+<p>Sometimes you’ll need code to do different things depending on a condition. You
+can use an <strong>if-statement</strong> to write conditional code.</p>
+<p>An if-statement begins with the <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword, followed by a condition and a
+colon <code class="docutils literal notranslate"><span class="pre">:</span></code>. The condition must be an expression that returns a Boolean value
+(<code class="docutils literal notranslate"><span class="pre">False</span></code> or <code class="docutils literal notranslate"><span class="pre">True</span></code>). The <strong>body</strong> of the if-statement is the code that will run
+when the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>. Code in the body must be indented by 4 spaces.</p>
+<p>For example, suppose you want your code to generate a different greeting
+depending on an input name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="c1"># Default greeting</span>
+<span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hi Nick, nice to see you again!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">else</span></code> keyword (and a colon <code class="docutils literal notranslate"><span class="pre">:</span></code>) if you want to add an alternative when
+the condition is false. So the previous code can also be written as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Default greeting</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hi Nick, nice to see you again!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">elif</span></code> keyword with a condition (and a colon <code class="docutils literal notranslate"><span class="pre">:</span></code>) if you want to add an
+alternative to the first condition that also has its own condition. Only the
+first case where a condition is <code class="docutils literal notranslate"><span class="pre">True</span></code> will run. You can use <code class="docutils literal notranslate"><span class="pre">elif</span></code> as many
+times as you want, and can also use <code class="docutils literal notranslate"><span class="pre">else</span></code>. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Susan&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+<span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Peter&quot;</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Go away Peter, I&#39;m busy!&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Nice to meet you!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can create compound conditions with the keywords <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">not</span></code> keyword inverts a condition. The <code class="docutils literal notranslate"><span class="pre">and</span></code> keyword combines two conditions
+and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> only if both are <code class="docutils literal notranslate"><span class="pre">True</span></code>. The <code class="docutils literal notranslate"><span class="pre">or</span></code> keyword combines two
+conditions and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if either or both are <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name1</span> <span class="o">=</span> <span class="s2">&quot;Arthur&quot;</span>
+<span class="n">name2</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="k">if</span> <span class="n">name1</span> <span class="o">==</span> <span class="s2">&quot;Arthur&quot;</span> <span class="ow">and</span> <span class="n">name2</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+  <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;These are the authors.&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Who are these people?!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;These are the authors.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can write an if-statement inside of another if-statement. This is called
+<strong>nesting</strong> if-statements. Nesting is useful when you want to check a
+condition, do some computations, and then check another condition under the
+assumption that the first condition was <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If-statements correspond to <strong>special cases</strong> in your code. Lots of special
+cases in code makes the code harder to understand and maintain. If you find
+yourself using lots of if-statements, especially nested if-statements, consider
+whether there is a more general strategy or way to write the code.</p>
+</div>
+</section>
+<section id="functions">
+<span id="id1"></span><h2><span class="section-number">4.2. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
+<p>The main way to interact with Python is by calling functions, which was first
+explained back in <a class="reference internal" href="01_python-basics.html#calling-functions"><span class="std std-numref">Section 1.2.4</span></a>. This section explains how to
+write your own functions.</p>
+<p>First, a review of what functions are and some of the vocabulary associated
+with them:</p>
+<ul class="simple">
+<li><p><strong>Parameters</strong> are placeholder variables for inputs.</p>
+<ul>
+<li><p><strong>Arguments</strong> are the actual values assigned to the parameters in a call.</p></li>
+</ul>
+</li>
+<li><p>The <strong>return value</strong> is the output.</p></li>
+<li><p><strong>Calling</strong> a function means using a function to compute something.</p></li>
+<li><p>The <strong>body</strong> is the code inside.</p></li>
+</ul>
+<p>It’s useful to think of functions as factories, meaning arguments go in and a
+return value comes out. Here’s a visual representation of the idea for a
+function <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
+<img alt="A diagram which shows arguments go into a function and a return value comes out." src="../_images/functions.png" />
+<p>A function definition begins with the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword, followed by:</p>
+<ul class="simple">
+<li><p>The name of the function</p></li>
+<li><p>A list of parameters surrounded by parentheses</p></li>
+<li><p>A colon <code class="docutils literal notranslate"><span class="pre">:</span></code></p></li>
+</ul>
+<p>A function can have any number of parameters. Code in the body of the function
+must be indented by 4 spaces. Use the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword to return a result. The
+<code class="docutils literal notranslate"><span class="pre">return</span></code> keyword causes the function to return a result immediately, without
+running any subsequent code in its body.</p>
+<p>For example, let’s create a function that detects negative numbers. It should
+take a Series of numbers as input, compare them to zero, and then return the
+logical result from the comparison as output. Here’s the code to do that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_negative</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The name of the function, <code class="docutils literal notranslate"><span class="pre">is_negative</span></code>, describes what the function does and
+includes a verb. The parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> is the input. The return value is the result
+of <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">0</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Choosing descriptive names is a good habit. For functions, that means choosing
+a name that describes what the function does. It often makes sense to use verbs
+in function names.</p>
+</div>
+<p>Any time you write a function, the first thing you should do afterwards is test
+that it actually works. Try the <code class="docutils literal notranslate"><span class="pre">is_negative</span></code> function on a few test cases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+<span class="n">is_negative</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_negative</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_negative</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    False
+1     True
+2     True
+3    False
+4    False
+dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> inside the function is different from the
+variable <code class="docutils literal notranslate"><span class="pre">x</span></code> you created outside the function. Remember that parameters and
+variables inside of a function are separate from variables outside of a
+function.</p>
+<p>Recall that a default argument is an argument assigned to a parameter if no
+argument is assigned in the call to the function. You can use <code class="docutils literal notranslate"><span class="pre">=</span></code> to assign
+default arguments to parameters when you define a function with the <code class="docutils literal notranslate"><span class="pre">def</span></code>
+keyword.</p>
+<p>For example, suppose you want to write a function that gets the largest values
+in a Series. You can make a parameter for the number of values to get, with a
+default argument of <code class="docutils literal notranslate"><span class="pre">5</span></code>. Here’s the code and some test cases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">top_n</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="nb">sorted</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">top_n</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   -6
+6   -2
+4    1
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_n</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0   -6
+6   -2
+4    1
+3    3
+1    7
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword causes a function to return a result immediately, without
+running any subsequent code in its body. So before the end of the function, it
+only makes sense to use <code class="docutils literal notranslate"><span class="pre">return</span></code> from inside of an if-statement.</p>
+</div>
+<p>A function returns one object, but sometimes computations have multiple
+results. In that case, return the results in a <strong>tuple</strong>, list, or other data
+structure. A tuple is a container for multiple values, similar to a list, but
+cannot be modified after it is created (so it is more efficient).</p>
+<p>For example, let’s make a function that computes the mean and median for a
+vector. We’ll return the results in a tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">compute_mean_med</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span>
+
+<span class="n">compute_mean_med</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.75, 1.5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before you write a function, it’s useful to go through several steps:</p>
+<ol class="simple">
+<li><p>Write down what you want to do, in detail. It can also help to
+draw a picture of what needs to happen.</p></li>
+<li><p>Check whether there’s already a built-in function. Search online and in the
+R documentation.</p></li>
+<li><p>Write the code to handle a simple case first. For data science
+problems, use a small dataset at this step.</p></li>
+</ol>
+</div>
+<p>Functions are the building blocks for solving larger problems. Take a
+divide-and-conquer approach, breaking large problems into smaller steps. Use a
+short function for each step. This approach makes it easier to:</p>
+<ul class="simple">
+<li><p>Test that each step works correctly.</p></li>
+<li><p>Modify, reuse, or repurpose a step.</p></li>
+</ul>
+</section>
+<section id="practice-exercises">
+<h2><span class="section-number">4.3. </span>Practice Exercises<a class="headerlink" href="#practice-exercises" title="Permalink to this headline">#</a></h2>
+<section id="exercise-1">
+<h3><span class="section-number">4.3.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">#</a></h3>
+<p>Try writing a function <code class="docutils literal notranslate"><span class="pre">is_leap</span></code> that detects leap years. The input to your
+function should be an integer year (or a Series of years), and the output
+should be a Boolean value. A year is a leap year if either of these conditions
+is true:</p>
+<ul class="simple">
+<li><p>It is divisible by 4 and not 100</p></li>
+<li><p>It is divisible by 400</p></li>
+</ul>
+<p>That means the years 2004 and 2000 are leap years, but the year 2200 is not.</p>
+<div class="admonition-hint admonition">
+<p class="admonition-title">Hint</p>
+<p>The modulo operator <code class="docutils literal notranslate"><span class="pre">%</span></code> returns the remainder after divding a number, so
+for example <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">%</span> <span class="pre">3</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</div>
+<p>Here’s a few test cases for your function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">is_leap</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">is_leap</span><span class="p">(</span><span class="mi">1997</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03_exploring-data.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Exploring Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="05_appendix.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Appendix</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Arthur Koehl, Tyler Shoemaker, and Nick Ulle<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
