@@ -2097,7 +2097,7 @@ sets we work with are tidy.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_48_0.png" src="../_images/03_exploring-data_48_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316709039)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (327228693)&gt;
 </pre></div>
 </div>
 </div>
@@ -2246,7 +2246,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_52_0.png" src="../_images/03_exploring-data_52_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317752741)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328269221)&gt;
 </pre></div>
 </div>
 </div>
@@ -2266,7 +2266,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_54_0.png" src="../_images/03_exploring-data_54_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317780719)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328299247)&gt;
 </pre></div>
 </div>
 </div>
@@ -2290,7 +2290,7 @@ let’s color-code the points by gender. To do so, we need to convert <code clas
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_56_0.png" src="../_images/03_exploring-data_56_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317831619)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328349123)&gt;
 </pre></div>
 </div>
 </div>
@@ -2310,7 +2310,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_58_0.png" src="../_images/03_exploring-data_58_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317864702)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328382918)&gt;
 </pre></div>
 </div>
 </div>
@@ -2328,7 +2328,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_60_0.png" src="../_images/03_exploring-data_60_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316726116)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328326883)&gt;
 </pre></div>
 </div>
 </div>
@@ -2349,7 +2349,7 @@ gender, and you want to make all of the points blue.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_62_0.png" src="../_images/03_exploring-data_62_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318204574)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328722955)&gt;
 </pre></div>
 </div>
 </div>
@@ -2496,7 +2496,7 @@ and axis labels. All graphs need a title and axis labels.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_66_0.png" src="../_images/03_exploring-data_66_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318353174)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328870681)&gt;
 </pre></div>
 </div>
 </div>
@@ -2534,20 +2534,22 @@ the code to make the bar plot:</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ggplot</span><span class="p">(</span><span class="n">to_plot</span><span class="p">,</span>
     <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;factor(profession)&quot;</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s2">&quot;factor(gender)&quot;</span><span class="p">))</span> <span class="o">+</span>
-    <span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span> <span class="o">=</span> <span class="s2">&quot;dodge&quot;</span><span class="p">)</span>
+    <span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span> <span class="o">=</span> <span class="s2">&quot;dodge&quot;</span><span class="p">)</span> <span class="o">+</span> 
+    <span class="n">theme</span><span class="p">(</span><span class="n">axis_text_x</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">rotation</span> <span class="o">=</span> <span class="mi">90</span><span class="p">))</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_68_0.png" src="../_images/03_exploring-data_68_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318596967)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (328920542)&gt;
 </pre></div>
 </div>
 </div>
 </div>
 <p>The setting <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">=</span> <span class="pre">&quot;dodge&quot;</span></code> instructs <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code> to put the bars
-side-by-side rather than stacking them.</p>
+side-by-side rather than stacking them. Adding <code class="docutils literal notranslate"><span class="pre">theme</span></code> allows you to change how
+the axis labels and ticks are formatted.</p>
 <p>In some cases, you may want to make a bar plot with frequencies you’ve already
 computed. To prevent <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code> from computing frequencies automatically, set
 <code class="docutils literal notranslate"><span class="pre">stat</span> <span class="pre">=</span> <span class="pre">&quot;identity&quot;</span></code>.</p>
