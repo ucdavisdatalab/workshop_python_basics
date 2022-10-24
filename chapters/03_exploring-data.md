@@ -26,6 +26,16 @@ you'll learn how to efficiently explore and summarize with visualizations and
 statistics. Along the way, you'll also learn how to write and apply functions
 along entire sets of data in Pandas DataFrames and Series.
 
+:::{admonition} Learning Objectives
+* Describe how Python iterates over data
+* Perform various iterations, including for-loops and list comprehension
+* Use Pandas aggregation methods to explore a data set
+* Prepare data for visualization
+* Describe the grammar of graphics
+* Use the grammar of graphics to produce a plot
+* Identify where to go to learn more about making effective visualizations
+:::
+
 
 Setup
 -----
@@ -726,3 +736,19 @@ Visualization Workshop Reader][rdr].
 
 [rdr]: https://ucdavisdatalab.github.io/workshop_data_viz_principles/
 
+
+Exercises
+---------
+
+1. Compute the number of banknotes that feature a person who died before 1990.
+2. Compute the range of `first_appearance_year` for each country.
+    + Hint: this would be a good place to try out a multi-function
+      aggregation...
+3. Compute the set of banknotes who died in this century. Use plotnine's
+  `geom_segment` function to create a plot which shows the timespan between
+  death year and first appearance as a horizontal segment for each banknote.
+  Put the name of each person on the y-axis. Color code the segments by gender.
+    + Hint: you can make the plot more visually appealing if you first sort the
+      death year. You can use the `.sort_values` method to sort a DataFrame on
+      a column, or set of columns. Be aware that the default parameter for one
+      of the arguments is probably not what you're expecting.
