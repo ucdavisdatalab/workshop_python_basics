@@ -1098,7 +1098,7 @@ new data set, it often isn't a good idea to print the whole thing to screen, at
 least until you know how big it is. Large data sets can take a long time to
 print, and the output can be difficult to read.
 
-Instead, use the Pandas `head` method to print only the beginning, or head, of
+Instead, use the Pandas `.head` method to print only the beginning, or head, of
 the data.
 
 ```{code-cell}
@@ -1147,10 +1147,10 @@ banknotes.shape
 ```
 
 ```{note}
-Notice how you accessed this DataFrame's `shape` attribute using a very similar
-syntax to the way you called one of its methods. The key difference is the
-parentheses `()` at the end. Parentheses are necesary when you want to call a
-method, but not when you want just want to access the value of attribute.
+Notice how you accessed this DataFrame's `.shape` attribute using a very
+similar syntax to the way you called one of its methods. The key difference is
+the parentheses `()` at the end. Parentheses are necesary when you want to call
+a method, but not when you want just want to access the value of attribute.
 ```
 
 To display the names of each column, access the `columns` attribute:
@@ -1163,8 +1163,8 @@ banknotes.columns
 ### Summarizing Data
 
 More granular information about a DataFrame and its contents is available with
-the `info` method. In addition to attributes like the DataFrame's shape and its
-column names, `info` provides a brief summary of the number of cells that
+the `.info` method. In addition to attributes like the DataFrame's shape and
+its column names, `info` provides a brief summary of the number of cells that
 contain data, the type of data in each cell, and the total memory usage of the
 DataFrame:
 
@@ -1176,8 +1176,8 @@ The next chapter discusses data types in more detail. For now, just take note
 that there are multiple types (`bool`, `float64`, `int64`, and `object` in
 `banknotes`).
 
-In contrast to `info`, the `describe` method provides summary statistics about
-a DataFrame. The latter will only return information about numeric
+In contrast to `.info`, the `.describe` method provides summary statistics
+about a DataFrame. The latter will only return information about numeric
 columns:
 
 ```{code-cell}
@@ -1194,7 +1194,7 @@ the column in quotes and place that inside of square brackets `[]`:
 banknotes["current_bill_value"]
 ```
 
-Just as with `describe`, you can compute information about a column using
+Just as with `.describe`, you can compute information about a column using
 Pandas methods. Here is the mean:
 
 ```{code-cell}

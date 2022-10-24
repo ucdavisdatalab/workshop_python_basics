@@ -394,9 +394,9 @@ For Pandas Series and DataFrames, the `type` function returns the type of
 container, but doesn't return any information about the types of the elements.
 The same is true for the NumPy arrays.
 
-{numref}`summarizing-data` described one way to print the types of the
-elements in a Pandas object: by calling the `info` method. In the printout, the
-element types are listed in the `Dtype` column:
+{numref}`summarizing-data` described one way to print the types of the elements
+in a Pandas object: by calling the `.info` method. In the printout, the element
+types are listed in the `Dtype` column:
 
 ```{code-cell}
 banknotes.info()
@@ -770,7 +770,7 @@ banknotes.index
 ```
 
 Oftentimes, an index is a range of numbers, but this can be changed. The code
-below uses the `set_index` method to change the index of `banknotes` to
+below uses the `.set_index` method to change the index of `banknotes` to
 `country`:
 
 ```{code-cell}
@@ -1011,10 +1011,10 @@ the [Pandas documentation][readcsv].
 (detecting-missing-values)=
 ### Detecting Missing Values
 
-To detect missing values, Pandas provides two complementary methods: `isna` and
-`notna`.
+To detect missing values, Pandas provides two complementary methods: `.isna`
+and `.notna`.
 
-We can see information about missing values with the `count` method on 
+We can see information about missing values with the `.count` method on 
 DataFrames:
 
 ```{code-cell}
@@ -1029,7 +1029,7 @@ ht = banknotes["hover_text"]
 ht.count()
 ```
 
-The return of `isna` is a Boolean Series indicating which of the values are
+The return of `.isna` is a Boolean Series indicating which of the values are
 considered missing:
 
 ```{code-cell}
@@ -1037,7 +1037,7 @@ ht.isna()
 ```
 
 The reverse---to see which values are not considered missing---is returned 
-with `notna`:
+with `.notna`:
 
 ```{code-cell}
 ht.notna()
@@ -1046,21 +1046,21 @@ ht.notna()
 (replacing-missing-values)=
 ### Replacing Missing Values
 
-We can use this Boolean Series to subset with `loc`. For example, to keep only
+We can use this Boolean Series to subset with `.loc`. For example, to keep only
 the values that aren't missing:
 
 ```{code-cell}
 ht.loc[ht.notna()]
 ```
 
-Pandas also provides a shortcut with the `dropna` method:
+Pandas also provides a shortcut with the `.dropna` method:
 
 ```{code-cell}
 ht.dropna()
 ```
 
 Another strategy may be to fill the missing values. We could do so using the 
-`fillna` method:
+`.fillna` method:
 
 ```{code-cell}
 ht.fillna(-1, inplace=True)
@@ -1068,7 +1068,7 @@ ht
 ```
 
 Additionally, the data set may have its own indicator for missing values, e.g
-"" or 0. We can convert those to missing using the `replace` method:
+"" or 0. We can convert those to missing using the `.replace` method:
 
 ```{code-cell}
 ht.replace(-1, np.nan)
