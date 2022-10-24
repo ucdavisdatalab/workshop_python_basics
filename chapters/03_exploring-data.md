@@ -675,12 +675,14 @@ the code to make the bar plot:
 ```{code-cell}
 (ggplot(to_plot,
     aes(x = "factor(profession)", fill = "factor(gender)")) +
-    geom_bar(position = "dodge")
+    geom_bar(position = "dodge") + 
+    theme(axis_text_x=element_text(rotation = 90))
 )
 ```
 
 The setting `position = "dodge"` instructs `geom_bar` to put the bars
-side-by-side rather than stacking them.
+side-by-side rather than stacking them. Adding `theme` allows you to change how
+the axis labels and ticks are formatted.
 
 In some cases, you may want to make a bar plot with frequencies you've already
 computed. To prevent `geom_bar` from computing frequencies automatically, set
