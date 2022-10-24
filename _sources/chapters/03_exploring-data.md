@@ -740,15 +740,28 @@ Visualization Workshop Reader][rdr].
 Exercises
 ---------
 
+### Exercise
+
 1. Compute the number of banknotes that feature a person who died before 1990.
-2. Compute the range of `first_appearance_year` for each country.
+2. Of those people, how many were activists?
+
+### Exercise
+
+1. Compute the range of `first_appearance_year` for each country.
     + Hint: this would be a good place to try out a multi-function
       aggregation...
-3. Compute the set of banknotes who died in this century. Use plotnine's
-  `geom_segment` function to create a plot which shows the timespan between
-  death year and first appearance as a horizontal segment for each banknote.
-  Put the name of each person on the y-axis. Color code the segments by gender.
+2. How many unique values are there among the first and last values of
+  `first_appearance_year`?
+
+### Exercise
+
+1. Compute the set of banknotes who died in this century.
+2. Use plotnine's `geom_segment` function to create a plot which shows the
+  timespan between death year and first appearance as a horizontal segment for
+  each banknote. Put the name of each person on the y-axis. Color code the
+  segments by gender.
     + Hint: you can make the plot more visually appealing if you first sort the
       death year. You can use the `.sort_values` method to sort a DataFrame on
       a column, or set of columns. Be aware that the default parameter for one
       of the arguments is probably not what you're expecting.
+

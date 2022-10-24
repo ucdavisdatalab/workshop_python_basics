@@ -482,6 +482,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#exercises">
    3.7. Exercises
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     3.7.1. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     3.7.2. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     3.7.3. Exercise
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -626,6 +643,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#exercises">
    3.7. Exercises
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     3.7.1. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     3.7.2. Exercise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     3.7.3. Exercise
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -2063,7 +2097,7 @@ sets we work with are tidy.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_48_0.png" src="../_images/03_exploring-data_48_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317860378)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316709039)&gt;
 </pre></div>
 </div>
 </div>
@@ -2168,7 +2202,7 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <span class="ne">--&gt; </span><span class="mi">385</span>     <span class="k">raise</span> <span class="n">PlotnineError</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">386</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_aes</span><span class="p">)))</span>
 
-<span class="ne">PlotnineError</span>: &#39;geom_point requires the following missing aesthetics: y, x&#39;
+<span class="ne">PlotnineError</span>: &#39;geom_point requires the following missing aesthetics: x, y&#39;
 </pre></div>
 </div>
 </div>
@@ -2212,7 +2246,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_52_0.png" src="../_images/03_exploring-data_52_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318904738)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317752741)&gt;
 </pre></div>
 </div>
 </div>
@@ -2232,7 +2266,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_54_0.png" src="../_images/03_exploring-data_54_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318931917)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317780719)&gt;
 </pre></div>
 </div>
 </div>
@@ -2256,7 +2290,7 @@ let’s color-code the points by gender. To do so, we need to convert <code clas
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_56_0.png" src="../_images/03_exploring-data_56_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318982412)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317831619)&gt;
 </pre></div>
 </div>
 </div>
@@ -2276,7 +2310,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_58_0.png" src="../_images/03_exploring-data_58_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (319015477)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317864702)&gt;
 </pre></div>
 </div>
 </div>
@@ -2294,7 +2328,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_60_0.png" src="../_images/03_exploring-data_60_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318949620)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316726116)&gt;
 </pre></div>
 </div>
 </div>
@@ -2315,7 +2349,7 @@ gender, and you want to make all of the points blue.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_62_0.png" src="../_images/03_exploring-data_62_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (319355400)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318204574)&gt;
 </pre></div>
 </div>
 </div>
@@ -2462,7 +2496,7 @@ and axis labels. All graphs need a title and axis labels.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_66_0.png" src="../_images/03_exploring-data_66_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (319504147)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318353174)&gt;
 </pre></div>
 </div>
 </div>
@@ -2507,7 +2541,7 @@ the code to make the bar plot:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_68_0.png" src="../_images/03_exploring-data_68_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (319744868)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318596967)&gt;
 </pre></div>
 </div>
 </div>
@@ -2587,18 +2621,34 @@ Visualization Workshop Reader</a>.</p>
 </section>
 <section id="exercises">
 <h2><span class="section-number">3.7. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h2>
+<section id="exercise">
+<h3><span class="section-number">3.7.1. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h3>
 <ol class="simple">
 <li><p>Compute the number of banknotes that feature a person who died before 1990.</p></li>
+<li><p>Of those people, how many were activists?</p></li>
+</ol>
+</section>
+<section id="id10">
+<h3><span class="section-number">3.7.2. </span>Exercise<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
 <li><p>Compute the range of <code class="docutils literal notranslate"><span class="pre">first_appearance_year</span></code> for each country.</p>
 <ul class="simple">
 <li><p>Hint: this would be a good place to try out a multi-function
 aggregation…</p></li>
 </ul>
 </li>
-<li><p>Compute the set of banknotes who died in this century. Use plotnine’s
-<code class="docutils literal notranslate"><span class="pre">geom_segment</span></code> function to create a plot which shows the timespan between
-death year and first appearance as a horizontal segment for each banknote.
-Put the name of each person on the y-axis. Color code the segments by gender.</p>
+<li><p>How many unique values are there among the first and last values of
+<code class="docutils literal notranslate"><span class="pre">first_appearance_year</span></code>?</p></li>
+</ol>
+</section>
+<section id="id11">
+<h3><span class="section-number">3.7.3. </span>Exercise<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Compute the set of banknotes who died in this century.</p></li>
+<li><p>Use plotnine’s <code class="docutils literal notranslate"><span class="pre">geom_segment</span></code> function to create a plot which shows the
+timespan between death year and first appearance as a horizontal segment for
+each banknote. Put the name of each person on the y-axis. Color code the
+segments by gender.</p>
 <ul class="simple">
 <li><p>Hint: you can make the plot more visually appealing if you first sort the
 death year. You can use the <code class="docutils literal notranslate"><span class="pre">.sort_values</span></code> method to sort a DataFrame on
@@ -2607,6 +2657,7 @@ of the arguments is probably not what you’re expecting.</p></li>
 </ul>
 </li>
 </ol>
+</section>
 </section>
 </section>
 
