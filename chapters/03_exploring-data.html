@@ -478,6 +478,11 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   3.7. Exercises
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -617,6 +622,11 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   3.7. Exercises
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -634,6 +644,18 @@ of Python, you can move on to using it for data analysis. In this chapter,
 you’ll learn how to efficiently explore and summarize with visualizations and
 statistics. Along the way, you’ll also learn how to write and apply functions
 along entire sets of data in Pandas DataFrames and Series.</p>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<ul class="simple">
+<li><p>Describe how Python iterates over data</p></li>
+<li><p>Perform various iterations, including for-loops and list comprehension</p></li>
+<li><p>Use Pandas aggregation methods to explore a data set</p></li>
+<li><p>Prepare data for visualization</p></li>
+<li><p>Describe the grammar of graphics</p></li>
+<li><p>Use the grammar of graphics to produce a plot</p></li>
+<li><p>Identify where to go to learn more about making effective visualizations</p></li>
+</ul>
+</div>
 <section id="setup">
 <h2><span class="section-number">3.1. </span>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
 <section id="packages">
@@ -2041,7 +2063,7 @@ sets we work with are tidy.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_48_0.png" src="../_images/03_exploring-data_48_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (331017766)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317860378)&gt;
 </pre></div>
 </div>
 </div>
@@ -2190,7 +2212,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_52_0.png" src="../_images/03_exploring-data_52_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (332043679)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318904738)&gt;
 </pre></div>
 </div>
 </div>
@@ -2210,7 +2232,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_54_0.png" src="../_images/03_exploring-data_54_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (332072681)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318931917)&gt;
 </pre></div>
 </div>
 </div>
@@ -2234,7 +2256,7 @@ let’s color-code the points by gender. To do so, we need to convert <code clas
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_56_0.png" src="../_images/03_exploring-data_56_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (332122599)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318982412)&gt;
 </pre></div>
 </div>
 </div>
@@ -2254,7 +2276,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_58_0.png" src="../_images/03_exploring-data_58_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (332154292)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (319015477)&gt;
 </pre></div>
 </div>
 </div>
@@ -2272,7 +2294,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_60_0.png" src="../_images/03_exploring-data_60_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (332042144)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (318949620)&gt;
 </pre></div>
 </div>
 </div>
@@ -2293,7 +2315,7 @@ gender, and you want to make all of the points blue.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_62_0.png" src="../_images/03_exploring-data_62_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (332489224)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (319355400)&gt;
 </pre></div>
 </div>
 </div>
@@ -2440,7 +2462,7 @@ and axis labels. All graphs need a title and axis labels.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_66_0.png" src="../_images/03_exploring-data_66_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (332634899)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (319504147)&gt;
 </pre></div>
 </div>
 </div>
@@ -2485,7 +2507,7 @@ the code to make the bar plot:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_68_0.png" src="../_images/03_exploring-data_68_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (332874608)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (319744868)&gt;
 </pre></div>
 </div>
 </div>
@@ -2562,6 +2584,29 @@ comparing them is not deceptive</p></li>
 it. One resource where you can learn more is DataLab’s <a class="reference external" href="https://ucdavisdatalab.github.io/workshop_data_viz_principles/">Principle’s of Data
 Visualization Workshop Reader</a>.</p>
 </section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">3.7. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Compute the number of banknotes that feature a person who died before 1990.</p></li>
+<li><p>Compute the range of <code class="docutils literal notranslate"><span class="pre">first_appearance_year</span></code> for each country.</p>
+<ul class="simple">
+<li><p>Hint: this would be a good place to try out a multi-function
+aggregation…</p></li>
+</ul>
+</li>
+<li><p>Compute the set of banknotes who died in this century. Use plotnine’s
+<code class="docutils literal notranslate"><span class="pre">geom_segment</span></code> function to create a plot which shows the timespan between
+death year and first appearance as a horizontal segment for each banknote.
+Put the name of each person on the y-axis. Color code the segments by gender.</p>
+<ul class="simple">
+<li><p>Hint: you can make the plot more visually appealing if you first sort the
+death year. You can use the <code class="docutils literal notranslate"><span class="pre">.sort_values</span></code> method to sort a DataFrame on
+a column, or set of columns. Be aware that the default parameter for one
+of the arguments is probably not what you’re expecting.</p></li>
+</ul>
+</li>
+</ol>
 </section>
 </section>
 
