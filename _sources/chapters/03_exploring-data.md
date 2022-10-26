@@ -240,7 +240,7 @@ banknotes.groupby(["gender", "profession"], as_index = False).size()
 ```
 
 :::{tip}
-You can also "reset the index on a DataFrame, so that the current indexes
+You can also reset the index on a DataFrame, so that the current indexes
 become columns with the `.reset_index` method.
 :::
 
@@ -261,7 +261,7 @@ appears across multiple rows in our data set. With `.first`, you can select the
 corresponding currency code:
 
 ```{code-cell}
-banknotes.groupby(["country"])["currency_code"].first()
+banknotes.groupby("country")["currency_code"].first()
 ```
 
 
