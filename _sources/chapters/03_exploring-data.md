@@ -23,12 +23,13 @@ Exploring Data
 Now that you have a solid foundation in the basic functions and data structures
 of Python, you can move on to using it for data analysis. In this chapter,
 you'll learn how to efficiently explore and summarize with visualizations and
-statistics. Along the way, you'll also learn how to write and apply functions
-along entire sets of data in Pandas DataFrames and Series.
+statistics. Along the way, you'll also learn how to apply functions along
+entire sets of data in Pandas DataFrames and Series.
 
 :::{admonition} Learning Objectives
 * Describe how Python iterates over data
-* Perform various iterations, including for-loops and list comprehension
+* Write loops to do things repeatedly
+* Write list comprehensions to do things repeatedly
 * Use Pandas aggregation methods to explore a data set
 * Prepare data for visualization
 * Describe the grammar of graphics
@@ -127,34 +128,46 @@ result
 
 ### List Comprehensions
 
-A more succinct way to perform certain `append` operations is with a **list
-comprehension**. A list comprehension is very similar to a for-loop, but it
-automatically creates a new list based on what your iterations do. This means
-you do not need to create an empty list ahead of time.
+A more efficient and succinct way to perform certain `append` operations is
+with a **list comprehension**. A list comprehension is very similar to a
+for-loop, but it automatically creates a new list based on what your iterations
+do. This means you do not need to create an empty list ahead of time.
 
-Below, this comprehension divides each value in the `current_bill_value` column
-by 2.
+The syntax for a list comprehension includes the keywords `for` and `in`, just
+like a for-loop. The difference is that in the list comprehension, the repeated
+code comes *before* the `for` keyword rather than after it, and the entire
+expression is enclosed in square brackets `[ ]`.
+
+Here's a list comprehension that divides each value in the `current_bill_value`
+column by 2:
 
 ```{code-cell}
 :tags: [output_scroll]
 [value / 2 for value in banknotes["current_bill_value"]]
 ```
 
-Folding comparisons into list comprehensions works similar to subsetting in
-Pandas:
+List comprehensions can optionally include the `if` keyword and a condition at
+the end, to filter out some elements of the list:
 
 ```{code-cell}
 :tags: [output_scroll]
 [year for year in banknotes["first_appearance_year"] if year > 2012]
 ```
 
-You can assign the results to a new variable and perform further computations
-on them:
+This is similar to subsetting in Pandas.
+
+Note that you can assign the results of a list comprehension to a new variable
+and then perform further computations on them:
 
 ```{code-cell}
 recent_years = [year for year in banknotes["first_appearance_year"] if year > 2012]
 np.median(recent_years)
 ```
+
+You can learn more about comprehensions in the [official Python
+documentation][comprehensions].
+
+[comprehensions]: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
 
 
 (aggregate-functions)=
@@ -337,6 +350,24 @@ Before building a visualization, you will need to do a few preparatory steps.
 (install-import-plotnine)=
 ### Install and Import plotnine
 
+:::{note}
+As of writing, conda installs plotnine 0.9 and matplotlib 3.6.1 by default.
+This is a problem, because plotnine 0.9 is incompatible with matplotilb >= 3.6.
+
+Incompatibility between different versions of packages is common and exactly
+what conda was designed to solve. In this case, you can simply make sure that
+you have a slightly older version of matplotlib by running this command in the
+Terminal:
+
+```
+conda install -c conda-forge 'matplotlib<3.6'
+```
+
+The plotnine developers have already fixed the problem in the newest version of
+plotnine, so once it's available through conda, this workaround will no longer
+be necessary.
+:::
+
 While Matplotlib is included with Anaconda, plotnine is not. You will need to
 install the plotnine package in order to use it. {numref}`installing-packages`
 showed you how to install packages with conda via the Terminal:
@@ -347,29 +378,32 @@ conda install -c conda-forge plotnine
 
 In {numref}`modules`, you learned how to import a module in a Python package
 with the `import` keyword. Python also provides a `from` keyword to import
-specific objects within a module. The syntax is:
+specific objects from within a module, so that you can access them without the
+module name as a prefix. The syntax is:
 
 ```python
-from <module> import <object>
+from MODULE import OBJECT
 ```
 
-When you import an object this way, you can access the object without the
-module name as a prefix. For instance, if you imported Pandas using:
+Replace `MODULE` with the name of the module and `OBJECT` with the name of the
+object that you want to import.
+
+For instance, if you import Pandas using:
 
 ```python
 from pandas import DataFrame
 ```
 
-You could then write:
+You can then write:
 
 ```python
 df = DataFrame()
 ```
 
-You can also use the from keyword to import all objects in a module with the
+You can also use the `from` keyword to import all objects in a module with the
 wildcard character `*`. Generally you shouldn't do this, because objects in a
 module will overwrite objects in your code if they have the same name. However,
-the plotnine package is designed to be imported this way:
+the plotnine package was designed to be imported this way:
 
 ```{code-cell}
 from plotnine import *
@@ -386,17 +420,23 @@ running:
 
 ```{code-cell}
 # Initialize matplotlib
-
-%matplotlib inline
-
 import matplotlib.pyplot as plt
 
-# We'll see what this code does later on:
 plt.rcParams["figure.figsize"] = [10, 8]
 ```
 
 The last line sets the default size of plots. You can increase the numbers to
 make plots larger, or decrease them to make plots smaller.
+
+:::{note}
+In older versions of Jupyter and IPython, it was also necessary to run the
+special IPython command `%matplotlib inline` to set up a notebook for plotting.
+This is no longer necessary in modern versions, but you may still see people
+use or mention it online. You can read more about this change in [this
+StackOverflow question][so-mpl-inline].
+
+[so-mpl-inline]: https://stackoverflow.com/questions/65934740/is-matplotlib-inline-still-needed
+:::
 
 
 (data-cleaning)=
@@ -427,7 +467,7 @@ no_scaled = to_plot["scaled_bill_value"].isna()
 to_plot = to_plot[no_scaled == False]
 ```
 
-you are now ready to make a plot.
+You are now ready to make a plot.
 
 
 (grammar-of-graphics)=

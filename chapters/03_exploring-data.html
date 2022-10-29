@@ -676,13 +676,14 @@ title="Print to PDF"
 <p>Now that you have a solid foundation in the basic functions and data structures
 of Python, you can move on to using it for data analysis. In this chapter,
 you’ll learn how to efficiently explore and summarize with visualizations and
-statistics. Along the way, you’ll also learn how to write and apply functions
-along entire sets of data in Pandas DataFrames and Series.</p>
+statistics. Along the way, you’ll also learn how to apply functions along
+entire sets of data in Pandas DataFrames and Series.</p>
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <ul class="simple">
 <li><p>Describe how Python iterates over data</p></li>
-<li><p>Perform various iterations, including for-loops and list comprehension</p></li>
+<li><p>Write loops to do things repeatedly</p></li>
+<li><p>Write list comprehensions to do things repeatedly</p></li>
 <li><p>Use Pandas aggregation methods to explore a data set</p></li>
 <li><p>Prepare data for visualization</p></li>
 <li><p>Describe the grammar of graphics</p></li>
@@ -1079,12 +1080,16 @@ for-loop. The easiest way to do this is by creating an empty list and using
 </section>
 <section id="list-comprehensions">
 <h3><span class="section-number">3.2.2. </span>List Comprehensions<a class="headerlink" href="#list-comprehensions" title="Permalink to this headline">#</a></h3>
-<p>A more succinct way to perform certain <code class="docutils literal notranslate"><span class="pre">append</span></code> operations is with a <strong>list
-comprehension</strong>. A list comprehension is very similar to a for-loop, but it
-automatically creates a new list based on what your iterations do. This means
-you do not need to create an empty list ahead of time.</p>
-<p>Below, this comprehension divides each value in the <code class="docutils literal notranslate"><span class="pre">current_bill_value</span></code> column
-by 2.</p>
+<p>A more efficient and succinct way to perform certain <code class="docutils literal notranslate"><span class="pre">append</span></code> operations is
+with a <strong>list comprehension</strong>. A list comprehension is very similar to a
+for-loop, but it automatically creates a new list based on what your iterations
+do. This means you do not need to create an empty list ahead of time.</p>
+<p>The syntax for a list comprehension includes the keywords <code class="docutils literal notranslate"><span class="pre">for</span></code> and <code class="docutils literal notranslate"><span class="pre">in</span></code>, just
+like a for-loop. The difference is that in the list comprehension, the repeated
+code comes <em>before</em> the <code class="docutils literal notranslate"><span class="pre">for</span></code> keyword rather than after it, and the entire
+expression is enclosed in square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>.</p>
+<p>Here’s a list comprehension that divides each value in the <code class="docutils literal notranslate"><span class="pre">current_bill_value</span></code>
+column by 2:</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">value</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]]</span>
@@ -1375,8 +1380,8 @@ by 2.</p>
 </div>
 </div>
 </div>
-<p>Folding comparisons into list comprehensions works similar to subsetting in
-Pandas:</p>
+<p>List comprehensions can optionally include the <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword and a condition at
+the end, to filter out some elements of the list:</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;first_appearance_year&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2012</span><span class="p">]</span>
@@ -1451,8 +1456,9 @@ Pandas:</p>
 </div>
 </div>
 </div>
-<p>You can assign the results to a new variable and perform further computations
-on them:</p>
+<p>This is similar to subsetting in Pandas.</p>
+<p>Note that you can assign the results of a list comprehension to a new variable
+and then perform further computations on them:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recent_years</span> <span class="o">=</span> <span class="p">[</span><span class="n">year</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;first_appearance_year&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">year</span> <span class="o">&gt;</span> <span class="mi">2012</span><span class="p">]</span>
@@ -1466,6 +1472,8 @@ on them:</p>
 </div>
 </div>
 </div>
+<p>You can learn more about comprehensions in the <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">official Python
+documentation</a>.</p>
 </section>
 </section>
 <section id="aggregate-functions">
@@ -1946,6 +1954,21 @@ documentation</a> and <a class="reference external" href="https://github.com/rst
 <p>Before building a visualization, you will need to do a few preparatory steps.</p>
 <section id="install-and-import-plotnine">
 <span id="install-import-plotnine"></span><h3><span class="section-number">3.5.1. </span>Install and Import plotnine<a class="headerlink" href="#install-and-import-plotnine" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As of writing, conda installs plotnine 0.9 and matplotlib 3.6.1 by default.
+This is a problem, because plotnine 0.9 is incompatible with matplotilb &gt;= 3.6.</p>
+<p>Incompatibility between different versions of packages is common and exactly
+what conda was designed to solve. In this case, you can simply make sure that
+you have a slightly older version of matplotlib by running this command in the
+Terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="s1">&#39;matplotlib&lt;3.6&#39;</span>
+</pre></div>
+</div>
+<p>The plotnine developers have already fixed the problem in the newest version of
+plotnine, so once it’s available through conda, this workaround will no longer
+be necessary.</p>
+</div>
 <p>While Matplotlib is included with Anaconda, plotnine is not. You will need to
 install the plotnine package in order to use it. <a class="reference internal" href="01_python-basics.html#installing-packages"><span class="std std-numref">Section 1.4.2</span></a>
 showed you how to install packages with conda via the Terminal:</p>
@@ -1954,23 +1977,25 @@ showed you how to install packages with conda via the Terminal:</p>
 </div>
 <p>In <a class="reference internal" href="01_python-basics.html#modules"><span class="std std-numref">Section 1.4.3</span></a>, you learned how to import a module in a Python package
 with the <code class="docutils literal notranslate"><span class="pre">import</span></code> keyword. Python also provides a <code class="docutils literal notranslate"><span class="pre">from</span></code> keyword to import
-specific objects within a module. The syntax is:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="nb">object</span><span class="o">&gt;</span>
+specific objects from within a module, so that you can access them without the
+module name as a prefix. The syntax is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">MODULE</span> <span class="kn">import</span> <span class="n">OBJECT</span>
 </pre></div>
 </div>
-<p>When you import an object this way, you can access the object without the
-module name as a prefix. For instance, if you imported Pandas using:</p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">MODULE</span></code> with the name of the module and <code class="docutils literal notranslate"><span class="pre">OBJECT</span></code> with the name of the
+object that you want to import.</p>
+<p>For instance, if you import Pandas using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
 </pre></div>
 </div>
-<p>You could then write:</p>
+<p>You can then write:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>You can also use the from keyword to import all objects in a module with the
+<p>You can also use the <code class="docutils literal notranslate"><span class="pre">from</span></code> keyword to import all objects in a module with the
 wildcard character <code class="docutils literal notranslate"><span class="pre">*</span></code>. Generally you shouldn’t do this, because objects in a
 module will overwrite objects in your code if they have the same name. However,
-the plotnine package is designed to be imported this way:</p>
+the plotnine package was designed to be imported this way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plotnine</span> <span class="kn">import</span> <span class="o">*</span>
@@ -1988,12 +2013,8 @@ running:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize matplotlib</span>
-
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="c1"># We&#39;ll see what this code does later on:</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -2001,6 +2022,14 @@ running:</p>
 </div>
 <p>The last line sets the default size of plots. You can increase the numbers to
 make plots larger, or decrease them to make plots smaller.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In older versions of Jupyter and IPython, it was also necessary to run the
+special IPython command <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code> to set up a notebook for plotting.
+This is no longer necessary in modern versions, but you may still see people
+use or mention it online. You can read more about this change in <a class="reference external" href="https://stackoverflow.com/questions/65934740/is-matplotlib-inline-still-needed">this
+StackOverflow question</a>.</p>
+</div>
 </section>
 <section id="data-cleaning">
 <span id="id7"></span><h3><span class="section-number">3.5.3. </span>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">#</a></h3>
@@ -2032,7 +2061,7 @@ reassign the altered data to a new variable.</p>
 </div>
 </div>
 </div>
-<p>you are now ready to make a plot.</p>
+<p>You are now ready to make a plot.</p>
 </section>
 </section>
 <section id="the-grammar-of-graphics">
@@ -2097,7 +2126,7 @@ sets we work with are tidy.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_48_0.png" src="../_images/03_exploring-data_48_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322508332)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (315736284)&gt;
 </pre></div>
 </div>
 </div>
@@ -2246,7 +2275,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_52_0.png" src="../_images/03_exploring-data_52_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (323552674)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316776860)&gt;
 </pre></div>
 </div>
 </div>
@@ -2266,7 +2295,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_54_0.png" src="../_images/03_exploring-data_54_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (323579853)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316807051)&gt;
 </pre></div>
 </div>
 </div>
@@ -2290,7 +2319,7 @@ let’s color-code the points by gender. To do so, we need to convert <code clas
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_56_0.png" src="../_images/03_exploring-data_56_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (323630576)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316857702)&gt;
 </pre></div>
 </div>
 </div>
@@ -2310,7 +2339,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_58_0.png" src="../_images/03_exploring-data_58_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (323643642)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316892485)&gt;
 </pre></div>
 </div>
 </div>
@@ -2328,7 +2357,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_60_0.png" src="../_images/03_exploring-data_60_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (323786762)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (316775136)&gt;
 </pre></div>
 </div>
 </div>
@@ -2349,7 +2378,7 @@ gender, and you want to make all of the points blue.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_62_0.png" src="../_images/03_exploring-data_62_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (324000423)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317231756)&gt;
 </pre></div>
 </div>
 </div>
@@ -2496,7 +2525,7 @@ and axis labels. All graphs need a title and axis labels.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_66_0.png" src="../_images/03_exploring-data_66_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (324152098)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317377218)&gt;
 </pre></div>
 </div>
 </div>
@@ -2542,7 +2571,7 @@ the code to make the bar plot:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_68_0.png" src="../_images/03_exploring-data_68_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (324037269)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (317378753)&gt;
 </pre></div>
 </div>
 </div>
