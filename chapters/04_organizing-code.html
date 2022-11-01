@@ -436,6 +436,7 @@ title="Print to PDF"
 <div class="admonition-learning-objectives admonition">
 <p class="admonition-title">Learning Objectives</p>
 <ul class="simple">
+<li><p>Create code that only runs when a condition is satisfied</p></li>
 <li><p>Write functions to organize and encapsulate reusable code</p></li>
 </ul>
 </div>
@@ -664,13 +665,13 @@ in a Series. You can make a parameter for the number of values to get, with a
 default argument of <code class="docutils literal notranslate"><span class="pre">5</span></code>. Here’s the code and some test cases:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">top_n</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_largest</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
     <span class="nb">sorted</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
     <span class="k">return</span> <span class="nb">sorted</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
 
-<span class="n">top_n</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">get_largest</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -685,7 +686,7 @@ dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_n</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_largest</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -707,9 +708,9 @@ running any subsequent code in its body. So before the end of the function, it
 only makes sense to use <code class="docutils literal notranslate"><span class="pre">return</span></code> from inside of an if-statement.</p>
 </div>
 <p>A function returns one object, but sometimes computations have multiple
-results. In that case, return the results in a <strong>tuple</strong>, list, or other data
-structure. A tuple is a container for multiple values, similar to a list, but
-cannot be modified after it is created (so it is more efficient).</p>
+results. In that case, return the results in a container such as a tuple or
+list. See <a class="reference internal" href="02_pandas-basics.html#arrays-lists-sequences"><span class="std std-numref">Section 2.2</span></a> for examples of several different
+containers you can use.</p>
 <p>For example, let’s make a function that computes the mean and median for a
 vector. We’ll return the results in a tuple:</p>
 <div class="cell docutils container">

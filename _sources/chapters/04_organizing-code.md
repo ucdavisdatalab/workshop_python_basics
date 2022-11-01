@@ -22,6 +22,7 @@ Organizing Code
 ===============
 
 :::{admonition} Learning Objectives
+* Create code that only runs when a condition is satisfied
 * Write functions to organize and encapsulate reusable code
 :::
 
@@ -202,17 +203,17 @@ in a Series. You can make a parameter for the number of values to get, with a
 default argument of `5`. Here's the code and some test cases:
 
 ```{code-cell}
-def top_n(x, n = 5):
+def get_largest(x, n = 5):
     sorted = y.sort_values()
     return sorted.head(n)
 
 y = pd.Series([-6, 7, 10, 3, 1, 15, -2])
 
-top_n(y, 3)
+get_largest(y, 3)
 ```
 
 ```{code-cell}
-top_n(y)
+get_largest(y)
 ```
 
 :::{tip}
@@ -222,9 +223,9 @@ only makes sense to use `return` from inside of an if-statement.
 :::
 
 A function returns one object, but sometimes computations have multiple
-results. In that case, return the results in a **tuple**, list, or other data
-structure. A tuple is a container for multiple values, similar to a list, but
-cannot be modified after it is created (so it is more efficient).
+results. In that case, return the results in a container such as a tuple or
+list. See {numref}`arrays-lists-sequences` for examples of several different
+containers you can use.
 
 For example, let's make a function that computes the mean and median for a
 vector. We'll return the results in a tuple:
