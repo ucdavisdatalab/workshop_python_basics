@@ -3198,6 +3198,60 @@ column, computed with NumPy’s <code class="docutils literal notranslate"><span
 </div>
 </div>
 </div>
+<p>It’s often helpful to count cells by collecting them into groups first.
+<a class="reference internal" href="03_exploring-data.html#aggregate-functions"><span class="std std-numref">Section 3.3</span></a> will cover this in detail, but you can use the
+<code class="docutils literal notranslate"><span class="pre">.value_counts</span></code> method right out of the box:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;currency_code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BOB     15
+IDR     12
+TRY     12
+MXN     11
+COP     11
+DOP     11
+UAH     10
+GEL      9
+RSD      9
+NGN      9
+AUD      9
+PHP      9
+CAD      9
+BDT      9
+GBP      8
+STD      8
+USD      7
+UYU      7
+KGS      7
+MWK      7
+PEN      7
+RMB      6
+CZK      6
+CRC      6
+VES      6
+SEK      6
+ARS      5
+ZAR      5
+NZD      5
+JMD      5
+ISK      5
+CVE      5
+CLP      5
+TND      4
+ILS      4
+KRW      4
+JPY      3
+VES​     2
+PGK      1
+Name: currency_code, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
 <p>Finally, you can assign new values to a DataFrame using the same notation as
 above. Below, this code overwrites all the values in the <code class="docutils literal notranslate"><span class="pre">currency_code</span></code>
 column:</p>
