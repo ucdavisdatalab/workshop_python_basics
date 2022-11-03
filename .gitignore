@@ -33,3 +33,6 @@ Temporary Items
 
 # JupyterBook stuff
 _build/*
+
+# Reader cruft
+*.sqlite
