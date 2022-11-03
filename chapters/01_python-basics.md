@@ -1238,6 +1238,14 @@ column, computed with NumPy's `max`:
 np.max(banknotes["current_bill_value"])
 ```
 
+It's often helpful to count cells by collecting them into groups first.
+{numref}`aggregate-functions` will cover this in detail, but you can use the
+`.value_counts` method right out of the box:
+
+```{code-cell}
+banknotes["currency_code"].value_counts()
+```
+
 Finally, you can assign new values to a DataFrame using the same notation as
 above. Below, this code overwrites all the values in the `currency_code`
 column:
