@@ -1150,7 +1150,7 @@ a call. So this code causes an error:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">number</span> <span class="o">=</span> <span class="mf">4.755</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 
@@ -1858,7 +1858,7 @@ working directory, as a string. It doesn’t require any arguments:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tyler/DataLab/workshops/workshop_python_basics&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tyler/DataLab/teaching/workshops/workshop_python_basics&#39;
 </pre></div>
 </div>
 </div>
@@ -1879,7 +1879,7 @@ argument: a path to the new working directory. Here’s an example:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tyler/DataLab/workshops&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/tyler/DataLab/teaching/workshops&#39;
 </pre></div>
 </div>
 </div>
@@ -1908,13 +1908,18 @@ path. For instance:</p>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;workshop_r_basics&#39;,
  &#39;workshop_introduction_to_version_control&#39;,
- &#39;analytics_and_misc&#39;,
  &#39;.DS_Store&#39;,
+ &#39;workshop_llms_basics&#39;,
+ &#39;workshop_data_viz_principles&#39;,
+ &#39;basic_stats_r_1&#39;,
  &#39;workshop_getting_started_with_textual_data&#39;,
+ &#39;workshop_intro_to_remote_computing&#39;,
  &#39;workshop_introduction_to_the_command_line&#39;,
+ &#39;workshop_index&#39;,
  &#39;workshop_python_basics&#39;,
  &#39;template_python_workshop&#39;,
  &#39;workshop_nlp_with_python&#39;,
+ &#39;.ipynb_checkpoints&#39;,
  &#39;template_workshop&#39;,
  &#39;workshop_git_for_teams&#39;]
 </pre></div>
@@ -1933,7 +1938,7 @@ an empty directory, Python raises a <code class="docutils literal notranslate"><
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/this/path/is/fake/&quot;</span><span class="p">)</span>
 
 <span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/this/path/is/fake/&#39;
@@ -3208,7 +3213,8 @@ column, computed with NumPy’s <code class="docutils literal notranslate"><span
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BOB     15
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>currency_code
+BOB     15
 IDR     12
 TRY     12
 MXN     11
@@ -3247,7 +3253,7 @@ KRW      4
 JPY      3
 VES​     2
 PGK      1
-Name: currency_code, dtype: int64
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>

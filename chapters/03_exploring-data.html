@@ -1520,6 +1520,10 @@ documentation</a> advises that you use the alias:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/h7/tzxfms7d2z7gwlgtbvw15msc0000gn/T/ipykernel_49473/2993909395.py:1: FutureWarning: The provided callable &lt;function median at 0x10487eef0&gt; is currently using Series.median. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;median&quot; instead.
+  banknotes[&quot;first_appearance_year&quot;].agg(np.median)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1996.0
 </pre></div>
 </div>
@@ -1535,6 +1539,14 @@ standard deviation for <code class="docutils literal notranslate"><span class="p
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/h7/tzxfms7d2z7gwlgtbvw15msc0000gn/T/ipykernel_49473/3929709255.py:1: FutureWarning: The provided callable &lt;function mean at 0x104754310&gt; is currently using Series.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+  banknotes[&quot;current_bill_value&quot;].agg([np.mean, np.median, np.std])
+/var/folders/h7/tzxfms7d2z7gwlgtbvw15msc0000gn/T/ipykernel_49473/3929709255.py:1: FutureWarning: The provided callable &lt;function median at 0x10487eef0&gt; is currently using Series.median. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;median&quot; instead.
+  banknotes[&quot;current_bill_value&quot;].agg([np.mean, np.median, np.std])
+/var/folders/h7/tzxfms7d2z7gwlgtbvw15msc0000gn/T/ipykernel_49473/3929709255.py:1: FutureWarning: The provided callable &lt;function std at 0x104754430&gt; is currently using Series.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;std&quot; instead.
+  banknotes[&quot;current_bill_value&quot;].agg([np.mean, np.median, np.std])
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean       4038.956989
 median      100.000000
 std       14336.386917
@@ -1551,6 +1563,10 @@ Name: current_bill_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/h7/tzxfms7d2z7gwlgtbvw15msc0000gn/T/ipykernel_49473/1876906337.py:1: FutureWarning: The provided callable &lt;function mean at 0x104754310&gt; is currently using DataFrame.mean. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string &quot;mean&quot; instead.
+  banknotes[[&quot;current_bill_value&quot;, &quot;scaled_bill_value&quot;]].agg(np.mean)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>current_bill_value    4038.956989
 scaled_bill_value        0.306058
 dtype: float64
@@ -2126,7 +2142,7 @@ sets we work with are tidy.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_48_0.png" src="../_images/03_exploring-data_48_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (321061096)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>
@@ -2151,85 +2167,76 @@ add it to the plot with the <code class="docutils literal notranslate"><span cla
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">PlotnineError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/core/formatters.py:707,</span> in <span class="ni">PlainTextFormatter.__call__</span><span class="nt">(self, obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span> <span class="n">printer</span> <span class="o">=</span> <span class="n">pretty</span><span class="o">.</span><span class="n">RepresentationPrinter</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="bp">self</span><span class="o">.</span><span class="n">max_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newline</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="n">max_seq_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_seq_length</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="n">singleton_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">singleton_printers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="n">type_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type_printers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="n">deferred_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deferred_printers</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">707</span> <span class="n">printer</span><span class="o">.</span><span class="n">pretty</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">708</span> <span class="n">printer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/IPython/core/formatters.py:708,</span> in <span class="ni">PlainTextFormatter.__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="n">printer</span> <span class="o">=</span> <span class="n">pretty</span><span class="o">.</span><span class="n">RepresentationPrinter</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="bp">self</span><span class="o">.</span><span class="n">max_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newline</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="n">max_seq_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_seq_length</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="n">singleton_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">singleton_printers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="n">type_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type_printers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>     <span class="n">deferred_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deferred_printers</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">708</span> <span class="n">printer</span><span class="o">.</span><span class="n">pretty</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="n">printer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span> <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/lib/pretty.py:410,</span> in <span class="ni">RepresentationPrinter.pretty</span><span class="nt">(self, obj)</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/IPython/lib/pretty.py:410,</span> in <span class="ni">RepresentationPrinter.pretty</span><span class="nt">(self, obj)</span>
 <span class="g g-Whitespace">    </span><span class="mi">407</span>                         <span class="k">return</span> <span class="n">meth</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">408</span>                 <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">object</span> \
-<span class="g g-Whitespace">    </span><span class="mi">409</span>                         <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">)):</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>                         <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">)):</span>
 <span class="ne">--&gt; </span><span class="mi">410</span>                     <span class="k">return</span> <span class="n">_repr_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="k">return</span> <span class="n">_default_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">413</span> <span class="k">finally</span><span class="p">:</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/lib/pretty.py:778,</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
-<span class="g g-Whitespace">    </span><span class="mi">776</span> <span class="sd">&quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/IPython/lib/pretty.py:778,</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
+<span class="g g-Whitespace">    </span><span class="mi">776</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">    </span><span class="mi">777</span> <span class="c1"># Find newlines and replace them with p.break_()</span>
 <span class="ne">--&gt; </span><span class="mi">778</span> <span class="n">output</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">779</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">780</span> <span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">group</span><span class="p">():</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:95,</span> in <span class="ni">ggplot.__repr__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span><span class="sd">     Print/show the plot</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">95</span>     <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">return</span> <span class="s1">&#39;&lt;ggplot: (</span><span class="si">%d</span><span class="s1">)&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:114,</span> in <span class="ni">ggplot.__repr__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span><span class="sd">     Print/show the plot</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">114</span>     <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">dpi</span> <span class="o">=</span> <span class="n">figure</span><span class="o">.</span><span class="n">get_dpi</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="n">W</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">figure</span><span class="o">.</span><span class="n">get_figwidth</span><span class="p">()</span> <span class="o">*</span> <span class="n">dpi</span><span class="p">)</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:86,</span> in <span class="ni">ggplot.__str__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span><span class="sd">     Print/show the plot</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">86</span>     <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="c1"># Return and empty string so that print(p) is &quot;pretty&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:224,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, show)</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span> <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">224</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span>     <span class="c1"># setup</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>     <span class="n">figure</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_figure</span><span class="p">()</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:203,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, return_ggplot, show)</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span> <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">203</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span>     <span class="c1"># setup</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">figure</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_figure</span><span class="p">()</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:333,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span> <span class="n">layers</span><span class="o">.</span><span class="n">map_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span> <span class="c1"># Prepare data in geoms</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span> <span class="c1"># e.g. from y and width to ymin and ymax</span>
+<span class="ne">--&gt; </span><span class="mi">333</span> <span class="n">layers</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span> <span class="c1"># Apply position adjustments</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span> <span class="n">layers</span><span class="o">.</span><span class="n">compute_position</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:308,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span> <span class="n">layers</span><span class="o">.</span><span class="n">map_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span> <span class="c1"># Prepare data in geoms</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span> <span class="c1"># e.g. from y and width to ymin and ymax</span>
-<span class="ne">--&gt; </span><span class="mi">308</span> <span class="n">layers</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="c1"># Apply position adjustments</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="n">layers</span><span class="o">.</span><span class="n">compute_position</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/layer.py:457,</span> in <span class="ni">Layers.setup_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">457</span>         <span class="n">l</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/layer.py:57,</span> in <span class="ni">Layers.setup_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="k">def</span> <span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">57</span>         <span class="n">l</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/layer.py:325,</span> in <span class="ni">layer.setup_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>     <span class="k">return</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">setup_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">325</span> <span class="n">check_required_aesthetics</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">REQUIRED_AES</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span>     <span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">aes_params</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span>     <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/layer.py:375,</span> in <span class="ni">layer.setup_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">371</span>     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)()</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">setup_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">375</span> <span class="n">check_required_aesthetics</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">376</span>     <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">REQUIRED_AES</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span>     <span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">aes_params</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span>     <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-<span class="g g-Whitespace">    </span><span class="mi">379</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/utils.py:385,</span> in <span class="ni">check_required_aesthetics</span><span class="nt">(required, present, name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="k">if</span> <span class="n">missing_aes</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> requires the following missing aesthetics: </span><span class="si">{}</span><span class="s1">&#39;</span>
-<span class="ne">--&gt; </span><span class="mi">385</span>     <span class="k">raise</span> <span class="n">PlotnineError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_aes</span><span class="p">)))</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/utils.py:355,</span> in <span class="ni">check_required_aesthetics</span><span class="nt">(required, present, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span> <span class="k">if</span> <span class="n">missing_aes</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">354</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> requires the following missing aesthetics: </span><span class="si">{}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">355</span>     <span class="k">raise</span> <span class="n">PlotnineError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_aes</span><span class="p">)))</span>
 
 <span class="ne">PlotnineError</span>: &#39;geom_point requires the following missing aesthetics: y, x&#39;
 </pre></div>
@@ -2275,7 +2282,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_52_0.png" src="../_images/03_exploring-data_52_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322102684)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>
@@ -2295,7 +2302,7 @@ function:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_54_0.png" src="../_images/03_exploring-data_54_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322131911)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>
@@ -2319,7 +2326,7 @@ let’s color-code the points by gender. To do so, we need to convert <code clas
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_56_0.png" src="../_images/03_exploring-data_56_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322181607)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>
@@ -2339,7 +2346,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_58_0.png" src="../_images/03_exploring-data_58_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322208414)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>
@@ -2357,7 +2364,7 @@ geometry:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_60_0.png" src="../_images/03_exploring-data_60_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322341955)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>
@@ -2378,7 +2385,7 @@ gender, and you want to make all of the points blue.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_62_0.png" src="../_images/03_exploring-data_62_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322557595)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>
@@ -2398,15 +2405,15 @@ results you get might not be what you expect:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/mapping/evaluation.py:215,</span> in <span class="ni">evaluate</span><span class="nt">(aesthetics, data, env)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">215</span>     <span class="n">new_val</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">inner_namespace</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/mapping/evaluation.py:228,</span> in <span class="ni">evaluate</span><span class="nt">(aesthetics, data, env)</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">228</span>     <span class="n">new_val</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">inner_namespace</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/patsy/eval.py:165,</span> in <span class="ni">EvalEnvironment.eval</span><span class="nt">(self, expr, source_name, inner_namespace)</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">source_name</span><span class="p">,</span> <span class="s2">&quot;eval&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">165</span> <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="p">{},</span> <span class="n">VarLookupDict</span><span class="p">([</span><span class="n">inner_namespace</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>                                     <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_namespaces</span><span class="p">))</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/patsy/eval.py:169,</span> in <span class="ni">EvalEnvironment.eval</span><span class="nt">(self, expr, source_name, inner_namespace)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">code</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">source_name</span><span class="p">,</span> <span class="s2">&quot;eval&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">169</span> <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="p">{},</span> <span class="n">VarLookupDict</span><span class="p">([</span><span class="n">inner_namespace</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>                                     <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_namespaces</span><span class="p">))</span>
 
 <span class="n">File</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span>
 
@@ -2415,89 +2422,80 @@ results you get might not be what you expect:</p>
 <span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
 <span class="ne">PlotnineError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/core/formatters.py:707,</span> in <span class="ni">PlainTextFormatter.__call__</span><span class="nt">(self, obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span> <span class="n">printer</span> <span class="o">=</span> <span class="n">pretty</span><span class="o">.</span><span class="n">RepresentationPrinter</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="bp">self</span><span class="o">.</span><span class="n">max_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newline</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="n">max_seq_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_seq_length</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="n">singleton_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">singleton_printers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="n">type_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type_printers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="n">deferred_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deferred_printers</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">707</span> <span class="n">printer</span><span class="o">.</span><span class="n">pretty</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">708</span> <span class="n">printer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/IPython/core/formatters.py:708,</span> in <span class="ni">PlainTextFormatter.__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="n">printer</span> <span class="o">=</span> <span class="n">pretty</span><span class="o">.</span><span class="n">RepresentationPrinter</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>     <span class="bp">self</span><span class="o">.</span><span class="n">max_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">newline</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="n">max_seq_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_seq_length</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span>     <span class="n">singleton_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">singleton_printers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="n">type_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">type_printers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>     <span class="n">deferred_pprinters</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deferred_printers</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">708</span> <span class="n">printer</span><span class="o">.</span><span class="n">pretty</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="n">printer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span> <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/lib/pretty.py:410,</span> in <span class="ni">RepresentationPrinter.pretty</span><span class="nt">(self, obj)</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/IPython/lib/pretty.py:410,</span> in <span class="ni">RepresentationPrinter.pretty</span><span class="nt">(self, obj)</span>
 <span class="g g-Whitespace">    </span><span class="mi">407</span>                         <span class="k">return</span> <span class="n">meth</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">408</span>                 <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">object</span> \
-<span class="g g-Whitespace">    </span><span class="mi">409</span>                         <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">)):</span>
+<span class="g g-Whitespace">    </span><span class="mi">409</span>                         <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__repr__&#39;</span><span class="p">)):</span>
 <span class="ne">--&gt; </span><span class="mi">410</span>                     <span class="k">return</span> <span class="n">_repr_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">412</span>     <span class="k">return</span> <span class="n">_default_pprint</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">cycle</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">413</span> <span class="k">finally</span><span class="p">:</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/IPython/lib/pretty.py:778,</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
-<span class="g g-Whitespace">    </span><span class="mi">776</span> <span class="sd">&quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/IPython/lib/pretty.py:778,</span> in <span class="ni">_repr_pprint</span><span class="nt">(obj, p, cycle)</span>
+<span class="g g-Whitespace">    </span><span class="mi">776</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;</span>
 <span class="g g-Whitespace">    </span><span class="mi">777</span> <span class="c1"># Find newlines and replace them with p.break_()</span>
 <span class="ne">--&gt; </span><span class="mi">778</span> <span class="n">output</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">779</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 <span class="g g-Whitespace">    </span><span class="mi">780</span> <span class="k">with</span> <span class="n">p</span><span class="o">.</span><span class="n">group</span><span class="p">():</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:95,</span> in <span class="ni">ggplot.__repr__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span><span class="sd">     Print/show the plot</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">95</span>     <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">return</span> <span class="s1">&#39;&lt;ggplot: (</span><span class="si">%d</span><span class="s1">)&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:114,</span> in <span class="ni">ggplot.__repr__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span><span class="sd">     Print/show the plot</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">114</span>     <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="n">dpi</span> <span class="o">=</span> <span class="n">figure</span><span class="o">.</span><span class="n">get_dpi</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="n">W</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">figure</span><span class="o">.</span><span class="n">get_figwidth</span><span class="p">()</span> <span class="o">*</span> <span class="n">dpi</span><span class="p">)</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:86,</span> in <span class="ni">ggplot.__str__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span><span class="sd">     Print/show the plot</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">86</span>     <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span>     <span class="c1"># Return and empty string so that print(p) is &quot;pretty&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span>     <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:224,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, show)</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span> <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">224</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span>     <span class="c1"># setup</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span>     <span class="n">figure</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_figure</span><span class="p">()</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:203,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, return_ggplot, show)</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span> <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">203</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span>     <span class="c1"># setup</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">figure</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_figure</span><span class="p">()</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/ggplot.py:314,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="n">layout</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> <span class="c1"># Compute aesthetics to produce data with generalised</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span> <span class="c1"># variable names</span>
+<span class="ne">--&gt; </span><span class="mi">314</span> <span class="n">layers</span><span class="o">.</span><span class="n">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span> <span class="c1"># Transform data using all scales</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="n">layers</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/ggplot.py:289,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="n">layout</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="c1"># Compute aesthetics to produce data with generalised</span>
-<span class="g g-Whitespace">    </span><span class="mi">288</span> <span class="c1"># variable names</span>
-<span class="ne">--&gt; </span><span class="mi">289</span> <span class="n">layers</span><span class="o">.</span><span class="n">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span> <span class="c1"># Transform data using all scales</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span> <span class="n">layers</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/layer.py:467,</span> in <span class="ni">Layers.compute_aesthetics</span><span class="nt">(self, plot)</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span> <span class="k">def</span> <span class="nf">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">:</span> <span class="n">Ggplot</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">466</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">467</span>         <span class="n">l</span><span class="o">.</span><span class="n">compute_aesthetics</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/layer.py:67,</span> in <span class="ni">Layers.compute_aesthetics</span><span class="nt">(self, plot)</span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="k">def</span> <span class="nf">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">67</span>         <span class="n">l</span><span class="o">.</span><span class="n">compute_aesthetics</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/layer.py:260,</span> in <span class="ni">layer.compute_aesthetics</span><span class="nt">(self, plot)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span> <span class="k">def</span> <span class="nf">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">:</span> <span class="n">Ggplot</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span><span class="sd">     Return a dataframe where the columns match the aesthetic mappings</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span><span class="sd">     Transformations like &#39;factor(cyl)&#39; and other</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span><span class="sd">     expression evaluation are  made in here</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">260</span>     <span class="n">evaled</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">_starting</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">plot</span><span class="o">.</span><span class="n">environment</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="n">evaled_aes</span> <span class="o">=</span> <span class="n">aes</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">col</span><span class="p">):</span> <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">evaled</span><span class="p">})</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span>     <span class="n">plot</span><span class="o">.</span><span class="n">scales</span><span class="o">.</span><span class="n">add_defaults</span><span class="p">(</span><span class="n">evaled</span><span class="p">,</span> <span class="n">evaled_aes</span><span class="p">)</span>
 
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/layer.py:310,</span> in <span class="ni">layer.compute_aesthetics</span><span class="nt">(self, plot)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span> <span class="k">def</span> <span class="nf">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span><span class="sd">     Return a dataframe where the columns match the</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span><span class="sd">     aesthetic mappings.</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span><span class="sd">     expression evaluation are  made in here</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">310</span>     <span class="n">evaled</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">_starting</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">plot</span><span class="o">.</span><span class="n">environment</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>     <span class="n">evaled_aes</span> <span class="o">=</span> <span class="n">aes</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">evaled</span><span class="p">})</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="n">plot</span><span class="o">.</span><span class="n">scales</span><span class="o">.</span><span class="n">add_defaults</span><span class="p">(</span><span class="n">evaled</span><span class="p">,</span> <span class="n">evaled_aes</span><span class="p">)</span>
-
-<span class="nn">File ~/DataLab/workshops/workshop_python_basics/env/lib/python3.10/site-packages/plotnine/mapping/evaluation.py:217,</span> in <span class="ni">evaluate</span><span class="nt">(aesthetics, data, env)</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="n">new_val</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">inner_namespace</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">217</span>     <span class="k">raise</span> <span class="n">PlotnineError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">218</span>         <span class="n">_TPL_EVAL_FAIL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ae</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="n">evaled</span><span class="p">[</span><span class="n">ae</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_val</span>
+<span class="nn">File ~/.mambaforge/envs/python-basics/lib/python3.10/site-packages/plotnine/mapping/evaluation.py:230,</span> in <span class="ni">evaluate</span><span class="nt">(aesthetics, data, env)</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span>     <span class="n">new_val</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">inner_namespace</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">230</span>     <span class="k">raise</span> <span class="n">PlotnineError</span><span class="p">(</span><span class="n">_TPL_EVAL_FAIL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ae</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>     <span class="n">evaled</span><span class="p">[</span><span class="n">ae</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_val</span>
 
 <span class="ne">PlotnineError</span>: &quot;Could not evaluate the &#39;color&#39; mapping: &#39;blue&#39; (original error: name &#39;blue&#39; is not defined)&quot;
 </pre></div>
@@ -2525,7 +2523,7 @@ and axis labels. All graphs need a title and axis labels.</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_66_0.png" src="../_images/03_exploring-data_66_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322702096)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>
@@ -2571,7 +2569,7 @@ the code to make the bar plot:</p>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/03_exploring-data_68_0.png" src="../_images/03_exploring-data_68_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ggplot: (322725555)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure Size: (640 x 480)&gt;
 </pre></div>
 </div>
 </div>

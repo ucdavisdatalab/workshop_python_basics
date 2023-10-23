@@ -720,7 +720,7 @@ vector. We’ll return the results in a tuple:</p>
 <span class="k">def</span> <span class="nf">compute_mean_med</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">m1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span>
 
 <span class="n">compute_mean_med</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
 </pre></div>
@@ -739,7 +739,7 @@ vector. We’ll return the results in a tuple:</p>
 <li><p>Write down what you want to do, in detail. It can also help to
 draw a picture of what needs to happen.</p></li>
 <li><p>Check whether there’s already a built-in function. Search online and in the
-R documentation.</p></li>
+Python documentation.</p></li>
 <li><p>Write the code to handle a simple case first. For data science
 problems, use a small dataset at this step.</p></li>
 </ol>

@@ -236,7 +236,7 @@ import numpy as np
 def compute_mean_med(x):
     m1 = np.mean(x)
     m2 = np.median(x)
-    return m1, m2
+    return (m1, m2)
 
 compute_mean_med(pd.Series([1, 2, 3, 1]))
 ```
@@ -249,7 +249,7 @@ Before you write a function, it's useful to go through several steps:
    draw a picture of what needs to happen.
 
 2. Check whether there's already a built-in function. Search online and in the
-   R documentation.
+   Python documentation.
 
 3. Write the code to handle a simple case first. For data science
    problems, use a small dataset at this step.
