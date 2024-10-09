@@ -36,3 +36,6 @@ _build/*
 
 # Reader cruft
 *.sqlite
+# pixi environments
+.pixi
+*.egg-info
