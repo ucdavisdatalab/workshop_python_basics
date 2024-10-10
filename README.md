@@ -1,9 +1,12 @@
 # Workshop: Python Basics
 
 _[UC Davis DataLab](https://datalab.ucdavis.edu/)_  
-_Fall 2021_  
-_Instructors: Arthur Koehl <<avkoehl@ucdavis.edu>>,
-  Nick Ulle <<naulle@ucdavis.edu>>_  
+_Fall 2024_  
+_Instructors: Elise Hellwig, Nick Ulle_  
+_Authors:_ Arthur Koehl, Tyler Shoemaker, Nick Ulle_  
+_Maintainer:_ Nick Ulle <<naulle@ucdavis.edu>>_  
+
+* [Reader](https://ucdavisdatalab.github.io/workshop_python_basics/)
 
 This 4-part workshop series provides an introduction to using the Python
 programming language for reproducible data analysis and scientific computing.
@@ -11,20 +14,19 @@ Topics include programming basics, how to work with tabular data, how to break
 down programming problems, and how to organize code for clarity and
 reproducibility.
 
-After this workshop, learners will be able to load tabular data sets into
-Python, compute simple summaries and visualizations, do common data-tidying
-tasks, write reusable functions, and identify where to go to learn more.
+### Learning Objectives
 
-TODO: Requirements
-<!--
-No prior programming experience is necessary. All learners will need access to
-an internet-connected computer and the latest version of Zoom, R, and RStudio.
--->
+After this workshop, learners should be able to:
 
-## Common Links
+* Load tabular data sets into Python
+* Compute simple summaries and visualizations
+* Do common data-tidying tasks
+* Write reusable functions
+* Identify where to go to learn more
 
-* [Reader](https://ucdavisdatalab.github.io/workshop_python_basics/)
-* Event Page
+### Prerequisites
+
+No prior programming experience is necessary.
 
 
 ## Contributing
