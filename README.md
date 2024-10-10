@@ -3,8 +3,8 @@
 _[UC Davis DataLab](https://datalab.ucdavis.edu/)_  
 _Fall 2024_  
 _Instructors: Elise Hellwig, Nick Ulle_  
-_Authors:_ Arthur Koehl, Tyler Shoemaker, Nick Ulle_  
-_Maintainer:_ Nick Ulle <<naulle@ucdavis.edu>>_  
+_Authors: Arthur Koehl, Tyler Shoemaker, Nick Ulle_  
+_Maintainer: Nick Ulle <<naulle@ucdavis.edu>>_  
 
 * [Reader](https://ucdavisdatalab.github.io/workshop_python_basics/)
 
