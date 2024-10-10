@@ -4,22 +4,21 @@ authors = [
   "Tyler Shoemaker",
   "Arthur Koehl"
 ]
-channels = ["conda-forge", "main", "r", "msys2"]
-description = "Reader for the Python Basics workshop series. "
+channels = ["conda-forge"]
+description = "Reader for the Python Basics workshop series."
 name = "python-basics"
 platforms = ["linux-64", "osx-64", "win-64"]
-version = "2022.fall.0"  # <year>.<quarter>.<revision #>
+version = "2022.fall.1"  # <year>.<quarter>.<revision #>
 
 [tasks]
 
 [dependencies]
-python = "3.10.*"
-jupyter-book = "0.13.1.*"
-ca-certificates = "*"
-openssl = "*"
-matplotlib = "*"
-certifi = "*"
-pandas = ">=1.4"
-requests-cache = "*"
-plotnine = ">=0.9"
-ghp-import = "*"
+python = ">=3.12.7,<4"
+jupyter-book = ">=1.0.3,<2"
+matplotlib = ">=3.9.2,<4"
+pandas = ">=2.2.3,<3"
+plotnine = ">=0.13.6,<0.14"
+requests-cache = ">=1.2.1,<2"
+requests = ">=2.32.3,<3"
+numpy = ">=2.1.2,<3"
+ghp-import = ">=2.1.0,<3"
