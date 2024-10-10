@@ -77,25 +77,45 @@ To make alterations to the reader:
 
 ## Setup
 
-### Jupyter-Book
+We *strongly recommend* using [pixi][], a fast package manager based on the
+conda ecosystem, to install the packages required to build this reader. To
+install pixi, follow [the official instructions][pixi]. If you prefer not to
+use pixi, it's also possible to manually install the packages using conda or
+mamba.
 
-Install jupyter-book using pip
+[pixi]: https://pixi.sh/
+
+The `pixi.toml` file in this repo lists required packages, while the
+`pixi.lock` file lists package versions for each platform. When the lock file
+is present, pixi will attempt to install the exact versions listed. Deleting
+the lock file allows pixi to install other versions, which might help if
+installation fails (but beware of inconsistencies between package versions).
+
+To install the required packages, open a terminal and navigate to this repo's
+directory. Then run:
+
 ```sh
-pip install -U jupyter-book
+pixi install
 ```
 
-### Git LFS
+This will automatically create a virtual environment and install the packages.
 
-This repo uses [Git Large File Storage][git-lfs] (git LFS) for large files. If
-you don't have git LFS installed, [download it][git-lfs] and run the installer.
-Then in the shell (in any directory), run:
+To open a shell in the virtual environment, run:
 
 ```sh
-git lfs install
+pixi shell
 ```
 
-Then your one-time setup of git LFS is done. Next, clone this repo with `git
-clone`. The large files will be downloaded automatically with the rest of the
-repo.
+You can run the `pixi shell` command from the repo directory or any of its
+subdirectories. Use the virtual environment to run any commands related to
+building the reader. When you're finished using the virtual environment, you
+can use the `exit` command to exit the shell.
 
-[git-lfs]: https://git-lfs.github.com/
+> [!NOTE]
+> If you're using Windows and Git Bash, the `pixi shell` command is [not yet
+> supported][pixi-shell-win]. Instead, you can use the `pixi run` command to
+> run commands in the virtual environment. See [the pixi
+> documentation][pixi-basics] for examples of how to use `pixi run`.
+
+[pixi-shell-win]: https://github.com/prefix-dev/pixi/issues/417
+[pixi-basics]: https://pixi.sh/latest/basic_usage/
