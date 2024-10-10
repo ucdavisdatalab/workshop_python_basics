@@ -2,6 +2,7 @@ title: Python Basics
 author: Arthur Koehl, Tyler Shoemaker, and Nick Ulle
 copyright: "2022"
 logo: img/datalab-logo-full-color-rgb-1.png
+exclude_patterns: [_build, .pixi]
 only_build_toc_files: true
 
 repository:
