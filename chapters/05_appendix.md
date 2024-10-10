@@ -266,7 +266,7 @@ Python. You can use requests to make a GET request with the `get` function:
 ```{code-cell}
 import requests
 
-response = requests.get("https://datalab.ucdavis.edu")
+response = requests.get("https://library.ucdavis.edu")
 ```
 
 The status code of the response is in the `.status_code` attribute:
@@ -286,7 +286,7 @@ response.raise_for_status()
 The content of the response is stored as bytes in the `.contents` attribute and
 as text in the `.text` attribute. Choose which one to use based on what kind of
 site or file you requested. Web pages (`.html`) are usually text files, so for
-the DataLab site it makes more sense to use `.text` to access the content:
+the Library site it makes more sense to use `.text` to access the content:
 
 ```{code-cell}
 text = response.text
