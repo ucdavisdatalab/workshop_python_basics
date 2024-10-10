@@ -74,30 +74,6 @@ To make alterations to the reader:
 
 [ghp-import]: https://github.com/c-w/ghp-import
 
-### Large Files
-
-If you want to include a large file (say over 1 MB), you should use git LFS.
-You can register a large file with git LFS with the shell command:
-
-```sh
-git lfs track YOUR_FILE
-```
-
-This command updates the `.gitattributes` file at the top level of the repo. To
-make sure the change is saved, you also need to run:
-
-```sh
-git add .gitattributes
-```
-
-Now that your large is registered with git LFS, you can add, commit, and push
-the file with git the same way you would any other file, and git LFS will
-automatically intercede as needed.
-
-GitHub provides 1 GB of storage and 1 GB of monthly bandwidth free per repo for
-large files. If your large file is more than 50 MB, check with the other
-contributors before adding it.
-
 
 ## Setup
 
