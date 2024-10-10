@@ -60,7 +60,7 @@ To make alterations to the reader:
 4.  When you're finished, `git add`:
     - Any files you edited directly
     - Any supporting media you added to `img/`
-    - The `.gitattributes` file (if you added a large file)
+    - The `.gitignore` and `.gitattributes` files
 
     Then `git commit` and `git push`. This updates the `main` branch of the
     repo, which contains source materials for the web page (but not the web
