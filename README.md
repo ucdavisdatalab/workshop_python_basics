@@ -1,5 +1,7 @@
 # Workshop: Python Basics
 
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+
 _[UC Davis DataLab](https://datalab.ucdavis.edu/)_  
 _Fall 2024_  
 _Instructors: Elise Hellwig, Nick Ulle_  
