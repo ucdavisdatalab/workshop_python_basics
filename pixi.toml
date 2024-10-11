@@ -11,6 +11,10 @@ platforms = ["linux-64", "osx-64", "win-64"]
 version = "2024.fall.0"  # <year>.<quarter>.<revision #>
 
 [tasks]
+build = { cmd = "jupyter-book build .", description = "Build the reader." }
+publish = { cmd = "ghp-import --no-jekyll --no-history --push _build/html", description = "Publish the reader to the `gh-pages` branch on GitHub." }
+clean = { cmd = "rm -rf _build/", description = "Remove the build directory." }
+rebuild = { depends-on = ["clean", "build"], description = "Remove the build directory and build the reader." }
 
 [dependencies]
 python = ">=3.12.7,<4"
