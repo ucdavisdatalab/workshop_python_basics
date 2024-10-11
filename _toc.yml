@@ -1,7 +1,7 @@
 format: jb-book
 root: chapters/index
 parts:
-  - caption: Notes
+  - caption: Python Basics
     numbered: true
     chapters:
       - file: chapters/01_python-basics
@@ -9,7 +9,7 @@ parts:
       - file: chapters/03_exploring-data
       - file: chapters/04_organizing-code
       - file: chapters/05_appendix
-  - caption: Afterword
+  - caption: Back Matter
     chapters:
       - file: chapters/assessment
       - file: chapters/references

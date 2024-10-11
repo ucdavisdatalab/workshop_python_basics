@@ -29,8 +29,8 @@ html:
 
 # Temporary workaround for title not showing in left navbar due to:
 # <https://github.com/jupyter-book/jupyter-book/issues/2013>
-sphinx:
-  config:
-    html_theme_options:
-      logo:
-        text: "Python Basics"
+# sphinx:
+#   config:
+#     html_theme_options:
+#       logo:
+#         text: "Python Basics"
