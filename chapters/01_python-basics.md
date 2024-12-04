@@ -1076,12 +1076,12 @@ and take up less storage space (bytes).
 Over the next few sections, you'll explore data about banknotes and the people 
 depicted on them. This data is derived from a data set compiled by [The 
 Pudding][pud], which features [an article][art] about it. To download the 
-version you'll need for this workshop, click [here][data]. You may need to 
-choose `File -> Save As...` in your browser's menu.
+version you'll need for this workshop, [click here][data] (you'll need to click
+the "Download raw file" button).
 
 [pud]: https://pudding.cool/
 [art]: https://pudding.cool/2022/04/banknotes/
-[data]: https://raw.githubusercontent.com/ucdavisdatalab/workshop_r_basics/dev/data/banknotes.csv
+[data]: https://github.com/ucdavisdatalab/workshop_python_basics/blob/main/data/banknotes.csv
 
 The data set is a file called `banknotes.csv`, which suggests it's a CSV file.
 In this case, the extension is correct, so you can read the file with Pandas'
