@@ -350,24 +350,6 @@ Before building a visualization, you will need to do a few preparatory steps.
 (install-import-plotnine)=
 ### Install and Import plotnine
 
-:::{note}
-As of writing, conda installs plotnine 0.9 and matplotlib 3.6.1 by default.
-This is a problem, because plotnine 0.9 is incompatible with matplotilb >= 3.6.
-
-Incompatibility between different versions of packages is common and exactly
-what conda was designed to solve. In this case, you can simply make sure that
-you have a slightly older version of matplotlib by running this command in the
-Terminal:
-
-```
-conda install -c conda-forge 'matplotlib<3.6'
-```
-
-The plotnine developers have already fixed the problem in the newest version of
-plotnine, so once it's available through conda, this workaround will no longer
-be necessary.
-:::
-
 While Matplotlib is included with Anaconda, plotnine is not. You will need to
 install the plotnine package in order to use it. {numref}`installing-packages`
 showed you how to install packages with conda via the Terminal:

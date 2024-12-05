@@ -543,22 +543,6 @@ arrays of strings. In that case, you can generally assume all of the elements
 are type `str`. If you're ever unsure of the type of an element, you can always
 use `type` to check.
 
-:::{note}
-NumPy doesn't have a dedicated string type because the way strings are stored
-in memory is very different from the way numbers are stored. Since Pandas is
-based on NumPy, until recently Pandas didn't have a dedicated string type
-either. So both use `object` as the element type for Series and arrays of
-strings.
-
-As of Pandas 1.0, the developers have added an [experimental `string`
-type][pd-string] so that users can distinguish Series of strings from Series of
-mixed types. Hopefully in the future the `string` type will become the main way
-to handle strings rather than an experimental feature.
-
-[pd-string]: https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html
-:::
-
-
 (coercion-conversion)=
 ### Coercion & Conversion
 
