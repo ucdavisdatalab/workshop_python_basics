@@ -341,6 +341,58 @@ documentation][ggplot2] and [cheatsheet][ggplot2-cheat].
 [ggplot2-cheat]: https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf
 
 
+(installing-packages)=
+Installing Packages
+-------------------
+
+While Matplotlib is included with Anaconda, plotnine is not. You will need to
+install the plotnine package in order to use it.
+
+You can use conda, a standalone program included with Anaconda, to install
+packages. To get started, you need to open a **terminal**, a text interface for
+running programs on your computer. In JupyterLab, you can open a terminal with
+the menu option `File` -> `New` -> `Terminal`
+
+:::{caution}
+A terminal looks a lot like a Python console, but doesn't accept Python code as
+input! To learn more about how to use terminals than we explain here, see
+DataLab's [Introduction to the Unix Command Line workshop reader][datalab-cli].
+
+[datalab-cli]: https://ucdavisdatalab.github.io/workshop_introduction_to_the_command_line/
+:::
+
+The command to install a package called `PACKAGE` is:
+
+```
+conda install -c conda-forge PACKAGE
+```
+
+So you can install plotnine with the command:
+
+```
+conda install -c conda-forge plotnine
+```
+
+:::{note}
+Conda downloads packages from online **package repositories**. The default
+repository is maintained by Anaconda, but the packages there tend to be
+slightly out of date. The community maintains another repository, called
+conda-forge, that's updated more frequently and has a wider variety of
+packages.
+
+The `-c conda-forge` tells conda to use the conda-forge package repository.
+:::
+
+You can learn more about conda from the [official website][conda] and DataLab's
+[Intermediate Python workshop reader][datalab-conda].
+
+[conda]: https://conda.org/
+[datalab-conda]: https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/02_reproducible.html#what-s-an-environment
+
+After installing plotnine, close the terminal and go back to your Python
+console or notebook.
+
+
 (preparing-to-visualize)=
 Preparing to Visualize
 ----------------------
@@ -348,15 +400,7 @@ Preparing to Visualize
 Before building a visualization, you will need to do a few preparatory steps.
 
 (install-import-plotnine)=
-### Install and Import plotnine
-
-While Matplotlib is included with Anaconda, plotnine is not. You will need to
-install the plotnine package in order to use it. {numref}`installing-packages`
-showed you how to install packages with conda via the Terminal:
-
-```
-conda install -c conda-forge plotnine
-```
+### Import plotnine
 
 In {numref}`modules`, you learned how to import a module in a Python package
 with the `import` keyword. Python also provides a `from` keyword to import

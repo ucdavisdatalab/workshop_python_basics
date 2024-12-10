@@ -545,31 +545,15 @@ Some of the most important packages in the SciPy ecosystem are:
 * **IPython**, which makes it possible to run Python code in Jupyter
 * **Matplotlib**, which provides data visualization functions
 
+:::{note}
+All of these packages are included with Anaconda. {numref}`installing-packages`
+describes how to install other packages.
+:::
+
 You'll learn much more about NumPy, SciPy, and Pandas as you go through this
 reader. By using JupyterLab, you've already used IPython. You'll use Matplotlib
 indirectly later on, when you learn about visualization.
 
-
-(installing-packages)=
-### Installing packages
-
-You can use Anaconda's conda utility to install additional packages. The conda
-utility is a program, not part of Python. In JupyterLab, open a Terminal
-(`File` -> `New` -> `Terminal`). Then enter:
-
-```
-conda install -c conda-forge <package-name>
-```
-
-The command `conda install <package-name>` installs the package called
-`<package-name>`. The flag `-c conda-forge` tells conda to use a version from
-the conda-forge package repository. Packages on conda-forge are usually more up
-to date than the ones in Anaconda's default package repository.
-
-You can learn more about Anaconda and conda in the [official
-documentation][condadoc].
-
-[condadoc]: https://docs.anaconda.com/anaconda/user-guide/tasks/install-packages/
 
 (modules)=
 ### Modules
