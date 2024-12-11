@@ -1,0 +1,4135 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Data Structures &#8212; Python Basics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/02_pandas-basics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Exploring Data" href="03_exploring-data.html" />
+    <link rel="prev" title="1. Getting Started" href="01_python-basics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-light" alt="Python Basics - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-dark" alt="Python Basics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_python-basics.html">1. Getting Started</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_exploring-data.html">3. Exploring Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_organizing-code.html">4. Organizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_appendix.html">5. Appendix</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="assessment.html">Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/02_pandas-basics.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Structures</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">2.1. Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">2.1.1. Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">2.1.2. Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers-for-data">2.2. Containers for Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-series">2.2.1. Pandas Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays">2.2.2. NumPy Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">2.2.3. Lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">2.2.4. Indexing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">2.2.5. References</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">2.2.6. Tuples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">2.3. Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strings-the-object-dtype">2.3.1. Strings &amp; The <code class="docutils literal notranslate"><span class="pre">object</span></code> Dtype</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coercion-conversion">2.3.2. Coercion &amp; Conversion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-sizes-memory">2.3.3. Bit Sizes &amp; Memory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-in-pandas">2.4. Indexing in Pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-an-index">2.4.1. What’s an Index?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-by-position">2.4.2. Indexing by Position</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-by-label">2.4.3. Indexing by Label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-by-a-condition">2.4.4. Indexing by a Condition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-values">2.5. Special Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-values-considered-missing-by-pandas">2.5.1. Types of Values Considered Missing by Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-in-missing-values-from-a-csv-file">2.5.2. Reading in Missing Values from a CSV file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detecting-missing-values">2.5.3. Detecting Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replacing-missing-values">2.5.4. Replacing Missing Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">2.6. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">2.6.1. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">2.6.2. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">2.6.3. Exercise</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-structures">
+<h1><span class="section-number">2. </span>Data Structures<a class="headerlink" href="#data-structures" title="Link to this heading">#</a></h1>
+<p>The previous chapter introduced Python, providing enough background to do
+simple computations on data sets. This chapter focuses on the foundational
+knowledge and skills you’ll need to use Python effectively in the long term.
+Specifically, it begins with a deep dive into data structures and data types in
+Python and Pandas. Then, it explains how to use this knowledge during data
+analysis.</p>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<ul class="simple">
+<li><p>Create Pandas Series, NumPy arrays, lists, and tuples</p></li>
+<li><p>Check the type and class of an object</p></li>
+<li><p>Convert an object into a different type</p></li>
+<li><p>Describe and differentiate <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">NA</span></code>, and <code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></li>
+<li><p>Index sequences with empty, integer, string, and logical arguments</p></li>
+<li><p>Negate or combine conditions with logic operations</p></li>
+<li><p>Subset Series objects and DataFrames</p></li>
+<li><p>Find and remove missing values in a DataFrame and Series</p></li>
+</ul>
+</div>
+<section id="setup">
+<h2><span class="section-number">2.1. </span>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<section id="packages">
+<h3><span class="section-number">2.1.1. </span>Packages<a class="headerlink" href="#packages" title="Link to this heading">#</a></h3>
+<p>We will be working with two packages in this chapter, NumPy and Pandas. Start
+by using what you learned in <a class="reference internal" href="01_python-basics.html#modules"><span class="std std-numref">Section 1.4.2</span></a> to load these packages with
+their conventional aliases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data">
+<h3><span class="section-number">2.1.2. </span>Data<a class="headerlink" href="#data" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="01_python-basics.html#getting-started"><span class="std std-numref">Section 1</span></a> described how to use the Pandas package to load a
+tabular dataset into a DataFrame. As an example, you saw how to load the
+banknotes dataset. You’ll need that dataset for the examples in this chapter as
+well, so load a fresh copy of it:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/banknotes.csv&quot;</span><span class="p">)</span>
+<span class="n">banknotes</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Eva Perón</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Activist</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1952</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Evita</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Julio Argentino Roca</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1988</td>
+      <td>1914</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Argentino</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Domingo Faustino Sarmiento</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1999</td>
+      <td>1888</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Domingo</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Juan Manuel de Rosas</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1877</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Rosas</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Manuel Belgrano</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Founder</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1970</td>
+      <td>1820</td>
+      <td>Came up with the first Argentine flag.</td>
+      <td>Designed first Argentine flag</td>
+      <td>True</td>
+      <td>ARS_Belgrano</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now you’re ready for the chapter.</p>
+</section>
+</section>
+<section id="containers-for-data">
+<span id="arrays-lists-sequences"></span><h2><span class="section-number">2.2. </span>Containers for Data<a class="headerlink" href="#containers-for-data" title="Link to this heading">#</a></h2>
+<p>A <strong>data structure</strong> is a collection of data organized in a particular way. In
+Python, data structures are also called <strong>containers</strong>, because they contain
+data. Containers make working with lots of data manageable and efficient.
+DataFrames, introduced in the previous chapter, are an example of a
+two-dimensional data structure. In this section, you’ll learn about several
+one-dimensional data structures that are fundamental to programming in Python.</p>
+<section id="pandas-series">
+<span id="id1"></span><h3><span class="section-number">2.2.1. </span>Pandas Series<a class="headerlink" href="#pandas-series" title="Link to this heading">#</a></h3>
+<p>Recall that you can select a single column from a DataFrame with the square
+brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>. Select the <code class="docutils literal notranslate"><span class="pre">current_bill_value</span></code> column from the banknotes
+dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      100
+1      100
+2       50
+3       20
+4       10
+      ... 
+274     10
+275     20
+276     50
+277    100
+278    200
+Name: current_bill_value, Length: 279, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that Python prints the column differently from the <code class="docutils literal notranslate"><span class="pre">banknotes</span></code>
+DataFrame. For instance, the length of the column is displayed rather than the
+number of rows. This is a visual clue: the column is not a DataFrame. Instead,
+it’s a Pandas <strong>Series</strong>, a one-dimensional container for values. Every column
+in a DataFrame is a Series.</p>
+<p>Series and DataFrames are the fundamental data structures for data analysis in
+Pandas, and they have many common features. As you’ll learn in this chapter,
+both allow you to:</p>
+<ul class="simple">
+<li><p>summarize data</p></li>
+<li><p>handle missing data</p></li>
+<li><p>reshape and transform data</p></li>
+<li><p>subset and filter data</p></li>
+<li><p>merge and combine data</p></li>
+</ul>
+<p>You’ll be working with the <code class="docutils literal notranslate"><span class="pre">current_bill_value</span></code> column for the next few
+examples, so go ahead and assign it to a variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span> <span class="o">=</span> <span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The values in a Series (and many other kinds of data structures) are called
+<strong>elements</strong>, and the <strong>length</strong> of a Series is the number of elements it
+contains. Series are <strong>ordered</strong>, which means the elements have specific
+positions. The 1st element in <code class="docutils literal notranslate"><span class="pre">bill_value</span></code> is <code class="docutils literal notranslate"><span class="pre">100</span></code>, the 2nd element is again
+<code class="docutils literal notranslate"><span class="pre">100</span></code>, the 3rd element is <code class="docutils literal notranslate"><span class="pre">50</span></code>, the 4th is <code class="docutils literal notranslate"><span class="pre">20</span></code>, and so on.</p>
+<p>You can get the length of a Series and many other types of objects with
+Python’s built-in <code class="docutils literal notranslate"><span class="pre">len</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">bill_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>279
+</pre></div>
+</div>
+</div>
+</div>
+<p>A Series can also contain <strong>metadata</strong>, extra information about its elements.
+Metadata can usually be accessed through attributes (see
+<a class="reference internal" href="01_python-basics.html#objects-attributes"><span class="std std-numref">Section 1.2.5</span></a>). Here are a few examples of metadata this Series
+contains (more on this later):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;current_bill_value&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(279,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, notice that the elements of <code class="docutils literal notranslate"><span class="pre">bill_value</span></code> are all integers. For any
+given Series, the elements will usually all be the same qualitative type of
+data (integers, decimal numbers, strings, and so on). In other words, the
+elements are usually <strong>homogeneous</strong>. There are some exceptions, and you’ll
+learn more about element types in <a class="reference internal" href="#data-types"><span class="std std-numref">Section 2.3</span></a>.</p>
+</section>
+<section id="numpy-arrays">
+<span id="id2"></span><h3><span class="section-number">2.2.2. </span>NumPy Arrays<a class="headerlink" href="#numpy-arrays" title="Link to this heading">#</a></h3>
+<p>Under the hood, Pandas Series are based on other data structure, the NumPy
+<strong>array</strong> (or <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>). You can think of a NumPy array as a stripped-down
+Series: an ordered, one-dimensional container for values without the extra
+metadata and functionality.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Series tend to be a good choice for data analysis, while arrays tend to be a
+good choice for sophisticated mathematical computations (such as simulations).</p>
+</div>
+<p>Most examples in this reader use Series and DataFrames, but it will be pointed
+out anywhere it’s important to use a NumPy array.</p>
+<p>You can convert a Series to an array with the <code class="docutils literal notranslate"><span class="pre">.to_numpy</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   100,    100,     50,     20,     10,     50,     10,     20,
+           10,     50,    100,    100,     20,      5,     20,   1000,
+          500,    200,    100,     50,     10,      5,      2,     50,
+           50,     10,    100,    200,    100,     50,     10,     10,
+           20,    200,     20,    200,    100,     20,      5,     50,
+          100,     10,     10,     10,     10,     10,     20,   5000,
+         1000,  10000,  20000,   2000,  50000,  20000,   2000,  10000,
+       100000,   1000,  20000,   5000,  50000,   2000,  10000,  10000,
+         5000,  20000,  50000,   2000,   1000,   2000,   5000,   1000,
+          200,    500,   5000,   2000,   1000,    500,    200,    100,
+          200,    200,    200,    500,   2000,    100,   2000,    100,
+          100,     20,    500,      5,     50,     20,     10,      5,
+           10,     20,     50,      5,      2,    200,      1,     10,
+           20,     50,    100,    500, 100000,   5000, 100000,  10000,
+        50000,  20000,  50000,  20000,   2000,   1000,   2000,  10000,
+          200,    100,     50,     20,   2000,    500,  10000,   5000,
+         1000,    500,   1000,    100,     50,    500,   1000,  10000,
+         5000,   5000,    500,    200,     20,    100,     50,   1000,
+         5000,   1000,  50000,  10000,   1000,    200,     20,     50,
+          500,   2000,    100,    500,    500,   1000,   1000,   1000,
+          500,     20,    200,    200,    100,    100,     20,    500,
+         1000,     10,    100,      5,     20,    200,   1000,      5,
+           50,    100,     10,     20,    100,     20,     10,     10,
+           50,    100,    200,     50,    500,    100,    500,    200,
+           20,     50,   1000,   1000,   1000,      1,      5,     10,
+           20,     50,    100,   5000,   2000,    100,   1000,    500,
+          200,     50,     10,     20,    200,    500,     20,    100,
+           50,   1000, 100000,    200,    500,   1000,   5000,  10000,
+        20000,  50000,     10,     20,     10,      5,      5,     10,
+           20,     50,    100,    200,     10,      5,     50,     20,
+          100,    200,     50,   1000,     20,    200,    100,    500,
+           10,      5,      2,      1,     50,      2,      5,      1,
+           20,    100,     10,   1000,    100,     20,    500,    200,
+           50,   2000,    500,     50,      2,    200,     20,    100,
+           10,      5,     10,     20,     50,    100,    200])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Conversely, you can convert an array into a Series with the <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code>
+function. You’ll see some examples of this function later on.</p>
+</section>
+<section id="lists">
+<span id="id3"></span><h3><span class="section-number">2.2.3. </span>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h3>
+<p>Series and arrays are designed for data analysis and mathematical computations,
+respectively. In contrast, a <strong>list</strong> is a general-purpose one-dimensional
+container. Lists are built into Python, so they’re probably the most common
+kind of container, and you don’t need to load any modules in order to use them.</p>
+<p>You can make a list by enclosing comma-separated values in square brackets
+<code class="docutils literal notranslate"><span class="pre">[]</span></code>, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Like a Series, a list is ordered, so it has a first element, second element,
+and so on up to the length of the list. You can get the length of a list with
+the <code class="docutils literal notranslate"><span class="pre">len</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lists can be empty:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can convert many types objects into lists with the <code class="docutils literal notranslate"><span class="pre">list</span></code> function:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">bill_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[100,
+ 100,
+ 50,
+ 20,
+ 10,
+ 50,
+ 10,
+ 20,
+ 10,
+ 50,
+ 100,
+ 100,
+ 20,
+ 5,
+ 20,
+ 1000,
+ 500,
+ 200,
+ 100,
+ 50,
+ 10,
+ 5,
+ 2,
+ 50,
+ 50,
+ 10,
+ 100,
+ 200,
+ 100,
+ 50,
+ 10,
+ 10,
+ 20,
+ 200,
+ 20,
+ 200,
+ 100,
+ 20,
+ 5,
+ 50,
+ 100,
+ 10,
+ 10,
+ 10,
+ 10,
+ 10,
+ 20,
+ 5000,
+ 1000,
+ 10000,
+ 20000,
+ 2000,
+ 50000,
+ 20000,
+ 2000,
+ 10000,
+ 100000,
+ 1000,
+ 20000,
+ 5000,
+ 50000,
+ 2000,
+ 10000,
+ 10000,
+ 5000,
+ 20000,
+ 50000,
+ 2000,
+ 1000,
+ 2000,
+ 5000,
+ 1000,
+ 200,
+ 500,
+ 5000,
+ 2000,
+ 1000,
+ 500,
+ 200,
+ 100,
+ 200,
+ 200,
+ 200,
+ 500,
+ 2000,
+ 100,
+ 2000,
+ 100,
+ 100,
+ 20,
+ 500,
+ 5,
+ 50,
+ 20,
+ 10,
+ 5,
+ 10,
+ 20,
+ 50,
+ 5,
+ 2,
+ 200,
+ 1,
+ 10,
+ 20,
+ 50,
+ 100,
+ 500,
+ 100000,
+ 5000,
+ 100000,
+ 10000,
+ 50000,
+ 20000,
+ 50000,
+ 20000,
+ 2000,
+ 1000,
+ 2000,
+ 10000,
+ 200,
+ 100,
+ 50,
+ 20,
+ 2000,
+ 500,
+ 10000,
+ 5000,
+ 1000,
+ 500,
+ 1000,
+ 100,
+ 50,
+ 500,
+ 1000,
+ 10000,
+ 5000,
+ 5000,
+ 500,
+ 200,
+ 20,
+ 100,
+ 50,
+ 1000,
+ 5000,
+ 1000,
+ 50000,
+ 10000,
+ 1000,
+ 200,
+ 20,
+ 50,
+ 500,
+ 2000,
+ 100,
+ 500,
+ 500,
+ 1000,
+ 1000,
+ 1000,
+ 500,
+ 20,
+ 200,
+ 200,
+ 100,
+ 100,
+ 20,
+ 500,
+ 1000,
+ 10,
+ 100,
+ 5,
+ 20,
+ 200,
+ 1000,
+ 5,
+ 50,
+ 100,
+ 10,
+ 20,
+ 100,
+ 20,
+ 10,
+ 10,
+ 50,
+ 100,
+ 200,
+ 50,
+ 500,
+ 100,
+ 500,
+ 200,
+ 20,
+ 50,
+ 1000,
+ 1000,
+ 1000,
+ 1,
+ 5,
+ 10,
+ 20,
+ 50,
+ 100,
+ 5000,
+ 2000,
+ 100,
+ 1000,
+ 500,
+ 200,
+ 50,
+ 10,
+ 20,
+ 200,
+ 500,
+ 20,
+ 100,
+ 50,
+ 1000,
+ 100000,
+ 200,
+ 500,
+ 1000,
+ 5000,
+ 10000,
+ 20000,
+ 50000,
+ 10,
+ 20,
+ 10,
+ 5,
+ 5,
+ 10,
+ 20,
+ 50,
+ 100,
+ 200,
+ 10,
+ 5,
+ 50,
+ 20,
+ 100,
+ 200,
+ 50,
+ 1000,
+ 20,
+ 200,
+ 100,
+ 500,
+ 10,
+ 5,
+ 2,
+ 1,
+ 50,
+ 2,
+ 5,
+ 1,
+ 20,
+ 100,
+ 10,
+ 1000,
+ 100,
+ 20,
+ 500,
+ 200,
+ 50,
+ 2000,
+ 500,
+ 50,
+ 2,
+ 200,
+ 20,
+ 100,
+ 10,
+ 5,
+ 10,
+ 20,
+ 50,
+ 100,
+ 200]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Unlike a Series, the elements of a list can be qualitatively different. There
+is no expectation that they will be homogeneous. For instance, this list
+contains a number, string, and another list (with one element):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">li</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">4.2</span><span class="p">]]</span>
+<span class="n">li</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8, &#39;hello&#39;, [4.2]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indexing">
+<span id="id4"></span><h3><span class="section-number">2.2.4. </span>Indexing<a class="headerlink" href="#indexing" title="Link to this heading">#</a></h3>
+<p>So far you’ve learned two ways to use square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>:</p>
+<ol class="arabic simple">
+<li><p>To select columns from a DataFrame, as in <code class="docutils literal notranslate"><span class="pre">banknotes[&quot;country&quot;]</span></code></p></li>
+<li><p>To create lists, as in <code class="docutils literal notranslate"><span class="pre">[&quot;a&quot;,</span> <span class="pre">&quot;b&quot;,</span> <span class="pre">1]</span></code></p></li>
+</ol>
+<p>The first case is an example of <strong>indexing</strong>, which means getting or setting
+elements of a container. The square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> are Python’s indexing
+operator.</p>
+<p>You can use indexing to get an element of a list based on the element’s
+position. Python uses <strong>zero-based indexing</strong>, which means the positions of
+elements are counted starting from 0 rather than 1. So the first element of
+a list is at position 0, the second is at position 1, and so on.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Many programming languages use zero-based indexing. It may seem strange at
+first, but it makes some kinds of computations simpler by eliminating the need
+to add or subtract 1.</p>
+</div>
+<p>The indexing operator requires at least one argument, called the <strong>index</strong>,
+which goes inside of the square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>. The index says which elements
+you want to get. For DataFrames, you used column names as the index. For a
+list, you can use a position. So the code to get the first element of the list
+<code class="docutils literal notranslate"><span class="pre">li</span></code> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">li</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Likewise, to get the third element:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">li</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4.2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The same idea extends to containers stored inside of other containers. For
+example, to get the value stored in the list inside of <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">li</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can set the element of a list by assigning a value at that index. So the
+code to change the first element of <code class="docutils literal notranslate"><span class="pre">x</span></code> to the string “hi” is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">li</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;hi&quot;</span>
+<span class="n">li</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hi&#39;, &#39;hello&#39;, [4.2]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="references">
+<span id="id5"></span><h3><span class="section-number">2.2.5. </span>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p>Assigning elements of a container is not without complication. Suppose you
+assign a list to a variable <code class="docutils literal notranslate"><span class="pre">x</span></code> and then create a new variable, <code class="docutils literal notranslate"><span class="pre">y</span></code>, from <code class="docutils literal notranslate"><span class="pre">x</span></code>.
+If you change an element of <code class="docutils literal notranslate"><span class="pre">y</span></code>, it will also change <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This happens because of how Python handles containers. When you create a
+container, Python stores it in your computer’s memory. If you then assign the
+container to a variable, the variable points, or <strong>refers</strong>, to the location of
+the container in memory. If you create a second variable from the first, both
+will refer to the same location. As a result, operations on one variable will
+affect the value of the other, because there’s really only one container in
+memory and both variables refer to it.</p>
+<p>The example above uses lists, but other containers such as Series and
+DataFrames behave the same way. The variable <code class="docutils literal notranslate"><span class="pre">bill_value</span></code> is just reference to
+a column in the <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> DataFrame.</p>
+<p>If you want to assign an independent copy of a container to a variable rather
+than a reference, you need to use a function or method to explicitly make a
+copy. Many containers have a <code class="docutils literal notranslate"><span class="pre">.copy</span></code> method that makes a copy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuples">
+<h3><span class="section-number">2.2.6. </span>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h3>
+<p>References can be confusing, and if you know that the elements of a container
+shouldn’t change, one way to prevent problems is to use a <strong>tuple</strong>. Like a
+list, a tuple is a one-dimensional container. The key difference is that tuples
+are <strong>immutable</strong>: once you create a tuple, you cannot alter it nor its
+elements.</p>
+<p>You can make a tuple by enclosing comma-separated values in parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code>,
+like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also convert another container into a tuple with the <code class="docutils literal notranslate"><span class="pre">tuple</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-types">
+<span id="id6"></span><h2><span class="section-number">2.3. </span>Data Types<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h2>
+<p>Data can be categorized into different <strong>types</strong> based on sets of shared
+characteristics. For instance, statisticians tend to think about whether data
+are numeric or categorical:</p>
+<ul class="simple">
+<li><p>numeric</p>
+<ul>
+<li><p>continuous (real or complex numbers)</p></li>
+<li><p>discrete (integers)</p></li>
+</ul>
+</li>
+<li><p>categorical</p>
+<ul>
+<li><p>nominal (categories with no ordering)</p></li>
+<li><p>ordinal (categories with some ordering)</p></li>
+</ul>
+</li>
+</ul>
+<p>Of course, other types of data, like graphs (networks) and natural language
+(books, speech, and so on), are also possible. Categorizing data this way is
+useful for reasoning about which methods to apply to which data.</p>
+<p>Python and most other programming languages also categorize data by type. To
+check the type of an object in Python, use the built-in <code class="docutils literal notranslate"><span class="pre">type</span></code> function. Recall
+you used this function to check the type of the banknotes DataFrame in
+<a class="reference internal" href="01_python-basics.html#inspecting-dataframe"><span class="std std-numref">Section 1.7</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">banknotes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>Take a look at the types of a few other objects:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">bill_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">bill_value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tuple
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In Python 3, <strong>class</strong> is just another word for type. The <code class="docutils literal notranslate"><span class="pre">type</span></code> function
+returns the class of an object. Python also provides a <code class="docutils literal notranslate"><span class="pre">class</span></code> keyword to
+create your own classes. Creating classes is beyond the scope of this reader,
+but is explained in detail in most Python programming textbooks.</p>
+</div>
+<p>For Pandas Series and DataFrames, the <code class="docutils literal notranslate"><span class="pre">type</span></code> function returns the type of
+container, but doesn’t return any information about the types of the elements.
+The same is true for the NumPy arrays.</p>
+<p><a class="reference internal" href="01_python-basics.html#summarizing-data"><span class="std std-numref">Section 1.7.1</span></a> described one way to print the types of the elements
+in a Pandas object: by calling the <code class="docutils literal notranslate"><span class="pre">.info</span></code> method. In the printout, the element
+types are listed in the <code class="docutils literal notranslate"><span class="pre">Dtype</span></code> column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 279 entries, 0 to 278
+Data columns (total 17 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   currency_code          279 non-null    object 
+ 1   country                279 non-null    object 
+ 2   currency_name          279 non-null    object 
+ 3   name                   279 non-null    object 
+ 4   gender                 279 non-null    object 
+ 5   bill_count             279 non-null    float64
+ 6   profession             279 non-null    object 
+ 7   known_for_being_first  279 non-null    object 
+ 8   current_bill_value     279 non-null    int64  
+ 9   prop_total_bills       59 non-null     float64
+ 10  first_appearance_year  279 non-null    int64  
+ 11  death_year             272 non-null    object 
+ 12  comments               119 non-null    object 
+ 13  hover_text             89 non-null     object 
+ 14  has_portrait           279 non-null    bool   
+ 15  id                     279 non-null    object 
+ 16  scaled_bill_value      278 non-null    float64
+dtypes: bool(1), float64(3), int64(2), object(11)
+memory usage: 35.3+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>The column label <code class="docutils literal notranslate"><span class="pre">Dtype</span></code> is short for “data types”. You can also access the
+element types for a DataFrame with the <code class="docutils literal notranslate"><span class="pre">.dtypes</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>currency_code             object
+country                   object
+currency_name             object
+name                      object
+gender                    object
+bill_count               float64
+profession                object
+known_for_being_first     object
+current_bill_value         int64
+prop_total_bills         float64
+first_appearance_year      int64
+death_year                object
+comments                  object
+hover_text                object
+has_portrait                bool
+id                        object
+scaled_bill_value        float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>For a Series or NumPy array, you can instead use <code class="docutils literal notranslate"><span class="pre">.dtype</span></code> to get the element
+type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;int64&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some of the element types listed for the <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> DataFrame are built into
+Python, while others are provided by Pandas and NumPy. At the expense of being
+more complicated, the Pandas/NumPy types tend to be more specific and
+consistent. They provide programmers with greater control over how data are
+stored in memory, which makes it possible to write more efficient code. For
+computations that generate or process a large amount of data, as is often the
+case in research computing, efficiency is a major concern.</p>
+<p>Here’s a non-exhaustive table of data types that you’ll often encounter in data
+analysis:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Built-in</p></th>
+<th class="head"><p>Pandas/NumPy</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Boolean values</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int32</span></code>, <code class="docutils literal notranslate"><span class="pre">int64</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-8</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">42</span></code></p></td>
+<td><p>Whole numbers</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float32</span></code>, <code class="docutils literal notranslate"><span class="pre">float64</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-2.1</span></code>, <code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></td>
+<td><p>Decimal numbers</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">complex</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">complex64</span></code>, <code class="docutils literal notranslate"><span class="pre">complex128</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3j</span></code>, <code class="docutils literal notranslate"><span class="pre">1-2j</span></code></p></td>
+<td><p>Complex numbers</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;hi&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;2.1&quot;</span></code></p></td>
+<td><p>Text strings</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">datetime</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">datetime64</span></code></p></td>
+<td><p></p></td>
+<td><p>Dates and times</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For most of the built-in types, you can explicitly construct an object with
+that type by calling the function with the same name as the type. For instance,
+here’s a way to construct an integer (type <code class="docutils literal notranslate"><span class="pre">int</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<p>This example is a bit silly, since you could just write <code class="docutils literal notranslate"><span class="pre">4</span></code> instead of <code class="docutils literal notranslate"><span class="pre">int(4)</span></code>
+and you’d still get an integer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<p>That said, suppose you want to construct an integer from a decimal number:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">4.67</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">int</span></code> forces the value to be an integer, and the numbers after the
+decimal point are removed.</p>
+<p>Decimal numbers like <code class="docutils literal notranslate"><span class="pre">4.67</span></code> are better represented by a floating point number,
+or <code class="docutils literal notranslate"><span class="pre">float</span></code>. Use this when you need decimal precision of any kind:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mf">4.67</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.67
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the Pandas/NumPy types have the same names as the built-in types,
+but with a number appended to the end. <a class="reference internal" href="#bit-sizes"><span class="std std-numref">Section 2.3.3</span></a> explains what those
+numbers mean.</p>
+<section id="strings-the-object-dtype">
+<span id="id7"></span><h3><span class="section-number">2.3.1. </span>Strings &amp; The <code class="docutils literal notranslate"><span class="pre">object</span></code> Dtype<a class="headerlink" href="#strings-the-object-dtype" title="Link to this heading">#</a></h3>
+<p>Strings (type <code class="docutils literal notranslate"><span class="pre">str</span></code>), which were introduced in <a class="reference internal" href="01_python-basics.html#getting-help"><span class="std std-numref">Section 1.3</span></a>, are a
+bit more complicated than Boolean values and numbers because they have many
+attributes and methods associated with them.</p>
+<!--
+, and they also tend to use much more memory.
+-->
+<p>Recall that you can use double <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> or single <code class="docutils literal notranslate"><span class="pre">'</span></code> quotes to construct a string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Hello, world!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello, world!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In Pandas and NumPy, strings usually associated with the <code class="docutils literal notranslate"><span class="pre">object</span></code> data type
+(printed as <code class="docutils literal notranslate"><span class="pre">object</span></code> or <code class="docutils literal notranslate"><span class="pre">O</span></code>). For example, look at the <code class="docutils literal notranslate"><span class="pre">names</span></code> column in the
+<code class="docutils literal notranslate"><span class="pre">banknotes</span></code> data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0                       Eva Perón
+1            Julio Argentino Roca
+2      Domingo Faustino Sarmiento
+3            Juan Manuel de Rosas
+4                 Manuel Belgrano
+                  ...            
+274                Nelson Mandela
+275                Nelson Mandela
+276                Nelson Mandela
+277                Nelson Mandela
+278                Nelson Mandela
+Name: name, Length: 279, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">object</span></code> data type is provided as a catch-all for non-numeric data
+types. For example, if you create a Series from several different types of
+data, Pandas will choose <code class="docutils literal notranslate"><span class="pre">object</span></code> as the element type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mixed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+<span class="n">mixed</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      hi
+1       1
+2    True
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>The individual elements of an <code class="docutils literal notranslate"><span class="pre">object</span></code> Series retain their original data types:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">mixed</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">mixed</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>So one way to think about the <code class="docutils literal notranslate"><span class="pre">object</span></code> data type is as an invisible wrapper
+around each element’s original type. The Series can claim all of its elements
+are generic “objects”, but when you access an element the wrapper is peeled off
+and you get the original type.</p>
+<p>You’re most likely to encounter the <code class="docutils literal notranslate"><span class="pre">object</span></code> type when working with Series or
+arrays of strings. In that case, you can generally assume all of the elements
+are type <code class="docutils literal notranslate"><span class="pre">str</span></code>. If you’re ever unsure of the type of an element, you can always
+use <code class="docutils literal notranslate"><span class="pre">type</span></code> to check.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NumPy doesn’t have a dedicated string type because the way strings are stored
+in memory is very different from the way numbers are stored. Since Pandas is
+based on NumPy, until recently Pandas didn’t have a dedicated string type
+either. So both use <code class="docutils literal notranslate"><span class="pre">object</span></code> as the element type for Series and arrays of
+strings.</p>
+<p>As of Pandas 1.0, the developers have added an <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html">experimental <code class="docutils literal notranslate"><span class="pre">string</span></code>
+type</a> so that users can distinguish Series of strings from Series of
+mixed types. Hopefully in the future the <code class="docutils literal notranslate"><span class="pre">string</span></code> type will become the main way
+to handle strings rather than an experimental feature.</p>
+</div>
+</section>
+<section id="coercion-conversion">
+<span id="id8"></span><h3><span class="section-number">2.3.2. </span>Coercion &amp; Conversion<a class="headerlink" href="#coercion-conversion" title="Link to this heading">#</a></h3>
+<p>Although <code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>, and <code class="docutils literal notranslate"><span class="pre">float</span></code> are different types, in most situations
+Python will automatically convert between them as needed. For example, you can
+multiply a floating point number by an integer and then add a Boolean value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mf">3.1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="kc">True</span>
+<span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, the integer <code class="docutils literal notranslate"><span class="pre">2</span></code> is converted to floating point number and multiplied by
+<code class="docutils literal notranslate"><span class="pre">3.1</span></code>, yielding <code class="docutils literal notranslate"><span class="pre">6.2</span></code>. Then the Boolean <code class="docutils literal notranslate"><span class="pre">True</span></code> is converted to a floating point
+number and added to <code class="docutils literal notranslate"><span class="pre">6.2</span></code>. In Python and most other programming languages,
+<code class="docutils literal notranslate"><span class="pre">False</span></code> corresponds to <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">True</span></code> corresponds to <code class="docutils literal notranslate"><span class="pre">1</span></code>. Thus the result is
+<code class="docutils literal notranslate"><span class="pre">7.2</span></code>, a floating point number:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+<p>This automatic conversion of types is known as <strong>implicit coercion</strong>.
+Conversion always proceeds from less general to more general types, so that no
+information is lost.</p>
+<p>Implicit coercion usually only applies to numeric types (including Boolean
+values). Mixing other types will usually cause an error. For instance, you
+can’t add a number to a string:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;hi&quot;</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">44</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="s2">&quot;hi&quot;</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="ne">TypeError</span>: can only concatenate str (not &quot;int&quot;) to str
+</pre></div>
+</div>
+</div>
+</div>
+<p>Implicit coercion also works for numeric Pandas/NumPy types. For example, you
+can multiply <code class="docutils literal notranslate"><span class="pre">bill_value</span></code> by one and a half times its current value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span> <span class="o">*</span> <span class="mf">1.5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      150.0
+1      150.0
+2       75.0
+3       30.0
+4       15.0
+       ...  
+274     15.0
+275     30.0
+276     75.0
+277    150.0
+278    300.0
+Name: current_bill_value, Length: 279, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> has changed from <code class="docutils literal notranslate"><span class="pre">int64</span></code> to <code class="docutils literal notranslate"><span class="pre">float64</span></code>.</p>
+<p><strong>Type conversion</strong> is when you explicitly convert an object from one type to
+another. You already saw examples of this with the <code class="docutils literal notranslate"><span class="pre">int</span></code> and <code class="docutils literal notranslate"><span class="pre">float</span></code> functions
+in <a class="reference internal" href="#data-types"><span class="std std-numref">Section 2.3</span></a>. Here are a few more:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span><span class="p">(</span><span class="mi">105</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;105&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python can even convert strings into numbers and Boolean values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;7.3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;True&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note however that such operations have to be logically sound. This will not
+work:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: invalid literal for int() with base 10: &#39;Hello world!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>For a Pandas Series or NumPy array, you can use the <code class="docutils literal notranslate"><span class="pre">.astype</span></code> method to convert
+the elements to a specific type. Pass the name of the target type to the method
+as a string. For example, here’s how to convert the <code class="docutils literal notranslate"><span class="pre">bill_value</span></code> elements to
+<code class="docutils literal notranslate"><span class="pre">float64</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      100.0
+1      100.0
+2       50.0
+3       20.0
+4       10.0
+       ...  
+274     10.0
+275     20.0
+276     50.0
+277    100.0
+278    200.0
+Name: current_bill_value, Length: 279, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bit-sizes-memory">
+<span id="bit-sizes"></span><h3><span class="section-number">2.3.3. </span>Bit Sizes &amp; Memory<a class="headerlink" href="#bit-sizes-memory" title="Link to this heading">#</a></h3>
+<p>Recall the table of types from the beginning of this Section
+(<a class="reference internal" href="#data-types"><span class="std std-numref">Section 2.3</span></a>). The names of the Pandas/NumPy types in the table all
+end in numbers such as <code class="docutils literal notranslate"><span class="pre">32</span></code> or <code class="docutils literal notranslate"><span class="pre">64</span></code>. These numbers indicate the <strong>bit size</strong>,
+the number of bits of memory used to store a value of that type.</p>
+<p>For example, a single value with type <code class="docutils literal notranslate"><span class="pre">int64</span></code> uses 64 bits of memory. So the
+<code class="docutils literal notranslate"><span class="pre">int64</span></code> series <code class="docutils literal notranslate"><span class="pre">bill_value</span></code> uses about 64 bits per element, for a total of:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">64</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bill_value</span><span class="p">)</span> <span class="c1"># bits</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17856
+</pre></div>
+</div>
+</div>
+</div>
+<p>In contrast, Python’s built-in data types don’t specify how much memory they
+use:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<p>In fact, the amount of memory can vary depending on your computer’s hardware
+and operating system!</p>
+<p>Why is bit size important? Your computer has a limited amount of memory, so
+it’s a good habit to only use what you need. The tradeoff is that using more
+memory allows you to use larger or more precise numbers.</p>
+<p>For instance, a 64-bit integer can hold values between
+<code class="docutils literal notranslate"><span class="pre">-9,223,372,036,854,775,808</span></code> and <code class="docutils literal notranslate"><span class="pre">9,223,372,036,854,775,807</span></code>, whereas a 16-bit
+integer can only hold values between <code class="docutils literal notranslate"><span class="pre">-32,768</span></code> and <code class="docutils literal notranslate"><span class="pre">32,767</span></code>. Understanding this
+matters when you’re working with large numbers. Without that knowledge, you
+might assign <code class="docutils literal notranslate"><span class="pre">32,768</span></code> to an <code class="docutils literal notranslate"><span class="pre">int16</span></code> variable and find that you’ve caused an
+<strong>overflow error</strong>.</p>
+<p>The same holds for instances where you need a certain amount of precision in
+your data. For example, Python and NumPy have the ability to represent
+irrational numbers, like pi. Ultimately, your computer has to represent such
+numbers with decimal values, so the number of decimal places a variable can
+hold will affect what pi “means” in your code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also use bit sizes to estimate the amount of memory your data will
+require, as we did for the <code class="docutils literal notranslate"><span class="pre">bill_value</span></code> object. When a computation runs out of
+memory, an estimate of how much memory is necessary can help you understand
+whether to get better hardware or to change your computing strategy.</p>
+</div>
+<!--
+(booleans)=
+### Booleans
+
+```{code-cell}
+sum(bill_value) < 10000
+```
+
+```{code-cell}
+bill_value == banknotes["current_bill_value"]
+```
+
+```{code-cell}
+bill_value % 25 != 0
+```
+
+```{code-cell}
+banknotes["has_portrait"]
+```
+
+```{code-cell}
+coded_in_java = False
+type(coded_in_java)
+```
+-->
+</section>
+</section>
+<section id="indexing-in-pandas">
+<span id="id9"></span><h2><span class="section-number">2.4. </span>Indexing in Pandas<a class="headerlink" href="#indexing-in-pandas" title="Link to this heading">#</a></h2>
+<p>If you want to inspect the elements of a Series more closely, you can use
+indexing. Conceptually, indexing a Series is very similar to indexing a list or
+tuple, but Pandas offers additional ways to select and subset data via indexes.</p>
+<section id="what-s-an-index">
+<span id="the-pandas-index"></span><h3><span class="section-number">2.4.1. </span>What’s an Index?<a class="headerlink" href="#what-s-an-index" title="Link to this heading">#</a></h3>
+<p>A Pandas index is more than just a positional location. Indexes serve three
+important roles:</p>
+<ol class="arabic simple">
+<li><p>As metadata to provide additional context about a data set</p></li>
+<li><p>As a way to explicitly and automatically align data</p></li>
+<li><p>As a convenience for getting and setting subsets of data</p></li>
+</ol>
+<p>The index of a series is available via the <code class="docutils literal notranslate"><span class="pre">index</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=279, step=1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Index labels can be numbers, strings, dates, or other values. Pandas provides
+subclasses of <code class="docutils literal notranslate"><span class="pre">Index</span></code> for specific purposes, which you can read more about
+<a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Index.html">here</a>.</p>
+<p>Indexes, like tuples, are <strong>immutable</strong>. The labels in an index cannot be
+changed. That said, every index also has a name that <em>can</em> be changed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;bill_value&quot;</span>
+<span class="n">bill_value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      100
+1      100
+2       50
+3       20
+4       10
+      ... 
+274     10
+275     20
+276     50
+277    100
+278    200
+Name: bill_value, Length: 279, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above also applies to DataFrames:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=279, step=1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Oftentimes, an index is a range of numbers, but this can be changed. The code
+below uses the <code class="docutils literal notranslate"><span class="pre">.set_index</span></code> method to change the index of <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> to
+<code class="docutils literal notranslate"><span class="pre">country</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">banknotes</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Argentina&#39;, &#39;Argentina&#39;, &#39;Argentina&#39;, &#39;Argentina&#39;, &#39;Argentina&#39;,
+       &#39;Australia&#39;, &#39;Australia&#39;, &#39;Australia&#39;, &#39;Australia&#39;, &#39;Australia&#39;,
+       ...
+       &#39;Venezuela&#39;, &#39;Venezuela&#39;, &#39;Venezuela&#39;, &#39;Venezuela&#39;, &#39;Venezuela&#39;,
+       &#39;South Africa&#39;, &#39;South Africa&#39;, &#39;South Africa&#39;, &#39;South Africa&#39;,
+       &#39;South Africa&#39;],
+      dtype=&#39;object&#39;, name=&#39;country&#39;, length=279)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">inplace</span></code> argument instructs Pandas to change the index directly without
+making a copy first, so that we don’t have to reassign <code class="docutils literal notranslate"><span class="pre">banknotes.index</span></code>
+explicitly.</p>
+</section>
+<section id="indexing-by-position">
+<span id="id10"></span><h3><span class="section-number">2.4.2. </span>Indexing by Position<a class="headerlink" href="#indexing-by-position" title="Link to this heading">#</a></h3>
+<p>Changing the index affects how you select elements. There are three main
+methods for accessing specific values in Pandas:</p>
+<ol class="arabic simple">
+<li><p>By integer position</p></li>
+<li><p>By label/name</p></li>
+<li><p>By a condition</p></li>
+</ol>
+<p>To access elements in a series by integer position, use <code class="docutils literal notranslate"><span class="pre">.iloc</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(50)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> is extensible to sequences of values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">35</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5       50
+15    1000
+25      10
+35     200
+Name: bill_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use a <strong>slice</strong> to select a range of elements. The syntax for a slice is
+<code class="docutils literal notranslate"><span class="pre">start:stop:step</span></code>, with the second colon <code class="docutils literal notranslate"><span class="pre">:</span></code> and arguments being optional. This
+syntax also applies to lists. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    100
+1    100
+2     50
+3     20
+4     10
+Name: bill_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we use a slice to get every twentieth element in the Series:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        100
+20        10
+40       100
+60     50000
+80       200
+100        2
+120      200
+140       20
+160      500
+180      100
+200       20
+220      500
+240      100
+260      100
+Name: bill_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Slices also accept negative values. This counts back from the end of a
+sequence. For instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>274     10
+275     20
+276     50
+277    100
+278    200
+Name: bill_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is the same as if you had used the <code class="docutils literal notranslate"><span class="pre">.tail</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>274     10
+275     20
+276     50
+277    100
+278    200
+Name: bill_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indexing-by-label">
+<span id="id11"></span><h3><span class="section-number">2.4.3. </span>Indexing by Label<a class="headerlink" href="#indexing-by-label" title="Link to this heading">#</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">.loc</span></code> to index a Series or DataFrame by label:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Peru&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Jorge Basadre Grohmann</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1991</td>
+      <td>1980</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Basadre</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Raúl Porras Barrenechea</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1991</td>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Raul</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>María Isabel Granda y Larco</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Musician</td>
+      <td>No</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>2021</td>
+      <td>1983</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Granda</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>José Abelardo Quiñones Gonzales</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Military</td>
+      <td>No</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1991</td>
+      <td>1941</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Abelardo</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Abraham Valdelomar Pinto</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Writer</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1991</td>
+      <td>1919</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Pinto</td>
+      <td>0.210526</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Pedro Paulet</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>STEM</td>
+      <td>Yes</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2021</td>
+      <td>1945</td>
+      <td>Alleged first person to build a liquid-propell...</td>
+      <td>Alleged first person to build a liquid-propell...</td>
+      <td>False</td>
+      <td>PEN_Paulet</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Santa Rosa de Lima</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Religious figure</td>
+      <td>Yes</td>
+      <td>200</td>
+      <td>NaN</td>
+      <td>1995</td>
+      <td>1617</td>
+      <td>First catholic saint of the Americas</td>
+      <td>First Catholic saint of the Americas</td>
+      <td>False</td>
+      <td>PEN_Santa</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You can select specific columns as well:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Peru&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Peru             Jorge Basadre Grohmann
+Peru            Raúl Porras Barrenechea
+Peru        María Isabel Granda y Larco
+Peru    José Abelardo Quiñones Gonzales
+Peru           Abraham Valdelomar Pinto
+Peru                       Pedro Paulet
+Peru                 Santa Rosa de Lima
+Name: name, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just as with <code class="docutils literal notranslate"><span class="pre">.iloc</span></code>, it’s possible to pass sequences into <code class="docutils literal notranslate"><span class="pre">.loc</span></code>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;Peru&quot;</span><span class="p">,</span> <span class="s2">&quot;Serbia&quot;</span><span class="p">,</span> <span class="s2">&quot;Ukraine&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Jorge Basadre Grohmann</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1991</td>
+      <td>1980</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Basadre</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Raúl Porras Barrenechea</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1991</td>
+      <td>1960</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Raul</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>María Isabel Granda y Larco</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Musician</td>
+      <td>No</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>2021</td>
+      <td>1983</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Granda</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>José Abelardo Quiñones Gonzales</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Military</td>
+      <td>No</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1991</td>
+      <td>1941</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Abelardo</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Abraham Valdelomar Pinto</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Writer</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1991</td>
+      <td>1919</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>PEN_Pinto</td>
+      <td>0.210526</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Pedro Paulet</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>STEM</td>
+      <td>Yes</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2021</td>
+      <td>1945</td>
+      <td>Alleged first person to build a liquid-propell...</td>
+      <td>Alleged first person to build a liquid-propell...</td>
+      <td>False</td>
+      <td>PEN_Paulet</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+      <td>Santa Rosa de Lima</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Religious figure</td>
+      <td>Yes</td>
+      <td>200</td>
+      <td>NaN</td>
+      <td>1995</td>
+      <td>1617</td>
+      <td>First catholic saint of the Americas</td>
+      <td>First Catholic saint of the Americas</td>
+      <td>False</td>
+      <td>PEN_Santa</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Slobodan Jovanovic</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>5000</td>
+      <td>NaN</td>
+      <td>2003</td>
+      <td>1958</td>
+      <td>writer, politician, diplomat and prime ministe...</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>RSD_Slobodan</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Milutin Milanković</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>STEM</td>
+      <td>No</td>
+      <td>2000</td>
+      <td>NaN</td>
+      <td>2011</td>
+      <td>1958</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>RSD_Milutin</td>
+      <td>0.398798</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Nikola Tesla</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>STEM</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2003</td>
+      <td>1943</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>RSD_Tesla</td>
+      <td>0.018036</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Dorde Vajfert</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Other</td>
+      <td>No</td>
+      <td>1000</td>
+      <td>NaN</td>
+      <td>2003</td>
+      <td>1937</td>
+      <td>was governer of the national Bank of Serbia. e...</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>RSD_Dorde</td>
+      <td>0.198397</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Jovan Cvijic</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>STEM</td>
+      <td>No</td>
+      <td>500</td>
+      <td>NaN</td>
+      <td>2004</td>
+      <td>1927</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>RSD_Cvijic</td>
+      <td>0.098196</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Nadežda Petrović</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Visual Artist</td>
+      <td>No</td>
+      <td>200</td>
+      <td>NaN</td>
+      <td>2005</td>
+      <td>1915</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>RSD_Petrovic</td>
+      <td>0.038076</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Stevan Stevanovic Mokranjac</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Musician</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>2005</td>
+      <td>1914</td>
+      <td>Composer. was part of Serbia's first string qu...</td>
+      <td>Member of Serbia's first string quartet</td>
+      <td>True</td>
+      <td>RSD_Stevanovic</td>
+      <td>0.008016</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Vuk Stefanovic Karadžic</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Writer</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>2006</td>
+      <td>1864</td>
+      <td>wrote the 1st dictionary in the reformed Serbi...</td>
+      <td>Wrote the first dictionary in the reformed Ser...</td>
+      <td>True</td>
+      <td>RSD_Vuk</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+      <td>Petar Petrovic Njegoš</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Writer</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>2006</td>
+      <td>1851</td>
+      <td>wrote some of the most imporant Serbian litera...</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>RSD_Njegos</td>
+      <td>0.002004</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Mykhailo Hrusheskyi</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1934</td>
+      <td>also an author, president of Central Rada (Sov...</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>UAH_Mykhailo</td>
+      <td>0.049049</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Volodymyr Vernadskyi</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>STEM</td>
+      <td>No</td>
+      <td>1000</td>
+      <td>NaN</td>
+      <td>2019</td>
+      <td>1945</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>UAH_Vernadskyi</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Ivan Franko</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Writer</td>
+      <td>Yes</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1916</td>
+      <td>1st author of detective novels and modern poet...</td>
+      <td>First author of detective novels and modern po...</td>
+      <td>False</td>
+      <td>UAH_Franko</td>
+      <td>0.019019</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Lesya Ukrainka</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Writer</td>
+      <td>No</td>
+      <td>200</td>
+      <td>NaN</td>
+      <td>2001</td>
+      <td>1913</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>UAH_Ukrainka</td>
+      <td>0.199199</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Taras Shevchenko</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Writer</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1841</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>UAH_Taras</td>
+      <td>0.099099</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Hryhoriy Skovoroda</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Writer</td>
+      <td>No</td>
+      <td>500</td>
+      <td>NaN</td>
+      <td>2006</td>
+      <td>1794</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>UAH_Skovoroda</td>
+      <td>0.499499</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Ivan Mazepa</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1709</td>
+      <td>elected "Hetman of Zaporizhian Host" . also se...</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>UAH_Mazepa</td>
+      <td>0.009009</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Bogdan Khmelnitsky</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1657</td>
+      <td>1st "hetman of ukraine", also military leader</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>UAH_Bogdon</td>
+      <td>0.004004</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Yaroslav the Wise</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Monarch</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1054</td>
+      <td>1st christian prince of Kiev</td>
+      <td>First Christian Prince of Kiev</td>
+      <td>False</td>
+      <td>UAH_Yaroslav</td>
+      <td>0.001001</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+      <td>Volodymyr the Great</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Monarch</td>
+      <td>No</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1015</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>UAH_Great</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This can be a very powerful operation, but it’s easy to get mixed up when
+labels are integers, as with the <code class="docutils literal notranslate"><span class="pre">bill_value</span></code> data.</p>
+<p>For example, this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    100
+1    100
+2     50
+3     20
+4     10
+5     50
+Name: bill_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Is <em>NOT</em> the same as this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    100
+1    100
+2     50
+3     20
+4     10
+Name: bill_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recall that bracket notation selects columns in DataFrames. With a Series, the
+same notation acts as another way to perform <code class="docutils literal notranslate"><span class="pre">.loc</span></code> operations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    100
+1    100
+2     50
+3     20
+4     10
+Name: bill_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> and <code class="docutils literal notranslate"><span class="pre">.loc</span></code> can be used in tandem with one another. This is
+called <strong>chaining</strong>. Below, we use the country-indexed <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> DataFrame to
+select all rows with “Peru.” Then, we select the second row from this subset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;Peru&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>currency_code                                PEN
+currency_name                                Sol
+name                     Raúl Porras Barrenechea
+gender                                         M
+bill_count                                   1.0
+profession                            Politician
+known_for_being_first                         No
+current_bill_value                            20
+prop_total_bills                             NaN
+first_appearance_year                       1991
+death_year                                  1960
+comments                                     NaN
+hover_text                                   NaN
+has_portrait                               False
+id                                      PEN_Raul
+scaled_bill_value                       0.052632
+Name: Peru, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indexing-by-a-condition">
+<span id="indexing-by-condition"></span><h3><span class="section-number">2.4.4. </span>Indexing by a Condition<a class="headerlink" href="#indexing-by-a-condition" title="Link to this heading">#</a></h3>
+<p>The last way to index in Pandas is by condition. Pandas does this by evaluating
+a condition and returning a Boolean Series or array. This is by far the most
+powerful method of indexing in Pandas.</p>
+<p>For example, suppose you want to find bill values that are divisible by 25. You
+can use the modulo operator <code class="docutils literal notranslate"><span class="pre">%</span></code> to get the remainder when one positive integer
+is divided by another. So the condition to test for divisibility by 25 is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span> <span class="o">%</span> <span class="mi">25</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       True
+1       True
+2       True
+3      False
+4      False
+       ...  
+274    False
+275    False
+276     True
+277     True
+278     True
+Name: bill_value, Length: 279, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is a Boolean Series with as many elements as <code class="docutils literal notranslate"><span class="pre">bill_value</span></code>. You can
+use this condition in <code class="docutils literal notranslate"><span class="pre">.loc</span></code> to get only the elements where the result was
+<code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bill_value</span> <span class="o">%</span> <span class="mi">25</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      100
+1      100
+2       50
+5       50
+9       50
+      ... 
+269    200
+271    100
+276     50
+277    100
+278    200
+Name: bill_value, Length: 194, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<!--
+This is a **subset** of the Series.
+-->
+<p>You can also use square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> without <code class="docutils literal notranslate"><span class="pre">.loc</span></code> to index by condition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bill_value</span><span class="p">[</span><span class="n">bill_value</span> <span class="o">-</span> <span class="mi">100</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15     1000
+16      500
+17      200
+27      200
+33      200
+       ... 
+263     200
+265    2000
+266     500
+269     200
+278     200
+Name: bill_value, Length: 130, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>With a DataFrame, indexing by condition gives you a subset of the rows:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;currency_code&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;MWK&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Malawi</th>
+      <td>MWK</td>
+      <td>Kwacha</td>
+      <td>Dr. Hastings Kamuzu Banda</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>1000</td>
+      <td>NaN</td>
+      <td>1971</td>
+      <td>1997</td>
+      <td>1st President and 1st Prime Minister of Malawi</td>
+      <td>First President and Prime Minister of Malawi</td>
+      <td>False</td>
+      <td>MWK_Hastings</td>
+      <td>0.494949</td>
+    </tr>
+    <tr>
+      <th>Malawi</th>
+      <td>MWK</td>
+      <td>Kwacha</td>
+      <td>Rose Lomathinda Chibambo</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>Yes</td>
+      <td>200</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2016</td>
+      <td>1st female minister in the independent Malawi ...</td>
+      <td>First female minister in the independent Malaw...</td>
+      <td>False</td>
+      <td>MWK_Rose</td>
+      <td>0.090909</td>
+    </tr>
+    <tr>
+      <th>Malawi</th>
+      <td>MWK</td>
+      <td>Kwacha</td>
+      <td>Inkosi ya Makhosi M'mbelwa II</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Monarch</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1959</td>
+      <td>cannot find info about this person</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>MWK_Mmbelwa</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Malawi</th>
+      <td>MWK</td>
+      <td>Kwacha</td>
+      <td>Inkosi Ya Mokhosi Gomani II</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Monarch</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1954</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>MWK_Gomani</td>
+      <td>0.015152</td>
+    </tr>
+    <tr>
+      <th>Malawi</th>
+      <td>MWK</td>
+      <td>Kwacha</td>
+      <td>Reverend John Chilembwe</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Revolutionary</td>
+      <td>No</td>
+      <td>500</td>
+      <td>NaN</td>
+      <td>1997</td>
+      <td>1915</td>
+      <td>Known for organizing an uprising against the c...</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>MWK_Chilembwe</td>
+      <td>0.242424</td>
+    </tr>
+    <tr>
+      <th>Malawi</th>
+      <td>MWK</td>
+      <td>Kwacha</td>
+      <td>Reverend John Chilembwe</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Revolutionary</td>
+      <td>No</td>
+      <td>2000</td>
+      <td>NaN</td>
+      <td>1997</td>
+      <td>1915</td>
+      <td>Known for organizing an uprising against the c...</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>MWK_Chilembwe</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Malawi</th>
+      <td>MWK</td>
+      <td>Kwacha</td>
+      <td>James Federick Sangala</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1974</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>MWK_Sangala</td>
+      <td>0.040404</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If you want to specify specific columns, use <code class="docutils literal notranslate"><span class="pre">.loc</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">&quot;currency_name&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina          Argentinian Peso
+Australia         Australian Dollar
+Australia         Australian Dollar
+Bangladesh                     Taka
+Bolivia                   Boliviano
+Bolivia                   Boliviano
+Bolivia                   Boliviano
+Canada              Canadian Dollar
+Canada              Canadian Dollar
+Canada              Canadian Dollar
+Canada              Canadian Dollar
+Canada              Canadian Dollar
+England                       pound
+England                       pound
+Georgia                        lari
+Nigeria                       naira
+New Zealand      New Zealand dollar
+Peru                            Sol
+Peru                            Sol
+China                      Renminbi
+Serbia                Serbian dinar
+Tunisia              Tunisian dinar
+Tunisia              Tunisian dinar
+Turkey                         Lira
+Turkey                         Lira
+Ukraine                      hryvna
+United States             US dollar
+Venezuela        Venezuelan bolivar
+South Africa                   rand
+Name: currency_name, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above lets you select multiple columns, but you could also do the
+following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;currency_code&quot;</span><span class="p">,</span> <span class="s2">&quot;currency_name&quot;</span><span class="p">]</span>
+<span class="n">banknotes</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">10.0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>currency_name</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Argentina</th>
+      <td>ARS</td>
+      <td>Argentinian Peso</td>
+    </tr>
+    <tr>
+      <th>Australia</th>
+      <td>AUD</td>
+      <td>Australian Dollar</td>
+    </tr>
+    <tr>
+      <th>Australia</th>
+      <td>AUD</td>
+      <td>Australian Dollar</td>
+    </tr>
+    <tr>
+      <th>Bangladesh</th>
+      <td>BDT</td>
+      <td>Taka</td>
+    </tr>
+    <tr>
+      <th>Bolivia</th>
+      <td>BOB</td>
+      <td>Boliviano</td>
+    </tr>
+    <tr>
+      <th>Bolivia</th>
+      <td>BOB</td>
+      <td>Boliviano</td>
+    </tr>
+    <tr>
+      <th>Bolivia</th>
+      <td>BOB</td>
+      <td>Boliviano</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>CAD</td>
+      <td>Canadian Dollar</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>CAD</td>
+      <td>Canadian Dollar</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>CAD</td>
+      <td>Canadian Dollar</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>CAD</td>
+      <td>Canadian Dollar</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>CAD</td>
+      <td>Canadian Dollar</td>
+    </tr>
+    <tr>
+      <th>England</th>
+      <td>GBP</td>
+      <td>pound</td>
+    </tr>
+    <tr>
+      <th>England</th>
+      <td>GBP</td>
+      <td>pound</td>
+    </tr>
+    <tr>
+      <th>Georgia</th>
+      <td>GEL</td>
+      <td>lari</td>
+    </tr>
+    <tr>
+      <th>Nigeria</th>
+      <td>NGN</td>
+      <td>naira</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>NZD</td>
+      <td>New Zealand dollar</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+    </tr>
+    <tr>
+      <th>Peru</th>
+      <td>PEN</td>
+      <td>Sol</td>
+    </tr>
+    <tr>
+      <th>China</th>
+      <td>RMB</td>
+      <td>Renminbi</td>
+    </tr>
+    <tr>
+      <th>Serbia</th>
+      <td>RSD</td>
+      <td>Serbian dinar</td>
+    </tr>
+    <tr>
+      <th>Tunisia</th>
+      <td>TND</td>
+      <td>Tunisian dinar</td>
+    </tr>
+    <tr>
+      <th>Tunisia</th>
+      <td>TND</td>
+      <td>Tunisian dinar</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>TRY</td>
+      <td>Lira</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>TRY</td>
+      <td>Lira</td>
+    </tr>
+    <tr>
+      <th>Ukraine</th>
+      <td>UAH</td>
+      <td>hryvna</td>
+    </tr>
+    <tr>
+      <th>United States</th>
+      <td>USD</td>
+      <td>US dollar</td>
+    </tr>
+    <tr>
+      <th>Venezuela</th>
+      <td>VES</td>
+      <td>Venezuelan bolivar</td>
+    </tr>
+    <tr>
+      <th>South Africa</th>
+      <td>ZAR</td>
+      <td>rand</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="special-values">
+<span id="id12"></span><h2><span class="section-number">2.5. </span>Special Values<a class="headerlink" href="#special-values" title="Link to this heading">#</a></h2>
+<p>You may have noticed that some of the data in <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> is missing. This is
+common, and it’s important to understand how to handle missing or invalid
+values.</p>
+<p>There are many reasons that could cause these values to be missing or
+incomplete, and as a result, Pandas provides lots of flexibility for detecting
+and handling these values.</p>
+<p>In Pandas, these special values are generally treated as missing values in the
+dataset, and are represented by the NumPy <code class="docutils literal notranslate"><span class="pre">nan</span></code> type. This reduces some of the
+nuance of data values and types, but was seemingly done for computational
+performance reasons.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">25</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>currency_code                        USD
+currency_name                  US dollar
+name                     Abraham Lincoln
+gender                                 M
+bill_count                           1.0
+profession                 Head of Gov&#39;t
+known_for_being_first                 No
+current_bill_value                     5
+prop_total_bills                    0.06
+first_appearance_year               1914
+death_year                          1865
+comments                             NaN
+hover_text                           NaN
+has_portrait                        True
+id                           USD_Lincoln
+scaled_bill_value               0.040404
+Name: United States, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<section id="types-of-values-considered-missing-by-pandas">
+<span id="missing-values-in-pandas"></span><h3><span class="section-number">2.5.1. </span>Types of Values Considered Missing by Pandas<a class="headerlink" href="#types-of-values-considered-missing-by-pandas" title="Link to this heading">#</a></h3>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> (which displays as NaN), Pandas interprets several
+other values as missing.  This includes Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type, as well as
+Pandas’ experimental <code class="docutils literal notranslate"><span class="pre">NA</span></code> types.</p>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">None</span></code> type represents something that has no value. It often comes
+about as the return of a function, if something hasn’t been defined yet, or if
+something wasn’t found.</p>
+<p>When creating a Series, we can pass this value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    None
+1     one
+2     two
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Be aware that <code class="docutils literal notranslate"><span class="pre">None</span></code> is a Python object, and in the above example, the
+datatype of the series became ‘object’. If we specify a datatype explicitly
+then Pandas will convert it to one of its representations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    1.5
+1    2.0
+2    3.0
+3    NaN
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-in-missing-values-from-a-csv-file">
+<span id="missing-values-in-csvs"></span><h3><span class="section-number">2.5.2. </span>Reading in Missing Values from a CSV file<a class="headerlink" href="#reading-in-missing-values-from-a-csv-file" title="Link to this heading">#</a></h3>
+<p>An obvious source of missing or incomplete values is the data itself.
+When the data was collected, there may have been reasons to code missing data.
+For example, in collection of survey responses, there may be times where the
+answer was not applicable.</p>
+<p>Another example would be if a measurement was not taken on some of the samples.
+Obviously, there are no rules on how this was represented in the data set.
+However there are several conventions, and Pandas is aware of many of them.</p>
+<p>When reading data from a CSV file, Pandas will automatically detect missing
+values. By default, it will convert any empty cell, or string such as ‘na’,
+‘nan’, ‘null’, ‘N/A’, and other variants to NaN.  A full list can be found in
+the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">Pandas documentation</a>.</p>
+</section>
+<section id="detecting-missing-values">
+<span id="id13"></span><h3><span class="section-number">2.5.3. </span>Detecting Missing Values<a class="headerlink" href="#detecting-missing-values" title="Link to this heading">#</a></h3>
+<p>To detect missing values, Pandas provides two complementary methods: <code class="docutils literal notranslate"><span class="pre">.isna</span></code>
+and <code class="docutils literal notranslate"><span class="pre">.notna</span></code>.</p>
+<p>We can see information about missing values with the <code class="docutils literal notranslate"><span class="pre">.count</span></code> method on
+DataFrames:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>currency_code            279
+currency_name            279
+name                     279
+gender                   279
+bill_count               279
+profession               279
+known_for_being_first    279
+current_bill_value       279
+prop_total_bills          59
+first_appearance_year    279
+death_year               272
+comments                 119
+hover_text                89
+has_portrait             279
+id                       279
+scaled_bill_value        278
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we look at the <code class="docutils literal notranslate"><span class="pre">hover_text</span></code> columns of the DataFrame, we can see what
+those missing values look like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span> <span class="o">=</span> <span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;hover_text&quot;</span><span class="p">]</span>
+<span class="n">ht</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(89)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The return of <code class="docutils literal notranslate"><span class="pre">.isna</span></code> is a Boolean Series indicating which of the values are
+considered missing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina        True
+Argentina        True
+Argentina        True
+Argentina        True
+Argentina       False
+                ...  
+South Africa    False
+South Africa    False
+South Africa    False
+South Africa    False
+South Africa    False
+Name: hover_text, Length: 279, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>The reverse—to see which values are not considered missing—is returned
+with <code class="docutils literal notranslate"><span class="pre">.notna</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina       False
+Argentina        True
+                ...  
+South Africa     True
+South Africa     True
+South Africa     True
+South Africa     True
+South Africa     True
+Name: hover_text, Length: 279, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="replacing-missing-values">
+<span id="id14"></span><h3><span class="section-number">2.5.4. </span>Replacing Missing Values<a class="headerlink" href="#replacing-missing-values" title="Link to this heading">#</a></h3>
+<p>We can use this Boolean Series to subset with <code class="docutils literal notranslate"><span class="pre">.loc</span></code>. For example, to keep only
+the values that aren’t missing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ht</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina                           Designed first Argentine flag
+Australia       First Australian Aboriginal writer to be publi...
+Australia       First person appointed Dame Commander of the B...
+Australia       Founded Royal Flying Doctor Service, the world...
+Australia       First Australian woman to serve as a member of...
+                                      ...                        
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+Name: hover_text, Length: 89, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pandas also provides a shortcut with the <code class="docutils literal notranslate"><span class="pre">.dropna</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina                           Designed first Argentine flag
+Australia       First Australian Aboriginal writer to be publi...
+Australia       First person appointed Dame Commander of the B...
+Australia       Founded Royal Flying Doctor Service, the world...
+Australia       First Australian woman to serve as a member of...
+                                      ...                        
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+Name: hover_text, Length: 89, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another strategy may be to fill the missing values. We could do so using the
+<code class="docutils literal notranslate"><span class="pre">.fillna</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ht</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina                                                      -1
+Argentina                                                      -1
+Argentina                                                      -1
+Argentina                                                      -1
+Argentina                           Designed first Argentine flag
+                                      ...                        
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+Name: hover_text, Length: 279, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Additionally, the data set may have its own indicator for missing values, e.g
+“” or 0. We can convert those to missing using the <code class="docutils literal notranslate"><span class="pre">.replace</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ht</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country
+Argentina                                                     NaN
+Argentina                                                     NaN
+Argentina                                                     NaN
+Argentina                                                     NaN
+Argentina                           Designed first Argentine flag
+                                      ...                        
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+South Africa    First Black state leader and first President o...
+Name: hover_text, Length: 279, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">2.6. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise">
+<h3><span class="section-number">2.6.1. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<p>Python’s <code class="docutils literal notranslate"><span class="pre">range</span></code> function offers another way to create a sequence of numbers.
+Read the help file for this function.</p>
+<ol class="arabic simple">
+<li><p>Create an example range. How does this differ from a list?</p></li>
+<li><p>Describe the three arguments that you can use in <code class="docutils literal notranslate"><span class="pre">range</span></code>. Give examples of
+each.</p></li>
+<li><p>Convert one of those ranges to a list and print it to screen. What changes
+in the way Python represents this sequence?</p></li>
+</ol>
+</section>
+<section id="id15">
+<h3><span class="section-number">2.6.2. </span>Exercise<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>Return to the discussion in <a class="reference internal" href="#coercion-conversion"><span class="std std-numref">Section 2.3.2</span></a>.</p>
+<ol class="arabic simple">
+<li><p>Why does <code class="docutils literal notranslate"><span class="pre">&quot;3&quot;</span> <span class="pre">+</span> <span class="pre">4</span></code> raise an error?</p></li>
+<li><p>Why does <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">-</span> <span class="pre">1</span></code> return 0?</p></li>
+<li><p>Why does <code class="docutils literal notranslate"><span class="pre">int(4.6)</span> <span class="pre">&lt;</span> <span class="pre">4.6</span></code> return <code class="docutils literal notranslate"><span class="pre">True</span></code>?</p></li>
+</ol>
+</section>
+<section id="id16">
+<h3><span class="section-number">2.6.3. </span>Exercise<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>Use a search engine or consult StackOverflow to figure out how to subset a
+DataFrame with multiple conditions.</p>
+<ol class="arabic simple">
+<li><p>Create a new DataFrame from <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> with the following conditions:
+current bill value is less than or equal to 20; gender is female; contains
+the columns <code class="docutils literal notranslate"><span class="pre">country</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">comments</span></code>, <code class="docutils literal notranslate"><span class="pre">has_portrait</span></code></p></li>
+<li><p>Use a Pandas function to count the number of entries that have portraits.
+How many are there?</p></li>
+<li><p>Return the last available comment. What does it say?</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_python-basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Getting Started</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_exploring-data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Exploring Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">2.1. Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">2.1.1. Packages</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">2.1.2. Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers-for-data">2.2. Containers for Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-series">2.2.1. Pandas Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays">2.2.2. NumPy Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">2.2.3. Lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing">2.2.4. Indexing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">2.2.5. References</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">2.2.6. Tuples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">2.3. Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strings-the-object-dtype">2.3.1. Strings &amp; The <code class="docutils literal notranslate"><span class="pre">object</span></code> Dtype</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coercion-conversion">2.3.2. Coercion &amp; Conversion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bit-sizes-memory">2.3.3. Bit Sizes &amp; Memory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-in-pandas">2.4. Indexing in Pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-an-index">2.4.1. What’s an Index?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-by-position">2.4.2. Indexing by Position</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-by-label">2.4.3. Indexing by Label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-by-a-condition">2.4.4. Indexing by a Condition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-values">2.5. Special Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-values-considered-missing-by-pandas">2.5.1. Types of Values Considered Missing by Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-in-missing-values-from-a-csv-file">2.5.2. Reading in Missing Values from a CSV file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detecting-missing-values">2.5.3. Detecting Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#replacing-missing-values">2.5.4. Replacing Missing Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">2.6. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">2.6.1. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">2.6.2. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">2.6.3. Exercise</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arthur Koehl, Tyler Shoemaker, and Nick Ulle
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
