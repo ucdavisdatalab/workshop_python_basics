@@ -74,46 +74,34 @@ other programming languages, Python's particular strengths are its:
 Prerequisites
 -------------
 
-Rather than installing Python directly, install **[Anaconda][]**, a collection
-of free and open-source data science software. Anaconda includes three things
-you'll need to follow along with this reader:
+Rather than installing Python directly, install the **[Anaconda
+Distribution][]**, a collection of free and open-source data science software.
+The Anaconda Distribution includes several things you'll need to follow along
+with this reader:
 
 * Python 3
 * SciPy ecosystem packages
-* **[Conda][]**, a system for installing and managing software
+* JupyterLab, an editor for Python code
+* **[Conda][]**, a program for installing and managing software
 
 You'll learn more about these later on. Anaconda also includes other popular
 software, such as the R programming language. Install Anaconda by following
 [this guide][anaconda-guide].
 
-[Anaconda]: https://www.anaconda.com/
-[Conda]: https://docs.conda.io/
+[Anaconda]: https://www.anaconda.com/download
+[Conda]: https://conda.org/
 
 [anaconda-guide]: https://ucdavisdatalab.github.io/install_guides/python-and-python-tools.html
-
-In addition, you need to install **JupyterLab**. JupyterLab is an **integrated
-development environment** (IDE), which means it's a comprehensive program for
-writing, editing, searching, and running code. You can do all of these things
-without JupyterLab, but JupyterLab makes the process easier. Install JupyterLab
-by following [this guide][jupyterlab-guide].
-
-[jupyterlab-guide]: https://ucdavisdatalab.github.io/install_guides/python-and-python-tools.html#jupyterlab
-
-<!--
-In addition to Anaconda, you'll need Visual Studio Code (VSCode). VSCode is an
-*integrated development environment* (IDE), which means it's a comprehensive
-program for writing, editing, searching, and running code. You can do all of
-these things without VSCode, but VSCode makes the process easier. VSCode
-supports a variety of programming languages, including Python, R, Java, C, and
-C++. You can download Visual Studio Code for free [here][vscode], and can find
-an install guide [here][vscode-guide].
-[vscode]: https://code.visualstudio.com/Download
-[vscode-guide]: TODO
--->
 
 
 The Python Console
 ------------------
+
+There are many different ways to edit and run Python code, but we'll use
+JupyterLab, which is included in the Anaconda Distribution. JupyterLab is an
+**integrated development environment** (IDE), which means it's a comprehensive
+program for writing, editing, searching, and running code. You can do all of
+these things without JupyterLab, but JupyterLab makes the process easier.
 
 The first time you open JupyterLab, you'll see a window that looks like this:
 
