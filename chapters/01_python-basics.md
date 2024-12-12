@@ -75,7 +75,7 @@ Prerequisites
 -------------
 
 Rather than installing Python directly, install the **[Anaconda
-Distribution][]**, a collection of free and open-source data science software.
+Distribution][Anaconda]**, a collection of free and open-source data science software.
 The Anaconda Distribution includes several things you'll need to follow along
 with this reader:
 
