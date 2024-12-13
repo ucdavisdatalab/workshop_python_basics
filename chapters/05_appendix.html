@@ -1,0 +1,1671 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Appendix &#8212; Python Basics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/05_appendix';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Assessment" href="assessment.html" />
+    <link rel="prev" title="4. Organizing Code" href="04_organizing-code.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-light" alt="Python Basics - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-dark" alt="Python Basics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_python-basics.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_pandas-basics.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_exploring-data.html">3. Exploring Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_organizing-code.html">4. Organizing Code</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Appendix</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="assessment.html">Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/05_appendix.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Appendix</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers">5.1. Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">5.1.1. Lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">5.1.2. Tuples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">5.1.3. Dictionaries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surfing-the-web">5.2. Surfing the Web</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-requests-package">5.2.1. The requests Package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#request-etiquette">5.2.2. Request Etiquette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-apis">5.2.3. Web APIs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-object-notation">5.2.4. JavaScript Object Notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-endpoints">5.2.5. Using Endpoints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">5.3. Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensions">5.3.1. Comprehensions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-data">5.4. Exporting Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">5.5. Practice Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">5.5.1. Exercise 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">5.5.2. Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="appendix">
+<h1><span class="section-number">5. </span>Appendix<a class="headerlink" href="#appendix" title="Link to this heading">#</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<ul class="simple">
+<li><p>Create and access elements of tuples</p></li>
+<li><p>Create and access elements of dictionaries</p></li>
+<li><p>Explain what HTTP is, including request methods</p></li>
+<li><p>Use the requests package to make HTTP requests</p></li>
+<li><p>Explain what a web API is</p></li>
+<li><p>Load and access elements of JSON data</p></li>
+<li><p>Write loops to do things repeatedly</p></li>
+<li><p>Write comprehensions to do things repeatedly</p></li>
+<li><p>Save data to a CSV or other file format</p></li>
+</ul>
+</div>
+<p>This appendix contains an optional part 5 of the workshop which demonstrates
+how to use Python to download some non-tabular data from the internet, convert
+it into a tabular format, and save it as a CSV file.</p>
+<section id="containers">
+<span id="id1"></span><h2><span class="section-number">5.1. </span>Containers<a class="headerlink" href="#containers" title="Link to this heading">#</a></h2>
+<p>Python provides a variety of containers for data. This section describes the
+three most widely-used containers. You can find even more types of containers
+in the <a class="reference external" href="https://docs.python.org/3/library/collections.html">collections module</a>.</p>
+<section id="lists">
+<h3><span class="section-number">5.1.1. </span>Lists<a class="headerlink" href="#lists" title="Link to this heading">#</a></h3>
+<p>Lists were introduced in <a class="reference internal" href="02_pandas-basics.html#lists"><span class="std std-numref">Section 2.2.3</span></a>. A list is an ordered collection of
+values. Lists are <strong>mutable</strong>, which means that the elements can be changed.</p>
+<p>Here’s a quick recap of things you can do with lists:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a list with square brackets [ ]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># Get an element by position with square brackets [ ]</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Set an element</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also remove an element of a list with the <code class="docutils literal notranslate"><span class="pre">del</span></code> keyword. For instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">del</span></code> keyword can also be used with dictionaries, which are described in
+<a class="reference internal" href="#dictionaries"><span class="std std-numref">Section 5.1.3</span></a>.</p>
+</section>
+<section id="tuples">
+<h3><span class="section-number">5.1.2. </span>Tuples<a class="headerlink" href="#tuples" title="Link to this heading">#</a></h3>
+<p>A <strong>tuple</strong> is an ordered collection of values. Think of coordinates. Tuples
+are <strong>immutable</strong>, which means that the elements of a tuple can’t be changed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">)</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;hi&#39;, 1, 3.7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tuple
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can get elements of a tuple with indexing, just like a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;hi&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you try to change the elements, Python raises an error:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="ne">TypeError</span>: &#39;tuple&#39; object does not support item assignment
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also get the elements of a tuple by <strong>unpacking</strong> them. Unpacking is a
+way to assign the elements of a tuple or list to multiple variables. Use <code class="docutils literal notranslate"><span class="pre">=</span></code> to
+unpack values, making sure that the structure on the left-hand side matches the
+structure on the right-hand side:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">y</span>
+<span class="n">u</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;hi&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.7
+</pre></div>
+</div>
+</div>
+</div>
+<p>Unpacking also works with lists.</p>
+<p>Tuples are slightly more efficient than lists, and are generally the best way
+to return a fixed number of results from a function (see <a class="reference internal" href="04_organizing-code.html#functions"><span class="std std-numref">Section 4.2</span></a>).</p>
+</section>
+<section id="dictionaries">
+<span id="id2"></span><h3><span class="section-number">5.1.3. </span>Dictionaries<a class="headerlink" href="#dictionaries" title="Link to this heading">#</a></h3>
+<p>A <strong>dictionary</strong> (or <code class="docutils literal notranslate"><span class="pre">dict</span></code>) is a one-to-one map from <strong>keys</strong> to <strong>values</strong>.
+That means that you use keys to look up values in a dictionary. Like lists,
+dictionaries are mutable.</p>
+<p>You can make a dictionary by enclosing comma-separated <code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">value</span></code> pairs in
+curly braces <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>, like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;hello&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;hello&#39;: 1, 3: 5}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict
+</pre></div>
+</div>
+</div>
+</div>
+<p>The dictionary <code class="docutils literal notranslate"><span class="pre">x</span></code> has two keys: <code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">3</span></code>. Most of the time, the keys
+in a dictionary will be strings, but you can use other types of keys. However,
+the keys are required to be unique.</p>
+<p>You can get and set elements of a dictionary by indexing with keys:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;hello&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also get elements with the <code class="docutils literal notranslate"><span class="pre">.get</span></code> method, which gets an element by key
+or returns a default value if the key isn’t in the dictionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;goodbye&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can get the keys or the values in a dictionary with the <code class="docutils literal notranslate"><span class="pre">.keys</span></code> and <code class="docutils literal notranslate"><span class="pre">.dict</span></code>
+methods respectfully:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;hello&#39;, 3])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([1, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">list</span></code> function to convert either of these to an ordinary list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hello&#39;, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Common use cases for dictionaries include creating lookup tables and returning
+named results from a function.</p>
+</section>
+</section>
+<section id="surfing-the-web">
+<h2><span class="section-number">5.2. </span>Surfing the Web<a class="headerlink" href="#surfing-the-web" title="Link to this heading">#</a></h2>
+<p>The <strong>hypertext transfer protocol</strong> (HTTP) is a set of rules for communication
+between computers on a network. HTTP has a request-response model:</p>
+<ol class="arabic simple">
+<li><p>The <strong>client</strong> sends a <strong>request</strong> to a <strong>server</strong>. For example, the client
+might request a file.</p></li>
+<li><p>The server sends a <strong>response</strong> to the request.</p></li>
+</ol>
+<p>Your web browser goes through this process every time you visit a website. HTTP
+requests are also one way to download data sets from the web.</p>
+<p>There are several different HTTP request methods:</p>
+<ul class="simple">
+<li><p><strong>GET</strong> requests data from the server.</p>
+<ul>
+<li><p>Example: Visiting a web site</p></li>
+<li><p>You can send a small amount of data with a GET request through the URL</p></li>
+</ul>
+</li>
+<li><p><strong>POST</strong> sends data to the server.</p>
+<ul>
+<li><p>Example: Submitting a web form</p></li>
+<li><p>The response to a POST request often contains data too</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">And many more…</a></p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you browse the web with Chrome or Firefox, you can inspect the HTTP requests
+your brower makes when you visit a website. Go to a website and press
+<code class="docutils literal notranslate"><span class="pre">Ctrl-Shift-i</span></code> (OS X: <code class="docutils literal notranslate"><span class="pre">Cmd-Shift-i</span></code>) to open your browser’s web developer
+tools. Click on the “Network” tab and reload the website. You should see the
+tab populate with all of the requests your browser makes as it loads the
+website.</p>
+</div>
+<p>After you make an HTTP request, the server will send a response. Every HTTP
+response includes a 3-digit status code to summarize the meaning of the
+response:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Range</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>100s (100 - 199)</p></td>
+<td><p>Request received, still processing</p></td>
+<td><p>Informational</p></td>
+</tr>
+<tr class="row-odd"><td><p>200s</p></td>
+<td><p>Success</p></td>
+<td><p>Success</p></td>
+</tr>
+<tr class="row-even"><td><p>300s</p></td>
+<td><p>The requested data is somewhere else</p></td>
+<td><p>Redirect</p></td>
+</tr>
+<tr class="row-odd"><td><p>400s</p></td>
+<td><p>Something’s wrong with the request</p></td>
+<td><p>Client Error</p></td>
+</tr>
+<tr class="row-even"><td><p>500s</p></td>
+<td><p>Something’s wrong with the server</p></td>
+<td><p>Server Error</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You can find a list of common status codes in <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">Mozilla’s developer
+documentation</a>.</p>
+<p>A response usually also contains <strong>content</strong> as text or raw bytes. Some common
+formats for the content are:</p>
+<ul class="simple">
+<li><p>Hypertext Markup Language (HTML)</p></li>
+<li><p>Extensible Markup Language (XML)</p></li>
+<li><p>JavaScript Object Notation (JSON)</p></li>
+</ul>
+<section id="the-requests-package">
+<h3><span class="section-number">5.2.1. </span>The requests Package<a class="headerlink" href="#the-requests-package" title="Link to this heading">#</a></h3>
+<p>The <strong>requests</strong> package provides functions for making HTTP requests from
+Python. You can use requests to make a GET request with the <code class="docutils literal notranslate"><span class="pre">get</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://library.ucdavis.edu&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The status code of the response is in the <code class="docutils literal notranslate"><span class="pre">.status_code</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want Python to raise an error any time the status code indicates a
+problem, you can use the <code class="docutils literal notranslate"><span class="pre">.raise_for_status</span></code> method. It doesn’t do anything if
+the status code is okay:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The content of the response is stored as bytes in the <code class="docutils literal notranslate"><span class="pre">.contents</span></code> attribute and
+as text in the <code class="docutils literal notranslate"><span class="pre">.text</span></code> attribute. Choose which one to use based on what kind of
+site or file you requested. Web pages (<code class="docutils literal notranslate"><span class="pre">.html</span></code>) are usually text files, so for
+the Library site it makes more sense to use <code class="docutils literal notranslate"><span class="pre">.text</span></code> to access the content:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+
+<span class="c1"># Only display the first 200 characters</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;!-- This page is cached by the Hummingbird Performance plugin v3.7.2 - https://wordpress.org/plugins/hummingbird-performance/. --&gt;
+  &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en-US&quot;&gt; 
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="request-etiquette">
+<span id="id3"></span><h3><span class="section-number">5.2.2. </span>Request Etiquette<a class="headerlink" href="#request-etiquette" title="Link to this heading">#</a></h3>
+<p>Making an HTTP request is not free. It has a real cost in CPU time and
+electricity. Server administrators will not appreciate it if you make too many
+requests or make requests too quickly. So:</p>
+<ul class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">time.sleep</span></code> function to slow down any requests you make in a loop
+(<a class="reference internal" href="#loops"><span class="std std-numref">Section 5.3</span></a> explains loops). Aim for no more than 20-30 requests per
+second.</p></li>
+<li><p>Install and use the <strong>requests_cache</strong> package to avoid downloading extra
+data when you make the same request twice.</p></li>
+</ul>
+<p>Failing to be polite can get you banned from websites!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># In a Terminal (not Python console!):</span>
+<span class="c1">#   conda install -c conda-forge requests-cache</span>
+<span class="c1">#</span>
+
+<span class="kn">import</span> <span class="nn">requests_cache</span>
+
+<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s2">&quot;my_cache&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="web-apis">
+<h3><span class="section-number">5.2.3. </span>Web APIs<a class="headerlink" href="#web-apis" title="Link to this heading">#</a></h3>
+<p>An <strong>application programming interface</strong> (API) is a collection of functions and
+data structures for communicating with other software. For instance, whenever
+you use a Python package, you’re using the API created by the package’s
+developers.</p>
+<p>Websites sometimes provide a <em>web</em> API so that programmers can create
+applications that access data and settings. The most common kind of web API is
+<strong>representational state transfer</strong> (REST). The key ideas of REST are that:</p>
+<ul class="simple">
+<li><p>You can “call” functions by making HTTP requests.</p></li>
+<li><p>URLs called <strong>endpoints</strong> serve as function names.</p></li>
+<li><p>Separate function calls are handled independently of each other. The server
+doesn’t remember previous calls.</p></li>
+</ul>
+<p>For example, the <a class="reference external" href="https://swapi.dev/">Star Wars API</a> (SWAPI) is a REST API with
+endpoints that return data about the Star Wars universe. The best way to learn
+how to use a web API is to read its documentation, and fortunately the Star
+Wars API is <a class="reference external" href="https://swapi.dev/documentation">well-documented</a>.</p>
+<p>Try making a request to SWAPI’s “people” endpoint (the endpoint URL comes from
+the SWAPI documentation):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://swapi.dev/api/people/1/&quot;</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Don’t forget to check the status of the response:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200
+</pre></div>
+</div>
+</div>
+</div>
+<p>A 200 status code means the request was successful, so the next step is to take
+a look at the content of the response.</p>
+<p>Unless you’ve already read through the SWAPI documentation, you probably don’t
+know whether the content will be bytes or text. When you’re unsure, you can try
+printing the <code class="docutils literal notranslate"><span class="pre">.text</span></code> value to check whether the content looks like text. Byte
+content will usually look like gibberish if you try to display it as text.
+Here’s the content of the response:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;{&quot;name&quot;:&quot;Luke Skywalker&quot;,&quot;height&quot;:&quot;172&quot;,&quot;mass&quot;:&quot;77&quot;,&quot;hair_color&quot;:&quot;blond&quot;,&quot;skin_color&quot;:&quot;fair&quot;,&quot;eye_color&quot;:&quot;blue&quot;,&quot;birth_year&quot;:&quot;19BBY&quot;,&quot;gender&quot;:&quot;male&quot;,&quot;homeworld&quot;:&quot;https://swapi.dev/api/planets/1/&quot;,&quot;films&quot;:[&quot;https://swapi.dev/api/films/1/&quot;,&quot;https://swapi.dev/api/films/2/&quot;,&quot;https://swapi.dev/api/films/3/&quot;,&quot;https://swapi.dev/api/films/6/&quot;],&quot;species&quot;:[],&quot;vehicles&quot;:[&quot;https://swapi.dev/api/vehicles/14/&quot;,&quot;https://swapi.dev/api/vehicles/30/&quot;],&quot;starships&quot;:[&quot;https://swapi.dev/api/starships/12/&quot;,&quot;https://swapi.dev/api/starships/22/&quot;],&quot;created&quot;:&quot;2014-12-09T13:50:51.644000Z&quot;,&quot;edited&quot;:&quot;2014-12-20T21:17:56.891000Z&quot;,&quot;url&quot;:&quot;https://swapi.dev/api/people/1/&quot;}&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is text about Luke Skywalker. In fact, according to the SWAPI
+documentation, all of the SWAPI endpoints return text.</p>
+<p>Although the response content is text, it isn’t ordinary English text. It’s
+full of curly braces, square brackets, quotes, and other punctuation. If you
+think back to the beginning (<a class="reference internal" href="#containers"><span class="std std-numref">Section 5.1</span></a>) of this chapter, the way the
+punctuation is arranged might start to look familiar…</p>
+</section>
+<section id="javascript-object-notation">
+<h3><span class="section-number">5.2.4. </span>JavaScript Object Notation<a class="headerlink" href="#javascript-object-notation" title="Link to this heading">#</a></h3>
+<p>The response content looks a lot like Python lists and dictionaries! The
+response is not actually Python code, but it <em>is</em> JavaScript code. In
+JavaScript, lists and dictionaries are written the same way as in Python. The
+response is in a popular non-tabular data format called <strong>JavaScript Object
+Notation</strong> (JSON).</p>
+<p>JavaScript Object Notation (JSON) looks and works a lot like Python lists and
+dictionaries. Lists are surrounded with <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>, and dictionaries are surrounded
+with <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>. There are many Python packages for converting JSON text into Python
+lists and dictionaries.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use Python’s built-in <a class="reference external" href="https://docs.python.org/3/library/json.html">json</a> module to read a JSON file you didn’t
+get from an HTTP request. For example, Jupyter notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files) are
+in JSON format.</p>
+</div>
+<p>When you know the content of a response is in JSON format, you can use the
+<code class="docutils literal notranslate"><span class="pre">.json</span></code> method on the response to convert it into Python lists and
+dictionaries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">luke</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="n">luke</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Luke Skywalker&#39;,
+ &#39;height&#39;: &#39;172&#39;,
+ &#39;mass&#39;: &#39;77&#39;,
+ &#39;hair_color&#39;: &#39;blond&#39;,
+ &#39;skin_color&#39;: &#39;fair&#39;,
+ &#39;eye_color&#39;: &#39;blue&#39;,
+ &#39;birth_year&#39;: &#39;19BBY&#39;,
+ &#39;gender&#39;: &#39;male&#39;,
+ &#39;homeworld&#39;: &#39;https://swapi.dev/api/planets/1/&#39;,
+ &#39;films&#39;: [&#39;https://swapi.dev/api/films/1/&#39;,
+  &#39;https://swapi.dev/api/films/2/&#39;,
+  &#39;https://swapi.dev/api/films/3/&#39;,
+  &#39;https://swapi.dev/api/films/6/&#39;],
+ &#39;species&#39;: [],
+ &#39;vehicles&#39;: [&#39;https://swapi.dev/api/vehicles/14/&#39;,
+  &#39;https://swapi.dev/api/vehicles/30/&#39;],
+ &#39;starships&#39;: [&#39;https://swapi.dev/api/starships/12/&#39;,
+  &#39;https://swapi.dev/api/starships/22/&#39;],
+ &#39;created&#39;: &#39;2014-12-09T13:50:51.644000Z&#39;,
+ &#39;edited&#39;: &#39;2014-12-20T21:17:56.891000Z&#39;,
+ &#39;url&#39;: &#39;https://swapi.dev/api/people/1/&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">luke</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this case, the outer object is a dictionary. The keys in the dictionary are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">luke</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;name&#39;,
+ &#39;height&#39;,
+ &#39;mass&#39;,
+ &#39;hair_color&#39;,
+ &#39;skin_color&#39;,
+ &#39;eye_color&#39;,
+ &#39;birth_year&#39;,
+ &#39;gender&#39;,
+ &#39;homeworld&#39;,
+ &#39;films&#39;,
+ &#39;species&#39;,
+ &#39;vehicles&#39;,
+ &#39;starships&#39;,
+ &#39;created&#39;,
+ &#39;edited&#39;,
+ &#39;url&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>These keys describe the included information about Luke. For example, to get
+his eye color, you can use indexing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">luke</span><span class="p">[</span><span class="s2">&quot;eye_color&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;blue&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes data in JSON format will contain several layers of dictionaries and
+lists. Remember that you can use indexing with square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> to
+navigate these.</p>
+</section>
+<section id="using-endpoints">
+<h3><span class="section-number">5.2.5. </span>Using Endpoints<a class="headerlink" href="#using-endpoints" title="Link to this heading">#</a></h3>
+<p>The SWAPI endpoint <code class="docutils literal notranslate"><span class="pre">/people/</span></code> returns information in JSON format about
+different people in the Star Wars universe. An ID number after <code class="docutils literal notranslate"><span class="pre">/people/</span></code>
+determines the person for which the endpoint returns information. Think of the
+ID number as an argument to the endpoint. For instance, Luke Skywalker’s ID
+number is <code class="docutils literal notranslate"><span class="pre">1</span></code>, so the URL for information about Luke is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>https://swapi.dev/api/people/1/
+</pre></div>
+</div>
+<p>A good way to work with an endpoint that accepts arguments is to use Python to
+paste the arguments onto the end. For example, this code pastes the number <code class="docutils literal notranslate"><span class="pre">2</span></code>
+onto the end of the string <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;https://swapi.dev/api/people/&quot;</span>
+<span class="n">endpoint</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://swapi.dev/api/people/2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">str</span></code> function converts the ID number into a string, and <code class="docutils literal notranslate"><span class="pre">+</span></code> pastes the two
+strings together.</p>
+<p>Now try getting the information for the person with ID number <code class="docutils literal notranslate"><span class="pre">2</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Raise an error if the request failed</span>
+<span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+<span class="n">person</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">person</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;C-3PO&#39;,
+ &#39;height&#39;: &#39;167&#39;,
+ &#39;mass&#39;: &#39;75&#39;,
+ &#39;hair_color&#39;: &#39;n/a&#39;,
+ &#39;skin_color&#39;: &#39;gold&#39;,
+ &#39;eye_color&#39;: &#39;yellow&#39;,
+ &#39;birth_year&#39;: &#39;112BBY&#39;,
+ &#39;gender&#39;: &#39;n/a&#39;,
+ &#39;homeworld&#39;: &#39;https://swapi.dev/api/planets/1/&#39;,
+ &#39;films&#39;: [&#39;https://swapi.dev/api/films/1/&#39;,
+  &#39;https://swapi.dev/api/films/2/&#39;,
+  &#39;https://swapi.dev/api/films/3/&#39;,
+  &#39;https://swapi.dev/api/films/4/&#39;,
+  &#39;https://swapi.dev/api/films/5/&#39;,
+  &#39;https://swapi.dev/api/films/6/&#39;],
+ &#39;species&#39;: [&#39;https://swapi.dev/api/species/2/&#39;],
+ &#39;vehicles&#39;: [],
+ &#39;starships&#39;: [],
+ &#39;created&#39;: &#39;2014-12-10T15:10:51.357000Z&#39;,
+ &#39;edited&#39;: &#39;2014-12-20T21:17:50.309000Z&#39;,
+ &#39;url&#39;: &#39;https://swapi.dev/api/people/2/&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>So the “person” with ID number <code class="docutils literal notranslate"><span class="pre">2</span></code> is actually the android C3-PO.</p>
+<p>You can make using the endpoint more convenient by writing a Python function
+that takes an ID number as input, makes a request to the endpoint, and then
+returns the result. Here’s the code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_swapi_person</span><span class="p">(</span><span class="n">id_num</span><span class="p">):</span>
+    <span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&quot;https://swapi.dev/api/people/&quot;</span>
+
+    <span class="c1"># Note that &#39;id_num&#39; replaces &#39;2&#39;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">id_num</span><span class="p">))</span>
+
+    <span class="c1"># Raise an error if the request failed</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As always, when you write a function, it’s important to test it out. For
+example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_swapi_person</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Ben Quadinaros&#39;,
+ &#39;height&#39;: &#39;163&#39;,
+ &#39;mass&#39;: &#39;65&#39;,
+ &#39;hair_color&#39;: &#39;none&#39;,
+ &#39;skin_color&#39;: &#39;grey, green, yellow&#39;,
+ &#39;eye_color&#39;: &#39;orange&#39;,
+ &#39;birth_year&#39;: &#39;unknown&#39;,
+ &#39;gender&#39;: &#39;male&#39;,
+ &#39;homeworld&#39;: &#39;https://swapi.dev/api/planets/41/&#39;,
+ &#39;films&#39;: [&#39;https://swapi.dev/api/films/4/&#39;],
+ &#39;species&#39;: [&#39;https://swapi.dev/api/species/19/&#39;],
+ &#39;vehicles&#39;: [],
+ &#39;starships&#39;: [],
+ &#39;created&#39;: &#39;2014-12-20T10:08:33.777000Z&#39;,
+ &#39;edited&#39;: &#39;2014-12-20T21:17:50.417000Z&#39;,
+ &#39;url&#39;: &#39;https://swapi.dev/api/people/50/&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you’re working with a web API, it’s generally a good idea to create
+<strong>wrapper functions</strong>, like <code class="docutils literal notranslate"><span class="pre">get_swapi_person</span></code>, that turn each endpoint into an
+actual Python function by wrapping up (or encapsulating) the requests code.</p>
+</section>
+</section>
+<section id="loops">
+<span id="id4"></span><h2><span class="section-number">5.3. </span>Loops<a class="headerlink" href="#loops" title="Link to this heading">#</a></h2>
+<p>Now suppose you want to get the information for the first 15 people in SWAPI.
+You could do this by writing 15 calls to <code class="docutils literal notranslate"><span class="pre">get_swapi_person</span></code>, but that would be
+very tedious.</p>
+<p>One major benefit of using a programming language like Python is that
+repetitive tasks can be automated. A <strong>loop</strong> is a way to automate doing a
+similar operation several times, so that you don’t have to repeat the code
+several times. Loops are a feature of almost all modern programming languages,
+so it’s useful to understand them.</p>
+<p>In Python, there are two kinds of loops. We’ll focus on <strong>for-loops</strong>.</p>
+<p>For-loops <strong>iterate</strong> over some object, and compute something for each element.
+Each one of these computations is one <strong>iteration</strong>. A for-loop begins with the
+<code class="docutils literal notranslate"><span class="pre">for</span></code> keyword, followed by:</p>
+<ul class="simple">
+<li><p>A placeholder variable, which will automatically be assigned an element at
+the beginning of each iteration</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">in</span></code> keyword</p></li>
+<li><p>An object with elements</p></li>
+<li><p>A colon <code class="docutils literal notranslate"><span class="pre">:</span></code></p></li>
+</ul>
+<p>Code in the body of the loop must be indented by 4 spaces.</p>
+<p>For example, to print out the names in a list <code class="docutils literal notranslate"><span class="pre">names</span></code>, you can write:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Arthur&quot;</span><span class="p">,</span> <span class="s2">&quot;Nick&quot;</span><span class="p">,</span> <span class="s2">&quot;Cameron&quot;</span><span class="p">,</span> <span class="s2">&quot;Pamela&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Arthur
+Nick
+Cameron
+Pamela
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code in the body of the loop is evaluated once for each name in the list
+(that is, once for each iteration).</p>
+<p>A common technique when programming with for-loops is to iterate over a
+sequence of numbers. Then you can use the numbers to index other objects. In
+Python, the <code class="docutils literal notranslate"><span class="pre">range</span></code> function generates a sequence of numbers starting from 0.
+As an example, here’s a version of the loop above that uses indexes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Arthur
+Nick
+Cameron
+Pamela
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes you might want both the indexes and the values for an object. In that
+case, you can use the <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> function. When you use <code class="docutils literal notranslate"><span class="pre">enumerate</span></code> in a
+loop, the loop syntax is slightly different:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is iteration &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is iteration 0
+Arthur
+This is iteration 1
+Nick
+This is iteration 2
+Cameron
+This is iteration 3
+Pamela
+</pre></div>
+</div>
+</div>
+</div>
+<p>Most of the time, you’ll want to save the results from the iterations into a
+variable for use later on, rather than print them all out. The best way to do
+this is to create an empty list before the loop, and then append to it with the
+<code class="docutils literal notranslate"><span class="pre">.append</span></code> method. For example, here’s a loop that computes the cumulative sums
+from left to right for the numbers in a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">sums</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">num</span>
+    <span class="n">sums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+
+<span class="n">sums</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 6, 4, 14]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can use a loop to get the information about the first 15 people in SWAPI.
+When you send HTTP requests (or call a function that sends HTTP requests) in a
+loop, be careful to follow the guidelines for request etiquette described in
+<a class="reference internal" href="#request-etiquette"><span class="std std-numref">Section 5.2.2</span></a>. For loops, limiting the number of requests per
+second is especially important. Here’s the code to get the information for the
+first 15 people:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">people</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+    <span class="c1"># i + 1 because range starts from 0</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="n">get_swapi_person</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">people</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+
+    <span class="c1"># Do nothing for 1/10 of a second, to prevent making requests too quickly</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After running the loop, you can inspect the returned information in the list
+<code class="docutils literal notranslate"><span class="pre">people</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Luke Skywalker&#39;,
+ &#39;height&#39;: &#39;172&#39;,
+ &#39;mass&#39;: &#39;77&#39;,
+ &#39;hair_color&#39;: &#39;blond&#39;,
+ &#39;skin_color&#39;: &#39;fair&#39;,
+ &#39;eye_color&#39;: &#39;blue&#39;,
+ &#39;birth_year&#39;: &#39;19BBY&#39;,
+ &#39;gender&#39;: &#39;male&#39;,
+ &#39;homeworld&#39;: &#39;https://swapi.dev/api/planets/1/&#39;,
+ &#39;films&#39;: [&#39;https://swapi.dev/api/films/1/&#39;,
+  &#39;https://swapi.dev/api/films/2/&#39;,
+  &#39;https://swapi.dev/api/films/3/&#39;,
+  &#39;https://swapi.dev/api/films/6/&#39;],
+ &#39;species&#39;: [],
+ &#39;vehicles&#39;: [&#39;https://swapi.dev/api/vehicles/14/&#39;,
+  &#39;https://swapi.dev/api/vehicles/30/&#39;],
+ &#39;starships&#39;: [&#39;https://swapi.dev/api/starships/12/&#39;,
+  &#39;https://swapi.dev/api/starships/22/&#39;],
+ &#39;created&#39;: &#39;2014-12-09T13:50:51.644000Z&#39;,
+ &#39;edited&#39;: &#39;2014-12-20T21:17:56.891000Z&#39;,
+ &#39;url&#39;: &#39;https://swapi.dev/api/people/1/&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<section id="comprehensions">
+<h3><span class="section-number">5.3.1. </span>Comprehensions<a class="headerlink" href="#comprehensions" title="Link to this heading">#</a></h3>
+<p>Python provides an efficient and powerful alternative to loops called
+<strong>comprehensions</strong>. Comprehensions automatically create a list or dictionary. A
+<strong>list comprehension</strong> creates a list, and a <strong>dictionary comprehension</strong>
+creates a dictionary.</p>
+<p>Comprehensions are especially helpful if you have a list or dictionary and want
+to transform each element in the same way. For instance, suppose you want to
+get the eye color for each person in the <code class="docutils literal notranslate"><span class="pre">people</span></code> list. You can get the eye
+color for the first person with the code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;eye_color&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;blue&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You could use this code with a loop that changes the first index (<code class="docutils literal notranslate"><span class="pre">0</span></code>) in order
+to get the eye color of every person. However, you can do the same thing as a
+loop more concisely with a list comprehension. Here’s the code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eye_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;eye_color&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">people</span><span class="p">]</span>
+
+<span class="n">eye_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;blue&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The syntax for a list comprehension includes the keywords <code class="docutils literal notranslate"><span class="pre">for</span></code> and <code class="docutils literal notranslate"><span class="pre">in</span></code>, just
+like a for-loop. The difference is that in the list comprehension, the repeated
+code comes <em>before</em> the <code class="docutils literal notranslate"><span class="pre">for</span></code> keyword rather than after it, and the entire
+expression is enclosed in square brackets <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>.</p>
+<p>You can use list comprehensions to get other information as well. For instance,
+here’s the code to get lists of names and heights for each person in the list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">people</span><span class="p">]</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="p">[</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="n">people</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can learn more about comprehensions in the <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions">official Python
+documentation</a>.</p>
+</section>
+</section>
+<section id="exporting-data">
+<h2><span class="section-number">5.4. </span>Exporting Data<a class="headerlink" href="#exporting-data" title="Link to this heading">#</a></h2>
+<p>The extracted <code class="docutils literal notranslate"><span class="pre">names</span></code>, <code class="docutils literal notranslate"><span class="pre">heights</span></code>, and <code class="docutils literal notranslate"><span class="pre">eye_colors</span></code> lists are like columns in a
+DataFrame where each row is one person, so you might as well put them in a
+DataFrame. You can use the <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> function and a dictionary of columns
+to do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">people_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">names</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">heights</span><span class="p">,</span>
+    <span class="s2">&quot;eye_color&quot;</span><span class="p">:</span> <span class="n">eye_colors</span><span class="p">})</span>
+
+<span class="n">people_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>height</th>
+      <th>eye_color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Luke Skywalker</td>
+      <td>172</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C-3PO</td>
+      <td>167</td>
+      <td>yellow</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>R2-D2</td>
+      <td>96</td>
+      <td>red</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Darth Vader</td>
+      <td>202</td>
+      <td>yellow</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Leia Organa</td>
+      <td>150</td>
+      <td>brown</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Owen Lars</td>
+      <td>178</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Beru Whitesun lars</td>
+      <td>165</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>R5-D4</td>
+      <td>97</td>
+      <td>red</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Biggs Darklighter</td>
+      <td>183</td>
+      <td>brown</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Obi-Wan Kenobi</td>
+      <td>182</td>
+      <td>blue-gray</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Anakin Skywalker</td>
+      <td>188</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Wilhuff Tarkin</td>
+      <td>180</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Chewbacca</td>
+      <td>228</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Han Solo</td>
+      <td>180</td>
+      <td>brown</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Greedo</td>
+      <td>173</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Pandas provides a variety of methods for saving DataFrames to a file. Most of
+these begin with <code class="docutils literal notranslate"><span class="pre">.to_</span></code>. For example, to save a DataFrame to a CSV file, use
+the <code class="docutils literal notranslate"><span class="pre">.to_csv</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">people_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;swapi_people.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It’s a good idea to save your data sets like this whenever you reach a
+checkpoint in the problem you’re trying to solve.</p>
+</section>
+<section id="practice-exercises">
+<h2><span class="section-number">5.5. </span>Practice Exercises<a class="headerlink" href="#practice-exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1">
+<h3><span class="section-number">5.5.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
+<p>Create a CSV file for the first 15 <em>vehicles</em> in SWAPI. The file should include
+columns for cargo capacity, cost, length, manufacturer, model, and passengers.</p>
+</section>
+<section id="exercise-2">
+<h3><span class="section-number">5.5.2. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
+<p>Create a histogram from the heights of the first 30 people in SWAPI.</p>
+<div class="admonition-hint admonition">
+<p class="admonition-title">Hint</p>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">float</span></code> function to convert a string to a decimal number.</p>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_organizing-code.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Organizing Code</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="assessment.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Assessment</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers">5.1. Containers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">5.1.1. Lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples">5.1.2. Tuples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">5.1.3. Dictionaries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#surfing-the-web">5.2. Surfing the Web</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-requests-package">5.2.1. The requests Package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#request-etiquette">5.2.2. Request Etiquette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#web-apis">5.2.3. Web APIs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-object-notation">5.2.4. JavaScript Object Notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-endpoints">5.2.5. Using Endpoints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">5.3. Loops</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comprehensions">5.3.1. Comprehensions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-data">5.4. Exporting Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-exercises">5.5. Practice Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">5.5.1. Exercise 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">5.5.2. Exercise 2</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arthur Koehl, Tyler Shoemaker, and Nick Ulle
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

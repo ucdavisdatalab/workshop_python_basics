@@ -1,0 +1,3206 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Getting Started &#8212; Python Basics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/01_python-basics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Data Structures" href="02_pandas-basics.html" />
+    <link rel="prev" title="Overview" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-light" alt="Python Basics - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-dark" alt="Python Basics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_pandas-basics.html">2. Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_exploring-data.html">3. Exploring Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_organizing-code.html">4. Organizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_appendix.html">5. Appendix</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="assessment.html">Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/01_python-basics.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getting Started</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1.1. Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-python-console">1.2. The Python Console</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">1.2.1. Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strings">1.2.2. Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparisons">1.2.3. Comparisons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-functions">1.2.4. Calling Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objects-attributes">1.2.5. Objects &amp; Attributes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">1.3. Getting Help</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-something-goes-wrong">1.3.1. When Something Goes Wrong</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">1.4. Packages</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-scipy-ecosystem">1.4.1. The SciPy Ecosystem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">1.4.2. Modules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-systems">1.5. File Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absolute-relative-paths">1.5.1. Absolute &amp; Relative Paths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-code">1.5.2. Saving Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks">1.5.2.1. Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-working-directory">1.5.3. The Working Directory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-files">1.6. Reading Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-data">1.6.1. Hello, Data!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-a-dataframe">1.7. Inspecting a DataFrame</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarizing-data">1.7.1. Summarizing Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-columns">1.7.2. Selecting Columns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">1.8. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">1.8.1. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">1.8.2. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">1.8.3. Exercise</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
+<span id="id1"></span><h1><span class="section-number">1. </span>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
+<div class="admonition-learning-objectives admonition">
+<p class="admonition-title">Learning Objectives</p>
+<ul class="simple">
+<li><p>Run code in a Python console (in JupyterLab)</p></li>
+<li><p>Run and save code in a Jupyter notebook</p></li>
+<li><p>Create variables and call functions</p></li>
+<li><p>Write paths to files and directories</p></li>
+<li><p>Get or set the Python working directory</p></li>
+<li><p>Identify the format of a data file</p></li>
+<li><p>Select appropriate functions for loading common file formats</p></li>
+<li><p>Load a data set with Pandas and inspect its contents</p></li>
+</ul>
+</div>
+<p><strong><a class="reference external" href="https://www.python.org/">Python</a></strong> is a popular general-purpose programming language. Python is also a
+leading language for scientific computing due to the <strong><a class="reference external" href="https://scipy.org/">SciPy
+ecosystem</a></strong>, a collection of scientific computing software for Python.</p>
+<p>The main way you’ll interact with Python is by writing Python code or
+<strong>expressions</strong>. Most people use “Python” as a blanket term to refer to both
+the Python language and the Python software (which runs code written in the
+language). Usually, the distinction doesn’t matter, but it will be pointed out
+if it does.</p>
+<p>Code you write is <strong>reproducible</strong>: you can share it with someone else, and if
+they run it with the same inputs, they’ll get the same results. By writing
+code, you create an unambiguous record of every step taken in your analysis.
+This is one of the major advantages of Python and other programming languages
+over point-and-click software like <em>Tableau</em> or <em>Microsoft Excel</em>.</p>
+<p>Another advantage of writing code is that it’s often <strong>reusable</strong>. This means
+you can:</p>
+<ul class="simple">
+<li><p>Automate repetitive tasks within an analysis</p></li>
+<li><p>Recycle code from one analysis into another</p></li>
+<li><p>Package useful code for distribution to your colleagues or the general
+public</p></li>
+</ul>
+<p>At the time of writing, there were over 324,000 user-contributed packages
+available for Python, spanning a broad range of disciplines.</p>
+<p>Python is one of many programming languages used in data science. Compared to
+other programming languages, Python’s particular strengths are its:</p>
+<ul class="simple">
+<li><p>Interactivity</p></li>
+<li><p>Use in a wide variety of disciplines, not just data science</p></li>
+<li><p>Broad base of user-contributed packages</p></li>
+<li><p>Easy-to-learn syntax that encourages good habits</p></li>
+</ul>
+<section id="prerequisites">
+<h2><span class="section-number">1.1. </span>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
+<p>Rather than installing Python directly, install the <strong><a class="reference external" href="https://www.anaconda.com/download">Anaconda
+Distribution</a></strong>, a collection of free and open-source data science software.
+The Anaconda Distribution includes several things you’ll need to follow along
+with this reader:</p>
+<ul class="simple">
+<li><p>Python 3</p></li>
+<li><p>SciPy ecosystem packages</p></li>
+<li><p>JupyterLab, an editor for Python code</p></li>
+<li><p><strong><a class="reference external" href="https://conda.org/">Conda</a></strong>, a program for installing and managing software</p></li>
+</ul>
+<p>You’ll learn more about these later on. Anaconda also includes other popular
+software, such as the R programming language. Install Anaconda by following
+<a class="reference external" href="https://ucdavisdatalab.github.io/install_guides/python-and-python-tools.html">this guide</a>.</p>
+</section>
+<section id="the-python-console">
+<h2><span class="section-number">1.2. </span>The Python Console<a class="headerlink" href="#the-python-console" title="Link to this heading">#</a></h2>
+<p>There are many different ways to edit and run Python code, but we’ll use
+JupyterLab, which is included in the Anaconda Distribution. JupyterLab is an
+<strong>integrated development environment</strong> (IDE), which means it’s a comprehensive
+program for writing, editing, searching, and running code. You can do all of
+these things without JupyterLab, but JupyterLab makes the process easier.</p>
+<p>The first time you open JupyterLab, you’ll see a window that looks like this:</p>
+<img alt="The JupyterLab startup screen." src="../_images/jupyterlab_startup.png" />
+<p>Don’t worry if the text in the panes isn’t exactly the same on your computer;
+it depends on your operating system and version of JupyterLab.</p>
+<p>Start by opening up a Python <strong>console</strong>. In JupyterLab, look for the “Python
+3” button in the “Console” section of the pane on the right. If there are
+multiple Python 3 buttons, click on the one that mentions “IPython” or
+“ipykernel”:</p>
+<img alt="The JupyterLab startup screen with the console button highlighted." src="../_images/jupyterlab_console_button.png" />
+<p>The console is a interactive, text-based interface to Python. If you enter a
+Python expression in the console, Python will compute and display the result.
+After you open the console, your window should look like this:</p>
+<img alt="A Python console running in JupyterLab." src="../_images/jupyterlab_console.png" />
+<p>At the bottom of the console, the text box beginning with <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]:</span></code> is called the
+<strong>prompt</strong>. The prompt is where you’ll type Python expressions. Ask Python to
+compute the sum <span class="math notranslate nohighlight">\(2 + 2\)</span> by typing the code <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">+</span> <span class="pre">2</span></code> in the prompt and then
+pressing <code class="docutils literal notranslate"><span class="pre">Shift</span></code>-<code class="docutils literal notranslate"><span class="pre">Enter</span></code>. Your code and the result from Python should look like
+this:</p>
+<img alt="A Python console running in JupyterLab, showing the sum of two numbers." src="../_images/jupyterlab_console_sum.png" />
+<p>The Python console displays your code and the result on separate lines. Both
+begin with the tag <code class="docutils literal notranslate"><span class="pre">[1]</span></code> to indicate that they are the first expression and
+result. Python will increment the tag each time you run an expression. The tag
+numbers will restart from 1 each time you open a new Python console.</p>
+<p>Now try typing the code <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">-</span> <span class="pre">1</span></code> in the prompt and pressing <code class="docutils literal notranslate"><span class="pre">Shift</span></code>-<code class="docutils literal notranslate"><span class="pre">Enter</span></code>:</p>
+<img alt="A Python console running in JupyterLab, showing the difference of two numbers." src="../_images/jupyterlab_console_diff.png" />
+<p>The tag on the code and result is <code class="docutils literal notranslate"><span class="pre">[2]</span></code>, and once again the result is displayed
+after the tag.</p>
+<p>Try out some other arithmetic in the Python console. Besides <code class="docutils literal notranslate"><span class="pre">+</span></code> for addition,
+the other arithmetic operators are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> for subtraction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code> for multiplication</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/</span></code> for division</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%</span></code> for remainder division (modulo)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**</span></code> for exponentiation</p></li>
+</ul>
+<p>You can combine these and use parentheses <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code> to make more complicated
+expressions, just as you would when writing a mathematical expression. When
+Python computes a result, it follows the standard order of operations:
+parentheses, exponentiation, multiplication, division, addition, and finally
+subtraction.</p>
+<p>For example, to compute the area of a triangle with base 3 and height 4, you
+can write:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.5</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can write Python expressions with any number of spaces (including none)
+around the operators and Python will still compute the result. As with writing
+text, putting spaces in your code makes it easier for you and others to read,
+so it’s good to make it a habit. Put a single space on each side of most
+operators, after commas, and after keywords. Later on, you’ll learn about other
+kinds of expressions where the spacing does matter.</p>
+<section id="variables">
+<h3><span class="section-number">1.2.1. </span>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h3>
+<p>Python and most other programming languages allow you to create named values
+called <strong>variables</strong>. You can create a variable with the assignment operator
+<code class="docutils literal notranslate"><span class="pre">=</span></code> by writing a name on the left-hand side and a value or expression on the
+right hand side. For example, to save the estimated area of the triangle in a
+variable called <code class="docutils literal notranslate"><span class="pre">area</span></code>, you can write:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In Python, variable names can contain any combination of letters, numbers, and
+underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>). Variables cannot start with a number; spaces, dots, and
+other symbols are not allowed in variable names.</p>
+<p>The main reason to use variables is to temporarily save results from
+expressions so that you can use them in other expressions. For instance, now
+you can use the <code class="docutils literal notranslate"><span class="pre">area</span></code> variable anywhere you want the area of the triangle.</p>
+<p>Notice that when you assign a result to a variable, Python doesn’t
+automatically display that result. If you want to see the result as well, you
+have to enter the variable’s name as a separate expression:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Another reason to use variables is to make an expression clearer and more
+general. For instance, you might want to compute the area of several triangles
+with different bases and heights. Then the expression <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">/</span> <span class="pre">2</span></code> is too
+specific. Instead, you can create variables <code class="docutils literal notranslate"><span class="pre">base</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>, then rewrite
+the expression as <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">*</span> <span class="pre">height</span> <span class="pre">/</span> <span class="pre">2</span></code>. This makes the expression easier to
+understand, because the reader does not have to intuit that <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code> are the
+base and height in the formula. Here’s the new code to compute and display the
+area of a triangle with base 3 and height 4:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">area</span> <span class="o">=</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">area</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now if you want to compute the area for a different triangle, all you have to
+do is change <code class="docutils literal notranslate"><span class="pre">base</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> and run the code again (Python will not update
+<code class="docutils literal notranslate"><span class="pre">area</span></code> until you do this). Writing code that’s general enough to reuse across
+multiple problems can be a big time-saver in the long run. Later on, you’ll see
+ways to make this code even easier to reuse.</p>
+</section>
+<section id="strings">
+<span id="id2"></span><h3><span class="section-number">1.2.2. </span>Strings<a class="headerlink" href="#strings" title="Link to this heading">#</a></h3>
+<p>Python treats anything inside single or double quotes as literal text rather
+than as an expression to evaluate. In programming jargon, a piece of literal
+text is called a <strong>string</strong>. You can use whichever kind of quotes you prefer,
+but the quote at the beginning of the string must match the quote at the end.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Hi&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hi&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Hello!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Numbers and strings are not the same thing, so for example Python considers <code class="docutils literal notranslate"><span class="pre">1</span></code>
+different from <code class="docutils literal notranslate"><span class="pre">&quot;1&quot;</span></code>.</p>
+</section>
+<section id="comparisons">
+<span id="id3"></span><h3><span class="section-number">1.2.3. </span>Comparisons<a class="headerlink" href="#comparisons" title="Link to this heading">#</a></h3>
+<p>Besides arithmetic, you an also use Python to compare values. Programming tasks
+often involve comparing values. Use <strong>comparison operators</strong> to do so:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Symbol</p></th>
+<th class="head text-left"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td class="text-left"><p>less than</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td class="text-left"><p>greater than</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td class="text-left"><p>less than or equal to</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td class="text-left"><p>greater than or equal to</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td class="text-left"><p>equal to</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td class="text-left"><p>not equal to</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Notice that the “equal to” operator is two equal signs. This is to distinguish
+it from the assignment <code class="docutils literal notranslate"><span class="pre">=</span></code> operator.</p>
+<p>Here are a few examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">1.5</span> <span class="o">&lt;</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;a&quot;</span> <span class="o">&gt;</span> <span class="s2">&quot;b&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">==</span> <span class="mf">3.14</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;hi&quot;</span> <span class="o">==</span> <span class="s2">&quot;hi&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you make a comparison, Python returns a <strong>Boolean value</strong>. There are only
+two possible Boolean values: <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>. Booleans are commonly used for
+expressions with yes-or-no responses.</p>
+<p>Boolean values are values, so you can use them in other computations. For
+example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="o">==</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calling-functions">
+<span id="id4"></span><h3><span class="section-number">1.2.4. </span>Calling Functions<a class="headerlink" href="#calling-functions" title="Link to this heading">#</a></h3>
+<p>Python can do a lot more than just arithmetic. Most of Python’s features are
+provided through <strong>functions</strong>, pieces of reusable code. You can think of a
+function as a machine that takes some inputs and uses them to produce some
+output. In programming jargon, the inputs to a function are called
+<strong>arguments</strong>, the output is called the <strong>return value</strong>, and using a function
+is called <strong>calling</strong> the function.</p>
+<p>To call a function, write its name followed by parentheses. Put any arguments
+to the function inside the parentheses. For example, the function to round a
+number to a specified decimal place is named <code class="docutils literal notranslate"><span class="pre">round</span></code>. So you can round the
+number <code class="docutils literal notranslate"><span class="pre">8.153</span></code> to the nearest integer with this code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">8.153</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Many functions accept more than one argument. For instance, the <code class="docutils literal notranslate"><span class="pre">round</span></code> function
+accepts two arguments: the number to round, and the number of decimal places to
+keep. When you call a function with multiple arguments, separate the arguments
+with commas. So to round <code class="docutils literal notranslate"><span class="pre">8.153</span></code> to 1 decimal place:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">8.153</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>When you call a function, Python assigns the arguments to the function’s
+<strong>parameters</strong>. Parameters are special variables that represent the inputs to a
+function and only exist while that function runs. For example, the <code class="docutils literal notranslate"><span class="pre">round</span></code>
+function has parameters <code class="docutils literal notranslate"><span class="pre">number</span></code> and <code class="docutils literal notranslate"><span class="pre">ndigits</span></code>. The next section,
+<a class="reference internal" href="#getting-help"><span class="std std-numref">Section 1.3</span></a>, explains how to look up the parameters for a function.</p>
+<p>Some parameters have <strong>default arguments</strong>. A parameter is automatically
+assigned its default argument whenever the parameter’s argument is not
+specified explicitly. As a result, assigning arguments to these parameters is
+optional. For instance, the <code class="docutils literal notranslate"><span class="pre">ndigits</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">round</span></code> has a default
+argument (round to the nearest integer), so it is okay to call <code class="docutils literal notranslate"><span class="pre">round</span></code> without
+setting <code class="docutils literal notranslate"><span class="pre">ndigits</span></code>, as in <code class="docutils literal notranslate"><span class="pre">round(8.153)</span></code>. In contrast, the <code class="docutils literal notranslate"><span class="pre">numbers</span></code> parameter
+does not have a default argument. <a class="reference internal" href="#getting-help"><span class="std std-numref">Section 1.3</span></a> explains how to look
+up the default arguments for a function.</p>
+<p>Python normally assigns arguments to parameters based on their position. The
+first argument is assigned to the function’s first parameter, the second to the
+second, and so on. So in the code above, <code class="docutils literal notranslate"><span class="pre">8.153</span></code> is assigned to <code class="docutils literal notranslate"><span class="pre">number</span></code> and
+<code class="docutils literal notranslate"><span class="pre">1</span></code> is assigned to <code class="docutils literal notranslate"><span class="pre">ndigits</span></code>.</p>
+<p>You can make Python assign arguments to parameters by name with <code class="docutils literal notranslate"><span class="pre">=</span></code>, overriding
+their positions. So two other ways you can write the call above are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="mf">8.153</span><span class="p">,</span> <span class="n">ndigits</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">number</span> <span class="o">=</span> <span class="mf">8.153</span><span class="p">,</span> <span class="n">ndigits</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">number</span> <span class="o">=</span> <span class="mf">8.153</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>All of these are equivalent. When you write code, choose whatever seems the
+clearest to you. Leaving parameter names out of calls saves typing, but
+including some or all of them can make the code easier to understand.</p>
+<p>Parameters are not regular variables, and only exist while their associated
+function runs. You can’t set them before a call, nor can you access them after
+a call. So this code causes an error:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="mf">4.755</span>
+<span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">number</span> <span class="o">=</span> <span class="mf">4.755</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">round</span><span class="p">(</span><span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: round() missing required argument &#39;number&#39; (pos 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the error message, Python says that you forgot to assign an argument to the
+parameter <code class="docutils literal notranslate"><span class="pre">number</span></code>. You can keep the variable <code class="docutils literal notranslate"><span class="pre">number</span></code> and correct the call by
+making <code class="docutils literal notranslate"><span class="pre">number</span></code> an argument (for the parameter <code class="docutils literal notranslate"><span class="pre">number</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.75
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or, written more explicitly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">round</span><span class="p">(</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span><span class="p">,</span> <span class="n">ndigits</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.75
+</pre></div>
+</div>
+</div>
+</div>
+<p>The point is that variables and parameters are distinct, even if they happen to
+have the same name. The variable <code class="docutils literal notranslate"><span class="pre">number</span></code> is not the same thing as the
+parameter <code class="docutils literal notranslate"><span class="pre">number</span></code>.</p>
+</section>
+<section id="objects-attributes">
+<span id="id5"></span><h3><span class="section-number">1.2.5. </span>Objects &amp; Attributes<a class="headerlink" href="#objects-attributes" title="Link to this heading">#</a></h3>
+<p>Python represents data as <strong>objects</strong>. Numbers, strings, data structures, and
+functions are all examples of objects.</p>
+<p>An <strong>attribute</strong> is an object attached to another object. An attribute usually
+contains metadata about the object to which it is attached. An attribute can
+also be a function, in which case it is called a <strong>method</strong>.</p>
+<p>For example, all strings have a <code class="docutils literal notranslate"><span class="pre">capitalize</span></code> method. You can access attributes
+and methods by typing a <code class="docutils literal notranslate"><span class="pre">.</span></code> after an object. Here’s the code to capitalize a
+string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;snakes everywhere!&quot;</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Snakes everywhere!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The built-in <code class="docutils literal notranslate"><span class="pre">dir</span></code> function lists all of the attributes attached to
+an object. Here are the attributes for a string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;__add__&#39;,
+ &#39;__class__&#39;,
+ &#39;__contains__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__getitem__&#39;,
+ &#39;__getnewargs__&#39;,
+ &#39;__getstate__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__iter__&#39;,
+ &#39;__le__&#39;,
+ &#39;__len__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__mod__&#39;,
+ &#39;__mul__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__rmod__&#39;,
+ &#39;__rmul__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;capitalize&#39;,
+ &#39;casefold&#39;,
+ &#39;center&#39;,
+ &#39;count&#39;,
+ &#39;encode&#39;,
+ &#39;endswith&#39;,
+ &#39;expandtabs&#39;,
+ &#39;find&#39;,
+ &#39;format&#39;,
+ &#39;format_map&#39;,
+ &#39;index&#39;,
+ &#39;isalnum&#39;,
+ &#39;isalpha&#39;,
+ &#39;isascii&#39;,
+ &#39;isdecimal&#39;,
+ &#39;isdigit&#39;,
+ &#39;isidentifier&#39;,
+ &#39;islower&#39;,
+ &#39;isnumeric&#39;,
+ &#39;isprintable&#39;,
+ &#39;isspace&#39;,
+ &#39;istitle&#39;,
+ &#39;isupper&#39;,
+ &#39;join&#39;,
+ &#39;ljust&#39;,
+ &#39;lower&#39;,
+ &#39;lstrip&#39;,
+ &#39;maketrans&#39;,
+ &#39;partition&#39;,
+ &#39;removeprefix&#39;,
+ &#39;removesuffix&#39;,
+ &#39;replace&#39;,
+ &#39;rfind&#39;,
+ &#39;rindex&#39;,
+ &#39;rjust&#39;,
+ &#39;rpartition&#39;,
+ &#39;rsplit&#39;,
+ &#39;rstrip&#39;,
+ &#39;split&#39;,
+ &#39;splitlines&#39;,
+ &#39;startswith&#39;,
+ &#39;strip&#39;,
+ &#39;swapcase&#39;,
+ &#39;title&#39;,
+ &#39;translate&#39;,
+ &#39;upper&#39;,
+ &#39;zfill&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Attributes that begin with two underscores <code class="docutils literal notranslate"><span class="pre">__</span></code> are used by Python internally
+and are usually not intended to be accessed directly.</p>
+</section>
+</section>
+<section id="getting-help">
+<span id="id6"></span><h2><span class="section-number">1.3. </span>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading">#</a></h2>
+<p>Learning and using a language is hard, so it’s important to know how to get
+help. The first place to look for help is Python’s built-in documentation. In
+the console, you can access the help pages with the <code class="docutils literal notranslate"><span class="pre">help</span></code> function.</p>
+<p>There are help pages for all of Python’s built-in functions, usually with the
+same name as the function itself. So the code to open the help page for the
+<code class="docutils literal notranslate"><span class="pre">round</span></code> function is:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">round</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function round in module builtins:
+
+round(number, ndigits=None)
+    Round a number to a given precision in decimal digits.
+
+    The return value is an integer if ndigits is omitted or None.  Otherwise
+    the return value has the same type as the number.  ndigits may be negative.
+</pre></div>
+</div>
+</div>
+</div>
+<p>For functions, help pages usually include a brief description and a list of
+parameters and default arguments. For instance, the help page for <code class="docutils literal notranslate"><span class="pre">round</span></code> shows
+that there are two parameters <code class="docutils literal notranslate"><span class="pre">number</span></code> and <code class="docutils literal notranslate"><span class="pre">ndigits</span></code>. It also says that
+<code class="docutils literal notranslate"><span class="pre">ndigits=None</span></code>, meaning the default argument for <code class="docutils literal notranslate"><span class="pre">ndigits</span></code> is the special
+<code class="docutils literal notranslate"><span class="pre">None</span></code> value, which you’ll learn more about on day 2.</p>
+<p>There are also help pages for other topics, such as built-in operators and
+modules (you’ll learn more about modules in <a class="reference internal" href="#modules-packages"><span class="std std-numref">Section 1.4</span></a>). To
+look up the help page for an operator, put the operator’s name in single or
+double quotes. For example, this code opens the help page for the arithmetic
+operators:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operator precedence
+*******************
+
+The following table summarizes the operator precedence in Python, from
+highest precedence (most binding) to lowest precedence (least
+binding).  Operators in the same box have the same precedence.  Unless
+the syntax is explicitly given, operators are binary.  Operators in
+the same box group left to right (except for exponentiation and
+conditional expressions, which group from right to left).
+
+Note that comparisons, membership tests, and identity tests, all have
+the same precedence and have a left-to-right chaining feature as
+described in the Comparisons section.
+
++-------------------------------------------------+---------------------------------------+
+| Operator                                        | Description                           |
+|=================================================|=======================================|
+| &quot;(expressions...)&quot;,  &quot;[expressions...]&quot;, &quot;{key: | Binding or parenthesized expression,  |
+| value...}&quot;, &quot;{expressions...}&quot;                  | list display, dictionary display, set |
+|                                                 | display                               |
++-------------------------------------------------+---------------------------------------+
+| &quot;x[index]&quot;, &quot;x[index:index]&quot;,                   | Subscription, slicing, call,          |
+| &quot;x(arguments...)&quot;, &quot;x.attribute&quot;                | attribute reference                   |
++-------------------------------------------------+---------------------------------------+
+| &quot;await x&quot;                                       | Await expression                      |
++-------------------------------------------------+---------------------------------------+
+| &quot;**&quot;                                            | Exponentiation [5]                    |
++-------------------------------------------------+---------------------------------------+
+| &quot;+x&quot;, &quot;-x&quot;, &quot;~x&quot;                                | Positive, negative, bitwise NOT       |
++-------------------------------------------------+---------------------------------------+
+| &quot;*&quot;, &quot;@&quot;, &quot;/&quot;, &quot;//&quot;, &quot;%&quot;                        | Multiplication, matrix                |
+|                                                 | multiplication, division, floor       |
+|                                                 | division, remainder [6]               |
++-------------------------------------------------+---------------------------------------+
+| &quot;+&quot;, &quot;-&quot;                                        | Addition and subtraction              |
++-------------------------------------------------+---------------------------------------+
+| &quot;&lt;&lt;&quot;, &quot;&gt;&gt;&quot;                                      | Shifts                                |
++-------------------------------------------------+---------------------------------------+
+| &quot;&amp;&quot;                                             | Bitwise AND                           |
++-------------------------------------------------+---------------------------------------+
+| &quot;^&quot;                                             | Bitwise XOR                           |
++-------------------------------------------------+---------------------------------------+
+| &quot;|&quot;                                             | Bitwise OR                            |
++-------------------------------------------------+---------------------------------------+
+| &quot;in&quot;, &quot;not in&quot;, &quot;is&quot;, &quot;is not&quot;, &quot;&lt;&quot;, &quot;&lt;=&quot;, &quot;&gt;&quot;, | Comparisons, including membership     |
+| &quot;&gt;=&quot;, &quot;!=&quot;, &quot;==&quot;                                | tests and identity tests              |
++-------------------------------------------------+---------------------------------------+
+| &quot;not x&quot;                                         | Boolean NOT                           |
++-------------------------------------------------+---------------------------------------+
+| &quot;and&quot;                                           | Boolean AND                           |
++-------------------------------------------------+---------------------------------------+
+| &quot;or&quot;                                            | Boolean OR                            |
++-------------------------------------------------+---------------------------------------+
+| &quot;if&quot; – &quot;else&quot;                                   | Conditional expression                |
++-------------------------------------------------+---------------------------------------+
+| &quot;lambda&quot;                                        | Lambda expression                     |
++-------------------------------------------------+---------------------------------------+
+| &quot;:=&quot;                                            | Assignment expression                 |
++-------------------------------------------------+---------------------------------------+
+
+-[ Footnotes ]-
+
+[1] While &quot;abs(x%y) &lt; abs(y)&quot; is true mathematically, for floats it
+    may not be true numerically due to roundoff.  For example, and
+    assuming a platform on which a Python float is an IEEE 754 double-
+    precision number, in order that &quot;-1e-100 % 1e100&quot; have the same
+    sign as &quot;1e100&quot;, the computed result is &quot;-1e-100 + 1e100&quot;, which
+    is numerically exactly equal to &quot;1e100&quot;.  The function
+    &quot;math.fmod()&quot; returns a result whose sign matches the sign of the
+    first argument instead, and so returns &quot;-1e-100&quot; in this case.
+    Which approach is more appropriate depends on the application.
+
+[2] If x is very close to an exact integer multiple of y, it’s
+    possible for &quot;x//y&quot; to be one larger than &quot;(x-x%y)//y&quot; due to
+    rounding.  In such cases, Python returns the latter result, in
+    order to preserve that &quot;divmod(x,y)[0] * y + x % y&quot; be very close
+    to &quot;x&quot;.
+
+[3] The Unicode standard distinguishes between *code points* (e.g.
+    U+0041) and *abstract characters* (e.g. “LATIN CAPITAL LETTER A”).
+    While most abstract characters in Unicode are only represented
+    using one code point, there is a number of abstract characters
+    that can in addition be represented using a sequence of more than
+    one code point.  For example, the abstract character “LATIN
+    CAPITAL LETTER C WITH CEDILLA” can be represented as a single
+    *precomposed character* at code position U+00C7, or as a sequence
+    of a *base character* at code position U+0043 (LATIN CAPITAL
+    LETTER C), followed by a *combining character* at code position
+    U+0327 (COMBINING CEDILLA).
+
+    The comparison operators on strings compare at the level of
+    Unicode code points. This may be counter-intuitive to humans.  For
+    example, &quot;&quot;\u00C7&quot; == &quot;\u0043\u0327&quot;&quot; is &quot;False&quot;, even though both
+    strings represent the same abstract character “LATIN CAPITAL
+    LETTER C WITH CEDILLA”.
+
+    To compare strings at the level of abstract characters (that is,
+    in a way intuitive to humans), use &quot;unicodedata.normalize()&quot;.
+
+[4] Due to automatic garbage-collection, free lists, and the dynamic
+    nature of descriptors, you may notice seemingly unusual behaviour
+    in certain uses of the &quot;is&quot; operator, like those involving
+    comparisons between instance methods, or constants.  Check their
+    documentation for more info.
+
+[5] The power operator &quot;**&quot; binds less tightly than an arithmetic or
+    bitwise unary operator on its right, that is, &quot;2**-1&quot; is &quot;0.5&quot;.
+
+[6] The &quot;%&quot; operator is also used for string formatting; the same
+    precedence applies.
+
+Related help topics: lambda, or, and, not, in, is, BOOLEAN, COMPARISON,
+BITWISE, SHIFTING, BINARY, FORMATTING, POWER, UNARY, ATTRIBUTES,
+SUBSCRIPTS, SLICINGS, CALLS, TUPLES, LISTS, DICTIONARIES
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s always okay to put quotes around the name of the page when you use <code class="docutils literal notranslate"><span class="pre">help</span></code>,
+but they’re only required if the name contains non-alphabetic characters. So
+<code class="docutils literal notranslate"><span class="pre">help(abs)</span></code>, <code class="docutils literal notranslate"><span class="pre">help('abs')</span></code>, and <code class="docutils literal notranslate"><span class="pre">help(&quot;abs&quot;)</span></code> all open the documentation for
+<code class="docutils literal notranslate"><span class="pre">abs</span></code>, the absolute value function.</p>
+<p>You can also browse the Python documentation <a class="reference external" href="https://docs.python.org/3/">online</a>. This is a good
+way to explore the many different functions and data structures built into
+Python. If you do use the online documentation, make sure to use the
+documentation for the same version of Python as the one you have. Python
+displays the version each time you open a new console, and the online
+documentation shows the version in the upper left corner.</p>
+<p>Sometimes you might not know the name of the help page you want to look up. In
+that case it’s best to use an online search engine. When you search for help
+with Python online, include “Python” as a search term.</p>
+<section id="when-something-goes-wrong">
+<h3><span class="section-number">1.3.1. </span>When Something Goes Wrong<a class="headerlink" href="#when-something-goes-wrong" title="Link to this heading">#</a></h3>
+<p>As a programmer, sooner or later you’ll run some code and get an error message
+or result you didn’t expect. Don’t panic! Even experienced programmers make
+mistakes regularly, so learning how to diagnose and fix problems is vital.</p>
+<p>Try going through these steps:</p>
+<ol class="arabic simple">
+<li><p>If Python printed a warning or error message, read it! If you’re not sure
+what the message means, try searching for it online.</p></li>
+<li><p>Check your code for typographical errors, including incorrect
+capitalization, whitespace, and missing or extra commas, quotes, and
+parentheses.</p></li>
+<li><p>Test your code one line at a time, starting from the beginning. After each
+line that assigns a variable, check that the value of the variable is what
+you expect. Try to determine the exact line where the problem originates
+(which may differ from the line that emits an error!).</p></li>
+</ol>
+<p>If none of these steps help, try asking online. <a class="reference external" href="https://stackoverflow.com/">Stack Overflow</a> is a
+popular question and answer website for programmers. Before posting, make sure
+to read about <a class="reference external" href="https://stackoverflow.com/help/how-to-ask">how to ask a good question</a>.</p>
+</section>
+</section>
+<section id="packages">
+<span id="modules-packages"></span><h2><span class="section-number">1.4. </span>Packages<a class="headerlink" href="#packages" title="Link to this heading">#</a></h2>
+<p>A <strong>package</strong> is a reusable bundle of code. Packages usually include
+documentation, and can also contain examples and data sets. Most packages are
+developed by members of the Python community, so quality varies.</p>
+<section id="the-scipy-ecosystem">
+<h3><span class="section-number">1.4.1. </span>The SciPy Ecosystem<a class="headerlink" href="#the-scipy-ecosystem" title="Link to this heading">#</a></h3>
+<p>The SciPy ecosystem is a collection of scientific computing software for Python
+introduced in 2001. SciPy is divided into several different Python packages.</p>
+<p>Some of the most important packages in the SciPy ecosystem are:</p>
+<ul class="simple">
+<li><p><strong>NumPy</strong>, which provides an n-dimensional array data structure and a variety
+of math functions</p></li>
+<li><p><strong>SciPy</strong>, which provides additional math functions</p></li>
+<li><p><strong>Pandas</strong>, which provides DataFrames</p></li>
+<li><p><strong>IPython</strong>, which makes it possible to run Python code in Jupyter</p></li>
+<li><p><strong>Matplotlib</strong>, which provides data visualization functions</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All of these packages are included with Anaconda. <a class="reference internal" href="03_exploring-data.html#installing-packages"><span class="std std-numref">Section 3.5</span></a>
+describes how to install other packages.</p>
+</div>
+<p>You’ll learn much more about NumPy, SciPy, and Pandas as you go through this
+reader. By using JupyterLab, you’ve already used IPython. You’ll use Matplotlib
+indirectly later on, when you learn about visualization.</p>
+</section>
+<section id="modules">
+<span id="id7"></span><h3><span class="section-number">1.4.2. </span>Modules<a class="headerlink" href="#modules" title="Link to this heading">#</a></h3>
+<p>In Python, packages are further subdivided into <strong>modules</strong>, collections of
+related functions and data structures. The best way to learn about the modules
+provided by a package is to read the package’s documentation. There are also
+many modules that are built into Python, to provide extra features.</p>
+<p>Most packages have a main module with the same name as the package. So the
+NumPy package provides a module called <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, and the Pandas package provides
+a module called <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. You can use the <code class="docutils literal notranslate"><span class="pre">import</span></code> command to load a module
+from an installed package. Anaconda installs NumPy by default, so try loading
+the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> module:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A handful of modules print out a message when loaded, but the vast majority do
+not. Thus you can assume the <code class="docutils literal notranslate"><span class="pre">import</span></code> command was successful if nothing is
+printed. If something goes wrong while loading a module, Python will print out
+an error message explaining the problem.</p>
+<p>Once a module is loaded, you can access its functions by typing the name of the
+module, a dot <code class="docutils literal notranslate"><span class="pre">.</span></code>, and then the name of the function. For instance, to use the
+<code class="docutils literal notranslate"><span class="pre">round</span></code> function provided by NumPy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">3.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Typing the full name of a module is inconvenient, so the <code class="docutils literal notranslate"><span class="pre">import</span></code> command
+allows you to define an alias when you import a module. For popular packages,
+there’s usually a conventional alias for the main module. The conventional
+alias for <code class="docutils literal notranslate"><span class="pre">numpy</span></code> is <code class="docutils literal notranslate"><span class="pre">np</span></code>. Using the conventional alias is a good habit,
+because it makes it easier for other people to understand your code. Use the
+<code class="docutils literal notranslate"><span class="pre">as</span></code> keyword to set an alias when you import a module:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now you can call NumPy functions by typing <code class="docutils literal notranslate"><span class="pre">np</span></code> instead of <code class="docutils literal notranslate"><span class="pre">numpy</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">3.4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that NumPy’s <code class="docutils literal notranslate"><span class="pre">np.round</span></code> is an entirely different function than Python’s
+built-in <code class="docutils literal notranslate"><span class="pre">round</span></code> function, even though they do the same thing. NumPy’s math
+functions are generally faster, more precise, and more convenient than Python’s
+built-in math functions.</p>
+</section>
+</section>
+<section id="file-systems">
+<h2><span class="section-number">1.5. </span>File Systems<a class="headerlink" href="#file-systems" title="Link to this heading">#</a></h2>
+<p>Most of the time, you won’t just write code directly into the Python console.
+Reproducibility and reusability are important benefits of Python over
+point-and-click software, and in order to realize these, you have to save your
+code to your computer’s hard drive.</p>
+<p>This section begins with a review of how files on a computer work. You’ll need
+to understand that before you can save your code, and it will also be important
+later on for loading data sets.</p>
+<p>Your computer’s <strong>file system</strong> consists of <strong>files</strong> (chunks of data) and
+<strong>directories</strong> (or “folders”) to organize those files. For instance, the file
+system on a computer shared by <a class="reference external" href="https://en.wikipedia.org/wiki/Ada_Lovelace">Ada</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Charles_Babbage">Charles</a>, two pioneers of
+computing, might look like this:</p>
+<a class="reference internal image-reference" href="../_images/filesystem.png"><img alt="An example of a file system." src="../_images/filesystem.png" style="width: 50%;" /></a>
+<p>Don’t worry if your file system looks a bit different from the picture.</p>
+<p>File systems have a tree-like structure, with a top-level directory called the
+<em>root directory</em>. On Ada and Charles’ computer, the root is called <code class="docutils literal notranslate"><span class="pre">/</span></code>, which
+is also what it’s called on all macOS and Linux computers. On Windows, the root
+is usually called <code class="docutils literal notranslate"><span class="pre">C:/</span></code>, but sometimes other letters, like <code class="docutils literal notranslate"><span class="pre">D:/</span></code>, are also used
+depending on the computer’s hardware.</p>
+<p>A <em>path</em> is a list of directories that leads to a specific file or directory on
+a file system (imagine giving directions to someone as they walk through the
+file system). Use forward slashes <code class="docutils literal notranslate"><span class="pre">/</span></code> to separate the directories in a path,
+rather than commas or spaces. The root directory includes a forward slash as
+part of its name, and doesn’t need an extra one.</p>
+<p>For example, suppose Ada wants to write a path to the file <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>. She can
+write the path like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">ada</span><span class="o">/</span><span class="n">cats</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>You can read this path from left-to-right as, “Starting from the root
+directory, go to the <code class="docutils literal notranslate"><span class="pre">Users</span></code> directory, then from there go to the <code class="docutils literal notranslate"><span class="pre">ada</span></code>
+directory, and from there go to the file <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>.” Alternatively, you can
+read the path from right-to-left as, “The file <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code> inside of the <code class="docutils literal notranslate"><span class="pre">ada</span></code>
+directory, which is inside of the <code class="docutils literal notranslate"><span class="pre">Users</span></code> directory, which is in the root
+directory.”</p>
+<p>As another example, suppose Charles wants a path to the <code class="docutils literal notranslate"><span class="pre">Programs</span></code> directory.
+He can write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Programs</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">/</span></code> at the end of this path is reminder that <code class="docutils literal notranslate"><span class="pre">Programs</span></code> is a directory, not
+a file. Charles could also write the path like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Programs</span>
+</pre></div>
+</div>
+<p>This is still correct, but it’s not as obvious that <code class="docutils literal notranslate"><span class="pre">Programs</span></code> is a directory.
+In other words, when a path leads to a directory, including a <em>trailing slash</em>
+is optional, but makes the meaning of the path clearer. Paths that lead to
+files never have a trailing slash.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>On Windows computers, the components of a path are usually separated with
+backslashes <code class="docutils literal notranslate"><span class="pre">\</span></code> instead of forward slashes <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p>
+<p>Regardless of the operating system, most Python functions accept and understand
+paths separated with forward slashes as arguments. In other words, you can use
+paths separated with forward slashes in your Python code, even on Windows. This
+is especially convenient when you want to share code with other people, because
+they might use a different operating system than you.</p>
+<p>On Windows, most Python functions <em>return</em> paths separated by backslashes. Be
+careful of this if your code gets a path by calling a function and then edits
+it (for example, by calling <code class="docutils literal notranslate"><span class="pre">os.getcwd</span></code> and then splitting the path into its
+components). The separator will be a backslash on Windows, but a forward slash
+on all other operating systems. Python’s built-in <a class="reference external" href="https://docs.python.org/3/library/pathlib.html">pathlib</a> module provides
+helper functions to edit paths that account for differences between operating
+systems.</p>
+</div>
+<section id="absolute-relative-paths">
+<span id="id8"></span><h3><span class="section-number">1.5.1. </span>Absolute &amp; Relative Paths<a class="headerlink" href="#absolute-relative-paths" title="Link to this heading">#</a></h3>
+<p>A path that starts from the root directory, like all of the ones we’ve seen so
+far, is called an <strong>absolute path</strong>. The path is “absolute” because it
+unambiguously describes where a file or directory is located. The downside is
+that absolute paths usually don’t work well if you share your code.</p>
+<p>For example, suppose Ada uses the path <code class="docutils literal notranslate"><span class="pre">/Programs/ada/cats.csv</span></code> to load the
+<code class="docutils literal notranslate"><span class="pre">cats.csv</span></code> file in her code. If she shares her code with another pioneer of
+computing, say <a class="reference external" href="https://en.wikipedia.org/wiki/Gladys_West">Gladys</a>, who also has a copy of <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>, it might
+not work. Even though Gladys has the file, she might not have it in a directory
+called <code class="docutils literal notranslate"><span class="pre">ada</span></code>, and might not even have a directory called <code class="docutils literal notranslate"><span class="pre">ada</span></code> on her computer.
+Because Ada used an absolute path, her code works on her own computer, but
+isn’t portable to others.</p>
+<p>On the other hand, a <strong>relative path</strong> is one that doesn’t start from the root
+directory. The path is “relative” to an unspecified starting point, which
+usually depends on the context.</p>
+<p>For instance, suppose Ada’s code is saved in the file <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code> (more
+about <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files in <a class="reference internal" href="#jupyter-notebooks"><span class="std std-numref">Section 1.5.2.1</span></a>), which is in the same
+directory as <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code> on her computer. Then instead of an absolute path, she
+can use a relative path in her code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cats</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+<p>The context is the location of <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code>, the file that contains the
+code. In other words, the starting point on Ada’s computer is the <code class="docutils literal notranslate"><span class="pre">ada</span></code>
+directory. On other computers, the starting point will be different, depending
+on where the code is stored.</p>
+<p>Now suppose Ada sends her corrected code in <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code> to Gladys, and
+tells Gladys to put it in the same directory as <code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>. Since the path
+<code class="docutils literal notranslate"><span class="pre">cats.csv</span></code> is relative, the code will still work on Gladys’ computer, as long
+as the two files are in the same directory. The name of that directory and its
+location in the file system don’t matter, and don’t have to be the same as on
+Ada’s computer. Gladys can put the files in a directory
+<code class="docutils literal notranslate"><span class="pre">/Users/gladys/from_ada/</span></code> and the path (and code) will still work.</p>
+<p>Relative paths can include directories. For example, suppose that Charles wants
+to write a relative path from the <code class="docutils literal notranslate"><span class="pre">Users</span></code> directory to a cool selfie he took.
+Then he can write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">charles</span><span class="o">/</span><span class="n">cool_hair_selfie</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>You can read this path as, “Starting from wherever you are, go to the <code class="docutils literal notranslate"><span class="pre">charles</span></code>
+directory, and from there go to the <code class="docutils literal notranslate"><span class="pre">cool_hair_selfie.jpg</span></code> file.” In other
+words, the relative path depends on the context of the code or program that
+uses it.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When use you paths in code, they should almost always be relative paths. This
+ensures that the code is portable to other computers, which is an important
+aspect of reproducibility. Another benefit is that relative paths tend to be
+shorter, making your code easier to read (and write).</p>
+</div>
+<p>When you write paths, there are three shortcuts you can use. These are most
+useful in relative paths, but also work in absolute paths:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code> means the current directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span></code> means the directory above the current directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">~</span></code> means the <em>home directory</em>. Each user has their own home directory, whose
+location depends on the operating system and their username. Home directories
+are typically found inside <code class="docutils literal notranslate"><span class="pre">C:/Users/</span></code> on Windows, <code class="docutils literal notranslate"><span class="pre">/Users/</span></code> on macOS, and
+<code class="docutils literal notranslate"><span class="pre">/home/</span></code> on Linux.</p></li>
+</ul>
+<p>As an example, suppose Ada wants to write a (relative) path from the <code class="docutils literal notranslate"><span class="pre">ada</span></code>
+directory to Charles’ cool selfie. Using these shortcuts, she can write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../</span><span class="n">charles</span><span class="o">/</span><span class="n">cool_hair_selfie</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>Read this as, “Starting from wherever you are, go up one directory, then go to
+the <code class="docutils literal notranslate"><span class="pre">charles</span></code> directory, and then go to the <code class="docutils literal notranslate"><span class="pre">cool_hair_selfie.jpg</span></code> file.” Since
+<code class="docutils literal notranslate"><span class="pre">/Users/ada</span></code> is Ada’s home directory, she could also write the path as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/../</span><span class="n">charles</span><span class="o">/</span><span class="n">cool_hair_selfie</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>This path has the same effect, but the meaning is slightly different. You can
+read it as “Starting from your home directory, go up one directory, then go to
+the <code class="docutils literal notranslate"><span class="pre">charles</span></code> directory, and then go to the <code class="docutils literal notranslate"><span class="pre">cool_hair_selfie.jpg</span></code> file.”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">..</span></code> and <code class="docutils literal notranslate"><span class="pre">~</span></code> shortcut are frequently used and worth remembering. The <code class="docutils literal notranslate"><span class="pre">.</span></code>
+shortcut is included here in case you see it in someone else’s code. Since it
+means the current directory, a path like <code class="docutils literal notranslate"><span class="pre">./cats.csv</span></code> is identical to
+<code class="docutils literal notranslate"><span class="pre">cats.csv</span></code>, and the latter is preferable for being simpler. There are a few
+specific situations where <code class="docutils literal notranslate"><span class="pre">.</span></code> is necessary, but they fall outside the scope of
+this text.</p>
+</section>
+<section id="saving-code">
+<h3><span class="section-number">1.5.2. </span>Saving Code<a class="headerlink" href="#saving-code" title="Link to this heading">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When you start a new project, it’s a good idea to create a specific directory
+for all of the project’s files. If you’re using Python, you should also store
+your Python code in that directory. As you work, periodically save your code.</p>
+</div>
+<p>The most common way to save Python code is as a <strong>Python script</strong> with the
+extension <code class="docutils literal notranslate"><span class="pre">.py</span></code> (see <a class="reference internal" href="#reading-files"><span class="std std-numref">Section 1.6</span></a> for more about extensions).
+Editing a script is similar to editing any other text document. You can write,
+delete, copy, cut, and paste code.</p>
+<p>You can create a new Python script in JupyterLab with this menu option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="o">-&gt;</span> <span class="n">New</span> <span class="o">-&gt;</span> <span class="n">Python</span> <span class="n">File</span>
+</pre></div>
+</div>
+<p>Every line in a Python script must be valid Python code. Anything else you want
+to write in the script (notes, documentation, etc.) must be placed in a
+<strong>comment</strong>. In Python, comments begin with <code class="docutils literal notranslate"><span class="pre">#</span></code> and extend to the end of the
+line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a comment.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python will ignore comments when you run your code.</p>
+<p>Arrange your code in the order of the steps to solve the problem, even if you
+write some parts before others. Comment out or delete any lines of code that
+you try but ultimately decide you don’t need. Make sure to save the file
+periodically so that you don’t lose your work. Following these guidelines will
+help you stay organized and make it easier to share your code with others
+later.</p>
+<section id="jupyter-notebooks">
+<span id="id9"></span><h4><span class="section-number">1.5.2.1. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Link to this heading">#</a></h4>
+<p>For data science tasks, it is also common to use a <a class="reference external" href="https://jupyter.org/"><strong>Jupyter
+notebook</strong></a> with extension <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> to store code. In addition to
+Python code, Jupyter notebooks have full support for formatted text, images,
+and code from other programming languages such as Julia and R. The tradeoff is
+that Jupyter notebooks can only be viewed in a web browser.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>“Jupyter” is short for “Julia, Python, Text, and R.”</p>
+</div>
+<p>Jupyter notebooks are more convenient than Python scripts for interactive work
+such as data analysis and learning or experimenting with the language. On the
+other hand, Python scripts are more appropriate for long-running code that does
+not require user interaction (such as web scrapers or scientific simulations)
+and for developing packages and software. The remainder of this reader assumes
+you’re using a Jupyter notebook rather than the Python console or a Python
+script, unless otherwise noted.</p>
+<p>You can create a new Jupyter notebook in JupyterLab with this menu option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="o">-&gt;</span> <span class="n">New</span> <span class="o">-&gt;</span> <span class="n">Notebook</span>
+</pre></div>
+</div>
+<p>JupyterLab will prompt you to select a <strong>kernel</strong> for the notebook. The kernel
+is the software used to run code in the notebook. For a notebook that will
+contain Python code, you should choose a Python kernel.</p>
+<p>After you select the kernel, you’ll see a pane like this:</p>
+<img alt="A Jupyter notebook open in JupyterLab." src="../_images/jupyterlab_notebook.png" />
+<p>Jupyter notebooks are subdivided into <strong>cells</strong>. You can create as many cells
+as you like, but each cell can only contain one kind of content, usually code
+or text.</p>
+<p>New cells are code cells by default. You can run a code cell by clicking on the
+cell and pressing <code class="docutils literal notranslate"><span class="pre">Shift</span></code>-<code class="docutils literal notranslate"><span class="pre">Enter</span></code>. The notebook will display the result and
+create a new empty code cell below the result:</p>
+<img alt="A Jupyter notebook open in JupyterLab, showing an evaluated code cell." src="../_images/jupyterlab_notebook_prod.png" />
+<p>You can convert a code cell to a text cell by clicking on the cell and
+selecting the “Markdown” option from the cell type dropdown menu:</p>
+<img alt="" src="../_images/jupyterlab_notebook_cell_menu.png" />
+<p>Markdown is a simple language you can use to add formatting to your text. For
+example, surrounding a word with asterisks, as in <code class="docutils literal notranslate"><span class="pre">Let</span> <span class="pre">*sleeping*</span> <span class="pre">dogs</span> <span class="pre">lie</span></code>,
+makes the surrounded word italic. You can find a short, interactive tutorial
+about Markdown <a class="reference external" href="https://www.markdowntutorial.com/">here</a>. If you “run” a text cell by pressing
+<code class="docutils literal notranslate"><span class="pre">Shift</span></code>-<code class="docutils literal notranslate"><span class="pre">Enter</span></code>, the notebook will display the text with any formatting you
+added.</p>
+</section>
+</section>
+<section id="the-working-directory">
+<h3><span class="section-number">1.5.3. </span>The Working Directory<a class="headerlink" href="#the-working-directory" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="#absolute-relative-paths"><span class="std std-numref">Section 1.5.1</span></a> explained that relative paths have a
+starting point that depends on the context where the path is used. The <em>working
+directory</em> is the starting point Python uses for relative paths. Think of the
+working directory as the directory Python is currently “at” or watching.</p>
+<p>Python’s built-in <code class="docutils literal notranslate"><span class="pre">os</span></code> module provides functions to manipulate the working
+directory. The function <code class="docutils literal notranslate"><span class="pre">os.getcwd</span></code> returns the absolute path for the current
+working directory, as a string. It doesn’t require any arguments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/elisehellwig/Teaching/workshop_python_basics&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>On your computer, the output from <code class="docutils literal notranslate"><span class="pre">os.getcwd</span></code> will likely be different. This is
+a very useful function for getting your bearings when you write relative paths.
+If you write a relative path and it doesn’t work as expected, the first thing
+to do is check the working directory.</p>
+<p>The related <code class="docutils literal notranslate"><span class="pre">os.chdir</span></code> function changes the working directory. It takes one
+argument: a path to the new working directory. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now check the working directory.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/elisehellwig/Teaching&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generally, you should avoid using calls to <code class="docutils literal notranslate"><span class="pre">os.chdir</span></code> in your Jupyter notebooks
+and Python scripts. Calling <code class="docutils literal notranslate"><span class="pre">os.chdir</span></code> makes your code more difficult to
+understand, and can always be avoided by using appropriate relative paths. If
+you call <code class="docutils literal notranslate"><span class="pre">os.chdir</span></code> with an absolute path, it also makes your code less
+portable to other computers. It’s fine to use <code class="docutils literal notranslate"><span class="pre">os.chdir</span></code> interactively (in the
+Python console), but avoid making your saved code dependent on it.</p>
+<p>Another function that’s useful for dealing with the working directory and file
+system is <code class="docutils literal notranslate"><span class="pre">os.listdir</span></code>. The <code class="docutils literal notranslate"><span class="pre">os.listdir</span></code> function returns the names of all of
+the files and directories inside of a directory. It accepts a path to a
+directory as an argument, or assumes the working directory if you don’t pass a
+path. For instance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List files and directories in /home/.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/home/&quot;</span><span class="p">)</span>
+
+<span class="c1"># List files and directories in the working directory.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;python_basics&#39;,
+ &#39;template_quarto_presentation&#39;,
+ &#39;.DS_Store&#39;,
+ &#39;files_in_r&#39;,
+ &#39;ist8x_instructors&#39;,
+ &#39;workshop_intro_to_databases&#39;,
+ &#39;workshop_intro_to_sql&#39;,
+ &#39;workshop_python_basics&#39;,
+ &#39;issue_test&#39;,
+ &#39;ist8x&#39;,
+ &#39;adventures_in_data_science&#39;,
+ &#39;REC_LETTERS&#39;,
+ &#39;DRUG&#39;,
+ &#39;template_workshop&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>As usual, since you have a different computer, you’re likely to see different
+output if you run this code. If you call <code class="docutils literal notranslate"><span class="pre">os.listdir</span></code> with an invalid path or
+an empty directory, Python raises a <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code>:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/this/path/is/fake/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;/this/path/is/fake/&quot;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/this/path/is/fake/&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="reading-files">
+<span id="id10"></span><h2><span class="section-number">1.6. </span>Reading Files<a class="headerlink" href="#reading-files" title="Link to this heading">#</a></h2>
+<p>The first step in most data analyses is loading the data. The Pandas package
+provides functions to read a variety of data formats. In order to know which
+function to use, you need to identify the data’s file format.</p>
+<p>Most of the time, you can guess the format of a file by looking at its
+<strong>extension</strong>, the characters (usually three) after the last dot <code class="docutils literal notranslate"><span class="pre">.</span></code> in the
+filename. For example, the extension <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> or <code class="docutils literal notranslate"><span class="pre">.jpeg</span></code> indicates a <a class="reference external" href="https://en.wikipedia.org/wiki/JPEG">JPEG image
+file</a>. Some operating systems hide extensions by default, but you can find
+instructions to change this setting online by searching for “show file
+extensions” and your operating system’s name. The extension is just part of the
+file’s name, so it should be taken as a hint about the file’s format rather
+than a guarantee.</p>
+<p>The table below shows several formats that are frequently used to distribute
+data. Although Pandas provides reader functions for all of these, the lxml
+package and Python’s built-in json module are better suited to the last two.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Name</p></th>
+<th class="head text-left"><p>Extension</p></th>
+<th class="head text-left"><p>Tabular?</p></th>
+<th class="head text-left"><p>Text?</p></th>
+<th class="head text-left"><p>Pandas Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Comma-separated Values</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">.csv</span></code></p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">read_csv</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Tab-separated Values</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">.tsv</span></code></p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">read_table</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Fixed-width File</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">.fwf</span></code></p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">read_fwf</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Microsoft Excel</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">.xls</span></code>, <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code></p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">read_excel</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><a class="reference external" href="https://arrow.apache.org/">Apache Arrow</a></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">.feather</span></code></p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">read_feather</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Extensible Markup Language</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">.xml</span></code></p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Use lxml package</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>JavaScript Object Notation</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">.json</span></code></p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Use json module</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Arbitrary File</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Use io module</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A <strong>tabular</strong> data set is one that’s structured as a table, with rows and
+columns. We’ll focus on tabular data sets for most of this reader, since
+they’re easier to get started with. Here’s an example of a tabular data set:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Fruit</p></th>
+<th class="head text-right"><p>Quantity</p></th>
+<th class="head text-right"><p>Price</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>apple</p></td>
+<td class="text-right"><p>32</p></td>
+<td class="text-right"><p>1.49</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>banana</p></td>
+<td class="text-right"><p>541</p></td>
+<td class="text-right"><p>0.79</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>pear</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>1.99</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A <strong>text</strong> file is one that contains human-readable lines of text. You can
+check this by opening the file with a text editor such as Microsoft Notepad or
+macOS TextEdit. Many file formats use text in order to make the format easier
+to work with.</p>
+<p>For instance, a <strong>comma-separated values</strong> (CSV) file records a tabular data
+using one line per row, with commas separating columns. If you store the table
+above in a CSV file and open the file in a text editor, here’s what you’ll see:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Fruit</span><span class="p">,</span><span class="n">Quantity</span><span class="p">,</span><span class="n">Price</span>
+<span class="n">apple</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mf">1.49</span>
+<span class="n">banana</span><span class="p">,</span><span class="mi">541</span><span class="p">,</span><span class="mf">0.79</span>
+<span class="n">pear</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">1.99</span>
+</pre></div>
+</div>
+<p>A <strong>binary</strong> file is one that’s not human-readable. You can’t just read off the
+data if you open a binary file in a text editor, but they have a number of
+other advantages. Compared to text files, binary files are often faster to read
+and take up less storage space (bytes).</p>
+<section id="hello-data">
+<h3><span class="section-number">1.6.1. </span>Hello, Data!<a class="headerlink" href="#hello-data" title="Link to this heading">#</a></h3>
+<p>Over the next few sections, you’ll explore data about banknotes and the people
+depicted on them. This data is derived from a data set compiled by <a class="reference external" href="https://pudding.cool/">The
+Pudding</a>, which features <a class="reference external" href="https://pudding.cool/2022/04/banknotes/">an article</a> about it. To download the
+version you’ll need for this workshop, <a class="reference external" href="https://github.com/ucdavisdatalab/workshop_python_basics/blob/main/data/banknotes.csv">click here</a> (you’ll need to click
+the “Download raw file” button).</p>
+<p>The data set is a file called <code class="docutils literal notranslate"><span class="pre">banknotes.csv</span></code>, which suggests it’s a CSV file.
+In this case, the extension is correct, so you can read the file with Pandas’
+<code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function. The first argument is the path to where you saved the
+file, which may be different on your computer. The <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function returns
+the data set, but Python won’t keep the data in memory unless you assign the
+returned result to a variable:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">banknotes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/banknotes.csv&quot;</span><span class="p">)</span>
+<span class="n">banknotes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Eva Perón</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Activist</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1952</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Evita</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Julio Argentino Roca</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1988</td>
+      <td>1914</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Argentino</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Domingo Faustino Sarmiento</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1999</td>
+      <td>1888</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Domingo</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Juan Manuel de Rosas</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1877</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Rosas</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Manuel Belgrano</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Founder</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1970</td>
+      <td>1820</td>
+      <td>Came up with the first Argentine flag.</td>
+      <td>Designed first Argentine flag</td>
+      <td>True</td>
+      <td>ARS_Belgrano</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>274</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>275</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>276</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.210526</td>
+    </tr>
+    <tr>
+      <th>277</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>200</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>279 rows × 17 columns</p>
+</div></div></div>
+</div>
+<p>The variable name <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> here is arbitrary; you can choose something
+different if you want. However, in general, it’s a good habit to choose
+variable names that describe the contents of the variable somehow.</p>
+<p>If you tried running the line of code above and got an error message, pay
+attention to what the error message says, and remember the strategies to get
+help in <a class="reference internal" href="#getting-help"><span class="std std-numref">Section 1.3</span></a>. The most common mistake when reading a file is
+incorrectly specifying the path, so first check that you got the path right.</p>
+<p>If you ran the line of code, there was no error message, and you can see a
+table of data, then congratulations, you’ve read your first data set into
+Python!</p>
+</section>
+</section>
+<section id="inspecting-a-dataframe">
+<span id="inspecting-dataframe"></span><h2><span class="section-number">1.7. </span>Inspecting a DataFrame<a class="headerlink" href="#inspecting-a-dataframe" title="Link to this heading">#</a></h2>
+<p>Now that you’ve loaded the data, you can take a look at it. When working with a
+new data set, it often isn’t a good idea to print the whole thing to screen, at
+least until you know how big it is. Large data sets can take a long time to
+print, and the output can be difficult to read.</p>
+<p>Instead, use the Pandas <code class="docutils literal notranslate"><span class="pre">.head</span></code> method to print only the beginning, or head, of
+the data.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Eva Perón</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Activist</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1952</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Evita</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Julio Argentino Roca</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1988</td>
+      <td>1914</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Argentino</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Domingo Faustino Sarmiento</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1999</td>
+      <td>1888</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Domingo</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Juan Manuel de Rosas</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1877</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Rosas</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Manuel Belgrano</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Founder</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1970</td>
+      <td>1820</td>
+      <td>Came up with the first Argentine flag.</td>
+      <td>Designed first Argentine flag</td>
+      <td>True</td>
+      <td>ARS_Belgrano</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This data is tabular, as you might have already guessed, since it came from a
+CSV file. Pandas represents it as a <strong>DataFrame</strong>: data structured as rows and
+columns. In general rows are observations and columns are variables. Each entry
+is called a cell.</p>
+<p>You can check to make sure Pandas has indeed created a DataFrame with the
+<code class="docutils literal notranslate"><span class="pre">type</span></code> function, which is discussed in more detail in <a class="reference internal" href="02_pandas-basics.html#data-types"><span class="std std-numref">Section 2.3</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">banknotes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.frame.DataFrame
+</pre></div>
+</div>
+</div>
+</div>
+<p>Everything looks good here. To see the bottom of this data, use <code class="docutils literal notranslate"><span class="pre">tail</span></code>:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>274</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>275</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>276</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.210526</td>
+    </tr>
+    <tr>
+      <th>277</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>ZAR</td>
+      <td>South Africa</td>
+      <td>rand</td>
+      <td>Nelson Mandela</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>Yes</td>
+      <td>200</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>2013</td>
+      <td>1st black state leader and 1st president of So...</td>
+      <td>First Black state leader and first President o...</td>
+      <td>True</td>
+      <td>ZAR_Mandela</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Both <code class="docutils literal notranslate"><span class="pre">head</span></code> and <code class="docutils literal notranslate"><span class="pre">tail</span></code> accept an optional argument that specifies the number of
+rows to print to screen:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>currency_code</th>
+      <th>country</th>
+      <th>currency_name</th>
+      <th>name</th>
+      <th>gender</th>
+      <th>bill_count</th>
+      <th>profession</th>
+      <th>known_for_being_first</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>death_year</th>
+      <th>comments</th>
+      <th>hover_text</th>
+      <th>has_portrait</th>
+      <th>id</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Eva Perón</td>
+      <td>F</td>
+      <td>1.0</td>
+      <td>Activist</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>2012</td>
+      <td>1952</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Evita</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Julio Argentino Roca</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>100</td>
+      <td>NaN</td>
+      <td>1988</td>
+      <td>1914</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Argentino</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Domingo Faustino Sarmiento</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Head of Gov't</td>
+      <td>No</td>
+      <td>50</td>
+      <td>NaN</td>
+      <td>1999</td>
+      <td>1888</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Domingo</td>
+      <td>0.444444</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Juan Manuel de Rosas</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Politician</td>
+      <td>No</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>1992</td>
+      <td>1877</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>ARS_Rosas</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ARS</td>
+      <td>Argentina</td>
+      <td>Argentinian Peso</td>
+      <td>Manuel Belgrano</td>
+      <td>M</td>
+      <td>1.0</td>
+      <td>Founder</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>1970</td>
+      <td>1820</td>
+      <td>Came up with the first Argentine flag.</td>
+      <td>Designed first Argentine flag</td>
+      <td>True</td>
+      <td>ARS_Belgrano</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>David Unaipon</td>
+      <td>M</td>
+      <td>0.5</td>
+      <td>STEM</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>0.48</td>
+      <td>1995</td>
+      <td>1967</td>
+      <td>Shares with another person. In 1927 when his b...</td>
+      <td>First Australian Aboriginal writer to be publi...</td>
+      <td>True</td>
+      <td>AUD_Unaipon</td>
+      <td>0.473684</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>Mary Gilmore</td>
+      <td>F</td>
+      <td>0.5</td>
+      <td>Writer</td>
+      <td>Yes</td>
+      <td>10</td>
+      <td>0.08</td>
+      <td>1993</td>
+      <td>1962</td>
+      <td>Shares with another person. She became the fir...</td>
+      <td>First person appointed Dame Commander of the B...</td>
+      <td>True</td>
+      <td>AUD_Gilmore</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>Reverend John Flynn</td>
+      <td>M</td>
+      <td>0.5</td>
+      <td>Religious figure</td>
+      <td>Yes</td>
+      <td>20</td>
+      <td>0.10</td>
+      <td>1994</td>
+      <td>1951</td>
+      <td>Shares with another person. Founded Royal Flyi...</td>
+      <td>Founded Royal Flying Doctor Service, the world...</td>
+      <td>True</td>
+      <td>AUD_Flynn</td>
+      <td>0.157895</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>Banjo Paterson</td>
+      <td>M</td>
+      <td>0.5</td>
+      <td>Writer</td>
+      <td>No</td>
+      <td>10</td>
+      <td>0.08</td>
+      <td>1993</td>
+      <td>1941</td>
+      <td>Shares with another person</td>
+      <td>NaN</td>
+      <td>True</td>
+      <td>AUD_Banjo</td>
+      <td>0.052632</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>AUD</td>
+      <td>Australia</td>
+      <td>Australian Dollar</td>
+      <td>Edith Cowan</td>
+      <td>F</td>
+      <td>0.5</td>
+      <td>Politician</td>
+      <td>Yes</td>
+      <td>50</td>
+      <td>0.48</td>
+      <td>1995</td>
+      <td>1932</td>
+      <td>Shares with another person. She is best known ...</td>
+      <td>First Australian woman to serve as a member of...</td>
+      <td>True</td>
+      <td>AUD_Edith</td>
+      <td>0.473684</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If there are many columns in your DataFrame, as is the case here, Pandas will
+often squeeze the output into a condensed display, with <code class="docutils literal notranslate"><span class="pre">...</span></code> representing
+additional columns.</p>
+<p>One way to get a quick idea of what your data looks like without having to
+shuffle through all the columns and rows is by inspecting its <strong>shape</strong>. This
+is the number of rows and columns in a DataFrame, and you can access this
+information with the <code class="docutils literal notranslate"><span class="pre">.shape</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(279, 17)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice how you accessed this DataFrame’s <code class="docutils literal notranslate"><span class="pre">.shape</span></code> attribute using a very
+similar syntax to the way you called one of its methods. The key difference is
+the parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> at the end. Parentheses are necesary when you want to call
+a method, but not when you want just want to access the value of attribute.</p>
+</div>
+<p>To display the names of each column, access the <code class="docutils literal notranslate"><span class="pre">.columns</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;currency_code&#39;, &#39;country&#39;, &#39;currency_name&#39;, &#39;name&#39;, &#39;gender&#39;,
+       &#39;bill_count&#39;, &#39;profession&#39;, &#39;known_for_being_first&#39;,
+       &#39;current_bill_value&#39;, &#39;prop_total_bills&#39;, &#39;first_appearance_year&#39;,
+       &#39;death_year&#39;, &#39;comments&#39;, &#39;hover_text&#39;, &#39;has_portrait&#39;, &#39;id&#39;,
+       &#39;scaled_bill_value&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="summarizing-data">
+<span id="id11"></span><h3><span class="section-number">1.7.1. </span>Summarizing Data<a class="headerlink" href="#summarizing-data" title="Link to this heading">#</a></h3>
+<p>More granular information about a DataFrame and its contents is available with
+the <code class="docutils literal notranslate"><span class="pre">.info</span></code> method. In addition to attributes like the DataFrame’s shape and
+its column names, <code class="docutils literal notranslate"><span class="pre">.info</span></code> provides a brief summary of the number of cells that
+contain data, the type of data in each cell, and the total memory usage of the
+DataFrame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 279 entries, 0 to 278
+Data columns (total 17 columns):
+ #   Column                 Non-Null Count  Dtype  
+---  ------                 --------------  -----  
+ 0   currency_code          279 non-null    object 
+ 1   country                279 non-null    object 
+ 2   currency_name          279 non-null    object 
+ 3   name                   279 non-null    object 
+ 4   gender                 279 non-null    object 
+ 5   bill_count             279 non-null    float64
+ 6   profession             279 non-null    object 
+ 7   known_for_being_first  279 non-null    object 
+ 8   current_bill_value     279 non-null    int64  
+ 9   prop_total_bills       59 non-null     float64
+ 10  first_appearance_year  279 non-null    int64  
+ 11  death_year             272 non-null    object 
+ 12  comments               119 non-null    object 
+ 13  hover_text             89 non-null     object 
+ 14  has_portrait           279 non-null    bool   
+ 15  id                     279 non-null    object 
+ 16  scaled_bill_value      278 non-null    float64
+dtypes: bool(1), float64(3), int64(2), object(11)
+memory usage: 35.3+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next chapter discusses data types in more detail. For now, just take note
+that there are multiple types (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">float64</span></code>, <code class="docutils literal notranslate"><span class="pre">int64</span></code>, and <code class="docutils literal notranslate"><span class="pre">object</span></code> in
+<code class="docutils literal notranslate"><span class="pre">banknotes</span></code>).</p>
+<p>In contrast to <code class="docutils literal notranslate"><span class="pre">.info</span></code>, the <code class="docutils literal notranslate"><span class="pre">.describe</span></code> method provides summary statistics
+about a DataFrame. The latter will only return information about numeric
+columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bill_count</th>
+      <th>current_bill_value</th>
+      <th>prop_total_bills</th>
+      <th>first_appearance_year</th>
+      <th>scaled_bill_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>279.000000</td>
+      <td>279.000000</td>
+      <td>59.000000</td>
+      <td>279.000000</td>
+      <td>278.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.845556</td>
+      <td>4038.956989</td>
+      <td>0.166949</td>
+      <td>1992.318996</td>
+      <td>0.306058</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.259463</td>
+      <td>14336.386917</td>
+      <td>0.163573</td>
+      <td>25.369968</td>
+      <td>0.364860</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.250000</td>
+      <td>1.000000</td>
+      <td>0.010000</td>
+      <td>1869.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.500000</td>
+      <td>20.000000</td>
+      <td>0.055000</td>
+      <td>1980.000000</td>
+      <td>0.018282</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.000000</td>
+      <td>100.000000</td>
+      <td>0.100000</td>
+      <td>1996.000000</td>
+      <td>0.111111</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.000000</td>
+      <td>1000.000000</td>
+      <td>0.230000</td>
+      <td>2012.000000</td>
+      <td>0.489142</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000</td>
+      <td>100000.000000</td>
+      <td>0.750000</td>
+      <td>2021.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="selecting-columns">
+<span id="summarizing-columns"></span><h3><span class="section-number">1.7.2. </span>Selecting Columns<a class="headerlink" href="#selecting-columns" title="Link to this heading">#</a></h3>
+<p>Individual columns may be selected with <strong>bracket notation</strong>. Put the name of
+the column in quotes and place that inside of square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      100
+1      100
+2       50
+3       20
+4       10
+      ... 
+274     10
+275     20
+276     50
+277    100
+278    200
+Name: current_bill_value, Length: 279, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just as with <code class="docutils literal notranslate"><span class="pre">.describe</span></code>, you can compute information about a column using
+Pandas methods. Here is the mean:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(4038.956989247312)
+</pre></div>
+</div>
+</div>
+</div>
+<p>And here is the smallest value in the column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Functions from other libraries, especially those in the SciPy ecosystem, can
+also (but not always) work with Pandas. Here is the largest value in the
+column, computed with NumPy’s <code class="docutils literal notranslate"><span class="pre">max</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;current_bill_value&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(100000)
+</pre></div>
+</div>
+</div>
+</div>
+<p>It’s often helpful to count cells by collecting them into groups first.
+<a class="reference internal" href="03_exploring-data.html#aggregate-functions"><span class="std std-numref">Section 3.3</span></a> will cover this in detail, but you can use the
+<code class="docutils literal notranslate"><span class="pre">.value_counts</span></code> method right out of the box:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;currency_code&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>currency_code
+BOB     15
+IDR     12
+TRY     12
+MXN     11
+COP     11
+DOP     11
+UAH     10
+GEL      9
+RSD      9
+NGN      9
+AUD      9
+PHP      9
+CAD      9
+BDT      9
+GBP      8
+STD      8
+USD      7
+UYU      7
+KGS      7
+MWK      7
+PEN      7
+RMB      6
+CZK      6
+CRC      6
+VES      6
+SEK      6
+ARS      5
+ZAR      5
+NZD      5
+JMD      5
+ISK      5
+CVE      5
+CLP      5
+TND      4
+ILS      4
+KRW      4
+JPY      3
+VES​     2
+PGK      1
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, you can assign new values to a DataFrame using the same notation as
+above. Below, this code overwrites all the values in the <code class="docutils literal notranslate"><span class="pre">currency_code</span></code>
+column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;currency_code&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;USD&quot;</span>
+<span class="n">banknotes</span><span class="p">[</span><span class="s2">&quot;currency_code&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      USD
+1      USD
+2      USD
+3      USD
+4      USD
+      ... 
+274    USD
+275    USD
+276    USD
+277    USD
+278    USD
+Name: currency_code, Length: 279, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next chapter will return to working with columns, showing you how to
+generate new data from a DataFrame. You’ll also learn how to select rows and
+subsets of the data, as well as groups of columns.</p>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">1.8. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise">
+<h3><span class="section-number">1.8.1. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<p>In a string, an <strong>escape sequence</strong> or <strong>escape code</strong> consists of a backslash
+<code class="docutils literal notranslate"><span class="pre">\</span></code> followed by one or more characters. Escape characters make it possible to:</p>
+<ul class="simple">
+<li><p>Write quotes or backslashes in a string</p></li>
+<li><p>Use spaces in file paths</p></li>
+<li><p>Write characters that don’t appear on your keyboard (for example characters
+in a different script system)</p></li>
+</ul>
+<p>For example, the escape sequence <code class="docutils literal notranslate"><span class="pre">\n</span></code> means “newline character.” A full list of
+these sequences is available at <a class="reference external" href="https://www.w3schools.com/python/gloss_python_escape_characters.asp">W3Schools</a>.</p>
+<ol class="arabic simple">
+<li><p>Assign a string that contains a newline to the variable <code class="docutils literal notranslate"><span class="pre">newline</span></code>. Then
+display <code class="docutils literal notranslate"><span class="pre">newline</span></code> via the Python console.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> function renders output in a properly formatted manner. Use this
+function to print <code class="docutils literal notranslate"><span class="pre">newline</span></code>.</p></li>
+<li><p>How does the output between these two displays differ? Why do you think this
+is?</p></li>
+</ol>
+</section>
+<section id="id12">
+<h3><span class="section-number">1.8.2. </span>Exercise<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Chose a directory on your computer that you’re familiar with, such as your
+current working directory. Determine the path to the directory, then use
+<code class="docutils literal notranslate"><span class="pre">os.listdir</span></code> to display its contents. Do the files displayed match what you see
+in your systems file browser?</p></li>
+<li><p>Send a path to <code class="docutils literal notranslate"><span class="pre">os.path.exists</span></code> and inspect its output. What does this
+function do? See if you can change its output. If you can, why did it change?</p></li>
+</ol>
+</section>
+<section id="id13">
+<h3><span class="section-number">1.8.3. </span>Exercise<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Open the help file for the Pandas <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> function. The <code class="docutils literal notranslate"><span class="pre">sep</span></code> parameter
+controls which characters Pandas looks for when determining the columns in a
+file. What is the default character?</p></li>
+<li><p>A TSV file is similar to CSV files, except it uses tabs to delimit columns.
+Tabs are represented by escape sequences in Python. Find the right sequence
+and explain how you would load a TSV file with <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>.</p></li>
+<li><p>Reload the <code class="docutils literal notranslate"><span class="pre">banknotes</span></code> data, but this time specify <code class="docutils literal notranslate"><span class="pre">\s</span></code> for the <code class="docutils literal notranslate"><span class="pre">sep</span></code>
+parameter. <code class="docutils literal notranslate"><span class="pre">\s</span></code> represents a space. When you load the data using this
+sequence, what happens? Why?</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Overview</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_pandas-basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Data Structures</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1.1. Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-python-console">1.2. The Python Console</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">1.2.1. Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strings">1.2.2. Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparisons">1.2.3. Comparisons</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-functions">1.2.4. Calling Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objects-attributes">1.2.5. Objects &amp; Attributes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">1.3. Getting Help</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-something-goes-wrong">1.3.1. When Something Goes Wrong</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">1.4. Packages</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-scipy-ecosystem">1.4.1. The SciPy Ecosystem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">1.4.2. Modules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-systems">1.5. File Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#absolute-relative-paths">1.5.1. Absolute &amp; Relative Paths</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-code">1.5.2. Saving Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks">1.5.2.1. Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-working-directory">1.5.3. The Working Directory</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-files">1.6. Reading Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-data">1.6.1. Hello, Data!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-a-dataframe">1.7. Inspecting a DataFrame</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summarizing-data">1.7.1. Summarizing Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-columns">1.7.2. Selecting Columns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">1.8. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">1.8.1. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">1.8.2. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">1.8.3. Exercise</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arthur Koehl, Tyler Shoemaker, and Nick Ulle
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
