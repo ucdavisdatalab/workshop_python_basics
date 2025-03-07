@@ -29,11 +29,11 @@ Getting Started
 * Get or set the Python working directory
 * Identify the format of a data file
 * Select appropriate functions for loading common file formats
-* Load a data set with Pandas and inspect its contents
+* Load a data set with Polars and inspect its contents
 :::
 
-**[Python][]** is a popular general-purpose programming language. Python is also a
-leading language for scientific computing due to the **[SciPy
+**[Python][]** is a popular general-purpose programming language. Python is
+also a leading language for scientific computing due to the **[SciPy
 ecosystem][SciPy]**, a collection of scientific computing software for Python.
 
 [Python]: https://www.python.org/
@@ -59,8 +59,8 @@ you can:
 * Package useful code for distribution to your colleagues or the general
   public
 
-At the time of writing, there were over 324,000 user-contributed packages
-available for Python, spanning a broad range of disciplines.
+As of March 2025, there are over 612,000 user-contributed packages available
+for Python, spanning a broad range of disciplines.
 
 Python is one of many programming languages used in data science. Compared to
 other programming languages, Python's particular strengths are its:
@@ -71,37 +71,19 @@ other programming languages, Python's particular strengths are its:
 * Easy-to-learn syntax that encourages good habits
 
 
-Prerequisites
--------------
-
-Rather than installing Python directly, install the **[Anaconda
-Distribution][Anaconda]**, a collection of free and open-source data science software.
-The Anaconda Distribution includes several things you'll need to follow along
-with this reader:
-
-* Python 3
-* SciPy ecosystem packages
-* JupyterLab, an editor for Python code
-* **[Conda][]**, a program for installing and managing software
-
-You'll learn more about these later on. Anaconda also includes other popular
-software, such as the R programming language. Install Anaconda by following
-[this guide][anaconda-guide].
-
-[Anaconda]: https://www.anaconda.com/download
-[Conda]: https://conda.org/
-
-[anaconda-guide]: https://ucdavisdatalab.github.io/install_guides/python-and-python-tools.html
-
-
 The Python Console
 ------------------
 
 There are many different ways to edit and run Python code, but we'll use
-JupyterLab, which is included in the Anaconda Distribution. JupyterLab is an
-**integrated development environment** (IDE), which means it's a comprehensive
-program for writing, editing, searching, and running code. You can do all of
-these things without JupyterLab, but JupyterLab makes the process easier.
+JupyterLab. JupyterLab is an **integrated development environment** (IDE),
+which means it's a comprehensive program for writing, editing, searching, and
+running code. You can do all of these things without JupyterLab, but JupyterLab
+makes the process easier.
+
+:::{note}
+If you're not sure how to set up and run JupyterLab, see
+{ref}`setting-up-python`.
+:::
 
 The first time you open JupyterLab, you'll see a window that looks like this:
 
