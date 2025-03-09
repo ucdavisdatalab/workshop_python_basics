@@ -150,19 +150,24 @@ Python computes a result, it follows the standard order of operations:
 parentheses, exponentiation, multiplication, division, addition, and finally
 subtraction.
 
-For example, to compute the area of a triangle with base 3 and height 4, you
-can write:
+For example, to compute the area of a triangle, $\frac{1}{2}
+(\textrm{base})(\textrm{height})$, with base 3 and height 4, you can write:
 
 ```{code-cell}
-0.5 * 3 * 4
+3 * 4 / 2
 ```
 
 You can write Python expressions with any number of spaces (including none)
-around the operators and Python will still compute the result. As with writing
-text, putting spaces in your code makes it easier for you and others to read,
-so it's good to make it a habit. Put a single space on each side of most
-operators, after commas, and after keywords. Later on, you'll learn about other
-kinds of expressions where the spacing does matter.
+around the operators and Python will still compute the result.  Later on,
+you'll learn about other kinds of expressions where the spacing does matter.
+
+:::{tip}
+Use spaces!
+
+As with writing text, putting spaces in your code makes it easier for you and
+others to read, so it's good to make it a habit. Put a single space on each
+side of most operators, after commas, and after keywords.
+:::
 
 
 ### Variables
@@ -177,9 +182,20 @@ variable called `area`, you can write:
 area = 3 * 4 / 2
 ```
 
-In Python, variable names can contain any combination of letters, numbers, and
-underscores (`_`). Variables cannot start with a number; spaces, dots, and 
-other symbols are not allowed in variable names.
+In Python, variable names can consist of any combination of letters and
+underscores (`_`). Names can also include numbers, but can't start with a
+number. Spaces, dots (`.`), and other symbols are not allowed in variable
+names. So `geese`, `top50dogs` and `nine_lives` are valid variable names, but
+`goose teeth`, `tropical.fish` and `9_lives` are not.
+
+:::{note}
+The official Python style guide, [PEP 8][pep8], recommends against using
+capital letters in variable names even though Python allows it. Capital letters
+are conventionally used for other kinds of names. Following the recommendation
+will make your code easier for other Python programmers to understand.
+
+[pep8]: https://pep8.org/
+:::
 
 The main reason to use variables is to temporarily save results from
 expressions so that you can use them in other expressions. For instance, now
@@ -196,7 +212,7 @@ area
 Another reason to use variables is to make an expression clearer and more
 general. For instance, you might want to compute the area of several triangles
 with different bases and heights. Then the expression `3 * 4 / 2` is too
-specific. Instead, you can create variables `base` and `height`, then rewrite 
+specific. Instead, you can create variables `base` and `height`, then rewrite
 the expression as `base * height / 2`. This makes the expression easier to
 understand, because the reader does not have to intuit that `3` and `4` are the
 base and height in the formula. Here's the new code to compute and display the
@@ -214,6 +230,11 @@ do is change `base` and `height` and run the code again (Python will not update
 `area` until you do this). Writing code that's general enough to reuse across
 multiple problems can be a big time-saver in the long run. Later on, you'll see
 ways to make this code even easier to reuse.
+
+:::{tip}
+Try to choose descriptive variable names, so that you and your collaborators
+can understand the meaning and purpose of each variable when reading the code.
+:::
 
 
 (strings)=
@@ -233,7 +254,8 @@ but the quote at the beginning of the string must match the quote at the end.
 ```
 
 Numbers and strings are not the same thing, so for example Python considers `1`
-different from `"1"`.
+different from `"1"`. You can use the number `1` in mathematical expressions,
+but not the string `"1"`.
 
 
 (comparisons)=
@@ -295,8 +317,8 @@ Python can do a lot more than just arithmetic. Most of Python's features are
 provided through **functions**, pieces of reusable code. You can think of a
 function as a machine that takes some inputs and uses them to produce some
 output. In programming jargon, the inputs to a function are called
-**arguments**, the output is called the **return value**, and using a function
-is called **calling** the function.
+**arguments**, the output is called the **return value**, and when you use a
+function, you're **calling** the function.
 
 To call a function, write its name followed by parentheses. Put any arguments
 to the function inside the parentheses. For example, the function to round a
@@ -307,10 +329,10 @@ number `8.153` to the nearest integer with this code:
 round(8.153)
 ```
 
-Many functions accept more than one argument. For instance, the `round` function
-accepts two arguments: the number to round, and the number of decimal places to
-keep. When you call a function with multiple arguments, separate the arguments
-with commas. So to round `8.153` to 1 decimal place:
+Many functions accept more than one argument. For instance, the `round`
+function accepts two arguments: the number to round, and the number of decimal
+places to keep. When you call a function with multiple arguments, separate the
+arguments with commas. So to round `8.153` to 1 decimal place:
 
 ```{code-cell}
 round(8.153, 1)
@@ -337,7 +359,7 @@ second, and so on. So in the code above, `8.153` is assigned to `number` and
 `1` is assigned to `ndigits`.
 
 You can make Python assign arguments to parameters by name with `=`, overriding
-their positions. So two other ways you can write the call above are:
+their positions. So some other ways you can write the call above are:
 
 ```{code-cell}
 round(8.153, ndigits = 1)
@@ -391,12 +413,11 @@ Python represents data as **objects**. Numbers, strings, data structures, and
 functions are all examples of objects.
 
 An **attribute** is an object attached to another object. An attribute usually
-contains metadata about the object to which it is attached. An attribute can
-also be a function, in which case it is called a **method**.
+contains metadata about the object to which it is attached. You can access
+attributes by typing a `.` after an object.
 
-For example, all strings have a `capitalize` method. You can access attributes
-and methods by typing a `.` after an object. Here's the code to capitalize a
-string:
+When an attribute is a function, it's called a **method**. For example, all
+strings have a `capitalize` method.  Here's the code to capitalize a string:
 
 ```{code-cell}
 "snakes everywhere!".capitalize()
@@ -409,8 +430,10 @@ an object. Here are the attributes for a string:
 dir("hi")
 ```
 
+:::{caution}
 Attributes that begin with two underscores `__` are used by Python internally
 and are usually not intended to be accessed directly.
+:::
 
 
 (getting-help)=
@@ -434,7 +457,7 @@ For functions, help pages usually include a brief description and a list of
 parameters and default arguments. For instance, the help page for `round` shows
 that there are two parameters `number` and `ndigits`. It also says that
 `ndigits=None`, meaning the default argument for `ndigits` is the special
-`None` value, which you'll learn more about on day 2.
+`None` value (you'll learn more about `None` in {numref}`special-values`).
 
 There are also help pages for other topics, such as built-in operators and
 modules (you'll learn more about modules in {numref}`modules-packages`). To
@@ -454,12 +477,16 @@ but they're only required if the name contains non-alphabetic characters. So
 
 You can also browse the Python documentation [online][pydocs]. This is a good
 way to explore the many different functions and data structures built into
-Python. If you do use the online documentation, make sure to use the
-documentation for the same version of Python as the one you have. Python
-displays the version each time you open a new console, and the online
-documentation shows the version in the upper left corner.
+Python.
 
 [pydocs]: https://docs.python.org/3/
+
+:::{important}
+If you do use the online documentation, make sure to use the documentation for
+the same version of Python as the one you have. Python displays the version
+each time you open a new console, and the online documentation shows the
+version in the upper left corner.
+:::
 
 Sometimes you might not know the name of the help page you want to look up. In
 that case it's best to use an online search engine. When you search for help
@@ -500,29 +527,58 @@ A **package** is a reusable bundle of code. Packages usually include
 documentation, and can also contain examples and data sets. Most packages are
 developed by members of the Python community, so quality varies. 
 
+Python is general-purpose programming language, so most of the specialized
+tools, data structures, and functions necessary for research computing and data
+science are provided by packages rather than built-in.
 
-### The SciPy Ecosystem
+NumPy is a fundamental package for research computing, since it provides
+$n$-dimensional arrays (such as vectors and matrices) and a broad collection of
+mathematical functions. NumPy is the primary way to do math---especially linear
+algebra---efficiently in Python. Many other research computing packages depend
+on or are compatible with NumPy.
 
-The SciPy ecosystem is a collection of scientific computing software for Python
-introduced in 2001. SciPy is divided into several different Python packages.
+For data science, **data frames**, which represent tables of data, are another
+fundamental data structure. Several competing packages provide data frames and
+related functions:
 
-Some of the most important packages in the SciPy ecosystem are:
+* Pandas is the oldest and most widely-used data frame package. It provides a
+  broad set of features but also has many quirks. Pandas is generally less
+  efficient than other packages in terms of compute time and memory usage.
+* Polars is specifically designed to be efficient, prevent bugs, and present a
+  consistent programming interface. Polars is what we currently recommend for
+  most people.
+* DuckDB treats data frames as tables in a database. This makes DuckDB
+  extremely efficient and also means all operations on DuckDB data frames must
+  be written in Structured Query Language (SQL) rather than Python. If you're
+  comfortable with SQL or need to work with big data (hundreds of gigabytes or
+  more), DuckDB is a good choice.
+* Ibis provides data frames that can use any of the other packages
+  under-the-hood. Ibis uses DuckDB by default, so it has similar efficiency but
+  a Python programming interface (SQL is also supported).
 
-* **NumPy**, which provides an n-dimensional array data structure and a variety
-  of math functions
-* **SciPy**, which provides additional math functions
-* **Pandas**, which provides DataFrames
-* **IPython**, which makes it possible to run Python code in Jupyter
-* **Matplotlib**, which provides data visualization functions
+We'll use Polars, because it's substantially more efficient than Pandas and
+provides early warnings for certain kinds of common mistakes.
+
+Other notable packages for research computing and data science in Python:
+
+* Jupyter provides interactive notebooks as well as a more convenient
+  command-line prompt for Python. You're already using Jupyter if you're
+  following along with this chapter.
+* SciPy provides even more mathematical functions, to supplement NumPy.
+* Matplotlib provides a rich collection of visualization functions, and is the
+  foundation for many data visualization packages.
+* statsmodels provides functions to fit statistical models (where the focus is
+  inference and interpretability).
+* scikit-learn provides functions to fit machine learning models (where the
+  focus is prediction). The package's excellent documentation also provides a
+  light but practical introduction to the models.
+
+This is by no means an exhaustive list. You're likely to encounter many more
+packages as you learn and use Python.
 
 :::{note}
-All of these packages are included with Anaconda. {numref}`installing-packages`
-describes how to install other packages.
+{numref}`installing-packages` describes how to install packages.
 :::
-
-You'll learn much more about NumPy, SciPy, and Pandas as you go through this
-reader. By using JupyterLab, you've already used IPython. You'll use Matplotlib
-indirectly later on, when you learn about visualization.
 
 
 (modules)=
@@ -534,9 +590,9 @@ provided by a package is to read the package's documentation. There are also
 many modules that are built into Python, to provide extra features.
 
 Most packages have a main module with the same name as the package. So the
-NumPy package provides a module called `numpy`, and the Pandas package provides
-a module called `pandas`. You can use the `import` command to load a module
-from an installed package. Anaconda installs NumPy by default, so try loading
+NumPy package provides a module called `numpy`, and the Polars package provides
+a module called `polars`. You can use the `import` command to load a module
+from an installed package. Make sure you have NumPy installed, then try loading
 the `numpy` module:
 
 ```{code-cell}
@@ -961,9 +1017,9 @@ os.chdir(_wd)
 Reading Files
 -------------
 
-The first step in most data analyses is loading the data. The Pandas package
-provides functions to read a variety of data formats. In order to know which
-function to use, you need to identify the data's file format.
+The first step in most data analyses is loading a data set. The Polars package
+provides functions to read data sets saved in a variety of file formats. In
+order to know which function to use, you must first identify the file format.
 
 Most of the time, you can guess the format of a file by looking at its
 **extension**, the characters (usually three) after the last dot `.` in the
@@ -977,21 +1033,25 @@ than a guarantee.
 [jpg]: https://en.wikipedia.org/wiki/JPEG
 
 The table below shows several formats that are frequently used to distribute
-data. Although Pandas provides reader functions for all of these, the lxml
-package and Python's built-in json module are better suited to the last two.
+data. Polars provides reader functions for many of these, but some can only be
+read with help from other packages or Python's built-in modules.
 
-| Name                        | Extension       | Tabular?  | Text? | Pandas Function
-| :-------------------------- | :-------------- | :-------- | :---- | :--------------
-| Comma-separated Values      | `.csv`          | Yes       | Yes   | `read_csv`
-| Tab-separated Values        | `.tsv`          | Yes       | Yes   | `read_table`
-| Fixed-width File            | `.fwf`          | Yes       | Yes   | `read_fwf`
-| Microsoft Excel             | `.xls`, `.xlsx` | Yes       | No    | `read_excel`
-| [Apache Arrow][arrow]       | `.feather`      | Yes       | No    | `read_feather`
-| Extensible Markup Language  | `.xml`          | No        | Yes   | Use lxml package
-| JavaScript Object Notation  | `.json`         | No        | Yes   | Use json module
-| Arbitrary File              |                 |           |       | Use io module
+| Name                        | Extension            | Function or Package      | Tabular?  | Text?
+| :-------------------------- | :--------------      | :------------------      | :-------- | :----
+| Comma-separated Values      | `.csv`               | `read_csv`               | Yes       | Yes
+| Tab-separated Values        | `.tsv`               | `read_table`             | Yes       | Yes
+| Fixed-width File            | `.fwf`               | See [this issue][pl-fwf] | Yes       | Yes
+| Microsoft Excel             | `.xls`, `.xlsx`      | `read_excel`             | Yes       | No
+| [Apache Parquet][arrow]     | `.parquet`           | `read_parquet`           | Yes       | No
+| [Apache Arrow][arrow]       | `.arrow`, `.feather` | `read_ipc`               | Yes       | No
+| Extensible Markup Language  | `.xml`, `.html`      | [parsel][] package       | No        | Yes
+| JavaScript Object Notation  | `.json`              | `json` module            | No        | Yes
+| Arbitrary File              |                      | `open` (built-in)        |           |
 
+[pl-fwf]: https://github.com/pola-rs/polars/issues/3151
+[parquet]: https://parquet.apache.org/
 [arrow]: https://arrow.apache.org/
+[parsel]: https://parsel.readthedocs.io/en/latest/
 
 A **tabular** data set is one that's structured as a table, with rows and
 columns. We'll focus on tabular data sets for most of this reader, since
@@ -1027,191 +1087,287 @@ and take up less storage space (bytes).
 
 ### Hello, Data!
 
-Over the next few sections, you'll explore data about banknotes and the people 
-depicted on them. This data is derived from a data set compiled by [The 
-Pudding][pud], which features [an article][art] about it. To download the 
-version you'll need for this workshop, [click here][data] (you'll need to click
-the "Download raw file" button).
+The California least tern is a endangered subspecies of seabird that nests
+along the coast of California and Mexico. The California Department of Fish and
+Wildlife (CDFW) monitors least tern nesting sites across the state to estimate
+breeding pairs, fledglings, and predator activity in each annual breeding
+season.
 
-[pud]: https://pudding.cool/
-[art]: https://pudding.cool/2022/04/banknotes/
-[data]: https://github.com/ucdavisdatalab/workshop_python_basics/blob/main/data/banknotes.csv
-
-The data set is a file called `banknotes.csv`, which suggests it's a CSV file.
-In this case, the extension is correct, so you can read the file with Pandas'
-`read_csv` function. The first argument is the path to where you saved the
-file, which may be different on your computer. The `read_csv` function returns
-the data set, but Python won't keep the data in memory unless you assign the
-returned result to a variable:
-
-```{code-cell}
-:tags: [output_scroll]
-import pandas as pd
-
-banknotes = pd.read_csv("data/banknotes.csv")
-banknotes
+```{figure} ../img/ca_least_tern_usfws_pacificsw.jpg
+---
+height: 25em
+alt: "A gray bird with a white belly, black head, and orange beak sitting on a
+clutch of eggs."
+---
+A California least tern. Original photo by [Mark Pavelka, U.S. Fish & Wildlife
+Service][pavelka] ([CC BY 2.0][]).
 ```
 
-The variable name `banknotes` here is arbitrary; you can choose something
-different if you want. However, in general, it's a good habit to choose
-variable names that describe the contents of the variable somehow.
+[pavelka]: https://www.flickr.com/photos/usfws_pacificsw/5704890596/
+[CC BY 2.0]: https://creativecommons.org/licenses/by/2.0/
+
+The CDFW publishes most of the data it collects to the [California Open Data
+portal][data.ca.gov]. The examples in this and subsequent chapters use a
+cleaned 2000-2023 version of the California least tern data.
+
+[data.ca.gov]: https://data.ca.gov/
+
+:::{important}
+[Click here][ca-least-tern] to download the 2000-2023 California least tern
+data set.
+
+[ca-least-tern]: https://ucdavis.box.com/s/m2w5l2ebp2rey2do5lnn38y1e3u31pin
+
+If you haven't already, we recommend you create a directory for this workshop.
+In your workshop directory, create a `data/` subdirectory. Download and save
+the California least tern data set in the `data/` subdirectory.
+:::
+
+:::{admonition} Documentation for 2000-2023 California Least Tern Data Set
+:class: note, dropdown
+
+Each row in the data set contains measurements from one year-site combination.
+
+| Column                | Description
+| --------------------: | :----------
+| `year`                | Year of the breeding season
+| `site_name`           | Site name
+| `site_name_2013_2018` | Site name from 2013-2018
+| `site_name_1988_2001` | Site name from 1988-2001
+| `site_abbr`           | Abbreviated site name
+| `region_3`            | Region of state: S.F. Bay, Central, or Southern (includes Ventura)
+| `region_4`            | Region of state: S.F. Bay, Central, Ventura, or Southern
+| `event`               | Climate events
+| `bp_min`              | Reported minimum breeding pairs
+| `bp_max`              | Reported maximum breeding pairs
+| `fl_min`              | Reported minimum fledges
+| `fl_max`              | Reported maximum fledges
+| `total_nests`         | Total reported nests (maximum if a range was reported)
+| `nonpred_eggs`        | Total non-predator-related mortalities of eggs
+| `nonpred_chicks`      | Total non-predator-related mortalities of chicks
+| `nonpred_fl`          | Total non-predator-related mortalities of fledges
+| `nonpred_ad`          | Total non-predator-related mortalities of adults
+| `pred_control`        | Site predator control (yes/no)
+| `pred_eggs`           | Total predator-related mortalities of eggs
+| `pred_chicks`         | Total predator-related mortalities of chicks
+| `pred_fl`             | Total predator-related mortalities of fledges
+| `pred_ad`             | Total predator-related mortalities of adults
+| `pred_pefa`           | Predation by peregrine falcons (yes/no)
+| `pred_coy_fox`        | Predation by coyotes or foxes (yes/no)
+| `pred_meso`           | Predation by other mesocarnivores: dogs, cats, skunks, opossums, raccoons, weasels, etc. (yes/no)
+| `pred_owlspp`         | Predation by owls (yes/no)
+| `pred_corvid`         | Predation by corvids: ravens or crows (yes/no)
+| `pred_other_raptor`   | Predation by raptors other than peregrine falcons and owls (yes/no)
+| `pred_other_avian`    | Predation by birds other than raptors and corvids (yes/no)
+| `pred_misc`           | Predation by other animals (yes/no)
+| `total_pefa`          | Total mortalities due to peregrine falcons
+| `total_coy_fox`       | Total mortalities due to coyotes and foxes
+| `total_meso`          | Total mortalities due to other mesocarnivores
+| `total_owlspp`        | Total mortalities due to owls
+| `total_corvid`        | Total mortalities due to ravens and crows
+| `total_other_raptor`  | Total mortalities due to other raptors
+| `total_other_avian`   | Total mortalities due to other birds
+| `total_misc`          | Total mortalities due to other animals
+| `first_observed`      | Date CA least terns first observed at site
+| `last_observed`       | Date CA least terns last observed at site
+| `first_nest`          | Date first egg observed at site
+| `first_chick`         | Date first chick observed at site
+| `first_fledge`        | Date first fledge observed at site
+
+The messy source data set (with more years and more columns) is available
+[here][ca-least-tern-source].
+
+[ca-least-tern-source]: https://data.ca.gov/dataset/california-least-tern-monitoring-sites-generalized-cdfw-ds3146
+:::
+
+Let's use Polars to read the California least tern data set. The default file
+name is `2000-2023_ca_least_tern.csv`, which suggests it's a CSV file. The
+Polars function to read a CSV file is `read_csv`. The function's first and only
+required argument is the path to the CSV file. In the following code, the path
+to the California least tern data set is `data/2000-2023_ca_least_tern.csv`,
+but it might be different for you, depending on Python's working directory and
+where you saved the file. We'll save the result from the `read_csv` function in
+a variable called `terns`. We can use this variable to access the data in
+subsequent code.
+
+```{code-cell}
+import polars as pl
+
+terns = pl.read_csv("data/2000-2023_ca_least_tern.csv")
+```
+
+:::{note}
+The variable name `terns` is arbitrary; you can choose something different if
+you want. However, in general, it's a good habit to choose variable names that
+describe the contents of the variable somehow.
+:::
 
 If you tried running the line of code above and got an error message, pay
 attention to what the error message says, and remember the strategies to get
 help in {numref}`getting-help`. The most common mistake when reading a file is
 incorrectly specifying the path, so first check that you got the path right.
 
-If you ran the line of code, there was no error message, and you can see a
-table of data, then congratulations, you've read your first data set into
-Python!
+If the code ran without errors, it's a good idea to check that the data set
+looks like what the documentation describes. When working with a new data set,
+it usually isn't a good idea to print the whole thing (at least until you know
+how big it is). Large data sets can take a long time to print, and the output
+can be difficult to read.
+
+Instead, use the `.head` method to print only the beginning, or head, of the
+data set:
+
+```{code-cell}
+terns.head()
+```
+
+If you run this code and see a similar table, then congratulations, you've read
+your first data set into Python!
 
 
 (inspecting-dataframe)=
-Inspecting a DataFrame
-----------------------
+Inspecting a Data Frame
+-----------------------
 
-Now that you've loaded the data, you can take a look at it. When working with a
-new data set, it often isn't a good idea to print the whole thing to screen, at
-least until you know how big it is. Large data sets can take a long time to
-print, and the output can be difficult to read.
+The California least tern data set is tabular, as you might have already
+guessed from CSV file format. {numref}`modules-packages` explained that we use
+data frames to represent tabular data. 
 
-Instead, use the Pandas `.head` method to print only the beginning, or head, of
-the data.
+Typically each row corresponds to a single subject and is called an
+**observation**. Each column corresponds to a measurement of the subject and is
+called a **feature** or **covariate**.
+
+:::{caution}
+Sometimes people also refer to columns as “variables," but we'll try to avoid
+this, because in programming contexts a variable is a name for a value (which
+might not be a column).
+:::
+
+You can check to make sure Polars has indeed created a data frame with the
+`type` function, which is explained in more detail in {numref}`data-types`:
+
+```{code-cell}
+type(terns)
+```
+
+Everything looks good here.
+
+Similar to how the `.head` method shows the first few rows of a data frame, the
+`.tail` method shows the last few:
+
+```{code-cell}
+terns.tail()
+```
+
+Both `.head` and `.tail` accept an optional argument that specifies the number
+of rows to print to screen:
 
 ```{code-cell}
 :tags: [output_scroll]
-banknotes.head()
+terns.head(10)
 ```
 
-This data is tabular, as you might have already guessed, since it came from a
-CSV file. Pandas represents it as a **DataFrame**: data structured as rows and
-columns. In general rows are observations and columns are variables. Each entry
-is called a cell.
+:::{tip}
+For data frames with many rows or columns, Polars will usually replace some
+rows or columns with `...` when printing to the screen.
 
-You can check to make sure Pandas has indeed created a DataFrame with the
-`type` function, which is discussed in more detail in {numref}`data-types`:
+You can control how many rows and columns are printed with the
+`pl.Config.set_tbl_rows` and `pl.Config.set_tbl_cols` functions, respectively.
+You can later restore the default settings with the
+`pl.Config.restore_defaults` function.
+:::
+
+One way to get a quick idea of what your data looks like without having to skim
+through all the columns and rows is by inspecting its **shape**. This is the
+number of rows and columns in a data frame, and you can access this information
+with the `.shape` attribute:
 
 ```{code-cell}
-type(banknotes)
+terns.shape
 ```
 
-Everything looks good here. To see the bottom of this data, use `tail`:
+:::{note}
+The `.shape` attribute uses the same dot (`.`) syntax as the `.head` and
+`.tail` methods. The key difference is that because `.shape` is not a function,
+there are no parentheses `()` at the end. Parentheses are necessary when you
+want to call a method, but not when you want just want to access the value of
+attribute.
+:::
+
+Polars stores the data frame's column names in the `.columns` attribute:
 
 ```{code-cell}
 :tags: [output_scroll]
-banknotes.tail()
-```
-
-Both `head` and `tail` accept an optional argument that specifies the number of
-rows to print to screen:
-
-```{code-cell}
-:tags: [output_scroll]
-banknotes.head(10)
-```
-
-If there are many columns in your DataFrame, as is the case here, Pandas will
-often squeeze the output into a condensed display, with `...` representing
-additional columns.
-
-One way to get a quick idea of what your data looks like without having to
-shuffle through all the columns and rows is by inspecting its **shape**. This
-is the number of rows and columns in a DataFrame, and you can access this
-information with the `.shape` attribute:
-
-```{code-cell}
-banknotes.shape
-```
-
-```{note}
-Notice how you accessed this DataFrame's `.shape` attribute using a very
-similar syntax to the way you called one of its methods. The key difference is
-the parentheses `()` at the end. Parentheses are necesary when you want to call
-a method, but not when you want just want to access the value of attribute.
-```
-
-To display the names of each column, access the `.columns` attribute:
-
-```{code-cell}
-banknotes.columns
+terns.columns
 ```
 
 (summarizing-data)=
 ### Summarizing Data
 
-More granular information about a DataFrame and its contents is available with
-the `.info` method. In addition to attributes like the DataFrame's shape and
-its column names, `.info` provides a brief summary of the number of cells that
-contain data, the type of data in each cell, and the total memory usage of the
-DataFrame:
+The `.glimpse` method provides a structural summary of a data frame. The method
+lists the data frame's shape and column names, as well as the type of data in
+each column and a few example values. Try calling `.glimpse` on the `terns`
+data frame:
 
 ```{code-cell}
-banknotes.info()
+terns.glimpse()
 ```
 
-The next chapter discusses data types in more detail. For now, just take note
-that there are multiple types (`bool`, `float64`, `int64`, and `object` in
-`banknotes`).
+The next chapter explains data types in more detail. For now, just take note
+that there are multiple types (`i64`, `str`, and `f64` in the `terns` data
+frame).
 
-In contrast to `.info`, the `.describe` method provides summary statistics
-about a DataFrame. The latter will only return information about numeric
-columns:
+In contrast to the `.glimpse` method, the `.describe` method provides a
+statistical summary of a data frame:
 
 ```{code-cell}
-banknotes.describe()
+terns.describe()
 ```
 
 (summarizing-columns)=
 ### Selecting Columns
 
-Individual columns may be selected with **bracket notation**. Put the name of
-the column in quotes and place that inside of square brackets `[]`:
+You can select individual columns with **bracket notation**. Put the name of
+the column in quotes and place that inside of square brackets `[]`. For
+example, to select the `total_nests` column:
 
 ```{code-cell}
-banknotes["current_bill_value"]
+terns["total_nests"]
 ```
 
-Just as with `.describe`, you can compute information about a column using
-Pandas methods. Here is the mean:
+Polars provides a variety of methods to compute on columns. For instance, you
+can use the `.mean` method to compute the mean:
 
 ```{code-cell}
-banknotes["current_bill_value"].mean()
+terns["total_nests"].mean()
 ```
 
-And here is the smallest value in the column:
-
-```{code-cell}
-banknotes["current_bill_value"].min()
-```
-
-Functions from other libraries, especially those in the SciPy ecosystem, can
-also (but not always) work with Pandas. Here is the largest value in the
-column, computed with NumPy's `max`:
-
-```{code-cell}
-np.max(banknotes["current_bill_value"])
-```
-
-It's often helpful to count cells by collecting them into groups first.
-{numref}`aggregate-functions` will cover this in detail, but you can use the
-`.value_counts` method right out of the box:
-
-```{code-cell}
-banknotes["currency_code"].value_counts()
-```
-
-Finally, you can assign new values to a DataFrame using the same notation as
-above. Below, this code overwrites all the values in the `currency_code`
+Similarly, you can use the `.min` method to compute the smallest value in a
 column:
 
 ```{code-cell}
-banknotes["currency_code"] = "USD"
-banknotes["currency_code"]
+terns["total_nests"].min()
 ```
 
-The next chapter will return to working with columns, showing you how to
-generate new data from a DataFrame. You'll also learn how to select rows and
-subsets of the data, as well as groups of columns.
+<!--
+Functions from other packages will usually work with Polars, but might be less
+efficient. Here's how to find smallest value in the column with the `np.min`
+function from NumPy:
+
+```{code-cell}
+np.min(terns["total_nests"])
+```
+-->
+
+For columns of categories, statistics like means and minimums aren't defined.
+Instead, it's often informative to count the number of observations of each
+category. You can do this with the `.value_counts` method:
+
+```{code-cell}
+terns["year"].value_counts()
+```
+
+We'll explain more ways to work with data frames and columns in the next
+chapter.
 
 
 Exercises
@@ -1233,30 +1389,27 @@ these sequences is available at [W3Schools][w3].
 [w3]: https://www.w3schools.com/python/gloss_python_escape_characters.asp
 
 1. Assign a string that contains a newline to the variable `newline`. Then
-  display `newline` via the Python console.
+   display `newline` via the Python console.
 2. The `print` function renders output in a properly formatted manner. Use this
-  function to print `newline`.
+   function to print `newline`.
 3. How does the output between these two displays differ? Why do you think this
-  is?
+   is?
 
 ### Exercise
 
 1. Chose a directory on your computer that you're familiar with, such as your
-  current working directory. Determine the path to the directory, then use
-  `os.listdir` to display its contents. Do the files displayed match what you see
-  in your systems file browser?
+   current working directory. Determine the path to the directory, then use
+   `os.listdir` to display its contents. Do the files displayed match what you
+   see in your systems file browser?
 2. Send a path to `os.path.exists` and inspect its output. What does this
-  function do? See if you can change its output. If you can, why did it change?
+   function do? See if you can change its output. If you can, why did it
+   change?
 
 ### Exercise
 
-1. Open the help file for the Pandas `read_csv` function. The `sep` parameter
-  controls which characters Pandas looks for when determining the columns in a
-  file. What is the default character?
+1. Open the help file for the Polars `read_csv` function. The `separator`
+   parameter controls which characters Polars looks for when determining the
+   columns in a file. What is the default character?
 2. A TSV file is similar to CSV files, except it uses tabs to delimit columns.
-  Tabs are represented by escape sequences in Python. Find the right sequence
-  and explain how you would load a TSV file with `read_csv`.
-3. Reload the `banknotes` data, but this time specify `\s` for the `sep`
-  parameter. `\s` represents a space. When you load the data using this
-  sequence, what happens? Why?
-
+   Tabs are represented by escape sequences in Python. Find the right sequence
+   and explain how you would load a TSV file with `read_csv`.
