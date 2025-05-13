@@ -7,7 +7,7 @@ authors = [
 channels = ["conda-forge"]
 description = "Reader for the Python Basics workshop series."
 name = "python-basics"
-platforms = ["linux-64", "osx-64", "win-64"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
 version = "2024.fall.0"  # <year>.<quarter>.<revision #>
 
 [environments]
@@ -30,6 +30,9 @@ requests = ">=2.32.3,<3"
 numpy = ">=2.1.2,<3"
 ghp-import = ">=2.1.0,<3"
 polars = ">=1.22.0,<2"
+fastexcel = ">=0.13.0,<0.14"
+altair = ">=5.5.0,<6"
+seaborn = ">=0.13.2,<0.14"
 
 [feature.dev.dependencies]
 jupyter = "*"
