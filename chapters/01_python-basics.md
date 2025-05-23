@@ -18,8 +18,7 @@ os.chdir("..")
 ```
 
 (getting-started)=
-Getting Started
-===============
+# Getting Started
 
 :::{admonition} Learning Objectives
 * Run code in a Python console (in JupyterLab)
@@ -32,6 +31,9 @@ Getting Started
 * Load a data set with Polars and inspect its contents
 :::
 
+
+## Why Python?
+
 **[Python][]** is a popular general-purpose programming language. Python is
 also a leading language for scientific computing due to the **[SciPy
 ecosystem][SciPy]**, a collection of scientific computing software for Python.
@@ -40,16 +42,17 @@ ecosystem][SciPy]**, a collection of scientific computing software for Python.
 [SciPy]: https://scipy.org/
 
 The main way you'll interact with Python is by writing Python code or
-**expressions**. Most people use "Python" as a blanket term to refer to both
-the Python language and the Python software (which runs code written in the
-language). Usually, the distinction doesn't matter, but it will be pointed out
-if it does.
+**expressions**. The name "Python" refers to both the Python language (the
+code) and the Python software (which runs the code). Usually, the distinction
+doesn't matter, but it will be pointed out if it does.
 
+:::{admonition} Why should you use a programming language?
+:class: note
 Code you write is **reproducible**: you can share it with someone else, and if
 they run it with the same inputs, they'll get the same results. By writing
 code, you create an unambiguous record of every step taken in your analysis.
-This is one of the major advantages of Python and other programming languages
-over point-and-click software like *Tableau* or *Microsoft Excel*. 
+This is one of the major advantages of programming languages over
+point-and-click software like *Tableau* or *Microsoft Excel*.
 
 Another advantage of writing code is that it's often **reusable**. This means
 you can:
@@ -58,9 +61,7 @@ you can:
 * Recycle code from one analysis into another
 * Package useful code for distribution to your colleagues or the general
   public
-
-As of March 2025, there are over 612,000 user-contributed packages available
-for Python, spanning a broad range of disciplines.
+:::
 
 Python is one of many programming languages used in data science. Compared to
 other programming languages, Python's particular strengths are its:
@@ -70,9 +71,11 @@ other programming languages, Python's particular strengths are its:
 * Broad base of user-contributed packages
 * Easy-to-learn syntax that encourages good habits
 
+As of May 2025, there are over 637,000 user-contributed packages available
+for Python, spanning a broad range of disciplines.
 
-The Python Console
-------------------
+
+## The Python Console
 
 There are many different ways to edit and run Python code, but we'll use
 JupyterLab. JupyterLab is an **integrated development environment** (IDE),
@@ -87,8 +90,15 @@ If you're not sure how to set up and run JupyterLab, see
 
 The first time you open JupyterLab, you'll see a window that looks like this:
 
-```{image} ../img/jupyterlab_startup.png
-:alt: The JupyterLab startup screen.
+```{figure} ../img/jupyterlab_startup.png
+---
+name: fig-jl-startup
+alt: A window with two sections. The section on the left lists files in a
+  directory. The section on the right is titled "Launcher" and has buttons to
+  launch notebooks and consoles for Python and other languages.
+---
+
+The JupyterLab startup screen.
 ```
 
 Don't worry if the text in the panes isn't exactly the same on your computer;
@@ -99,16 +109,30 @@ Start by opening up a Python **console**. In JupyterLab, look for the "Python
 multiple Python 3 buttons, click on the one that mentions "IPython" or
 "ipykernel":
 
-```{image} ../img/jupyterlab_console_button.png
-:alt: The JupyterLab startup screen with the console button highlighted.
+```{figure} ../img/jupyterlab_console_button.png
+---
+name: fig-jl-startup-console-button
+alt: A window with two sections. The section on the left lists files in a
+  directory. The section on the right is titled "Launcher" and has buttons to
+  launch notebooks and consoles for Python and other languages. The Python 3
+  console button is highlighted.
+---
+The JupyterLab startup screen with the console button highlighted.
 ```
 
 The console is a interactive, text-based interface to Python. If you enter a
 Python expression in the console, Python will compute and display the result.
 After you open the console, your window should look like this:
 
-```{image} ../img/jupyterlab_console.png
-:alt: A Python console running in JupyterLab.
+```{figure} ../img/jupyterlab_console.png
+---
+name: fig-jl-console
+alt: A window with two sections. The section on the left lists files in a
+  directory. The section on the right is a console with text that begins
+  "Python 3.9.6" and goes on to provide further details about the versions of
+  Python and IPython. At the bottom of the console there is an input box.
+---
+A Python console running in JupyterLab.
 ```
 
 At the bottom of the console, the text box beginning with `[ ]:` is called the
@@ -117,8 +141,14 @@ compute the sum $2 + 2$ by typing the code `2 + 2` in the prompt and then
 pressing `Shift`-`Enter`. Your code and the result from Python should look like
 this:
 
-```{image} ../img/jupyterlab_console_sum.png
-:alt: A Python console running in JupyterLab, showing the sum of two numbers.
+```{figure} ../img/jupyterlab_console_sum.png
+---
+name: fig-jl-console-sum
+alt: A window with two sections. The section on the left lists files in a
+  directory. The section on the right is a Python console. The console shows "2
+  + 2" as input and "4" as output.
+---
+A Python console running in JupyterLab, showing the sum of two numbers.
 ```
 
 The Python console displays your code and the result on separate lines. Both
@@ -128,8 +158,14 @@ numbers will restart from 1 each time you open a new Python console.
 
 Now try typing the code `3 - 1` in the prompt and pressing `Shift`-`Enter`:
 
-```{image} ../img/jupyterlab_console_diff.png
-:alt: A Python console running in JupyterLab, showing the difference of two numbers.
+```{figure} ../img/jupyterlab_console_diff.png
+---
+name: fig-jl-console-diff
+alt: A window with two sections. The section on the left lists files in a
+  directory. The section on the right is a Python console. The console shows "3
+  + 1" as input and "2" as output.
+---
+A Python console running in JupyterLab, showing the difference of two numbers.
 ```
 
 The tag on the code and result is `[2]`, and once again the result is displayed
@@ -309,6 +345,22 @@ True
 True == False
 ```
 
+:::{tip}
+Python supports chained comparisons. For example, if you want to test whether
+`x` is between `1` and `2`, you can write:
+```python
+1 < x < 2
+```
+
+This is **syntactic sugar** (a shortcut) for a longer expression:
+```python
+1 < x and x < 2
+```
+
+You can use any of the comparison operators in chained comparisons, and Python
+will implicitly combine each comparison with `and`.
+:::
+
 
 (calling-functions)=
 ### Calling Functions
@@ -436,9 +488,114 @@ and are usually not intended to be accessed directly.
 :::
 
 
+## Saving Code
+
+:::{tip}
+When you start a new project, it's a good idea to create a specific directory
+for all of the project's files. If you're using Python, you should also store
+your Python code in that directory. As you work, periodically save your code.
+:::
+
+The most common way to save Python code is as a **Python script** with the
+extension `.py` (see {numref}`reading-files` for more about extensions).
+Editing a script is similar to editing any other text document. You can write,
+delete, copy, cut, and paste code.
+
+You can create a new Python script in JupyterLab with this menu option:
+
+```
+File -> New -> Python File
+```
+
+Every line in a Python script must be valid Python code. Anything else you want
+to write in the script (notes, documentation, etc.) must be placed in a
+**comment**. In Python, comments begin with `#` and extend to the end of the
+line:
+
+```{code-cell}
+# This is a comment.
+```
+
+Python will ignore comments when you run your code.
+
+Arrange your code in the order of the steps to solve the problem, even if you
+write some parts before others. Comment out or delete any lines of code that
+you try but ultimately decide you don't need. Make sure to save the file
+periodically so that you don't lose your work. Following these guidelines will
+help you stay organized and make it easier to share your code with others
+later.
+
+
+(jupyter-notebooks)=
+### Jupyter Notebooks
+
+For data science tasks, it is also common to use a [**Jupyter
+notebook**][jupyter] with extension `.ipynb` to store code. In addition to
+Python code, Jupyter notebooks have full support for formatted text, images,
+and code from other programming languages such as Julia and R. The tradeoff is
+that Jupyter notebooks can only be viewed in a web browser.
+
+[jupyter]: https://jupyter.org/
+
+:::{Tip}
+"Jupyter" is short for "Julia, Python, Text, and R."
+:::
+
+Jupyter notebooks are more convenient than Python scripts for interactive work
+such as data analysis and learning or experimenting with the language. On the
+other hand, Python scripts are more appropriate for long-running code that does
+not require user interaction (such as web scrapers or scientific simulations)
+and for developing packages and software. The remainder of this reader assumes
+you're using a Jupyter notebook rather than the Python console or a Python
+script, unless otherwise noted.
+
+You can create a new Jupyter notebook in JupyterLab with this menu option:
+
+```
+File -> New -> Notebook
+```
+
+JupyterLab will prompt you to select a **kernel** for the notebook. The kernel
+is the software used to run code in the notebook. For a notebook that will
+contain Python code, you should choose a Python kernel.
+
+After you select the kernel, you'll see a pane like this:
+
+```{image} ../img/jupyterlab_notebook.png
+:alt: A Jupyter notebook open in JupyterLab.
+```
+
+Jupyter notebooks are subdivided into **cells**. You can create as many cells
+as you like, but each cell can only contain one kind of content, usually code
+or text.
+
+New cells are code cells by default. You can run a code cell by clicking on the
+cell and pressing `Shift`-`Enter`. The notebook will display the result and
+create a new empty code cell below the result:
+
+```{image} ../img/jupyterlab_notebook_prod.png
+:alt: A Jupyter notebook open in JupyterLab, showing an evaluated code cell.
+```
+
+You can convert a code cell to a text cell by clicking on the cell and
+selecting the "Markdown" option from the cell type dropdown menu:
+
+```{image} ../img/jupyterlab_notebook_cell_menu.png
+:alt:
+```
+
+Markdown is a simple language you can use to add formatting to your text. For
+example, surrounding a word with asterisks, as in `Let *sleeping* dogs lie`,
+makes the surrounded word italic. You can find a short, interactive tutorial
+about Markdown [here][mdtutorial]. If you "run" a text cell by pressing
+`Shift`-`Enter`, the notebook will display the text with any formatting you
+added.
+
+[mdtutorial]: https://www.markdowntutorial.com/
+
+
 (getting-help)=
-Getting Help
-------------
+## Getting Help
 
 Learning and using a language is hard, so it's important to know how to get
 help. The first place to look for help is Python's built-in documentation. In
@@ -520,8 +677,7 @@ to read about [how to ask a good question][goodq].
 
 
 (modules-packages)=
-Packages
---------
+## Packages
 
 A **package** is a reusable bundle of code. Packages usually include
 documentation, and can also contain examples and data sets. Most packages are
@@ -635,8 +791,7 @@ functions are generally faster, more precise, and more convenient than Python's
 built-in math functions.
 
 
-File Systems
-------------
+## File Systems
 
 Most of the time, you won't just write code directly into the Python console.
 Reproducibility and reusability are important benefits of Python over
@@ -830,112 +985,6 @@ specific situations where `.` is necessary, but they fall outside the scope of
 this text.
 
 
-### Saving Code
-
-:::{tip}
-When you start a new project, it's a good idea to create a specific directory
-for all of the project's files. If you're using Python, you should also store
-your Python code in that directory. As you work, periodically save your code.
-:::
-
-The most common way to save Python code is as a **Python script** with the
-extension `.py` (see {numref}`reading-files` for more about extensions).
-Editing a script is similar to editing any other text document. You can write,
-delete, copy, cut, and paste code.
-
-You can create a new Python script in JupyterLab with this menu option:
-
-```
-File -> New -> Python File
-```
-
-Every line in a Python script must be valid Python code. Anything else you want
-to write in the script (notes, documentation, etc.) must be placed in a
-**comment**. In Python, comments begin with `#` and extend to the end of the
-line:
-
-```{code-cell}
-# This is a comment.
-```
-
-Python will ignore comments when you run your code.
-
-Arrange your code in the order of the steps to solve the problem, even if you
-write some parts before others. Comment out or delete any lines of code that
-you try but ultimately decide you don't need. Make sure to save the file
-periodically so that you don't lose your work. Following these guidelines will
-help you stay organized and make it easier to share your code with others
-later.
-
-
-(jupyter-notebooks)=
-#### Jupyter Notebooks
-
-For data science tasks, it is also common to use a [**Jupyter
-notebook**][jupyter] with extension `.ipynb` to store code. In addition to
-Python code, Jupyter notebooks have full support for formatted text, images,
-and code from other programming languages such as Julia and R. The tradeoff is
-that Jupyter notebooks can only be viewed in a web browser.
-
-[jupyter]: https://jupyter.org/
-
-:::{Tip}
-"Jupyter" is short for "Julia, Python, Text, and R."
-:::
-
-Jupyter notebooks are more convenient than Python scripts for interactive work
-such as data analysis and learning or experimenting with the language. On the
-other hand, Python scripts are more appropriate for long-running code that does
-not require user interaction (such as web scrapers or scientific simulations)
-and for developing packages and software. The remainder of this reader assumes
-you're using a Jupyter notebook rather than the Python console or a Python
-script, unless otherwise noted.
-
-You can create a new Jupyter notebook in JupyterLab with this menu option:
-
-```
-File -> New -> Notebook
-```
-
-JupyterLab will prompt you to select a **kernel** for the notebook. The kernel
-is the software used to run code in the notebook. For a notebook that will
-contain Python code, you should choose a Python kernel.
-
-After you select the kernel, you'll see a pane like this:
-
-```{image} ../img/jupyterlab_notebook.png
-:alt: A Jupyter notebook open in JupyterLab.
-```
-
-Jupyter notebooks are subdivided into **cells**. You can create as many cells
-as you like, but each cell can only contain one kind of content, usually code
-or text.
-
-New cells are code cells by default. You can run a code cell by clicking on the
-cell and pressing `Shift`-`Enter`. The notebook will display the result and
-create a new empty code cell below the result:
-
-```{image} ../img/jupyterlab_notebook_prod.png
-:alt: A Jupyter notebook open in JupyterLab, showing an evaluated code cell.
-```
-
-You can convert a code cell to a text cell by clicking on the cell and
-selecting the "Markdown" option from the cell type dropdown menu:
-
-```{image} ../img/jupyterlab_notebook_cell_menu.png
-:alt: 
-```
-
-Markdown is a simple language you can use to add formatting to your text. For
-example, surrounding a word with asterisks, as in `Let *sleeping* dogs lie`,
-makes the surrounded word italic. You can find a short, interactive tutorial
-about Markdown [here][mdtutorial]. If you "run" a text cell by pressing
-`Shift`-`Enter`, the notebook will display the text with any formatting you
-added.
-
-[mdtutorial]: https://www.markdowntutorial.com/
-
-
 ### The Working Directory
 
 ```{code-cell}
@@ -976,12 +1025,14 @@ os.chdir("..")
 os.getcwd()
 ```
 
+:::{warning}
 Generally, you should avoid using calls to `os.chdir` in your Jupyter notebooks
 and Python scripts. Calling `os.chdir` makes your code more difficult to
 understand, and can always be avoided by using appropriate relative paths. If
 you call `os.chdir` with an absolute path, it also makes your code less
 portable to other computers. It's fine to use `os.chdir` interactively (in the
 Python console), but avoid making your saved code dependent on it.
+:::
  
 Another function that's useful for dealing with the working directory and file
 system is `os.listdir`. The `os.listdir` function returns the names of all of
@@ -1014,8 +1065,7 @@ os.chdir(_wd)
 
 
 (reading-files)=
-Reading Files
--------------
+## Reading Files
 
 The first step in most data analyses is loading a data set. The Polars package
 provides functions to read data sets saved in a variety of file formats. In
@@ -1225,8 +1275,7 @@ your first data set into Python!
 
 
 (inspecting-dataframe)=
-Inspecting a Data Frame
------------------------
+## Inspecting a Data Frame
 
 The California least tern data set is tabular, as you might have already
 guessed from CSV file format. {numref}`modules-packages` explained that we use
@@ -1370,8 +1419,7 @@ We'll explain more ways to work with data frames and columns in the next
 chapter.
 
 
-Exercises
----------
+## Exercises
 
 ### Exercise
 
