@@ -1342,21 +1342,14 @@ terns.head()
 ```
 
 If you run this code and see a similar table, then congratulations, you've read
-your first data set into Python!
+your first data set into Python! ✨
 
+{ref}`sec-packages` explained that we use data frames to represent tabular
+data. Typically, each row in a data frame corresponds to a single subject and
+is called an **observation**. Each column corresponds to a measurement of the
+subject and is called a **feature** or **covariate**.
 
-(inspecting-dataframe)=
-## Inspecting a Data Frame
-
-The California least tern data set is tabular, as you might have already
-guessed from CSV file format. {ref}`sec-packages` explained that we use data
-frames to represent tabular data.
-
-Typically each row corresponds to a single subject and is called an
-**observation**. Each column corresponds to a measurement of the subject and is
-called a **feature** or **covariate**.
-
-:::{caution}
+:::{note}
 Sometimes people also refer to columns as “variables," but we'll try to avoid
 this, because in programming contexts a variable is a name for a value (which
 might not be a column).
@@ -1370,6 +1363,10 @@ type(terns)
 ```
 
 Everything looks good here.
+
+
+(inspecting-dataframe)=
+## Inspecting a Data Frame
 
 Similar to how the `.head` method shows the first few rows of a data frame, the
 `.tail` method shows the last few:
@@ -1407,10 +1404,15 @@ terns.shape
 
 :::{note}
 The `.shape` attribute uses the same dot (`.`) syntax as the `.head` and
-`.tail` methods. The key difference is that because `.shape` is not a function,
+`.tail` methods. The key difference is that because `.shape` is not a method,
 there are no parentheses `()` at the end. Parentheses are necessary when you
 want to call a method, but not when you want just want to access the value of
 attribute.
+
+How can you tell whether or not an attribute is a method? If its value must be
+computed (for example, by taking a subset), it's probably a method. If its
+value is an inherent property of the object, it's probably not. You can always
+use `help` or `type` to check if you're not sure.
 :::
 
 Polars stores the data frame's column names in the `.columns` attribute:
