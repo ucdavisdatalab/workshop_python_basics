@@ -1,8 +1,6 @@
 format: jb-book
 root: chapters/index
 parts:
-  - chapters:
-      - file: chapters/setting-up-python
   - caption: Python Basics
     numbered: true
     chapters:
