@@ -402,14 +402,14 @@ but not the string `"1"`.
 Besides arithmetic, you an also use Python to compare values. Programming tasks
 often involve comparing values. Use **comparison operators** to do so:
 
-| Symbol | Meaning                  |
-| :----: | :----------------------- |
-| `<`    | less than                |
-| `>`    | greater than             |
-| `<=`   | less than or equal to    |
-| `>=`   | greater than or equal to |
-| `==`   | equal to                 |
-| `!=`   | not equal to             |
+| Operator | Meaning                  |
+| :------: | :----------------------- |
+| `<`      | less than                |
+| `>`      | greater than             |
+| `<=`     | less than or equal to    |
+| `>=`     | greater than or equal to |
+| `==`     | equal to                 |
+| `!=`     | not equal to             |
 
 Notice that the "equal to" operator is two equal signs. This is to distinguish
 it from the assignment `=` operator.
@@ -638,7 +638,7 @@ For functions, help pages usually include a brief description and a list of
 parameters and default arguments. For instance, the help page for `round` shows
 that there are two parameters `number` and `ndigits`. It also says that
 `ndigits=None`, meaning the default argument for `ndigits` is the special
-`None` value (you'll learn more about `None` in {ref}`special-values`).
+`None` value (you'll learn more about `None` in {ref}`sec-special-values`).
 
 There are also help pages for other topics, such as built-in operators and
 modules (you'll learn about modules in {ref}`sec-modules`). To look up the help
@@ -1206,6 +1206,7 @@ other advantages. Compared to text files, binary files are often faster to read
 and take up less storage space (bytes).
 
 
+(sec-hello-data)=
 ### Hello, Data!
 
 The California least tern is a endangered subspecies of seabird that nests
@@ -1422,7 +1423,7 @@ Polars stores the data frame's column names in the `.columns` attribute:
 terns.columns
 ```
 
-(summarizing-data)=
+(sec-summarizing-data)=
 ### Summarizing Data
 
 The `.glimpse` method provides a structural summary of a data frame. The method
@@ -1445,8 +1446,8 @@ statistical summary of a data frame:
 terns.describe()
 ```
 
-(summarizing-columns)=
-### Selecting Columns
+(sec-summarizing-columns)=
+### Summarizing Columns
 
 You can select individual columns with **bracket notation**. Put the name of
 the column in quotes and place that inside of square brackets `[]`. For
