@@ -23,8 +23,10 @@ terns = pl.read_csv("data/2000-2023_ca_least_tern.csv")
 
 # Data Types & Structures
 
-<!-- FIXME: -->
 :::{admonition} Learning Objectives
+:class: note
+After this lesson, you should be able to:
+
 * Check the type of an object
 * Cast an object to a different type
 * Describe and differentiate lists, series, tuples, sets, dicts, and arrays
