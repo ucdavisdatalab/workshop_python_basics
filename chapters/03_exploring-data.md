@@ -15,499 +15,100 @@ kernelspec:
 import os
 
 os.chdir("..")
+
+import polars as pl
+
+terns = pl.read_csv("data/2000-2023_ca_least_tern.csv")
 ```
 
-Exploring Data
-==============
-
-Now that you have a solid foundation in the basic functions and data structures
-of Python, you can move on to using it for data analysis. In this chapter,
-you'll learn how to efficiently explore and summarize with visualizations and
-statistics. Along the way, you'll also learn how to apply functions along
-entire sets of data in Pandas DataFrames and Series.
+# Exploring Data
 
 :::{admonition} Learning Objectives
-* Describe how Python iterates over data
-* Write loops to do things repeatedly
-* Write list comprehensions to do things repeatedly
-* Use Pandas aggregation methods to explore a data set
+:class: note
+After this lesson, you should be able to:
+
+* List and describe popular data visualization packages
 * Prepare data for visualization
 * Describe the grammar of graphics
 * Use the grammar of graphics to produce a plot
 * Identify where to go to learn more about making effective visualizations
+* Compute aggregates of data
+* Split data into groups and compute aggregates on each
 :::
 
-
-Setup
------
-
-### Packages
-
-As in the last chapter, you will be working with two primary packages: NumPy
-and Pandas. Later, you will load another set of packages to visualize your
-data.
-
-```{code-cell}
-import numpy as np
-import pandas as pd
-```
-
-
-### Data
-
-We will continue working with the banknotes data set. Once you've imported your
-packages, load this data in as well.
-
-```{code-cell}
-banknotes = pd.read_csv("data/banknotes.csv")
-```
-
-You're now ready to go.
-
-
-(iteration)=
-Iterating Over Data
--------------------
-
-Before we go into data exploration in full, it's important to understand how
-Python/Pandas computes summary statistics about a data set.
-{numref}`summarizing-columns` introduced column-wise operations in Pandas; you
-will learn more of them below. These operations are a convenient and efficient
-way to compute multiple results at once, and with only a few lines of code.
-
-Under the hood, Pandas has to **iterate** over each value in a cell to perform
-operations like `.mean` or `.min`. We can do this too using a **for-loop**.
-
-
-### For-Loops
-
-For-loops iterate over some object and compute something for each element. Each
-one of these computations is one **iteration**. A for-loop begins with the
-`for` keyword, followed by:
-
-* A placeholder variable, which will be automatically signed to an element at
-  the beginning of each iteration
-* The `in` keyword
-* An object with elements
-* A colon `:`
-
-Code in the body of the loop must be indented by 4 spaces.
-
-For example, to print out all the column names in `banknotes.columns`, you can
-write:
-
-```{code-cell}
-for column in banknotes.columns:
-    print(column)
-```
-
-Within the indented part of a for-loop, you can compute values, check
-conditions, etc.
-
-```{code-cell}
-:tags: [output_scroll]
-for value in banknotes["bill_count"]:
-    if value < 1:
-        print(value)
-```
-
-Oftentimes you want to save the result of the code you perform within a
-for-loop. The easiest way to do this is by creating an empty list and using
-`append` to add values to it.
-
-```{code-cell}
-:tags: [output_scroll]
-result = []
-for value in banknotes["current_bill_value"]:
-    if value % 25 == 0:
-        result.append(value)
-
-result
-```
-
-
-### List Comprehensions
-
-A more efficient and succinct way to perform certain `append` operations is
-with a **list comprehension**. A list comprehension is very similar to a
-for-loop, but it automatically creates a new list based on what your iterations
-do. This means you do not need to create an empty list ahead of time.
-
-The syntax for a list comprehension includes the keywords `for` and `in`, just
-like a for-loop. The difference is that in the list comprehension, the repeated
-code comes *before* the `for` keyword rather than after it, and the entire
-expression is enclosed in square brackets `[ ]`.
-
-Here's a list comprehension that divides each value in the `current_bill_value`
-column by 2:
-
-```{code-cell}
-:tags: [output_scroll]
-[value / 2 for value in banknotes["current_bill_value"]]
-```
-
-List comprehensions can optionally include the `if` keyword and a condition at
-the end, to filter out some elements of the list:
-
-```{code-cell}
-:tags: [output_scroll]
-[year for year in banknotes["first_appearance_year"] if year > 2012]
-```
-
-This is similar to subsetting in Pandas.
-
-Note that you can assign the results of a list comprehension to a new variable
-and then perform further computations on them:
-
-```{code-cell}
-recent_years = [year for year in banknotes["first_appearance_year"] if year > 2012]
-np.median(recent_years)
-```
-
-You can learn more about comprehensions in the [official Python
-documentation][comprehensions].
-
-[comprehensions]: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions
-
-
-(aggregate-functions)=
-Aggregate Functions
--------------------
-
-
-(aggregating-a-column)=
-### Aggregating a Column
-
-In {numref}`summarizing-columns`, you learned how to compute the mean, minimum,
-and maximum values from a Series. Pandas offers a more generalized way to
-handle these functions through its `.aggregate` method. This method
-**aggregates** the elements of Series, reducing the Series to a smaller number
-of values (usually one value).
-
-For example, to compute the median of all values in `first_appearance_year`:
-
-```{code-cell}
-banknotes["first_appearance_year"].aggregate('median')
-```
-
-The `.agg` method is an alias for `.aggregate`. The [Pandas
-documentation][pandasdocs] advises that you use the alias:
-
-[pandasdocs]: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.aggregate.html
-
-```{code-cell}
-banknotes["first_appearance_year"].agg('median')
-```
-
-You can pass functions to `.agg` in addition to names of functions:
-
-```{code-cell}
-banknotes["first_appearance_year"].agg(np.median)
-```
-
-The method is particularly powerful for its ability to handle multiple
-functions at once, using a list. Below, we compute the mean, median, and
-standard deviation for `bill_count`:
-
-```{code-cell}
-banknotes["current_bill_value"].agg([np.mean, np.median, np.std])
-```
-
-Aggregation methods can also work on multiple columns at once:
-
-```{code-cell}
-banknotes[["current_bill_value", "scaled_bill_value"]].agg(np.mean)
-```
-
-
-(aggregating-within-groups)=
-### Aggregating within Groups
-
-Aggregation is especially useful when combined with grouping. The `.groupby`
-method groups rows of a DataFrame using the columns you specify. The grouping
-columns should generally be categories rather than decimal numbers. For
-example, to group the banknotes by `gender` and then count how many entries are
-in each group:
-
-```{code-cell}
-banknotes.groupby("gender").size()
-```
-
-Use bracket notation to look at a specific column for each group:
-
-```{code-cell}
-banknotes.groupby("gender")["current_bill_value"].mean()
-```
-
-It's also possible to group by multiple conditions:
-
-```{code-cell}
-banknotes.groupby(["gender", "profession"]).size()
-```
-
-By default, the grouping columns are moved to the index of the result. You can
-prevent this by setting `as_index = False` in `.groupby`:
-
-```{code-cell}
-banknotes.groupby(["gender", "profession"], as_index = False).size()
-```
-
-:::{tip}
-You can also reset the index on a DataFrame, so that the current indexes
-become columns with the `.reset_index` method.
-:::
-
-Leaving the grouping columns in the index is often convenient because you can
-easily access results for the groups you're interested in:
-
-```{code-cell}
-grouped = banknotes.groupby(["gender", "profession"]).size()
-
-grouped.loc[:, "Visual Artist"]
-```
-
-A few aggregation functions only make sense when used together with groups. One
-is the `.first` method, which returns the first element or row. The `.first`
-method is especially useful if all the values in a group are the same and you
-want to reduce the data to one row per group. For instance, the same country
-appears across multiple rows in our data set. With `.first`, you can select the
-corresponding currency code:
-
-```{code-cell}
-banknotes.groupby("country")["currency_code"].first()
-```
+Now that you have a solid foundation in the basic functions and data structures
+of Python, you can move on to using it for data analysis. In this chapter,
+you'll learn how to efficiently explore and summarize with visualizations and
+statistics.
 
 
 (data-visualization-in-python)=
-Data Visualization in Python
-----------------------------
+## Visualization Packages
 
-
-```{image} ../img/visualization_landscape.png
+:::{figure} ../img/visualization_landscape.png
 :alt: A network of Python visualization packages.
-```
 
-_Image from [Jake VanderPlas][jake]. See [here][viz] for a version with links
-to all of the packages!_
+Image from [Jake VanderPlas][jake]. See [here][viz] for a version with links
+to all of the packages!
 
 [jake]: http://vanderplas.com/
 [viz]: https://rougier.github.io/python-visualization-landscape/landscape-colors.html
+:::
 
-Creating aggregated information about a data set is often done with the intent
-to share your results. A data visualization is an effective medium for
-displaying results, and there are many ways to create one in Python. In fact,
-so many visualization packages are available that there is even [a
-website][pyviz] dedicated to helping people decide which to use. This reader
-focuses on **static visualization**, where the visualization is a still image.
-Some popular packages for creating static visualizations are:
+A visualization is one of the most effective ways to display and summarize
+data, and there are many ways to create visualizations in Python. In fact, so
+many visualization packages are available that there's even [a website][pyviz]
+dedicated to helping people decide which to use. Some popular packages for
+creating static visualizations are:
 
 [pyviz]: https://pyviz.org/
 
-* **[matplotlib][]** is the foundation for most other visualization packages.
-  matplotlib is low-level, meaning it's flexible but even simple plots may take
-  [5 lines of code or more][ex]. It's good to know a little bit about
-  matplotlib, but it probably shouldn't be your primary visualization package.
-  Familiarity with MATLAB makes it easier to learn matplotlib.
+* [Matplotlib][] is the foundation for most other visualization packages.
+  Matplotlib is low-level, meaning it's flexible but even simple plots may take
+  [5 lines of code or more][viz-pkg-tour]. It's good to know a little bit about
+  Matplotlib, but it probably shouldn't be your primary visualization package.
+  Familiarity with MATLAB makes it easier to learn Matplotlib.
 
-* **[pandas][]** provides built-in plotting functions, which can be convenient
-  but are more limited than what you'll find in dedicated visualization
-  packages. They're also inconsistent about the expected format of the data.
+* [Plotnine][] is a copy of the popular R package [ggplot2][]. The package uses
+  the **grammar of graphics**, a convenient way to describe visualizations in
+  terms of layers. Familiarity with ggplot2 or Julia's [Gadfly.jl][] package
+  makes it easier to learn Plotnine (and vice-versa).
 
-* **[plotnine][]** is a copy of the popular R package [ggplot2][]. The package
-  uses the **grammar of graphics**, a convenient way to describe visualizations
-  in terms of layers. Familiarity with R's [ggplot2][] or Julia's
-  [Gadfly.jl][gadfly] package makes it easier to learn plotnine (and
-  vice-versa).
-
-* **[seaborn][]** is designed specifically for making statistical plots. It's
+* [Seaborn][] is designed specifically for making statistical plots. It's
   well-documented and stable.
 
-[matplotlib]: https://matplotlib.org/
-[ex]: https://dsaber.com/2016/10/02/a-dramatic-tour-through-pythons-data-visualization-landscape-including-ggplot-and-altair/
-[pandas]: https://pandas.pydata.org/docs/user_guide/visualization.html
+* Polars provides [built-in plotting functions][pl-plot] based on [Altair][],
+  which can be convenient but are more limited than what you'll find in
+  dedicated visualization packages.
+
+[Matplotlib]: https://matplotlib.org/
+[viz-pkg-tour]: https://dsaber.com/2016/10/02/a-dramatic-tour-through-pythons-data-visualization-landscape-including-ggplot-and-altair/
+[Plotnine]: https://plotnine.org/
 [ggplot2]: https://ggplot2.tidyverse.org/
-[plotnine]: https://plotnine.readthedocs.io/en/stable/
-[gadfly]: http://gadflyjl.org/stable/
-[seaborn]: https://seaborn.pydata.org/
+[Gadfly.jl]: http://gadflyjl.org/stable/
+[Seaborn]: https://seaborn.pydata.org/
+[pl-plot]: https://docs.pola.rs/user-guide/misc/visualization/
+[Altair]: https://altair-viz.github.io/
 
-There are also many packages available for making **interactive
-visualizations**.
-
-This reader focuses on plotnine, so that the visualization skills you learn
-here will also be relevant if you end up using R or Julia. plotnine has
-detailed [documentation][plotnine]. It's also useful to look at the [ggplot2
+We'll focus on Plotnine, so that the visualization skills you learn here will
+also be relevant if you end up using R or Julia. Plotnine has detailed
+[documentation][plotnine-docs]. It's also useful to look at the [ggplot2
 documentation][ggplot2] and [cheatsheet][ggplot2-cheat].
 
-[ggplot2-cheat]: https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf
-
-
-(installing-packages)=
-Installing Packages
--------------------
-
-While Matplotlib is included with Anaconda, plotnine is not. You will need to
-install the plotnine package in order to use it.
-
-You can use conda, a standalone program included with Anaconda, to install
-packages. To get started, you need to open a **terminal**, a text interface for
-running programs on your computer. In JupyterLab, you can open a terminal with
-the menu option `File` -> `New` -> `Terminal`
-
-:::{caution}
-A terminal looks a lot like a Python console, but doesn't accept Python code as
-input! To learn more about how to use terminals than we explain here, see
-DataLab's [Introduction to the Unix Command Line workshop reader][datalab-cli].
-
-[datalab-cli]: https://ucdavisdatalab.github.io/workshop_introduction_to_the_command_line/
-:::
-
-The command to install a package called `PACKAGE` is:
-
-```
-conda install -c conda-forge PACKAGE
-```
-
-So you can install plotnine with the command:
-
-```
-conda install -c conda-forge plotnine
-```
-
-:::{note}
-Conda downloads packages from online **package repositories**. The default
-repository is maintained by Anaconda, but the packages there tend to be
-slightly out of date. The community maintains another repository, called
-conda-forge, that's updated more frequently and has a wider variety of
-packages.
-
-The `-c conda-forge` tells conda to use the conda-forge package repository.
-:::
-
-You can learn more about conda from the [official website][conda] and DataLab's
-[Intermediate Python workshop reader][datalab-conda].
-
-[conda]: https://conda.org/
-[datalab-conda]: https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/02_reproducible.html#what-s-an-environment
-
-After installing plotnine, close the terminal and go back to your Python
-console or notebook.
-
-
-(preparing-to-visualize)=
-Preparing to Visualize
-----------------------
-
-Before building a visualization, you will need to do a few preparatory steps.
-
-(install-import-plotnine)=
-### Import plotnine
-
-In {numref}`modules`, you learned how to import a module in a Python package
-with the `import` keyword. Python also provides a `from` keyword to import
-specific objects from within a module, so that you can access them without the
-module name as a prefix. The syntax is:
-
-```python
-from MODULE import OBJECT
-```
-
-Replace `MODULE` with the name of the module and `OBJECT` with the name of the
-object that you want to import.
-
-For instance, if you import Pandas using:
-
-```python
-from pandas import DataFrame
-```
-
-You can then write:
-
-```python
-df = DataFrame()
-```
-
-You can also use the `from` keyword to import all objects in a module with the
-wildcard character `*`. Generally you shouldn't do this, because objects in a
-module will overwrite objects in your code if they have the same name. However,
-the plotnine package was designed to be imported this way:
-
-```{code-cell}
-from plotnine import *
-```
-
-
-(configure-jupyter)=
-### Configure Jupyter
-
-Jupyter notebooks can display most static visualizations and some interactive
-visualizations. If you're going to use visualization packages that depend on
-Matplotlib (such as plotnine), it's a good idea to set up your notebook by
-running:
-
-```{code-cell}
-# Initialize matplotlib
-import matplotlib.pyplot as plt
-
-plt.rcParams["figure.figsize"] = [10, 8]
-```
-
-The last line sets the default size of plots. You can increase the numbers to
-make plots larger, or decrease them to make plots smaller.
-
-:::{note}
-In older versions of Jupyter and IPython, it was also necessary to run the
-special IPython command `%matplotlib inline` to set up a notebook for plotting.
-This is no longer necessary in modern versions, but you may still see people
-use or mention it online. You can read more about this change in [this
-StackOverflow question][so-mpl-inline].
-
-[so-mpl-inline]: https://stackoverflow.com/questions/65934740/is-matplotlib-inline-still-needed
-:::
-
-
-(data-cleaning)=
-### Data Cleaning
-
-Finally, we need to do a small amount of data cleaning. The plots below will
-focus on two variables, `death_year` and `scaled_bill_value`. But some rows
-lack information for these variables, so they need to be removed. Along the
-way, we will ensure that the variables' datatypes are set correctly.
-
-:::{tip}
-When making potentially destructive changes to a data set, it's a good idea to
-reassign the altered data to a new variable.
-:::
-
-**Death year**
-
-```{code-cell}
-no_death = banknotes["death_year"].isin([np.nan, "-"])
-to_plot = banknotes[no_death == False].copy()
-to_plot["death_year"] = to_plot["death_year"].astype(int)
-```
-
-**Scaled bill value**
-
-```{code-cell}
-no_scaled = to_plot["scaled_bill_value"].isna()
-to_plot = to_plot[no_scaled == False]
-```
-
-You are now ready to make a plot.
+[plotnine-docs]: https://plotnine.org/guide/
+[ggplot2-cheat]: https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf
 
 
 (grammar-of-graphics)=
-The Grammar of Graphics
------------------------
+## The Grammar of Graphics
 
 Recall that plotnine is a clone of ggplot2. The "gg" in ggplot2 stands for
 *grammar of graphics*. The idea of a grammar of graphics is that visualizations
-can be built up in layers. Visualizations that adhere to this grammar must
-have:
+can be built up in layers. The three layers every plot must have are:
 
-* Data
-* Geometry
-* Aesthetics
+* Data: one or more data sets
+* Geometry: marks to display data, such as points or lines
+* Aesthetics: a specification of which features to display with geometry
 
 There are also several optional layers. Here are a few:
 
@@ -519,29 +120,112 @@ There are also several optional layers. Here are a few:
 | annotations | Shapes that are not mapped to data                 |
 | coordinates | Coordinate systems (Cartesian, logarithmic, polar) |
 
-With all this in mind, it's time to make a plot. But what kind of plot should
-we make? It depends on what we want to know about the data set. Suppose we want
-to understand the relationship between a banknote's value and how long ago the
-person on the banknote died, as well as whether this is affected by gender. One
-way to show this is to make a scatter plot.
+Let's visualize the California least terns data set from {ref}`sec-hello-data`
+to see how the grammar of graphics works in practice. But what kind of plot
+should we make? It depends on what we want to know about the data set. Suppose
+we want to understand the relationship between the number of breeding pairs and
+the total number of nests at each site, and whether this relationship is
+affected by climate events. One way to show the relationship between two
+numerical features like these is to make a scatter plot.
+
+
+### Importing Plotnine
+
+Before we can make the plot, we need to import Plotnine.
+{ref}`sec-importing-modules` explained how to import an entire module  with the
+`import` keyword. Python also provides a `from` keyword to import specific
+objects from within a module, so that you can access them without the module
+name as a prefix.
+
+As an example, Plotnine's `ggplot` function is the starting point for making
+plots. You can import the function with `from` like this:
+
+```{code-cell}
+from plotnine import ggplot
+```
+
+Then you can use the function as `ggplot` rather than `plotnine.ggplot`.
+
+You can also use the `from` keyword to import all objects in a module with the
+wildcard character `*`. Plotnine is designed to be imported this way:
+
+```{code-cell}
+from plotnine import *
+```
+
+:::{caution}
+Aside from Plotnine, you generally shouldn't import all objects from a module,
+because doing so:
+
+* Makes it harder to understand the code: an object could be defined locally or
+  in the module.
+* Can introduce bugs: objects from the module will overwrite objects in your
+  code that have the same name.
+
+One recommendation is that it's fine to use `from` to import classes (with
+`TitleCase` names), but you should avoid using it to import functions (with
+`snake_case` names). The justification is that classes are more likely than
+functions to have distinct, memorable names.
+
+If you prefer not to use `from` to import functions from Plotnine, you can use
+the following convention instead:
+
+```python
+import plotnine as p9
+```
+:::
+
+:::{admonition} Plotting in Jupyter
+:class: note, dropdown
+Jupyter notebooks can display most static visualizations and some interactive
+visualizations. For visualization packages that depend on Matplotlib, it's a
+good idea to set the default size of the plots:
+
+```python
+import matplotlib.pyplot as plt
+
+plt.rcParams["figure.figsize"] = [10, 8]
+```
+
+You can increase the numbers to make plots larger, or decrease them to make
+plots smaller. Plotnine provides another way to set the plot size through its
+theme layer.
+
+In older versions of Jupyter and IPython, it was also necessary to run the
+special IPython command `%matplotlib inline` to set up a notebook for plotting.
+This is no longer necessary in modern versions, but you may still see people
+use or mention it online. You can read more about this change in [this
+StackOverflow question][so-mpl-inline].
+
+[so-mpl-inline]: https://stackoverflow.com/questions/65934740/is-matplotlib-inline-still-needed
+:::
 
 
 ### Layer 1: Data
 
-The data layer determines the data set used to make the plot. plotnine is
-designed to work with *tidy* data. Tidy means:
-1. Each observation has its own row
-2. Each feature has its own column
-3. Each value has its own cell
+The **data layer** determines the data set(s) used to make the plot.
 
-Tidy data sets are convenient in general. A later lesson will cover how to make
-an untidy data set tidy. Until then, we'll take it for granted that the data
-sets we work with are tidy.
+Plotnine is designed to work with **tidy** data, which means:
 
-To set up the data layer, call the ``ggplot` function on a Data Frame:
+1. Each feature has its own column.
+2. Each observation has its own row.
+3. Each value has its own cell.
+
+These rules ensure data are easy to read visually and access with indexing. The
+least terns data set satisfies all of these rules.
+
+:::{seealso}
+All of the data sets we use in this reader are tidy. To learn how to tidy an
+untidy data set, see the [Untidy & Relational Data][dl-py-tidy] chapter of
+DataLab's Intermediate Python workshop reader.
+
+[dl-py-tidy]: https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/02_tidy-relational-data.html
+:::
+
+To set up the data layer, call the `ggplot` function on a data frame:
 
 ```{code-cell}
-ggplot(to_plot)
+ggplot(terns)
 ```
 
 This returns a blank plot. We still need to add a few more layers.
@@ -549,19 +233,20 @@ This returns a blank plot. We still need to add a few more layers.
 
 ### Layer 2: Geometry
 
-The geometry layer determines the shape or appearance of the visual elements of
-the plot. In other words, the geometry layer determines what kind of plot to
-make: one with points, lines, boxes, or something else.
+The **geometry layer** determines the shape or appearance of the visual
+elements of the plot. In other words, the geometry layer determines what kind
+of plot to make: one with points, lines, boxes, or something else.
 
-There are many different geometries available in plotnine. The package provides
+There are many different geometries available in Plotnine. The package provides
 a function for each geometry, always prefixed with `geom_`.
 
 To add a geometry layer to the plot, choose the `geom_` function you want and
-add it to the plot with the `+` operator:
+add it to the plot with the `+` operator. We'll use `geom_point`, which makes a
+scatter plot (a plot with points):
 
 ```{code-cell}
-:tags: [raises-exception]
-ggplot(to_plot) + geom_point()
+:tags: [raises-exception, scroll-output]
+ggplot(terns) + geom_point()
 ```
 
 This returns an error message that we're missing aesthetics `x` and `y`. We'll
@@ -576,7 +261,7 @@ As we'll see later, it's possible to add multiple geometries to a plot.
 
 ### Layer 3: Aesthetics
 
-The aesthetic layer determines the relationship between the data and the
+The **aesthetics layer** determines the relationship between the data and the
 geometry. Use the aesthetic layer to map features in the data to aesthetics
 (visual elements) of the geometry.
 
@@ -590,169 +275,282 @@ The names of the aesthetics depend on the geometry, but some common ones are
 `x`, `y`, `color`, `fill`, `shape`, and `size`. There is more information about
 and examples of aesthetic names in the documentation.
 
-For example, we want to put `death_year` on the x-axis and `scalled_bill_value`
-on the y-axis. It's best to use `scaled_bill_value` here rather than
-`current_bill_value` because different countries use different scales of
-curency. One United States Dollar is worth approximately one hundred Japanese
-Yen, for example. Below, we will set the aesthetics for both of these values.
-Notice however that the aesthetic layer is not added to the plot with the `+`
-operator. Instead, it is passed as the second argument to the `ggplot`
-function:
+For the scatter plot of breeding pairs against total nests, we'll put `bp_min`
+on the x-axis and `total_nests` on the y-axis. Below, we set both of these
+aesthetics. We also enclose all of the code for the plot in parentheses `()` so
+that we can put the code for each layer on a separate line, which makes the
+layers easier to distinguish:
 
 ```{code-cell}
-ggplot(
-    to_plot,
-    aes(x = "death_year", y = "scaled_bill_value")
-) + geom_point()
-```
-
-**Per-geometry Aesthetics**
-
-When you add the aesthetic layer or pass it to the `ggplot` function, it
-applies to the entire plot. You can also set an aesthetic layer individually
-for each geometry by passing the layer as the first argument in the `geom_`
-function:
-
-```{code-cell}
-(ggplot(to_plot) +
-    geom_point(aes(x = "death_year", y = "scaled_bill_value"))
+(
+    ggplot(terns) +
+    aes(x = "bp_min", y = "total_nests") +
+    geom_point()
 )
 ```
+
+At this point, we've supplied all three layers necessary to make a plot: data,
+geometry, and aesthetics. The plot shows what looks like a linear relationship
+between number of breeding pairs and total nests. To refine the plot, you can
+add more layers and/or set parameters on the layers you have.
 
 :::{tip}
-Enclose expressions with `()` to create multiline code. It would be possible to
-write out all of the above on one line, but this would come at the expense of
-readability.
+Python ignores line breaks inside of parentheses `()`, so you can enclose
+lengthy expressions in parentheses and format them neatly.
 :::
 
-
-This is really only useful when you have multiple geometries. As an example,
-let's color-code the points by gender. To do so, we need to convert `gender` to
-*categorical* data, which measures a qualitative category.
+Let's add another aesthetic to the plot: we'll make the color and shape of each
+point correspond to `event`, the climate event for each observation:
 
 ```{code-cell}
-(ggplot(to_plot) +
-    geom_point(aes(x = "death_year", y = "scaled_bill_value", color = "factor(gender)"))
+(
+    ggplot(terns) +
+    aes(x = "bp_min", y = "total_nests", color = "event", shape = "event") +
+    geom_point()
 )
 ```
 
-Now let's add labels to each point. To do this, we need to add another
-geometry:
+Using color and shape for the same feature is redundant, but ensures that the
+plot is accessible to colorblind people. 
+
+
+#### Additional Geometries
+
+Each observation in the least terns data corresponds to a specific year and
+site. What if we label the points with their years? You can add text labels to
+a plot with `geom_text`. The required aesthetic for this geometry is `label`:
 
 ```{code-cell}
-(ggplot(to_plot,
-    aes(x = "death_year", y = "scaled_bill_value", color = "factor(gender)",
-        label = "name")) +
-    geom_point() + 
+(
+    ggplot(terns) +
+    aes(
+        x = "bp_min", y = "total_nests",
+        color = "event", shape = "event",
+        label = "year"
+    ) +
+    geom_point() +
     geom_text()
 )
 ```
 
-Where you put the aesthetics matters:
+The labels make the plot more difficult to read and probably would even if we
+made them smaller, because there are so many points on the plot. Making a
+high-quality visualization is typically a process of drafting and revising,
+similar to writing a high-quality essay. In this example, adding year labels to
+the plot doesn't work well, so we'll backtrack and leave them off of the plot.
+If accounting for year was critical to our research question, we could do it in
+other ways, such as by making separate plots for each year.
+
+#### Per-geometry Aesthetics
+
+Before we remove the labels, let's use them to demonstrate an important point
+about using multiple geometry and aesthetic layers: when you add an aesthetic
+layer to a plot, it applies to the entire plot. You can also set an aesthetic
+layer for an individual geometry by passing the layer as the first argument in
+the `geom_` function. Here's the same plot as above, but with the `color`
+aesthetic only set for the labels:
 
 ```{code-cell}
-(ggplot(to_plot,
-    aes(x = "death_year", y = "scaled_bill_value", label = "name")) + 
-    geom_point() + 
-    geom_text(aes(color = "factor(gender)"))
+(
+    ggplot(terns) +
+    aes(
+        x = "bp_min", y = "total_nests",
+        shape = "event",
+        label = "year"
+    ) +
+    geom_point() +
+    geom_text(aes(color = "event"))
 )
 ```
 
-**Constant Aesthetics**
+Notice that the points are no longer color-coded. Where you put aesthetic
+layers matters.
+
+
+#### Constant Aesthetics
 
 If you want to set an aesthetic to a constant value, rather than one that's
-data dependent, do so in the geometry layer rather than the aesthetic layer.
-For instance, suppose you want to use point shape rather than color to indicate
-gender, and you want to make all of the points blue.
+data-dependent, do so in the geometry layer rather than the aesthetic layer.
+
+For instance, suppose we want to make all of the points blue and use only point
+shape to indicate climate events:
 
 ```{code-cell}
-(ggplot(to_plot,
-    aes(x = "death_year", y = "scaled_bill_value", shape = "factor(gender)")) +
+(
+    ggplot(terns) +
+    aes(
+        x = "bp_min", y = "total_nests",
+        shape = "event"
+    ) +
     geom_point(color = "blue")
 )
 ```
 
-If you set an aesthetic to a constant value inside of the aesthetic layer, the
-results you get might not be what you expect:
+If you set an aesthetic to a constant value in an aesthetic layer, the results
+won't be what you expect:
 
 ```{code-cell}
-:tags: [raises-exception]
-(ggplot(to_plot,
-    aes(x = "death_year", y = "scaled_bill_value", shape = "factor(gender)",
-        color = "blue")) +
-    geom_point()
+:tags: [raises-exception, scroll-output]
+(
+    ggplot(terns) +
+    aes(
+        x = "bp_min", y = "total_nests",
+        color = "blue", shape = "event",
+        label = "year"
+    ) +
+    geom_point() +
+    geom_text()
 )
 ```
 
 
 ### Layer 4: Scales
 
-The scales layer controls the title, axis labels, and axis scales of the plot.
-Most of the functions in the scales layer are prefixed with `scale_`, but not
-all of them.
+The **scales layer** controls the title, axis labels, and axis scales of the
+plot. Most of the functions in the scales layer are prefixed with `scale_`, but
+not all of them.
 
 The `labs` function is especially important, because it's used to set the title
-and axis labels. All graphs need a title and axis labels.
+and axis labels. Visualizations should generally have a title and axis labels,
+to aid the viewer:
 
 ```{code-cell}
-(ggplot(to_plot,
-    aes(x = "death_year", y = "scaled_bill_value", shape = "factor(gender)")) + 
+(
+    ggplot(terns) +
+    aes(
+        x = "bp_min", y = "total_nests",
+        color = "event", shape = "event"
+    ) +
     geom_point() +
-    labs(x = "Death Year", y = "Scaled Bill Value",
-         title = "Does death year affect bill value?", shape = "Gender")
+    labs(
+        x = "Minimum Reported Breeding Pairs",
+        y = "Total Nests",
+        color = "Climate Event", shape = "Climate Event",
+        title = "California Least Terns: Breeding Pairs vs. Nests"
+    )
 )
 ```
+
+Notice that to set the title for a legend with `labs`, you can set the
+parameters of the same names as the corresponding aesthetics. While our plot is
+still far from perfect---some of the points are hard to see because of how many
+there are---it's now good enough to provide some insight into the relationship
+between number of breeding pairs and nests.
+
 
 ### Saving Plots
 
 If you assign a plot to a variable, you can use the `save` method or the
 `ggsave` function to save that plot to a file:
 
-```
+```python
 plot = (
-    ggplot(to_plot,
-    aes(x = "death_year", y = "scaled_bill_value", shape = "factor(gender)")) +
+    ggplot(terns) +
+    aes(
+        x = "bp_min", y = "total_nests",
+        color = "event", shape = "event"
+    ) +
     geom_point() +
-    labs(x = "Death Year", y = "Scaled Bill Value", 
-         title = "Does death year affect bill value?", shape = "Gender")
+    labs(
+        x = "Minimum Reported Breeding Pairs",
+        y = "Total Nests",
+        color = "Climate Event", shape = "Climate Event",
+        title = "California Least Terns: Breeding Pairs vs. Nests"
+    )
 )
 
-ggsave(plot, "myplot.pdf")
+ggsave(plot, "myplot.png")
 ```
 
 The file format is selected automatically based on the extension. Common
-formats are PNG and PDF.
+formats include PNG, TIFF, SVG, and PDF.
+
+:::{tip}
+PNG and SVG are good choices for sharing visualizations online, while TIFF and
+PDF are good choices for print. Many journals require that visualizations be in
+TIFF format.
+:::
 
 
-(example-bar-plot)=
+(sec-example-bar-plot)=
 ### Example: Bar Plot
 
-Now suppose you want to plot the number of banknotes with people from each
-profession in the banknotes data set. A bar plot is an appropriate way to
-represent this visually.
+Suppose we want to visualize how many fledglings there are each year, further
+broken down by region. A bar plot is one appropriate way to represent this
+visually.
 
 The geometry for a bar plot is `geom_bar`. Since bar plots are mainly used to
-display frequencies, the `geom_bar` function automatically computes frequencies
-when used in conjunction with the `factor()` syntax from above.
-
-We can also use a fill color to further breakdown the bars by gender. Here's
-the code to make the bar plot:
+display frequencies, by default the `geom_bar` function counts the number of
+observations in each category on the x-axis and displays these counts on the
+y-axis. You can make `geom_bar` display values from a column on the y-axis by
+setting the `weight` aesthetic:
 
 ```{code-cell}
-(ggplot(to_plot,
-    aes(x = "factor(profession)", fill = "factor(gender)")) +
-    geom_bar(position = "dodge") + 
-    theme(axis_text_x=element_text(rotation = 90))
+(
+    ggplot(terns) +
+    aes(x = "year", weight = "fl_min", fill = "region_3") +
+    geom_bar()
 )
 ```
 
-The setting `position = "dodge"` instructs `geom_bar` to put the bars
-side-by-side rather than stacking them. Adding `theme` allows you to change how
-the axis labels and ticks are formatted.
+:::{admonition} Setting the Statistics Layer
+:class: note, dropdown
+Every geometry layer has a corresponding statistics layer, which transforms
+feature values into quantities to plot. For many geometries, the default
+statistics layer is the only one that makes sense.
 
-In some cases, you may want to make a bar plot with frequencies you've already
-computed. To prevent `geom_bar` from computing frequencies automatically, set
-`stat = "identity"`.
+Bar plots are an exception. The default statistics layer is `stat_count`, which
+counts observations. If you already have counts (or just want to display some
+quantities as bars), you need `stat_identity` (or the `weight` aesthetic
+described above). Here's one way to change the statistics layer:
+
+```python
+(
+    ggplot(terns) +
+    aes(x = "year", y = "fl_min", fill = "region_3") +
+    geom_bar(stat = "identity")
+)
+```
+
+This produces the same plot as setting `weight` and using the default
+statistics layer `stat_count`.
+:::
+
+The plot reveals that there are a few extraneous categories in the `region_3`
+column: `ARIZONA`, `KINGS`, and `SACRAMENTO`. These might or might not be
+erroneous---and it would be good to investigate---but they don't add anything
+to this plot, so let's exclude them. Let's also change the **color map**, the
+palette of colors used for the categories. These are both properties of the
+scale layer for the `fill` aesthetic, so we'll use a `scale_fill_` function.
+In particular, since the fill color corresponds to categorical (discrete) data,
+we'll use `scale_fill_cmap_d`. We'll also add labels:
+
+```{code-cell}
+(
+    ggplot(terns) +
+    aes(x = "year", weight = "fl_min", fill = "region_3") +
+    geom_bar() +
+    scale_fill_cmap_d(limits=["S.F._BAY", "CENTRAL", "SOUTHERN"]) +
+    labs(
+        title = "California Least Terns: Fledglings",
+        x = "Year",
+        y = "Minimum Reported Fledglings",
+        fill = "Region"
+    )
+)
+```
+
+You can read more about setting color maps in Plotnine's [documentation for
+this function][p9-cmap]. The plot reveals that the data set is missing
+2001-2003 and that overall, fledgling counts seem to be declining in recent
+years.
+
+[p9-cmap]: https://plotnine.org/reference/scale_fill_cmap_d.html
+
+:::{tip}
+The setting `position = "dodge"` instructs `geom_bar` to put the bars
+side-by-side rather than stacking them.
+:::
 
 
 (visualization-design)=
@@ -798,38 +596,153 @@ follow:
 * For side-by-side plots, use the same axis scales for both plots so that
   comparing them is not deceptive
 
+:::{seealso}
 Visualization design is a deep topic, and whole books have been written about
-it. One resource where you can learn more is DataLab's [Principle's of Data
-Visualization Workshop Reader][rdr].
+it. One resource where you can learn more is DataLab's [Principles of Data
+Visualization][dl-viz] workshop reader.
 
-[rdr]: https://ucdavisdatalab.github.io/workshop_data_viz_principles/
+[dl-viz]: https://ucdavisdatalab.github.io/workshop_data_viz_principles/
+:::
 
 
-Exercises
----------
+(aggregate-functions)=
+## Aggregation & Grouping
+
+{ref}`sec-summarizing-columns` showed how to compute the mean, minimum, and
+maximum values of a series. All of these functions **aggregate** the elements
+of the series, reducing them to a smaller number of values (usually one).
+Polars provides many different aggregation functions, which are [listed in the
+documentation][pl-agg].
+
+[pl-agg]: https://docs.pola.rs/api/python/stable/reference/expressions/aggregation.html
+
+For example, to compute the median number of predator-related egg mortalities
+across all sites and years:
+
+```{code-cell}
+terns["pred_eggs"].median()
+```
+
+With the `.select` (or `.with_columns`) method, there are two more ways you can
+do this:
+
+```{code-cell}
+terns.select(pl.col("pred_eggs").median())
+```
+
+```{code-cell}
+terns.select(pl.median("pred_eggs"))
+```
+
+These forms are useful if you want to compute aggregates for multiple columns
+at once. For example:
+
+```{code-cell}
+terns.select(
+    pl.col(pl.Float64).exclude("year").median()
+)
+```
+
+
+### Grouping
+
+In {ref}`sec-categorical-data`, we wrote that the identifying characteristic of
+categorical features is that their values are useful for dividing observations
+into groups. Now we're actually ready to do that. You can use the `.group_by`
+method to group rows in a data frame by one or more columns.
+
+
+To demonstrate the `.group_by` method, let's compute the median number of nests
+by region for the least terns data. We'll use the `region_3` column. After
+grouping with `.group_by`, you can use the `.agg` method to compute aggregates
+of columns (similar to using `.select`), and Polars will compute a separate
+result for each group:
+
+```{code-cell}
+terns.group_by("region_3").agg(pl.col("total_nests").median())
+```
+
+Like `.select`, the `.agg` method supports computing on multiple columns. For
+example, suppose we also want the median number of breeding pairs, and want to
+compute the maximum for both features as well. We'll use the `.name.suffix`
+method to make sure each column in the result has a unique name:
+
+```{code-cell}
+cols = ["total_nests", "bp_max"]
+
+terns.group_by("region_3").agg(
+    pl.col(cols).median().name.suffix("_median"),
+    pl.col(cols).max().name.suffix("_max")
+)
+```
+
+Some aggregation functions only make sense when used with grouping. One is the
+`.first` method, which returns the first row in a group. The `.first` method is
+useful when all of the values in a group are the same, and you want to reduce
+the data to one row per group.
+
+For example, one way to find all year and climate event combinations present in
+the least terns data is to run:
+
+```{code-cell}
+cols = ["year", "event"]
+
+(
+    terns.group_by(cols).first()
+    .select(cols)
+    .sort(cols)
+)
+```
+
+From this result we can conclude that there is only one climate event for each
+year in the data set.
+
+For tasks like standardizing features on a per-group basis, it's necessary to
+compute aggregates on groups and then map them back to observations. Rather
+than using `.group_by` for this, you can use `.select` (or `.with_columns`) and
+the `.over` method. For example, to compute mean total nests for each year:
+
+```{code-cell}
+terns.select(
+    pl.col("year"),
+    pl.col("total_nests").mean().over("year")
+)
+```
+
+This approach returns a data frame with the same number of rows as the original
+data frame, unlike the `.group_by` and `.agg` approach, which returns a data
+frame with the same number of rows as there are groups.
+
+:::{tip}
+Use `.select` (or `.with_columns`) and `.over` if you want to compute grouped
+aggregates to use in further computations on the data frame. Use `.group_by`
+and `.agg` if you only want to compute grouped aggregates (for example, as a
+summary, to make a visualization, or to use in further computations that are
+not on the data frame).
+:::
+
+
+## Exercises
 
 ### Exercise
 
-1. Compute the number of banknotes that feature a person who died before 1990.
-2. Of those people, how many were activists?
+1. Compute the total number of fledglings (with `fl_min`) for each year and
+   region combination.
+2. Another way to present the data in {ref}`sec-example-bar-plot` is with a
+   line plot. Use the data from part 1 to make this plot with points for each
+   total and lines connecting the totals. Hint: find the appropriate geometries
+   in the ggplot2 or Plotnine documentation.
 
 ### Exercise
 
-1. Compute the range of `first_appearance_year` for each country.
-    + Hint: this would be a good place to try out a multi-function
-      aggregation...
-2. How many unique values are there among the first and last values of
-  `first_appearance_year`?
+1. Compute the number of sites with no egg mortalities due to predation.
+2. Of those, how many had at least one fledgling?
 
 ### Exercise
 
-1. Compute the set of banknotes who died in this century.
-2. Use plotnine's `geom_segment` function to create a plot which shows the
-  timespan between death year and first appearance as a horizontal segment for
-  each banknote. Put the name of each person on the y-axis. Color code the
-  segments by gender.
-    + Hint: you can make the plot more visually appealing if you first sort the
-      death year. You can use the `.sort_values` method to sort a DataFrame on
-      a column, or set of columns. Be aware that the default parameter for one
-      of the arguments is probably not what you're expecting.
+1. Compute the range (minimum and maximum) of `year` for each site.
+2. How many many sites have observations over the entire range of the data set
+   (2000 and 2004-2023)? Hint: use `.unique` and `.len` to find the number of
+   unique years for each site.
+
 

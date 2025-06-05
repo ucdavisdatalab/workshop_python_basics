@@ -18,8 +18,7 @@ os.chdir("..")
 ```
 
 
-Appendix
-========
+# Appendix: Web Scraping
 
 :::{admonition} Learning Objectives
 * Create and access elements of tuples
@@ -50,7 +49,7 @@ in the [collections module][collections].
 
 ### Lists
 
-Lists were introduced in {numref}`lists`. A list is an ordered collection of
+Lists were introduced in {ref}`sec-lists`. A list is an ordered collection of
 values. Lists are **mutable**, which means that the elements can be changed.
 
 Here's a quick recap of things you can do with lists:

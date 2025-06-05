@@ -641,9 +641,10 @@ that there are two parameters `number` and `ndigits`. It also says that
 `None` value (you'll learn more about `None` in {ref}`sec-special-values`).
 
 There are also help pages for other topics, such as built-in operators and
-modules (you'll learn about modules in {ref}`sec-modules`). To look up the help
-page for an operator, put the operator's name in single or double quotes. For
-example, this code opens the help page for the arithmetic operators:
+modules (you'll learn about modules in {ref}`sec-saving-loading-code`). To look
+up the help page for an operator, put the operator's name in single or double
+quotes. For example, this code opens the help page for the arithmetic
+operators:
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -699,7 +700,8 @@ to read about [how to ask a good question][goodq].
 [goodq]: https://stackoverflow.com/help/how-to-ask
 
 
-## Saving Code
+(sec-saving-loading-code)=
+## Saving & Loading Code
 
 :::{tip}
 When you start a new project, it's a good idea to create a specific directory
@@ -712,7 +714,7 @@ Reproducibility and reusability are important benefits of Python over
 point-and-click software, and in order to realize these, you have to save your
 code to your computer's hard drive.
 
-The most common way to save Python code is as a **Python module** (or script)
+The most common way to save Python code is as a Python **module** (or script)
 with the extension `.py` (see {ref}`reading-files` for more about extensions).
 Editing a module is similar to editing any other text document. You can write,
 delete, copy, cut, and paste code.
@@ -735,7 +737,7 @@ help you stay organized and make it easier to share your code with others
 later.
 
 
-(sec-modules)=
+(sec-importing-modules)=
 ### Importing Modules
 
 You can **import** a module with the `import` command. Python will run the

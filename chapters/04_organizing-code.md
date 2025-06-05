@@ -264,6 +264,65 @@ short function for each step. This approach makes it easier to:
 * Modify, reuse, or repurpose a step.
 
 
+(iteration)=
+## Iterating Over Data
+
+Before we go into data exploration in full, it's important to understand how
+Python/Pandas computes summary statistics about a data set.
+{numref}`summarizing-columns` introduced column-wise operations in Pandas; you
+will learn more of them below. These operations are a convenient and efficient
+way to compute multiple results at once, and with only a few lines of code.
+
+Under the hood, Pandas has to **iterate** over each value in a cell to perform
+operations like `.mean` or `.min`. We can do this too using a **for-loop**.
+
+
+### For-Loops
+
+For-loops iterate over some object and compute something for each element. Each
+one of these computations is one **iteration**. A for-loop begins with the
+`for` keyword, followed by:
+
+* A placeholder variable, which will be automatically signed to an element at
+  the beginning of each iteration
+* The `in` keyword
+* An object with elements
+* A colon `:`
+
+Code in the body of the loop must be indented by 4 spaces.
+
+For example, to print out all the column names in `banknotes.columns`, you can
+write:
+
+```python
+for column in banknotes.columns:
+    print(column)
+```
+
+Within the indented part of a for-loop, you can compute values, check
+conditions, etc.
+
+```python
+:tags: [output_scroll]
+for value in banknotes["bill_count"]:
+    if value < 1:
+        print(value)
+```
+
+Oftentimes you want to save the result of the code you perform within a
+for-loop. The easiest way to do this is by creating an empty list and using
+`append` to add values to it.
+
+```python
+result = []
+for value in banknotes["current_bill_value"]:
+    if value % 25 == 0:
+        result.append(value)
+
+result
+```
+
+
 ## Practice Exercises
 
 ### Exercise 1

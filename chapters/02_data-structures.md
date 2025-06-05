@@ -392,7 +392,7 @@ list. We'll use this list to demonstrate comprehensions:
 values = [10, 11, 12, -5, 13, 14]
 ```
 
-If you want, for example, add 1 to each element of the list, you can use a
+If you want, for example, to add 1 to each element of the list, you can use a
 comprehension to do it. Here's how:
 
 ```{code-cell}
@@ -681,8 +681,8 @@ terns["site_name"].dtype
 
 :::{note}
 Data frames don't have a `.dtype` attribute since they can consist of multiple
-series. Instead, the `.dtypes` attribute is a list with the element type for
-each column.
+series. Instead, they have a `.dtypes` attribute, a list with the element type
+for each column.
 
 If your goal is to summarize a data frame, the `.glimpse` method is usually
 more convenient.
@@ -696,6 +696,7 @@ series:
 terns["total_nests"].cast(pl.String)
 ```
 
+(sec-categorical-data)=
 ### Categorical Data
 
 A feature is **categorical** if it measures a qualitative category. For
@@ -703,9 +704,9 @@ example, the genres `rock`, `blues`, `alternative`, `folk`, `pop` are
 categories.
 
 Polars uses the `Categorical` and `Enum` data types to represent categorical
-data. Visualizations and statistical models sometimes treat factors differently
-than other data types, so it's important to make sure you have the right data
-type.
+data. Visualizations and statistical models sometimes treat categorical data
+differently than other data types, so it's important to make sure you have the
+right data type.
 
 When it reads a data set, Polars usually can't tell which features are
 categorical. That means identifying and converting the categorical features is
