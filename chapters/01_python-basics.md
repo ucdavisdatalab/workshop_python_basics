@@ -549,6 +549,17 @@ making `number` an argument (for the parameter `number`):
 round(number, ndigits = 2)
 ```
 
+:::{note}
+It might be surprising that Python's `round` function rounds 4.755 to 4.75
+instead of 4.76, but it's [not a bug][py-round]. Most rounding functions are
+slightly inaccurate because of how computers represent decimal numbers.
+
+[py-round]: https://docs.python.org/3/library/functions.html#round
+
+NumPy provides its own rounding function, `np.round`, which uses a different,
+faster rounding algorithm and may give different results.
+:::
+
 Or, written more explicitly:
 
 ```{code-cell}
