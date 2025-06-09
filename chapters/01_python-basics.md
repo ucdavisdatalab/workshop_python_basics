@@ -168,7 +168,7 @@ suitable environment. Open a terminal (such as Terminal or Git Bash) and run:
 ```none
 pixi init python_basics
 cd python_basics
-pixi add python jupyter numpy polars
+pixi add python jupyter numpy polars plotnine
 ```
 
 After creating the environment, to launch JupyterLab in the enviroment, run:
