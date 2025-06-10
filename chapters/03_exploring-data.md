@@ -526,11 +526,14 @@ In particular, since the fill color corresponds to categorical (discrete) data,
 we'll use `scale_fill_cmap_d`. We'll also add labels:
 
 ```{code-cell}
+terms_to_keep = ["S.F._BAY", "CENTRAL", "SOUTHERN"]
+terns_filtered = terns.filter(pl.col("region_3").is_in(terms_to_keep))
+
 (
-    ggplot(terns) +
+    ggplot(terns_filtered) +
     aes(x = "year", weight = "fl_min", fill = "region_3") +
     geom_bar() +
-    scale_fill_cmap_d(limits=["S.F._BAY", "CENTRAL", "SOUTHERN"]) +
+    scale_fill_cmap_d() +
     labs(
         title = "California Least Terns: Fledglings",
         x = "Year",
