@@ -1,0 +1,1622 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Exploring Data &#8212; Python Basics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/03_exploring-data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Organizing Code" href="04_organizing-code.html" />
+    <link rel="prev" title="2. Data Types &amp; Structures" href="02_data-structures.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-light" alt="Python Basics - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-dark" alt="Python Basics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_python-basics.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data-structures.html">2. Data Types &amp; Structures</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Exploring Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_organizing-code.html">4. Organizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_appendix.html">5. Appendix: Web Scraping</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="assessment.html">Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/03_exploring-data.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exploring Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-packages">3.1. Visualization Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-grammar-of-graphics">3.2. The Grammar of Graphics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-plotnine">3.2.1. Importing Plotnine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-1-data">3.2.2. Layer 1: Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-2-geometry">3.2.3. Layer 2: Geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-3-aesthetics">3.2.4. Layer 3: Aesthetics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-geometries">3.2.4.1. Additional Geometries</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#per-geometry-aesthetics">3.2.4.2. Per-geometry Aesthetics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-aesthetics">3.2.4.3. Constant Aesthetics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-4-scales">3.2.5. Layer 4: Scales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-plots">3.2.6. Saving Plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-bar-plot">3.2.7. Example: Bar Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-design">3.2.8. Visualization Design</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-grouping">3.3. Aggregation &amp; Grouping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping">3.3.1. Grouping</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">3.4. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">3.4.1. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.4.2. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.4.3. Exercise</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exploring-data">
+<h1><span class="section-number">3. </span>Exploring Data<a class="headerlink" href="#exploring-data" title="Link to this heading">#</a></h1>
+<div class="note admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After this lesson, you should be able to:</p>
+<ul class="simple">
+<li><p>List and describe popular data visualization packages</p></li>
+<li><p>Prepare data for visualization</p></li>
+<li><p>Describe the grammar of graphics</p></li>
+<li><p>Use the grammar of graphics to produce a plot</p></li>
+<li><p>Identify where to go to learn more about making effective visualizations</p></li>
+<li><p>Compute aggregates of data</p></li>
+<li><p>Split data into groups and compute aggregates on each</p></li>
+</ul>
+</div>
+<p>Now that you have a solid foundation in the basic functions and data structures
+of Python, you can move on to using it for data analysis. In this chapter,
+you’ll learn how to efficiently explore and summarize with visualizations and
+statistics.</p>
+<section id="visualization-packages">
+<span id="data-visualization-in-python"></span><h2><span class="section-number">3.1. </span>Visualization Packages<a class="headerlink" href="#visualization-packages" title="Link to this heading">#</a></h2>
+<figure class="align-default" id="id4">
+<img alt="A network of Python visualization packages." src="../_images/visualization_landscape.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Image from <a class="reference external" href="http://vanderplas.com/">Jake VanderPlas</a>. See <a class="reference external" href="https://rougier.github.io/python-visualization-landscape/landscape-colors.html">here</a> for a version with links
+to all of the packages!</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A visualization is one of the most effective ways to display and summarize
+data, and there are many ways to create visualizations in Python. In fact, so
+many visualization packages are available that there’s even <a class="reference external" href="https://pyviz.org/">a website</a>
+dedicated to helping people decide which to use. Some popular packages for
+creating static visualizations are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://matplotlib.org/">Matplotlib</a> is the foundation for most other visualization packages.
+Matplotlib is low-level, meaning it’s flexible but even simple plots may take
+<a class="reference external" href="https://dsaber.com/2016/10/02/a-dramatic-tour-through-pythons-data-visualization-landscape-including-ggplot-and-altair/">5 lines of code or more</a>. It’s good to know a little bit about
+Matplotlib, but it probably shouldn’t be your primary visualization package.
+Familiarity with MATLAB makes it easier to learn Matplotlib.</p></li>
+<li><p><a class="reference external" href="https://plotnine.org/">Plotnine</a> is a copy of the popular R package <a class="reference external" href="https://ggplot2.tidyverse.org/">ggplot2</a>. The package uses
+the <strong>grammar of graphics</strong>, a convenient way to describe visualizations in
+terms of layers. Familiarity with ggplot2 or Julia’s <a class="reference external" href="http://gadflyjl.org/stable/">Gadfly.jl</a> package
+makes it easier to learn Plotnine (and vice-versa).</p></li>
+<li><p><a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> is designed specifically for making statistical plots. It’s
+well-documented and stable.</p></li>
+<li><p>Polars provides <a class="reference external" href="https://docs.pola.rs/user-guide/misc/visualization/">built-in plotting functions</a> based on <a class="reference external" href="https://altair-viz.github.io/">Altair</a>,
+which can be convenient but are more limited than what you’ll find in
+dedicated visualization packages.</p></li>
+</ul>
+<p>We’ll focus on Plotnine, so that the visualization skills you learn here will
+also be relevant if you end up using R or Julia. Plotnine has detailed
+<a class="reference external" href="https://plotnine.org/guide/">documentation</a>. It’s also useful to look at the <a class="reference external" href="https://ggplot2.tidyverse.org/">ggplot2
+documentation</a> and <a class="reference external" href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf">cheatsheet</a>.</p>
+</section>
+<section id="the-grammar-of-graphics">
+<span id="grammar-of-graphics"></span><h2><span class="section-number">3.2. </span>The Grammar of Graphics<a class="headerlink" href="#the-grammar-of-graphics" title="Link to this heading">#</a></h2>
+<p>Recall that plotnine is a clone of ggplot2. The “gg” in ggplot2 stands for
+<em>grammar of graphics</em>. The idea of a grammar of graphics is that visualizations
+can be built up in layers. The three layers every plot must have are:</p>
+<ul class="simple">
+<li><p>Data: one or more data sets</p></li>
+<li><p>Geometry: marks to display data, such as points or lines</p></li>
+<li><p>Aesthetics: a specification of which features to display with geometry</p></li>
+</ul>
+<p>There are also several optional layers. Here are a few:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Layer</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>scales</p></td>
+<td class="text-left"><p>Title, label, and axis value settings</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>facets</p></td>
+<td class="text-left"><p>Side-by-side plots</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>guides</p></td>
+<td class="text-left"><p>Axis and legend position settings</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>annotations</p></td>
+<td class="text-left"><p>Shapes that are not mapped to data</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>coordinates</p></td>
+<td class="text-left"><p>Coordinate systems (Cartesian, logarithmic, polar)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Let’s visualize the California least terns data set from <a class="reference internal" href="01_python-basics.html#sec-hello-data"><span class="std std-ref">Hello, Data!</span></a>
+to see how the grammar of graphics works in practice. But what kind of plot
+should we make? It depends on what we want to know about the data set. Suppose
+we want to understand the relationship between the number of breeding pairs and
+the total number of nests at each site, and whether this relationship is
+affected by climate events. One way to show the relationship between two
+numerical features like these is to make a scatter plot.</p>
+<section id="importing-plotnine">
+<h3><span class="section-number">3.2.1. </span>Importing Plotnine<a class="headerlink" href="#importing-plotnine" title="Link to this heading">#</a></h3>
+<p>Before we can make the plot, we need to import Plotnine.
+<a class="reference internal" href="01_python-basics.html#sec-importing-modules"><span class="std std-ref">Importing Modules</span></a> explained how to import an entire module  with the
+<code class="docutils literal notranslate"><span class="pre">import</span></code> keyword. Python also provides a <code class="docutils literal notranslate"><span class="pre">from</span></code> keyword to import specific
+objects from within a module, so that you can access them without the module
+name as a prefix.</p>
+<p>As an example, Plotnine’s <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> function is the starting point for making
+plots. You can import the function with <code class="docutils literal notranslate"><span class="pre">from</span></code> like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">plotnine</span><span class="w"> </span><span class="kn">import</span> <span class="n">ggplot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then you can use the function as <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> rather than <code class="docutils literal notranslate"><span class="pre">plotnine.ggplot</span></code>.</p>
+<p>You can also use the <code class="docutils literal notranslate"><span class="pre">from</span></code> keyword to import all objects in a module with the
+wildcard character <code class="docutils literal notranslate"><span class="pre">*</span></code>. Plotnine is designed to be imported this way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">plotnine</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Aside from Plotnine, you generally shouldn’t import all objects from a module,
+because doing so:</p>
+<ul class="simple">
+<li><p>Makes it harder to understand the code: an object could be defined locally or
+in the module.</p></li>
+<li><p>Can introduce bugs: objects from the module will overwrite objects in your
+code that have the same name.</p></li>
+</ul>
+<p>One recommendation is that it’s fine to use <code class="docutils literal notranslate"><span class="pre">from</span></code> to import classes (with
+<code class="docutils literal notranslate"><span class="pre">TitleCase</span></code> names), but you should avoid using it to import functions (with
+<code class="docutils literal notranslate"><span class="pre">snake_case</span></code> names). The justification is that classes are more likely than
+functions to have distinct, memorable names.</p>
+<p>If you prefer not to use <code class="docutils literal notranslate"><span class="pre">from</span></code> to import functions from Plotnine, you can use
+the following convention instead:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">plotnine</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">p9</span>
+</pre></div>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Plotting in Jupyter</p>
+<p>Jupyter notebooks can display most static visualizations and some interactive
+visualizations. For visualization packages that depend on Matplotlib, it’s a
+good idea to set the default size of the plots:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You can increase the numbers to make plots larger, or decrease them to make
+plots smaller. Plotnine provides another way to set the plot size through its
+theme layer.</p>
+<p>In older versions of Jupyter and IPython, it was also necessary to run the
+special IPython command <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code> to set up a notebook for plotting.
+This is no longer necessary in modern versions, but you may still see people
+use or mention it online. You can read more about this change in <a class="reference external" href="https://stackoverflow.com/questions/65934740/is-matplotlib-inline-still-needed">this
+StackOverflow question</a>.</p>
+</div>
+</section>
+<section id="layer-1-data">
+<h3><span class="section-number">3.2.2. </span>Layer 1: Data<a class="headerlink" href="#layer-1-data" title="Link to this heading">#</a></h3>
+<p>The <strong>data layer</strong> determines the data set(s) used to make the plot.</p>
+<p>Plotnine is designed to work with <strong>tidy</strong> data, which means:</p>
+<ol class="arabic simple">
+<li><p>Each feature has its own column.</p></li>
+<li><p>Each observation has its own row.</p></li>
+<li><p>Each value has its own cell.</p></li>
+</ol>
+<p>These rules ensure data are easy to read visually and access with indexing. The
+least terns data set satisfies all of these rules.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>All of the data sets we use in this reader are tidy. To learn how to tidy an
+untidy data set, see the <a class="reference external" href="https://ucdavisdatalab.github.io/workshop_intermediate_python/chapters/02_tidy-relational-data.html">Untidy &amp; Relational Data</a> chapter of
+DataLab’s Intermediate Python workshop reader.</p>
+</div>
+<p>To set up the data layer, call the <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> function on a data frame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/ee8a6e3da09883fc112e0bcbd1ef5e76653c96f8aae9d15491df83d47726bb6c.png"><img alt="../_images/ee8a6e3da09883fc112e0bcbd1ef5e76653c96f8aae9d15491df83d47726bb6c.png" src="../_images/ee8a6e3da09883fc112e0bcbd1ef5e76653c96f8aae9d15491df83d47726bb6c.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>This returns a blank plot. We still need to add a few more layers.</p>
+</section>
+<section id="layer-2-geometry">
+<h3><span class="section-number">3.2.3. </span>Layer 2: Geometry<a class="headerlink" href="#layer-2-geometry" title="Link to this heading">#</a></h3>
+<p>The <strong>geometry layer</strong> determines the shape or appearance of the visual
+elements of the plot. In other words, the geometry layer determines what kind
+of plot to make: one with points, lines, boxes, or something else.</p>
+<p>There are many different geometries available in Plotnine. The package provides
+a function for each geometry, always prefixed with <code class="docutils literal notranslate"><span class="pre">geom_</span></code>.</p>
+<p>To add a geometry layer to the plot, choose the <code class="docutils literal notranslate"><span class="pre">geom_</span></code> function you want and
+add it to the plot with the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator. We’ll use <code class="docutils literal notranslate"><span class="pre">geom_point</span></code>, which makes a
+scatter plot (a plot with points):</p>
+<div class="cell tag_raises-exception tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span> <span class="n">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">PlotnineError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/formatters.py:984,</span> in <span class="ni">IPythonDisplayFormatter.__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">982</span> <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">983</span> <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">984</span>     <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">985</span>     <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:141,</span> in <span class="ni">ggplot._ipython_display_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">def</span><span class="w"> </span><span class="nf">_ipython_display_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span><span class="sd">     Display plot in the output of the cell</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span><span class="sd">     This method will always be called when a ggplot object is the</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span><span class="sd">     last in the cell.</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">141</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_display</span><span class="p">()</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:181,</span> in <span class="ni">ggplot._display</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span> <span class="n">figure_size_px</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theme</span><span class="o">.</span><span class="n">_figure_size_px</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="n">buf</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">181</span> <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">save_format</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span> <span class="n">display_func</span> <span class="o">=</span> <span class="n">get_display_function</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="n">figure_size_px</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="n">display_func</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:673,</span> in <span class="ni">ggplot.save</span><span class="nt">(self, filename, format, path, width, height, units, dpi, limitsize, verbose, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">624</span> <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">625</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span>     <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="n">BytesIO</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">635</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span> <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span><span class="sd">     Save a ggplot object as an image file</span>
+<span class="g g-Whitespace">    </span><span class="mi">639</span><span class="sd"> </span>
+<span class="sd">   (...)    671         Additional arguments to pass to matplotlib `savefig()`.</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">673</span>     <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_helper</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>         <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>         <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>         <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>         <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span>         <span class="n">limitsize</span><span class="o">=</span><span class="n">limitsize</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">682</span>         <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">683</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">686</span>     <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">rc_context</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">687</span>         <span class="n">sv</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="o">**</span><span class="n">sv</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:621,</span> in <span class="ni">ggplot.save_helper</span><span class="nt">(self, filename, format, path, width, height, units, dpi, limitsize, verbose, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">618</span> <span class="k">if</span> <span class="n">dpi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span>     <span class="bp">self</span><span class="o">.</span><span class="n">theme</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theme</span> <span class="o">+</span> <span class="n">theme</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">621</span> <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">return</span> <span class="n">mpl_save_view</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">fig_kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:278,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, show)</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span> <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span> <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">278</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="c1"># setup</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span>     <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">facet</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:387,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="n">layers</span><span class="o">.</span><span class="n">map_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="c1"># Prepare data in geoms</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="c1"># e.g. from y and width to ymin and ymax</span>
+<span class="ne">--&gt; </span><span class="mi">387</span> <span class="n">layers</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span> <span class="c1"># Apply position adjustments</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span> <span class="n">layers</span><span class="o">.</span><span class="n">compute_position</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:458,</span> in <span class="ni">Layers.setup_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span> <span class="k">def</span><span class="w"> </span><span class="nf">setup_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">458</span>         <span class="n">l</span><span class="o">.</span><span class="n">setup_data</span><span class="p">()</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:325,</span> in <span class="ni">layer.setup_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>     <span class="k">return</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">setup_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">325</span> <span class="n">check_required_aesthetics</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">REQUIRED_AES</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span>     <span class="nb">set</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">aes_params</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span>     <span class="bp">self</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/_utils/__init__.py:402,</span> in <span class="ni">check_required_aesthetics</span><span class="nt">(required, present, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">400</span> <span class="k">if</span> <span class="n">missing_aes</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">401</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> requires the following missing aesthetics: </span><span class="si">{}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">402</span>     <span class="k">raise</span> <span class="n">PlotnineError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">missing_aes</span><span class="p">)))</span>
+
+<span class="ne">PlotnineError</span>: &#39;geom_point requires the following missing aesthetics: y, x&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;plotnine.ggplot.ggplot at 0x709cd827d010&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This returns an error message that we’re missing aesthetics <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. We’ll
+learn more about aesthetics in the next section, but this error message is
+especially helpful: it tells us exactly what we’re missing. When you use a
+geometry you’re unfamiliar with, it can be helpful to run the code for just the
+data and geometry layer like this, to see exactly which aesthetics need to be
+set.</p>
+<p>As we’ll see later, it’s possible to add multiple geometries to a plot.</p>
+</section>
+<section id="layer-3-aesthetics">
+<h3><span class="section-number">3.2.4. </span>Layer 3: Aesthetics<a class="headerlink" href="#layer-3-aesthetics" title="Link to this heading">#</a></h3>
+<p>The <strong>aesthetics layer</strong> determines the relationship between the data and the
+geometry. Use the aesthetic layer to map features in the data to aesthetics
+(visual elements) of the geometry.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aes</span></code> function creates an aesthetic layer. The syntax is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aes</span><span class="p">(</span><span class="n">AESTHETIC</span> <span class="o">=</span> <span class="n">FEATURE</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The names of the aesthetics depend on the geometry, but some common ones are
+<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">color</span></code>, <code class="docutils literal notranslate"><span class="pre">fill</span></code>, <code class="docutils literal notranslate"><span class="pre">shape</span></code>, and <code class="docutils literal notranslate"><span class="pre">size</span></code>. There is more information about
+and examples of aesthetic names in the documentation.</p>
+<p>For the scatter plot of breeding pairs against total nests, we’ll put <code class="docutils literal notranslate"><span class="pre">bp_min</span></code>
+on the x-axis and <code class="docutils literal notranslate"><span class="pre">total_nests</span></code> on the y-axis. Below, we set both of these
+aesthetics. We also enclose all of the code for the plot in parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> so
+that we can put the code for each layer on a separate line, which makes the
+layers easier to distinguish:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bp_min&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;total_nests&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/nick/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 8 rows containing missing values.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/32a7c346a1853431790dc85ccaa3bc9b3a0610f5056b453089a09da775db06be.png"><img alt="../_images/32a7c346a1853431790dc85ccaa3bc9b3a0610f5056b453089a09da775db06be.png" src="../_images/32a7c346a1853431790dc85ccaa3bc9b3a0610f5056b453089a09da775db06be.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>At this point, we’ve supplied all three layers necessary to make a plot: data,
+geometry, and aesthetics. The plot shows what looks like a linear relationship
+between number of breeding pairs and total nests. To refine the plot, you can
+add more layers and/or set parameters on the layers you have.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Python ignores line breaks inside of parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code>, so you can enclose
+lengthy expressions in parentheses and format them neatly.</p>
+</div>
+<p>Let’s add another aesthetic to the plot: we’ll make the color and shape of each
+point correspond to <code class="docutils literal notranslate"><span class="pre">event</span></code>, the climate event for each observation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bp_min&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;total_nests&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/nick/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 8 rows containing missing values.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/e0e5479b0556f69d7549a8fc1ee0017a8630c07708242fce6a4d82ee343b5b8b.png"><img alt="../_images/e0e5479b0556f69d7549a8fc1ee0017a8630c07708242fce6a4d82ee343b5b8b.png" src="../_images/e0e5479b0556f69d7549a8fc1ee0017a8630c07708242fce6a4d82ee343b5b8b.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>Using color and shape for the same feature is redundant, but ensures that the
+plot is accessible to colorblind people.</p>
+<section id="additional-geometries">
+<h4><span class="section-number">3.2.4.1. </span>Additional Geometries<a class="headerlink" href="#additional-geometries" title="Link to this heading">#</a></h4>
+<p>Each observation in the least terns data corresponds to a specific year and
+site. What if we label the points with their years? You can add text labels to
+a plot with <code class="docutils literal notranslate"><span class="pre">geom_text</span></code>. The required aesthetic for this geometry is <code class="docutils literal notranslate"><span class="pre">label</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bp_min&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;total_nests&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span>
+    <span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">geom_text</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/nick/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 8 rows containing missing values.
+/home/nick/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_text : Removed 8 rows containing missing values.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/aaecaa3eb0f0267b5dd6a36a7d000dac15d427c51b8d6465d573f87d708389a9.png"><img alt="../_images/aaecaa3eb0f0267b5dd6a36a7d000dac15d427c51b8d6465d573f87d708389a9.png" src="../_images/aaecaa3eb0f0267b5dd6a36a7d000dac15d427c51b8d6465d573f87d708389a9.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>The labels make the plot more difficult to read and probably would even if we
+made them smaller, because there are so many points on the plot. Making a
+high-quality visualization is typically a process of drafting and revising,
+similar to writing a high-quality essay. In this example, adding year labels to
+the plot doesn’t work well, so we’ll backtrack and leave them off of the plot.
+If accounting for year was critical to our research question, we could do it in
+other ways, such as by making separate plots for each year.</p>
+</section>
+<section id="per-geometry-aesthetics">
+<h4><span class="section-number">3.2.4.2. </span>Per-geometry Aesthetics<a class="headerlink" href="#per-geometry-aesthetics" title="Link to this heading">#</a></h4>
+<p>Before we remove the labels, let’s use them to demonstrate an important point
+about using multiple geometry and aesthetic layers: when you add an aesthetic
+layer to a plot, it applies to the entire plot. You can also set an aesthetic
+layer for an individual geometry by passing the layer as the first argument in
+the <code class="docutils literal notranslate"><span class="pre">geom_</span></code> function. Here’s the same plot as above, but with the <code class="docutils literal notranslate"><span class="pre">color</span></code>
+aesthetic only set for the labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bp_min&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;total_nests&quot;</span><span class="p">,</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span>
+    <span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">geom_text</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/nick/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 8 rows containing missing values.
+/home/nick/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_text : Removed 8 rows containing missing values.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/fde6115e7db80323ce5434e6e0005d159e8e34dc6023c08bcf45ff71fc8194b0.png"><img alt="../_images/fde6115e7db80323ce5434e6e0005d159e8e34dc6023c08bcf45ff71fc8194b0.png" src="../_images/fde6115e7db80323ce5434e6e0005d159e8e34dc6023c08bcf45ff71fc8194b0.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>Notice that the points are no longer color-coded. Where you put aesthetic
+layers matters.</p>
+</section>
+<section id="constant-aesthetics">
+<h4><span class="section-number">3.2.4.3. </span>Constant Aesthetics<a class="headerlink" href="#constant-aesthetics" title="Link to this heading">#</a></h4>
+<p>If you want to set an aesthetic to a constant value, rather than one that’s
+data-dependent, do so in the geometry layer rather than the aesthetic layer.</p>
+<p>For instance, suppose we want to make all of the points blue and use only point
+shape to indicate climate events:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bp_min&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;total_nests&quot;</span><span class="p">,</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span>
+    <span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/nick/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 8 rows containing missing values.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/05967a638792e6103ee5f851b6c6f3c9efde7796c553e7cfa89accc72e233aff.png"><img alt="../_images/05967a638792e6103ee5f851b6c6f3c9efde7796c553e7cfa89accc72e233aff.png" src="../_images/05967a638792e6103ee5f851b6c6f3c9efde7796c553e7cfa89accc72e233aff.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>If you set an aesthetic to a constant value in an aesthetic layer, the results
+won’t be what you expect:</p>
+<div class="cell tag_raises-exception tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bp_min&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;total_nests&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span>
+    <span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">geom_text</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/mapping/evaluation.py:223,</span> in <span class="ni">evaluate</span><span class="nt">(aesthetics, data, env)</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">223</span>     <span class="n">new_val</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">inner_namespace</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/mapping/_env.py:69,</span> in <span class="ni">Environment.eval</span><span class="nt">(self, expr, inner_namespace)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="n">code</span> <span class="o">=</span> <span class="n">_compile_eval</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">69</span> <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="n">code</span><span class="p">,</span> <span class="p">{},</span> <span class="n">StackedLookup</span><span class="p">([</span><span class="n">inner_namespace</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">namespaces</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="p">)</span>
+
+<span class="n">File</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">-</span><span class="n">expression</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span>
+
+<span class="ne">NameError</span>: name &#39;blue&#39; is not defined
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">PlotnineError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/IPython/core/formatters.py:984,</span> in <span class="ni">IPythonDisplayFormatter.__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">982</span> <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">983</span> <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">984</span>     <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">985</span>     <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:141,</span> in <span class="ni">ggplot._ipython_display_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">def</span><span class="w"> </span><span class="nf">_ipython_display_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span><span class="sd">     Display plot in the output of the cell</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span><span class="sd">     This method will always be called when a ggplot object is the</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span><span class="sd">     last in the cell.</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">141</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_display</span><span class="p">()</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:181,</span> in <span class="ni">ggplot._display</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span> <span class="n">figure_size_px</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theme</span><span class="o">.</span><span class="n">_figure_size_px</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span> <span class="n">buf</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">181</span> <span class="bp">self</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">save_format</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span> <span class="n">display_func</span> <span class="o">=</span> <span class="n">get_display_function</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="n">figure_size_px</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="n">display_func</span><span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:673,</span> in <span class="ni">ggplot.save</span><span class="nt">(self, filename, format, path, width, height, units, dpi, limitsize, verbose, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">624</span> <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">625</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span>     <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="n">BytesIO</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">635</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span> <span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span><span class="sd">     Save a ggplot object as an image file</span>
+<span class="g g-Whitespace">    </span><span class="mi">639</span><span class="sd"> </span>
+<span class="sd">   (...)    671         Additional arguments to pass to matplotlib `savefig()`.</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">673</span>     <span class="n">sv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_helper</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>         <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>         <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span>         <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>         <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>         <span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">681</span>         <span class="n">limitsize</span><span class="o">=</span><span class="n">limitsize</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">682</span>         <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">683</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">686</span>     <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">rc_context</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">687</span>         <span class="n">sv</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="o">**</span><span class="n">sv</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:621,</span> in <span class="ni">ggplot.save_helper</span><span class="nt">(self, filename, format, path, width, height, units, dpi, limitsize, verbose, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">618</span> <span class="k">if</span> <span class="n">dpi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span>     <span class="bp">self</span><span class="o">.</span><span class="n">theme</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theme</span> <span class="o">+</span> <span class="n">theme</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">621</span> <span class="n">figure</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">return</span> <span class="n">mpl_save_view</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">fig_kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:278,</span> in <span class="ni">ggplot.draw</span><span class="nt">(self, show)</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span> <span class="bp">self</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span> <span class="k">with</span> <span class="n">plot_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">278</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="c1"># setup</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span>     <span class="bp">self</span><span class="o">.</span><span class="n">figure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">facet</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/ggplot.py:368,</span> in <span class="ni">ggplot._build</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span> <span class="n">layout</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span> <span class="c1"># Compute aesthetics to produce data with generalised</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span> <span class="c1"># variable names</span>
+<span class="ne">--&gt; </span><span class="mi">368</span> <span class="n">layers</span><span class="o">.</span><span class="n">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span> <span class="c1"># Transform data using all scales</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span> <span class="n">layers</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:468,</span> in <span class="ni">Layers.compute_aesthetics</span><span class="nt">(self, plot)</span>
+<span class="g g-Whitespace">    </span><span class="mi">466</span> <span class="k">def</span><span class="w"> </span><span class="nf">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">:</span> <span class="n">ggplot</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">467</span>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">468</span>         <span class="n">l</span><span class="o">.</span><span class="n">compute_aesthetics</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:260,</span> in <span class="ni">layer.compute_aesthetics</span><span class="nt">(self, plot)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span> <span class="k">def</span><span class="w"> </span><span class="nf">compute_aesthetics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot</span><span class="p">:</span> <span class="n">ggplot</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span><span class="sd">     Return a dataframe where the columns match the aesthetic mappings</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span><span class="sd">     Transformations like &#39;factor(cyl)&#39; and other</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span><span class="sd">     expression evaluation are  made in here</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">260</span>     <span class="n">evaled</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">_starting</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">plot</span><span class="o">.</span><span class="n">environment</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="n">evaled_aes</span> <span class="o">=</span> <span class="n">aes</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">col</span><span class="p">):</span> <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">evaled</span><span class="p">})</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span>     <span class="n">plot</span><span class="o">.</span><span class="n">scales</span><span class="o">.</span><span class="n">add_defaults</span><span class="p">(</span><span class="n">evaled</span><span class="p">,</span> <span class="n">evaled_aes</span><span class="p">)</span>
+
+<span class="nn">File ~/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/mapping/evaluation.py:226,</span> in <span class="ni">evaluate</span><span class="nt">(aesthetics, data, env)</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span>     <span class="n">msg</span> <span class="o">=</span> <span class="n">_TPL_EVAL_FAIL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ae</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">226</span>     <span class="k">raise</span> <span class="n">PlotnineError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<span class="g g-Whitespace">    </span><span class="mi">228</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span>     <span class="n">evaled</span><span class="p">[</span><span class="n">ae</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_val</span>
+
+<span class="ne">PlotnineError</span>: &quot;Could not evaluate the &#39;color&#39; mapping: &#39;blue&#39; (original error: name &#39;blue&#39; is not defined)&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;plotnine.ggplot.ggplot at 0x709cc99e1160&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="layer-4-scales">
+<h3><span class="section-number">3.2.5. </span>Layer 4: Scales<a class="headerlink" href="#layer-4-scales" title="Link to this heading">#</a></h3>
+<p>The <strong>scales layer</strong> controls the title, axis labels, and axis scales of the
+plot. Most of the functions in the scales layer are prefixed with <code class="docutils literal notranslate"><span class="pre">scale_</span></code>, but
+not all of them.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">labs</span></code> function is especially important, because it’s used to set the title
+and axis labels. Visualizations should generally have a title and axis labels,
+to aid the viewer:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bp_min&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;total_nests&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span>
+    <span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">labs</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Minimum Reported Breeding Pairs&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Total Nests&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;Climate Event&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;Climate Event&quot;</span><span class="p">,</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;California Least Terns: Breeding Pairs vs. Nests&quot;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/nick/mill/datalab/teaching/python_basics/.pixi/envs/default/lib/python3.13/site-packages/plotnine/layer.py:364: PlotnineWarning: geom_point : Removed 8 rows containing missing values.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/effdf39fb545c54a839099e84f0a84b1cb4bae21ea795cacb76ba5304c09ac8b.png"><img alt="../_images/effdf39fb545c54a839099e84f0a84b1cb4bae21ea795cacb76ba5304c09ac8b.png" src="../_images/effdf39fb545c54a839099e84f0a84b1cb4bae21ea795cacb76ba5304c09ac8b.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>Notice that to set the title for a legend with <code class="docutils literal notranslate"><span class="pre">labs</span></code>, you can set the
+parameters of the same names as the corresponding aesthetics. While our plot is
+still far from perfect—some of the points are hard to see because of how many
+there are—it’s now good enough to provide some insight into the relationship
+between number of breeding pairs and nests.</p>
+</section>
+<section id="saving-plots">
+<h3><span class="section-number">3.2.6. </span>Saving Plots<a class="headerlink" href="#saving-plots" title="Link to this heading">#</a></h3>
+<p>If you assign a plot to a variable, you can use the <code class="docutils literal notranslate"><span class="pre">save</span></code> method or the
+<code class="docutils literal notranslate"><span class="pre">ggsave</span></code> function to save that plot to a file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bp_min&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;total_nests&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;event&quot;</span>
+    <span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_point</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">labs</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Minimum Reported Breeding Pairs&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Total Nests&quot;</span><span class="p">,</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;Climate Event&quot;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;Climate Event&quot;</span><span class="p">,</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;California Least Terns: Breeding Pairs vs. Nests&quot;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">ggsave</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="s2">&quot;myplot.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The file format is selected automatically based on the extension. Common
+formats include PNG, TIFF, SVG, and PDF.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>PNG and SVG are good choices for sharing visualizations online, while TIFF and
+PDF are good choices for print. Many journals require that visualizations be in
+TIFF format.</p>
+</div>
+</section>
+<section id="example-bar-plot">
+<span id="sec-example-bar-plot"></span><h3><span class="section-number">3.2.7. </span>Example: Bar Plot<a class="headerlink" href="#example-bar-plot" title="Link to this heading">#</a></h3>
+<p>Suppose we want to visualize how many fledglings there are each year, further
+broken down by region. A bar plot is one appropriate way to represent this
+visually.</p>
+<p>The geometry for a bar plot is <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code>. Since bar plots are mainly used to
+display frequencies, by default the <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code> function counts the number of
+observations in each category on the x-axis and displays these counts on the
+y-axis. You can make <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code> display values from a column on the y-axis by
+setting the <code class="docutils literal notranslate"><span class="pre">weight</span></code> aesthetic:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="s2">&quot;fl_min&quot;</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s2">&quot;region_3&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_bar</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/b986ab5bc33c8a1c436995dd2778bb301e20ccb5d059453fd6992f20a782aa00.png"><img alt="../_images/b986ab5bc33c8a1c436995dd2778bb301e20ccb5d059453fd6992f20a782aa00.png" src="../_images/b986ab5bc33c8a1c436995dd2778bb301e20ccb5d059453fd6992f20a782aa00.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Setting the Statistics Layer</p>
+<p>Every geometry layer has a corresponding statistics layer, which transforms
+feature values into quantities to plot. For many geometries, the default
+statistics layer is the only one that makes sense.</p>
+<p>Bar plots are an exception. The default statistics layer is <code class="docutils literal notranslate"><span class="pre">stat_count</span></code>, which
+counts observations. If you already have counts (or just want to display some
+quantities as bars), you need <code class="docutils literal notranslate"><span class="pre">stat_identity</span></code> (or the <code class="docutils literal notranslate"><span class="pre">weight</span></code> aesthetic
+described above). Here’s one way to change the statistics layer:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;fl_min&quot;</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s2">&quot;region_3&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span> <span class="o">=</span> <span class="s2">&quot;identity&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This produces the same plot as setting <code class="docutils literal notranslate"><span class="pre">weight</span></code> and using the default
+statistics layer <code class="docutils literal notranslate"><span class="pre">stat_count</span></code>.</p>
+</div>
+<p>The plot reveals that there are a few extraneous categories in the <code class="docutils literal notranslate"><span class="pre">region_3</span></code>
+column: <code class="docutils literal notranslate"><span class="pre">ARIZONA</span></code>, <code class="docutils literal notranslate"><span class="pre">KINGS</span></code>, and <code class="docutils literal notranslate"><span class="pre">SACRAMENTO</span></code>. These might or might not be
+erroneous—and it would be good to investigate—but they don’t add anything
+to this plot, so let’s exclude them. Let’s also change the <strong>color map</strong>, the
+palette of colors used for the categories. These are both properties of the
+scale layer for the <code class="docutils literal notranslate"><span class="pre">fill</span></code> aesthetic, so we’ll use a <code class="docutils literal notranslate"><span class="pre">scale_fill_</span></code> function.
+In particular, since the fill color corresponds to categorical (discrete) data,
+we’ll use <code class="docutils literal notranslate"><span class="pre">scale_fill_cmap_d</span></code>. We’ll also add labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terms_to_keep</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;S.F._BAY&quot;</span><span class="p">,</span> <span class="s2">&quot;CENTRAL&quot;</span><span class="p">,</span> <span class="s2">&quot;SOUTHERN&quot;</span><span class="p">]</span>
+<span class="n">terns_filtered</span> <span class="o">=</span> <span class="n">terns</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;region_3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_in</span><span class="p">(</span><span class="n">terms_to_keep</span><span class="p">))</span>
+
+<span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">terns_filtered</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="s2">&quot;fl_min&quot;</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s2">&quot;region_3&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_bar</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">scale_fill_cmap_d</span><span class="p">()</span> <span class="o">+</span>
+    <span class="n">labs</span><span class="p">(</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;California Least Terns: Fledglings&quot;</span><span class="p">,</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Year&quot;</span><span class="p">,</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Minimum Reported Fledglings&quot;</span><span class="p">,</span>
+        <span class="n">fill</span> <span class="o">=</span> <span class="s2">&quot;Region&quot;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/d82ec2d2a0c156b46c5b13865eb0aa6c513af36d800ffd017d2cf9e3f68bb6d2.png"><img alt="../_images/d82ec2d2a0c156b46c5b13865eb0aa6c513af36d800ffd017d2cf9e3f68bb6d2.png" src="../_images/d82ec2d2a0c156b46c5b13865eb0aa6c513af36d800ffd017d2cf9e3f68bb6d2.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>You can read more about setting color maps in Plotnine’s <a class="reference external" href="https://plotnine.org/reference/scale_fill_cmap_d.html">documentation for
+this function</a>. The plot reveals that the data set is missing
+2001-2003 and that overall, fledgling counts seem to be declining in recent
+years.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The setting <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">=</span> <span class="pre">&quot;dodge&quot;</span></code> instructs <code class="docutils literal notranslate"><span class="pre">geom_bar</span></code> to put the bars
+side-by-side rather than stacking them.</p>
+</div>
+</section>
+<section id="visualization-design">
+<span id="id1"></span><h3><span class="section-number">3.2.8. </span>Visualization Design<a class="headerlink" href="#visualization-design" title="Link to this heading">#</a></h3>
+<p>Designing high-quality visualizations goes beyond just mastering which Python
+functions to call. You also need to think carefully about what kind of data you
+have and what message you want to convey. This section provides a few
+guidelines.</p>
+<p>The first step in data visualization is choosing an appropriate kind of plot.
+Here are some suggestions (not rules):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature 1</p></th>
+<th class="head text-left"><p>Feature 2</p></th>
+<th class="head text-left"><p>Plot</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>categorical</p></td>
+<td class="text-left"><p>categorical</p></td>
+<td class="text-left"><p>bar, dot</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>categorical</p></td>
+<td class="text-left"><p>categorical</p></td>
+<td class="text-left"><p>bar, dot, mosaic</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>numerical</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>box, density, histogram</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>numerical</p></td>
+<td class="text-left"><p>categorical</p></td>
+<td class="text-left"><p>box, density, ridge</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>numerical</p></td>
+<td class="text-left"><p>numerical</p></td>
+<td class="text-left"><p>line, scatter, smooth scatter</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If you want to add a:</p>
+<ul class="simple">
+<li><p>3rd numerical feature, use it to change point/line size</p></li>
+<li><p>3rd categorical feature, use it to change point/line style</p></li>
+<li><p>4th categorical feature, use side-by-side plots</p></li>
+</ul>
+<p>Once you’ve selected a plot, here are some rules you should almost always
+follow:</p>
+<ul class="simple">
+<li><p>Always add a title and axis labels. These should be descriptive, not variable
+names!</p></li>
+<li><p>Specify units after the axis label if the axis has units. For instance,
+“Height (ft)”</p></li>
+<li><p>Don’t forget that many people are colorblind! Also, plots are often printed
+in black and white. Use point and line styles to distinguish groups; color is
+optional</p></li>
+<li><p>Add a legend whenever you’ve used more than one point or line style</p></li>
+<li><p>Always write a few sentences explaining what the plot shows. Don’t describe
+the plot, because the reader can just look at it. Instead, explain what they
+can learn from the plot and point out important details that may be
+overlooked</p></li>
+<li><p>For side-by-side plots, use the same axis scales for both plots so that
+comparing them is not deceptive</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Visualization design is a deep topic, and whole books have been written about
+it. One resource where you can learn more is DataLab’s <a class="reference external" href="https://ucdavisdatalab.github.io/workshop_data_viz_principles/">Principles of Data
+Visualization</a> workshop reader.</p>
+</div>
+</section>
+</section>
+<section id="aggregation-grouping">
+<span id="aggregate-functions"></span><h2><span class="section-number">3.3. </span>Aggregation &amp; Grouping<a class="headerlink" href="#aggregation-grouping" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="01_python-basics.html#sec-summarizing-columns"><span class="std std-ref">Summarizing Columns</span></a> showed how to compute the mean, minimum, and
+maximum values of a series. All of these functions <strong>aggregate</strong> the elements
+of the series, reducing them to a smaller number of values (usually one).
+Polars provides many different aggregation functions, which are <a class="reference external" href="https://docs.pola.rs/api/python/stable/reference/expressions/aggregation.html">listed in the
+documentation</a>.</p>
+<p>For example, to compute the median number of predator-related egg mortalities
+across all sites and years:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terns</span><span class="p">[</span><span class="s2">&quot;pred_eggs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the <code class="docutils literal notranslate"><span class="pre">.select</span></code> (or <code class="docutils literal notranslate"><span class="pre">.with_columns</span></code>) method, there are two more ways you can
+do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terns</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;pred_eggs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 1)</small><table border="1" class="dataframe"><thead><tr><th>pred_eggs</th></tr><tr><td>f64</td></tr></thead><tbody><tr><td>6.5</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terns</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="s2">&quot;pred_eggs&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 1)</small><table border="1" class="dataframe"><thead><tr><th>pred_eggs</th></tr><tr><td>f64</td></tr></thead><tbody><tr><td>6.5</td></tr></tbody></table></div></div></div>
+</div>
+<p>These forms are useful if you want to compute aggregates for multiple columns
+at once. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terns</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">)</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (1, 2)</small><table border="1" class="dataframe"><thead><tr><th>bp_min</th><th>bp_max</th></tr><tr><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>30.0</td><td>38.0</td></tr></tbody></table></div></div></div>
+</div>
+<section id="grouping">
+<h3><span class="section-number">3.3.1. </span>Grouping<a class="headerlink" href="#grouping" title="Link to this heading">#</a></h3>
+<p>In <a class="reference internal" href="02_data-structures.html#sec-categorical-data"><span class="std std-ref">Categorical Data</span></a>, we wrote that the identifying characteristic of
+categorical features is that their values are useful for dividing observations
+into groups. Now we’re actually ready to do that. You can use the <code class="docutils literal notranslate"><span class="pre">.group_by</span></code>
+method to group rows in a data frame by one or more columns.</p>
+<p>To demonstrate the <code class="docutils literal notranslate"><span class="pre">.group_by</span></code> method, let’s compute the median number of nests
+by region for the least terns data. We’ll use the <code class="docutils literal notranslate"><span class="pre">region_3</span></code> column. After
+grouping with <code class="docutils literal notranslate"><span class="pre">.group_by</span></code>, you can use the <code class="docutils literal notranslate"><span class="pre">.agg</span></code> method to compute aggregates
+of columns (similar to using <code class="docutils literal notranslate"><span class="pre">.select</span></code>), and Polars will compute a separate
+result for each group:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terns</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;region_3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;total_nests&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6, 2)</small><table border="1" class="dataframe"><thead><tr><th>region_3</th><th>total_nests</th></tr><tr><td>str</td><td>f64</td></tr></thead><tbody><tr><td>&quot;SOUTHERN&quot;</td><td>64.0</td></tr><tr><td>&quot;ARIZONA&quot;</td><td>3.0</td></tr><tr><td>&quot;S.F._BAY&quot;</td><td>35.0</td></tr><tr><td>&quot;CENTRAL&quot;</td><td>17.0</td></tr><tr><td>&quot;KINGS&quot;</td><td>1.0</td></tr><tr><td>&quot;SACRAMENTO&quot;</td><td>1.0</td></tr></tbody></table></div></div></div>
+</div>
+<p>Like <code class="docutils literal notranslate"><span class="pre">.select</span></code>, the <code class="docutils literal notranslate"><span class="pre">.agg</span></code> method supports computing on multiple columns. For
+example, suppose we also want the median number of breeding pairs, and want to
+compute the maximum for both features as well. We’ll use the <code class="docutils literal notranslate"><span class="pre">.name.suffix</span></code>
+method to make sure each column in the result has a unique name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;total_nests&quot;</span><span class="p">,</span> <span class="s2">&quot;bp_max&quot;</span><span class="p">]</span>
+
+<span class="n">terns</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;region_3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">suffix</span><span class="p">(</span><span class="s2">&quot;_median&quot;</span><span class="p">),</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">suffix</span><span class="p">(</span><span class="s2">&quot;_max&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (6, 5)</small><table border="1" class="dataframe"><thead><tr><th>region_3</th><th>total_nests_median</th><th>bp_max_median</th><th>total_nests_max</th><th>bp_max_max</th></tr><tr><td>str</td><td>f64</td><td>f64</td><td>i64</td><td>f64</td></tr></thead><tbody><tr><td>&quot;ARIZONA&quot;</td><td>3.0</td><td>2.0</td><td>3</td><td>2.0</td></tr><tr><td>&quot;SOUTHERN&quot;</td><td>64.0</td><td>56.0</td><td>1741</td><td>1691.0</td></tr><tr><td>&quot;KINGS&quot;</td><td>1.0</td><td>1.0</td><td>3</td><td>3.0</td></tr><tr><td>&quot;S.F._BAY&quot;</td><td>35.0</td><td>32.0</td><td>550</td><td>495.0</td></tr><tr><td>&quot;CENTRAL&quot;</td><td>17.0</td><td>17.0</td><td>83</td><td>69.0</td></tr><tr><td>&quot;SACRAMENTO&quot;</td><td>1.0</td><td>1.0</td><td>2</td><td>1.0</td></tr></tbody></table></div></div></div>
+</div>
+<p>Some aggregation functions only make sense when used with grouping. One is the
+<code class="docutils literal notranslate"><span class="pre">.first</span></code> method, which returns the first row in a group. The <code class="docutils literal notranslate"><span class="pre">.first</span></code> method is
+useful when all of the values in a group are the same, and you want to reduce
+the data to one row per group.</p>
+<p>For example, one way to find all year and climate event combinations present in
+the least terns data is to run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;event&quot;</span><span class="p">]</span>
+
+<span class="p">(</span>
+    <span class="n">terns</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (21, 2)</small><table border="1" class="dataframe"><thead><tr><th>year</th><th>event</th></tr><tr><td>i64</td><td>str</td></tr></thead><tbody><tr><td>2000</td><td>&quot;LA_NINA&quot;</td></tr><tr><td>2004</td><td>&quot;NEUTRAL&quot;</td></tr><tr><td>2005</td><td>&quot;NEUTRAL&quot;</td></tr><tr><td>2006</td><td>&quot;NEUTRAL&quot;</td></tr><tr><td>2007</td><td>&quot;EL_NINO&quot;</td></tr><tr><td>&hellip;</td><td>&hellip;</td></tr><tr><td>2019</td><td>&quot;NEUTRAL&quot;</td></tr><tr><td>2020</td><td>&quot;NEUTRAL&quot;</td></tr><tr><td>2021</td><td>&quot;LA_NINA&quot;</td></tr><tr><td>2022</td><td>&quot;LA_NINA&quot;</td></tr><tr><td>2023</td><td>&quot;LA_NINA&quot;</td></tr></tbody></table></div></div></div>
+</div>
+<p>From this result we can conclude that there is only one climate event for each
+year in the data set.</p>
+<p>For tasks like standardizing features on a per-group basis, it’s necessary to
+compute aggregates on groups and then map them back to observations. Rather
+than using <code class="docutils literal notranslate"><span class="pre">.group_by</span></code> for this, you can use <code class="docutils literal notranslate"><span class="pre">.select</span></code> (or <code class="docutils literal notranslate"><span class="pre">.with_columns</span></code>) and
+the <code class="docutils literal notranslate"><span class="pre">.over</span></code> method. For example, to compute mean total nests for each year:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terns</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">),</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;total_nests&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (791, 2)</small><table border="1" class="dataframe"><thead><tr><th>year</th><th>total_nests</th></tr><tr><td>i64</td><td>f64</td></tr></thead><tbody><tr><td>2000</td><td>182.965517</td></tr><tr><td>2000</td><td>182.965517</td></tr><tr><td>2000</td><td>182.965517</td></tr><tr><td>2000</td><td>182.965517</td></tr><tr><td>2000</td><td>182.965517</td></tr><tr><td>&hellip;</td><td>&hellip;</td></tr><tr><td>2023</td><td>95.918919</td></tr><tr><td>2023</td><td>95.918919</td></tr><tr><td>2023</td><td>95.918919</td></tr><tr><td>2023</td><td>95.918919</td></tr><tr><td>2023</td><td>95.918919</td></tr></tbody></table></div></div></div>
+</div>
+<p>This approach returns a data frame with the same number of rows as the original
+data frame, unlike the <code class="docutils literal notranslate"><span class="pre">.group_by</span></code> and <code class="docutils literal notranslate"><span class="pre">.agg</span></code> approach, which returns a data
+frame with the same number of rows as there are groups.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">.select</span></code> (or <code class="docutils literal notranslate"><span class="pre">.with_columns</span></code>) and <code class="docutils literal notranslate"><span class="pre">.over</span></code> if you want to compute grouped
+aggregates to use in further computations on the data frame. Use <code class="docutils literal notranslate"><span class="pre">.group_by</span></code>
+and <code class="docutils literal notranslate"><span class="pre">.agg</span></code> if you only want to compute grouped aggregates (for example, as a
+summary, to make a visualization, or to use in further computations that are
+not on the data frame).</p>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">3.4. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise">
+<h3><span class="section-number">3.4.1. </span>Exercise<a class="headerlink" href="#exercise" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Compute the total number of fledglings (with <code class="docutils literal notranslate"><span class="pre">fl_min</span></code>) for each year and
+region combination.</p></li>
+<li><p>Another way to present the data in <a class="reference internal" href="#sec-example-bar-plot"><span class="std std-ref">Example: Bar Plot</span></a> is with a
+line plot. Use the data from part 1 to make this plot with points for each
+total and lines connecting the totals. Hint: find the appropriate geometries
+in the ggplot2 or Plotnine documentation.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h3><span class="section-number">3.4.2. </span>Exercise<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Compute the number of sites with no egg mortalities due to predation.</p></li>
+<li><p>Of those, how many had at least one fledgling?</p></li>
+</ol>
+</section>
+<section id="id3">
+<h3><span class="section-number">3.4.3. </span>Exercise<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Compute the range (minimum and maximum) of <code class="docutils literal notranslate"><span class="pre">year</span></code> for each site.</p></li>
+<li><p>How many many sites have observations over the entire range of the data set
+(2000 and 2004-2023)? Hint: use <code class="docutils literal notranslate"><span class="pre">.unique</span></code> and <code class="docutils literal notranslate"><span class="pre">.len</span></code> to find the number of
+unique years for each site.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_data-structures.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Data Types &amp; Structures</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_organizing-code.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Organizing Code</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-packages">3.1. Visualization Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-grammar-of-graphics">3.2. The Grammar of Graphics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-plotnine">3.2.1. Importing Plotnine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-1-data">3.2.2. Layer 1: Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-2-geometry">3.2.3. Layer 2: Geometry</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-3-aesthetics">3.2.4. Layer 3: Aesthetics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-geometries">3.2.4.1. Additional Geometries</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#per-geometry-aesthetics">3.2.4.2. Per-geometry Aesthetics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-aesthetics">3.2.4.3. Constant Aesthetics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-4-scales">3.2.5. Layer 4: Scales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-plots">3.2.6. Saving Plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-bar-plot">3.2.7. Example: Bar Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-design">3.2.8. Visualization Design</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-grouping">3.3. Aggregation &amp; Grouping</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping">3.3.1. Grouping</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">3.4. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">3.4.1. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.4.2. Exercise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.4.3. Exercise</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arthur Koehl, Tyler Shoemaker, and Nick Ulle
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

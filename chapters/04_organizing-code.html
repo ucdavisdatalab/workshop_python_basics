@@ -1,0 +1,1900 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Organizing Code &#8212; Python Basics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/04_organizing-code';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Appendix: Web Scraping" href="05_appendix.html" />
+    <link rel="prev" title="3. Exploring Data" href="03_exploring-data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-light" alt="Python Basics - Home"/>
+    <script>document.write(`<img src="../_static/datalab-logo-full-color-rgb-1.png" class="logo__image only-dark" alt="Python Basics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python Basics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_python-basics.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data-structures.html">2. Data Types &amp; Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_exploring-data.html">3. Exploring Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Organizing Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_appendix.html">5. Appendix: Web Scraping</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Back Matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="assessment.html">Assessment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/ucdavisdatalab/workshop_python_basics" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/04_organizing-code.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Organizing Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4.1. Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements">4.2. Conditional Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration">4.3. Iteration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops">4.3.1. For-Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#planning-for-iteration">4.3.2. Planning for Iteration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-ca-hospital-utilization">4.4. Case Study: CA Hospital Utilization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">4.5. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">4.5.1. Exercise 1</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="organizing-code">
+<h1><span class="section-number">4. </span>Organizing Code<a class="headerlink" href="#organizing-code" title="Link to this heading">#</a></h1>
+<div class="note admonition">
+<p class="admonition-title">Learning Objectives</p>
+<p>After this lesson, you should be able to:</p>
+<ul class="simple">
+<li><p>Write functions to organize and encapsulate reusable code</p></li>
+<li><p>Create code that only runs when a condition is satisfied</p></li>
+<li><p>Identify when a problem requires iteration</p></li>
+<li><p>Select appropriate iteration strategies for problems</p></li>
+</ul>
+</div>
+<section id="functions">
+<span id="id1"></span><h2><span class="section-number">4.1. </span>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<p>The main way to interact with Python is by calling functions, which was first
+explained back in <a class="reference internal" href="01_python-basics.html#calling-functions"><span class="std std-ref">Calling Functions</span></a>. This section explains how to write
+your own functions.</p>
+<p>First, a review of what functions are and some of the vocabulary associated
+with them:</p>
+<ul class="simple">
+<li><p><strong>Parameters</strong> are placeholder variables for inputs.</p>
+<ul>
+<li><p><strong>Arguments</strong> are the actual values assigned to the parameters in a call.</p></li>
+</ul>
+</li>
+<li><p>The <strong>return value</strong> is the output.</p></li>
+<li><p><strong>Calling</strong> a function means using a function to compute something.</p></li>
+<li><p>The <strong>body</strong> is the code inside.</p></li>
+</ul>
+<p>It’s useful to think of functions as factories, meaning arguments go in and a
+return value comes out. Here’s a visual representation of the idea for a
+function <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
+<img alt="A diagram which shows arguments go into a function and a return value comes out." src="../_images/functions.png" />
+<p>A function definition begins with the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword, followed by:</p>
+<ul class="simple">
+<li><p>The name of the function</p></li>
+<li><p>A list of parameters surrounded by parentheses</p></li>
+<li><p>A colon <code class="docutils literal notranslate"><span class="pre">:</span></code></p></li>
+</ul>
+<p>A function can have any number of parameters. Code in the body of the function
+must be indented by 4 spaces. Use the <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword to return a result. The
+<code class="docutils literal notranslate"><span class="pre">return</span></code> keyword causes the function to return a result immediately, without
+running any subsequent code in its body.</p>
+<p>For example, let’s create a function that detects negative numbers. It should
+take a series of numbers as input, compare them to zero, and then return the
+logical result from the comparison as output. Here’s the code to do that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_negative</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The name of the function, <code class="docutils literal notranslate"><span class="pre">is_negative</span></code>, describes what the function does and
+includes a verb. The parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> is the input. The return value is the result
+of <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">0</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Choosing descriptive names is a good habit. For functions, that means choosing
+a name that describes what the function does. It often makes sense to use verbs
+in function names.</p>
+</div>
+<p>Any time you write a function, the first thing you should do afterwards is test
+that it actually works. Try the <code class="docutils literal notranslate"><span class="pre">is_negative</span></code> function on a few test cases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+<span class="n">is_negative</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_negative</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_negative</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5,)</small><table border="1" class="dataframe"><thead><tr><th></th></tr><tr><td>bool</td></tr></thead><tbody><tr><td>false</td></tr><tr><td>true</td></tr><tr><td>true</td></tr><tr><td>false</td></tr><tr><td>false</td></tr></tbody></table></div></div></div>
+</div>
+<p>Notice that the parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> inside the function is different from the
+variable <code class="docutils literal notranslate"><span class="pre">x</span></code> you created outside the function. Remember that parameters and
+variables inside of a function are separate from variables outside of a
+function.</p>
+<p>Recall that a default argument is an argument assigned to a parameter if no
+argument is assigned in the call to the function. You can use <code class="docutils literal notranslate"><span class="pre">=</span></code> to assign
+default arguments to parameters when you define a function with the <code class="docutils literal notranslate"><span class="pre">def</span></code>
+keyword.</p>
+<p>For example, suppose you want to write a function that gets the largest values
+in a series. You can make a parameter for the number of values to get, with a
+default argument of <code class="docutils literal notranslate"><span class="pre">5</span></code>. Here’s the code and some test cases:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_largest</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">get_largest</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (3,)</small><table border="1" class="dataframe"><thead><tr><th></th></tr><tr><td>i64</td></tr></thead><tbody><tr><td>15</td></tr><tr><td>10</td></tr><tr><td>7</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_largest</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5,)</small><table border="1" class="dataframe"><thead><tr><th></th></tr><tr><td>i64</td></tr></thead><tbody><tr><td>15</td></tr><tr><td>10</td></tr><tr><td>7</td></tr><tr><td>3</td></tr><tr><td>1</td></tr></tbody></table></div></div></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">return</span></code> keyword causes a function to return a result immediately, without
+running any subsequent code in its body. So before the end of the function, it
+only makes sense to use <code class="docutils literal notranslate"><span class="pre">return</span></code> from inside of
+<a class="reference internal" href="#sec-conditional-statements"><span class="std std-ref">Conditional Statements</span></a>.</p>
+</div>
+<p>A function returns one object, but sometimes computations have multiple
+results. In that case, return the results in a container such as a tuple or
+list.</p>
+<p>For example, let’s make a function that computes the mean and median for a
+vector. We’ll return the results in a tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_mean_med</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span>
+
+<span class="n">compute_mean_med</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.75, 1.5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before you write a function, it’s useful to go through several steps:</p>
+<ol class="arabic simple">
+<li><p>Write down what you want to do, in detail. It can also help to
+draw a picture of what needs to happen.</p></li>
+<li><p>Check whether there’s already a built-in function. Search online and in the
+Python documentation.</p></li>
+<li><p>Write the code to handle a simple case first. For data science
+problems, use a small dataset at this step.</p></li>
+</ol>
+</div>
+<p>Functions are the building blocks for solving larger problems. Take a
+divide-and-conquer approach, breaking large problems into smaller steps. Use a
+short function for each step. This approach makes it easier to:</p>
+<ul class="simple">
+<li><p>Test that each step works correctly.</p></li>
+<li><p>Modify, reuse, or repurpose a step.</p></li>
+</ul>
+</section>
+<section id="conditional-statements">
+<span id="sec-conditional-statements"></span><h2><span class="section-number">4.2. </span>Conditional Statements<a class="headerlink" href="#conditional-statements" title="Link to this heading">#</a></h2>
+<p>Sometimes you’ll need code to do different things depending on a condition. You
+can use an <strong>if-statement</strong> to write conditional code.</p>
+<p>An if-statement begins with the <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword, followed by a condition and a
+colon <code class="docutils literal notranslate"><span class="pre">:</span></code>. The condition must be an expression that returns a Boolean value
+(<code class="docutils literal notranslate"><span class="pre">False</span></code> or <code class="docutils literal notranslate"><span class="pre">True</span></code>). The <strong>body</strong> of the if-statement is the code that will run
+when the condition is <code class="docutils literal notranslate"><span class="pre">True</span></code>. Code in the body must be indented by 4 spaces.</p>
+<p>For example, suppose you want your code to generate a different greeting
+depending on an input name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="c1"># Default greeting</span>
+<span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hi Nick, nice to see you again!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">else</span></code> keyword (and a colon <code class="docutils literal notranslate"><span class="pre">:</span></code>) if you want to add an alternative when
+the condition is false. So the previous code can also be written as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Default greeting</span>
+    <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hi Nick, nice to see you again!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">elif</span></code> keyword with a condition (and a colon <code class="docutils literal notranslate"><span class="pre">:</span></code>) if you want to add an
+alternative to the first condition that also has its own condition. Only the
+first case where a condition is <code class="docutils literal notranslate"><span class="pre">True</span></code> will run. You can use <code class="docutils literal notranslate"><span class="pre">elif</span></code> as many
+times as you want, and can also use <code class="docutils literal notranslate"><span class="pre">else</span></code>. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Susan&quot;</span>
+
+<span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hi Nick, nice to see you again!&quot;</span>
+<span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Peter&quot;</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Go away Peter, I&#39;m busy!&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+   <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Nice to meet you!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Nice to meet you!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can create compound conditions with the keywords <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">not</span></code> keyword inverts a condition. The <code class="docutils literal notranslate"><span class="pre">and</span></code> keyword combines two conditions
+and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> only if both are <code class="docutils literal notranslate"><span class="pre">True</span></code>. The <code class="docutils literal notranslate"><span class="pre">or</span></code> keyword combines two
+conditions and returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if either or both are <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name1</span> <span class="o">=</span> <span class="s2">&quot;Arthur&quot;</span>
+<span class="n">name2</span> <span class="o">=</span> <span class="s2">&quot;Nick&quot;</span>
+
+<span class="k">if</span> <span class="n">name1</span> <span class="o">==</span> <span class="s2">&quot;Arthur&quot;</span> <span class="ow">and</span> <span class="n">name2</span> <span class="o">==</span> <span class="s2">&quot;Nick&quot;</span><span class="p">:</span>
+  <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;These are the authors.&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Who are these people?!&quot;</span>
+
+<span class="n">greeting</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;These are the authors.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can write an if-statement inside of another if-statement. This is called
+<strong>nesting</strong> if-statements. Nesting is useful when you want to check a
+condition, do some computations, and then check another condition under the
+assumption that the first condition was <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If-statements correspond to <strong>special cases</strong> in your code. Lots of special
+cases in code makes the code harder to understand and maintain. If you find
+yourself using lots of if-statements, especially nested if-statements, consider
+whether there is a more general strategy or way to write the code.</p>
+</div>
+</section>
+<section id="iteration">
+<span id="id2"></span><h2><span class="section-number">4.3. </span>Iteration<a class="headerlink" href="#iteration" title="Link to this heading">#</a></h2>
+<p>Python is powerful tool for automating tasks that have repetitive steps. For
+example, you can:</p>
+<ul class="simple">
+<li><p>Apply a transformation to an entire column of data.</p></li>
+<li><p>Compute distances between all pairs from a set of points.</p></li>
+<li><p>Read a large collection of files from disk in order to combine and analyze
+the data they contain.</p></li>
+<li><p>Simulate how a system evolves over time from a specific set of starting
+parameters.</p></li>
+<li><p>Scrape data from the pages of a website.</p></li>
+</ul>
+<p>You can implement concise, efficient solutions for these kinds of tasks in
+Python by using <strong>iteration</strong>, which means repeating a computation many times.
+Python provides four different strategies for writing iterative code:</p>
+<ol class="arabic simple">
+<li><p>Broadcasting, where a function is implicitly called on each element of a
+data structure. This was introduced in <a class="reference internal" href="02_data-structures.html#sec-broadcasting"><span class="std std-ref">Broadcasting</span></a>.</p></li>
+<li><p>Comprehensions, where a function is explicitly called on each element of a
+vector or array. This was introduced in <a class="reference internal" href="02_data-structures.html#sec-comprehensions"><span class="std std-ref">Comprehensions</span></a>.</p></li>
+<li><p>Loops, where an expression is evaluated repeatedly until some condition is
+met.</p></li>
+<li><p>Recursion, where a function calls itself.</p></li>
+</ol>
+<p>Broadcasting is the most efficient and most concise iteration strategy, but
+also the least flexible, because it only works with a few functions and data
+structures. Comprehensions are more flexible—they work with any function and
+any data structure with elements—but less efficient and less concise. Loops
+and recursion provide the most flexibility but are the least concise. In recent
+versions of Python, comprehensions are slightly more efficient than loops.
+Recursion tends to be the least efficient iteration strategy in Python.</p>
+<p>The rest of this section explains how to write loops and how to choose which
+iteration strategy to use. We assume you’re already comfortable with
+broadcasting and have at least some familiarity with comprehensions.</p>
+<section id="for-loops">
+<h3><span class="section-number">4.3.1. </span>For-Loops<a class="headerlink" href="#for-loops" title="Link to this heading">#</a></h3>
+<p>A <strong>for-loop</strong> evaluates the expressions in its body once for each element of a
+data structure. A for-loop begins with the <code class="docutils literal notranslate"><span class="pre">for</span></code> keyword, followed by:</p>
+<ul class="simple">
+<li><p>A placeholder variable, which will be automatically signed to an element at
+the beginning of each iteration</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">in</span></code> keyword</p></li>
+<li><p>An object with elements</p></li>
+<li><p>A colon <code class="docutils literal notranslate"><span class="pre">:</span></code></p></li>
+</ul>
+<p>Code in the body of the loop must be indented by 4 spaces.</p>
+<p>For example, to print out all the column names in <code class="docutils literal notranslate"><span class="pre">terns.columns</span></code>, you can
+write:</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">terns</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year
+site_name
+site_name_2013_2018
+site_name_1988_2001
+site_abbr
+region_3
+region_4
+event
+bp_min
+bp_max
+fl_min
+fl_max
+total_nests
+nonpred_eggs
+nonpred_chicks
+nonpred_fl
+nonpred_ad
+pred_control
+pred_eggs
+pred_chicks
+pred_fl
+pred_ad
+pred_pefa
+pred_coy_fox
+pred_meso
+pred_owlspp
+pred_corvid
+pred_other_raptor
+pred_other_avian
+pred_misc
+total_pefa
+total_coy_fox
+total_meso
+total_owlspp
+total_corvid
+total_other_raptor
+total_other_avian
+total_misc
+first_observed
+last_observed
+first_nest
+first_chick
+first_fledge
+</pre></div>
+</div>
+</div>
+</div>
+<p>Within the indented part of a for-loop, you can compute values, check
+conditions, etc.</p>
+<!--
+```{code-cell}
+for nests in terns["total_nests"]:
+    if nests > 100:
+        print(nests)
+```
+-->
+<p>Oftentimes you want to save the result of the code you perform within a
+for-loop. The easiest way to do this is by creating an empty list and using
+<code class="docutils literal notranslate"><span class="pre">append</span></code> to add values to it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diffs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+    <span class="n">diffs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">diffs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2, 1, 9, -1]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="planning-for-iteration">
+<h3><span class="section-number">4.3.2. </span>Planning for Iteration<a class="headerlink" href="#planning-for-iteration" title="Link to this heading">#</a></h3>
+<p>At first it might seem difficult to decide if and what kind of iteration to
+use. Start by thinking about whether you need to do something over and over. If
+you don’t, then you probably don’t need to use iteration. If you do, then try
+iteration strategies in this order:</p>
+<ol class="arabic">
+<li><p>Broadcasting</p></li>
+<li><p>Comprehensions</p>
+<ul class="simple">
+<li><p>Try a comprehension if iterations are independent.</p></li>
+</ul>
+</li>
+<li><p>Loops</p>
+<ul class="simple">
+<li><p>Try a for-loop if some iterations depend on others.</p></li>
+</ul>
+ <!--
+ * Try a while-loop if the number of iterations is unknown.
+ -->
+</li>
+<li><p>Recursion (which isn’t covered here)</p>
+<ul class="simple">
+<li><p>Convenient for naturally recursive tasks (like Fibonacci), but often
+there are faster solutions.</p></li>
+</ul>
+</li>
+</ol>
+<p>Start by writing the code for just one iteration. Make sure that code works;
+it’s easy to test code for one iteration.</p>
+<p>When you have one iteration working, then try using the code with an iteration
+strategy (you will have to make some small changes). If it doesn’t work, try to
+figure out which iteration is causing the problem. One way to do this is to use
+<code class="docutils literal notranslate"><span class="pre">print</span></code> to print out information. Then try to write the code for the broken
+iteration, get that iteration working, and repeat this whole process.</p>
+</section>
+</section>
+<section id="case-study-ca-hospital-utilization">
+<h2><span class="section-number">4.4. </span>Case Study: CA Hospital Utilization<a class="headerlink" href="#case-study-ca-hospital-utilization" title="Link to this heading">#</a></h2>
+<p>The California Department of Health Care Access and Information (HCAI) requires
+hospitals in the state to submit detailed information each year about how many
+beds they have and the total number of days for which each bed was occupied.
+The HCAI publishes the data to the <a class="reference external" href="https://data.ca.gov/">California Open Data Portal</a>.
+Let’s use Python to read data from 2016 to 2023 and investigate whether
+hospital utilization is noticeably different in and after 2020.</p>
+<p>The data set consists of a separate Microsoft Excel file for each year. Before
+2018, HCAI used a data format (in Excel) called ALIRTS. In 2018, they started
+collecting more data and switched to a data format called SIERA. The 2018 data
+file contains a <strong>crosswalk</strong> that shows the correspondence between SIERA
+columns and ALIRTS columns.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><a class="reference external" href="https://ucdavis.box.com/s/g5tanw22647dw3uyhv3om0zt3duuj5lc">Click here</a> to download the CA Hospital Utilization data set (8
+Excel files).</p>
+<p>If you haven’t already, we recommend you create a directory for this workshop.
+In your workshop directory, create a <code class="docutils literal notranslate"><span class="pre">data/ca_hospitals</span></code> subdirectory. Download
+and save the data set in the <code class="docutils literal notranslate"><span class="pre">data/ca_hospitals</span></code> subdirectory.</p>
+</div>
+<p>When you need to solve a programming problem, get started by writing some
+comments that describe the problem, the inputs, and the expected output. Try to
+be concrete. This will help you clarify what you’re trying to achieve and serve
+as a guiding light while you work.</p>
+<p>As a programmer (or any kind of problem-solver), you should always be on the
+lookout for ways to break problems into smaller, simpler steps. Think about
+this when you frame a problem. Small steps are easier to reason about,
+implement, and test. When you complete one, you also get a nice sense of
+progress towards your goal.</p>
+<p>For the CA Hospital Utilization data set, our goal is to investigate whether
+there was a change in hospital utilization in 2020. Before we can do any
+investigation, we need to read the files into Python. The files all contain
+tabular data and have similar formats, so let’s try to combine them into a
+single data frame. We’ll say this in the framing comments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the CA Hospital Utilization data set into Python. The inputs are</span>
+<span class="c1"># yearly Excel files (2016-2023) that need to be combined. The pre-2018 files</span>
+<span class="c1"># have a different format from the others. The result should be a single data</span>
+<span class="c1"># frame with information about bed and patient counts.</span>
+<span class="c1">#</span>
+<span class="c1"># After reading the data set, we&#39;ll investigate utilization in 2020.</span>
+</pre></div>
+</div>
+<p>“Investigate utilization” is a little vague, but for an exploratory data
+analysis, it’s hard to say exactly what to do until you’ve started working with
+the data.</p>
+<p>We need to read multiple files, but we can simplify the problem by starting
+with just one. Let’s start with the 2023 data. It’s in an Excel file, which you
+can read with Polars’ <code class="docutils literal notranslate"><span class="pre">pl.read_excel</span></code> function (note: you’ll first need to
+install the fastexcel package). The function requires the path to the file; you
+can also optionally provide the sheet name or number (starting from 1). Open up
+the Excel file in your computer’s spreadsheet program and take a look. There
+are multiple sheets, and the data about beds and patients are in the second
+sheet. Back in Python, read just the second sheet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;data/ca_hospitals/hosp23_util_data_final.xlsx&quot;</span>
+<span class="n">sheet</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sheet_id</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 355)</small><table border="1" class="dataframe"><thead><tr><th>Description</th><th>FAC_NO</th><th>FAC_NAME</th><th>FAC_STR_ADDR</th><th>FAC_CITY</th><th>FAC_ZIP</th><th>FAC_PHONE</th><th>FAC_ADMIN_NAME</th><th>FAC_OPERATED_THIS_YR</th><th>FAC_OP_PER_BEGIN_DT</th><th>FAC_OP_PER_END_DT</th><th>FAC_PAR_CORP_NAME</th><th>FAC_PAR_CORP_BUS_ADDR</th><th>FAC_PAR_CORP_CITY</th><th>FAC_PAR_CORP_STATE</th><th>FAC_PAR_CORP_ZIP</th><th>REPT_PREP_NAME</th><th>SUBMITTED_DT</th><th>REV_REPT_PREP_NAME</th><th>REVISED_DT</th><th>CORRECTED_DT</th><th>LICENSE_NO</th><th>LICENSE_EFF_DATE</th><th>LICENSE_EXP_DATE</th><th>LICENSE_STATUS</th><th>FACILITY_LEVEL</th><th>TRAUMA_CTR</th><th>TEACH_HOSP</th><th>TEACH_RURAL</th><th>LONGITUDE</th><th>LATITUDE</th><th>ASSEMBLY_DIST</th><th>SENATE_DIST</th><th>CONGRESS_DIST</th><th>CENSUS_KEY</th><th>MED_SVC_STUDY_AREA</th><th>LA_COUNTY_SVC_PLAN_AREA</th><th>&hellip;</th><th>EQUIP_VAL_05</th><th>EQUIP_VAL_06</th><th>EQUIP_VAL_07</th><th>EQUIP_VAL_08</th><th>EQUIP_VAL_09</th><th>EQUIP_VAL_10</th><th>PROJ_EXPENDITURES_01</th><th>PROJ_EXPENDITURES_02</th><th>PROJ_EXPENDITURES_03</th><th>PROJ_EXPENDITURES_04</th><th>PROJ_EXPENDITURES_05</th><th>DT_AQUIRE_EQUIP_01</th><th>DT_AQUIRE_EQUIP_02</th><th>DT_AQUIRE_EQUIP_03</th><th>DT_AQUIRE_EQUIP_04</th><th>DT_AQUIRE_EQUIP_05</th><th>DT_AQUIRE_EQUIP_06</th><th>DT_AQUIRE_EQUIP_07</th><th>DT_AQUIRE_EQUIP_08</th><th>DT_AQUIRE_EQUIP_09</th><th>DT_AQUIRE_EQUIP_10</th><th>HCAI_PROJ_NO_01</th><th>HCAI_PROJ_NO_02</th><th>HCAI_PROJ_NO_03</th><th>HCAI_PROJ_NO_04</th><th>HCAI_PROJ_NO_05</th><th>MEANS_FOR_ACQUISITION_01</th><th>MEANS_FOR_ACQUISITION_02</th><th>MEANS_FOR_ACQUISITION_03</th><th>MEANS_FOR_ACQUISITION_04</th><th>MEANS_FOR_ACQUISITION_05</th><th>MEANS_FOR_ACQUISITION_06</th><th>MEANS_FOR_ACQUISITION_07</th><th>MEANS_FOR_ACQUISITION_08</th><th>MEANS_FOR_ACQUISITION_09</th><th>MEANS_FOR_ACQUISITION_10</th><th>__UNNAMED__354</th></tr><tr><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>&hellip;</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&hellip;</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td><td>&quot;FINAL 2023 UTILIZATION DATABAS…</td></tr><tr><td>&quot;Page&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&hellip;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;6.0&quot;</td><td>null</td></tr><tr><td>&quot;Column&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;1.0&quot;</td><td>&hellip;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;4.0&quot;</td><td>null</td></tr><tr><td>&quot;Line&quot;</td><td>&quot;2.0&quot;</td><td>&quot;1.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;5.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;7.0&quot;</td><td>&quot;9.0&quot;</td><td>&quot;10.0&quot;</td><td>&quot;11.0&quot;</td><td>&quot;12.0&quot;</td><td>&quot;13.0&quot;</td><td>&quot;14.0&quot;</td><td>&quot;15.0&quot;</td><td>&quot;16.0&quot;</td><td>&quot;20.0&quot;</td><td>&quot;24.0&quot;</td><td>&quot;25.0&quot;</td><td>&quot;29.0&quot;</td><td>&quot;30.0&quot;</td><td>&quot;100.0&quot;</td><td>&quot;101.0&quot;</td><td>&quot;102.0&quot;</td><td>&quot;103.0&quot;</td><td>&quot;104.0&quot;</td><td>&quot;105.0&quot;</td><td>&quot;106.0&quot;</td><td>&quot;107.0&quot;</td><td>&quot;108.0&quot;</td><td>&quot;109.0&quot;</td><td>&quot;110.0&quot;</td><td>&quot;111.0&quot;</td><td>&quot;112.0&quot;</td><td>&quot;113.0&quot;</td><td>&quot;114.0&quot;</td><td>&quot;115.0&quot;</td><td>&hellip;</td><td>&quot;6.0&quot;</td><td>&quot;7.0&quot;</td><td>&quot;8.0&quot;</td><td>&quot;9.0&quot;</td><td>&quot;10.0&quot;</td><td>&quot;11.0&quot;</td><td>&quot;26.0&quot;</td><td>&quot;27.0&quot;</td><td>&quot;28.0&quot;</td><td>&quot;29.0&quot;</td><td>&quot;30.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;5.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;7.0&quot;</td><td>&quot;8.0&quot;</td><td>&quot;9.0&quot;</td><td>&quot;10.0&quot;</td><td>&quot;11.0&quot;</td><td>&quot;26.0&quot;</td><td>&quot;27.0&quot;</td><td>&quot;28.0&quot;</td><td>&quot;29.0&quot;</td><td>&quot;30.0&quot;</td><td>&quot;2.0&quot;</td><td>&quot;3.0&quot;</td><td>&quot;4.0&quot;</td><td>&quot;5.0&quot;</td><td>&quot;6.0&quot;</td><td>&quot;7.0&quot;</td><td>&quot;8.0&quot;</td><td>&quot;9.0&quot;</td><td>&quot;10.0&quot;</td><td>&quot;11.0&quot;</td><td>null</td></tr><tr><td>null</td><td>&quot;106010735&quot;</td><td>&quot;ALAMEDA HOSPITAL&quot;</td><td>&quot;2070 CLINTON AVE&quot;</td><td>&quot;ALAMEDA&quot;</td><td>&quot;94501&quot;</td><td>&quot;5102333700&quot;</td><td>&quot;Mario Harding&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Alameda Health System&quot;</td><td>&quot;1431 East 31st Street&quot;</td><td>&quot;Oakland&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;94602&quot;</td><td>&quot;Ramneet Kaur&quot;</td><td>&quot;2024-02-14 16:11:00&quot;</td><td>&quot;Ramneet Kaur&quot;</td><td>&quot;02/15/2024 01:35 PM&quot;</td><td>null</td><td>&quot;140000002&quot;</td><td>&quot;2023-05-01 00:00:00&quot;</td><td>&quot;2024-04-30 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Parent Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-122.253491&quot;</td><td>&quot;37.762781&quot;</td><td>&quot;District 18&quot;</td><td>&quot;District 7&quot;</td><td>&quot;District 12&quot;</td><td>&quot;06001428500&quot;</td><td>&quot;2e&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr></tbody></table></div></div></div>
+</div>
+<p>The first four rows contain metadata about the columns; the first hospital,
+Alameda Hospital, is listed in the fifth row. So let’s remove the first four
+rows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span><span class="mi">4</span><span class="p">:,</span> <span class="p">:]</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 355)</small><table border="1" class="dataframe"><thead><tr><th>Description</th><th>FAC_NO</th><th>FAC_NAME</th><th>FAC_STR_ADDR</th><th>FAC_CITY</th><th>FAC_ZIP</th><th>FAC_PHONE</th><th>FAC_ADMIN_NAME</th><th>FAC_OPERATED_THIS_YR</th><th>FAC_OP_PER_BEGIN_DT</th><th>FAC_OP_PER_END_DT</th><th>FAC_PAR_CORP_NAME</th><th>FAC_PAR_CORP_BUS_ADDR</th><th>FAC_PAR_CORP_CITY</th><th>FAC_PAR_CORP_STATE</th><th>FAC_PAR_CORP_ZIP</th><th>REPT_PREP_NAME</th><th>SUBMITTED_DT</th><th>REV_REPT_PREP_NAME</th><th>REVISED_DT</th><th>CORRECTED_DT</th><th>LICENSE_NO</th><th>LICENSE_EFF_DATE</th><th>LICENSE_EXP_DATE</th><th>LICENSE_STATUS</th><th>FACILITY_LEVEL</th><th>TRAUMA_CTR</th><th>TEACH_HOSP</th><th>TEACH_RURAL</th><th>LONGITUDE</th><th>LATITUDE</th><th>ASSEMBLY_DIST</th><th>SENATE_DIST</th><th>CONGRESS_DIST</th><th>CENSUS_KEY</th><th>MED_SVC_STUDY_AREA</th><th>LA_COUNTY_SVC_PLAN_AREA</th><th>&hellip;</th><th>EQUIP_VAL_05</th><th>EQUIP_VAL_06</th><th>EQUIP_VAL_07</th><th>EQUIP_VAL_08</th><th>EQUIP_VAL_09</th><th>EQUIP_VAL_10</th><th>PROJ_EXPENDITURES_01</th><th>PROJ_EXPENDITURES_02</th><th>PROJ_EXPENDITURES_03</th><th>PROJ_EXPENDITURES_04</th><th>PROJ_EXPENDITURES_05</th><th>DT_AQUIRE_EQUIP_01</th><th>DT_AQUIRE_EQUIP_02</th><th>DT_AQUIRE_EQUIP_03</th><th>DT_AQUIRE_EQUIP_04</th><th>DT_AQUIRE_EQUIP_05</th><th>DT_AQUIRE_EQUIP_06</th><th>DT_AQUIRE_EQUIP_07</th><th>DT_AQUIRE_EQUIP_08</th><th>DT_AQUIRE_EQUIP_09</th><th>DT_AQUIRE_EQUIP_10</th><th>HCAI_PROJ_NO_01</th><th>HCAI_PROJ_NO_02</th><th>HCAI_PROJ_NO_03</th><th>HCAI_PROJ_NO_04</th><th>HCAI_PROJ_NO_05</th><th>MEANS_FOR_ACQUISITION_01</th><th>MEANS_FOR_ACQUISITION_02</th><th>MEANS_FOR_ACQUISITION_03</th><th>MEANS_FOR_ACQUISITION_04</th><th>MEANS_FOR_ACQUISITION_05</th><th>MEANS_FOR_ACQUISITION_06</th><th>MEANS_FOR_ACQUISITION_07</th><th>MEANS_FOR_ACQUISITION_08</th><th>MEANS_FOR_ACQUISITION_09</th><th>MEANS_FOR_ACQUISITION_10</th><th>__UNNAMED__354</th></tr><tr><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>&hellip;</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>null</td><td>&quot;106010735&quot;</td><td>&quot;ALAMEDA HOSPITAL&quot;</td><td>&quot;2070 CLINTON AVE&quot;</td><td>&quot;ALAMEDA&quot;</td><td>&quot;94501&quot;</td><td>&quot;5102333700&quot;</td><td>&quot;Mario Harding&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Alameda Health System&quot;</td><td>&quot;1431 East 31st Street&quot;</td><td>&quot;Oakland&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;94602&quot;</td><td>&quot;Ramneet Kaur&quot;</td><td>&quot;2024-02-14 16:11:00&quot;</td><td>&quot;Ramneet Kaur&quot;</td><td>&quot;02/15/2024 01:35 PM&quot;</td><td>null</td><td>&quot;140000002&quot;</td><td>&quot;2023-05-01 00:00:00&quot;</td><td>&quot;2024-04-30 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Parent Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-122.253491&quot;</td><td>&quot;37.762781&quot;</td><td>&quot;District 18&quot;</td><td>&quot;District 7&quot;</td><td>&quot;District 12&quot;</td><td>&quot;06001428500&quot;</td><td>&quot;2e&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;106010739&quot;</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;2450 ASHBY AVENUE&quot;</td><td>&quot;BERKELEY&quot;</td><td>&quot;94705&quot;</td><td>&quot;510-655-4000&quot;</td><td>&quot;David D. Clark, Chief Executiv…</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Sutter Health&quot;</td><td>&quot;2000 Powell Street, 10th&nbsp;&nbsp;Floo…</td><td>&quot;Emeryville&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;94608&quot;</td><td>&quot;Jeannie Cornelius&quot;</td><td>&quot;2024-02-15 18:55:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;140000004&quot;</td><td>&quot;2023-11-01 00:00:00&quot;</td><td>&quot;2024-10-31 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Parent Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-122.257501&quot;</td><td>&quot;37.855628&quot;</td><td>&quot;District 14&quot;</td><td>&quot;District 7&quot;</td><td>&quot;District 12&quot;</td><td>&quot;06001423902&quot;</td><td>&quot;2b&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;3451229&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;2023-03-23 00:00:00&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Purchase&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;106010776&quot;</td><td>&quot;UCSF BENIOFF CHILDREN&#x27;S HOSPIT…</td><td>&quot;747 52ND STREET&quot;</td><td>&quot;OAKLAND&quot;</td><td>&quot;94609&quot;</td><td>&quot;510-428-3000&quot;</td><td>&quot;Joan Zoltanski&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;LAURA CHERRY&quot;</td><td>&quot;2024-02-15 14:02:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;140000015&quot;</td><td>&quot;2023-05-17 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;Level I - Pediatric&quot;</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-122.267028&quot;</td><td>&quot;37.83719&quot;</td><td>&quot;District 18&quot;</td><td>&quot;District 7&quot;</td><td>&quot;District 12&quot;</td><td>&quot;06001401000&quot;</td><td>&quot;2c&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;106700000&quot;</td><td>&quot;3500000&quot;</td><td>&quot;2935000&quot;</td><td>&quot;6388650&quot;</td><td>null</td><td>&quot;2023-09-30 00:00:00&quot;</td><td>&quot;2023-11-30 00:00:00&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Purchase&quot;</td><td>&quot;Purchase&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;106010811&quot;</td><td>&quot;FAIRMONT HOSPITAL&quot;</td><td>&quot;15400 FOOTHILL BOULEVARD&quot;</td><td>&quot;SAN LEANDRO&quot;</td><td>&quot;94578&quot;</td><td>&quot;5104374800&quot;</td><td>&quot;Richard Espinoza&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Alameda Health System&quot;</td><td>&quot;1431 East 31st Street&quot;</td><td>&quot;Oakland&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;94702&quot;</td><td>&quot;Ramneet Kaur&quot;</td><td>&quot;2024-02-12 11:58:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;140000046&quot;</td><td>&quot;2023-11-01 00:00:00&quot;</td><td>&quot;2024-10-31 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-122.119823&quot;</td><td>&quot;37.708168&quot;</td><td>&quot;District 20&quot;</td><td>&quot;District 9&quot;</td><td>&quot;District 14&quot;</td><td>&quot;06001430500&quot;</td><td>&quot;2f&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;106010844&quot;</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;2001 DWIGHT WAY&quot;</td><td>&quot;BERKELEY&quot;</td><td>&quot;94704&quot;</td><td>&quot;510-655-4000&quot;</td><td>&quot;David D. Clark, Chief Executiv…</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Sutter Health&quot;</td><td>&quot;2000 Powell Street, 10th&nbsp;&nbsp;Floo…</td><td>&quot;Emeryville&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;94608&quot;</td><td>&quot;Jeannie Cornelius&quot;</td><td>&quot;2024-02-15 18:55:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;140000004&quot;</td><td>&quot;2023-11-01 00:00:00&quot;</td><td>&quot;2024-10-31 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-122.268712&quot;</td><td>&quot;37.864072&quot;</td><td>&quot;District 14&quot;</td><td>&quot;District 7&quot;</td><td>&quot;District 12&quot;</td><td>&quot;06001422900&quot;</td><td>&quot;2a&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr></tbody></table></div></div></div>
+</div>
+<p>Some data sets also have metadata in the last rows, so let’s check for that
+here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheet</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 355)</small><table border="1" class="dataframe"><thead><tr><th>Description</th><th>FAC_NO</th><th>FAC_NAME</th><th>FAC_STR_ADDR</th><th>FAC_CITY</th><th>FAC_ZIP</th><th>FAC_PHONE</th><th>FAC_ADMIN_NAME</th><th>FAC_OPERATED_THIS_YR</th><th>FAC_OP_PER_BEGIN_DT</th><th>FAC_OP_PER_END_DT</th><th>FAC_PAR_CORP_NAME</th><th>FAC_PAR_CORP_BUS_ADDR</th><th>FAC_PAR_CORP_CITY</th><th>FAC_PAR_CORP_STATE</th><th>FAC_PAR_CORP_ZIP</th><th>REPT_PREP_NAME</th><th>SUBMITTED_DT</th><th>REV_REPT_PREP_NAME</th><th>REVISED_DT</th><th>CORRECTED_DT</th><th>LICENSE_NO</th><th>LICENSE_EFF_DATE</th><th>LICENSE_EXP_DATE</th><th>LICENSE_STATUS</th><th>FACILITY_LEVEL</th><th>TRAUMA_CTR</th><th>TEACH_HOSP</th><th>TEACH_RURAL</th><th>LONGITUDE</th><th>LATITUDE</th><th>ASSEMBLY_DIST</th><th>SENATE_DIST</th><th>CONGRESS_DIST</th><th>CENSUS_KEY</th><th>MED_SVC_STUDY_AREA</th><th>LA_COUNTY_SVC_PLAN_AREA</th><th>&hellip;</th><th>EQUIP_VAL_05</th><th>EQUIP_VAL_06</th><th>EQUIP_VAL_07</th><th>EQUIP_VAL_08</th><th>EQUIP_VAL_09</th><th>EQUIP_VAL_10</th><th>PROJ_EXPENDITURES_01</th><th>PROJ_EXPENDITURES_02</th><th>PROJ_EXPENDITURES_03</th><th>PROJ_EXPENDITURES_04</th><th>PROJ_EXPENDITURES_05</th><th>DT_AQUIRE_EQUIP_01</th><th>DT_AQUIRE_EQUIP_02</th><th>DT_AQUIRE_EQUIP_03</th><th>DT_AQUIRE_EQUIP_04</th><th>DT_AQUIRE_EQUIP_05</th><th>DT_AQUIRE_EQUIP_06</th><th>DT_AQUIRE_EQUIP_07</th><th>DT_AQUIRE_EQUIP_08</th><th>DT_AQUIRE_EQUIP_09</th><th>DT_AQUIRE_EQUIP_10</th><th>HCAI_PROJ_NO_01</th><th>HCAI_PROJ_NO_02</th><th>HCAI_PROJ_NO_03</th><th>HCAI_PROJ_NO_04</th><th>HCAI_PROJ_NO_05</th><th>MEANS_FOR_ACQUISITION_01</th><th>MEANS_FOR_ACQUISITION_02</th><th>MEANS_FOR_ACQUISITION_03</th><th>MEANS_FOR_ACQUISITION_04</th><th>MEANS_FOR_ACQUISITION_05</th><th>MEANS_FOR_ACQUISITION_06</th><th>MEANS_FOR_ACQUISITION_07</th><th>MEANS_FOR_ACQUISITION_08</th><th>MEANS_FOR_ACQUISITION_09</th><th>MEANS_FOR_ACQUISITION_10</th><th>__UNNAMED__354</th></tr><tr><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>&hellip;</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>null</td><td>&quot;106580996&quot;</td><td>&quot;ADVENTIST HEALTH AND RIDEOUT&quot;</td><td>&quot;726 FOURTH ST&quot;</td><td>&quot;MARYSVILLE&quot;</td><td>&quot;95901&quot;</td><td>&quot;530-751-4300&quot;</td><td>&quot;Chris Champlin&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Erika Collazo&quot;</td><td>&quot;2024-02-15 17:09:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;230000126&quot;</td><td>&quot;2023-11-01 00:00:00&quot;</td><td>&quot;2024-10-31 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;Level III&quot;</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-121.594228&quot;</td><td>&quot;39.138174&quot;</td><td>&quot;District 3&quot;</td><td>&quot;District 1&quot;</td><td>&quot;District 1&quot;</td><td>&quot;06115040100&quot;</td><td>&quot;249&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;2000000&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;206100718&quot;</td><td>&quot;COMMUNITY SUBACUTE AND TRANSIT…</td><td>&quot;3003 NORTH MARIPOSA STREET&quot;</td><td>&quot;FRESNO&quot;</td><td>&quot;93703&quot;</td><td>&quot;559-459-1844&quot;</td><td>&quot;Leslie Cotham&quot;</td><td>&quot;No&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Fresno Community Hospital and …</td><td>&quot;789 N Medical Center Drive Eas…</td><td>&quot;Clovis&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;93611&quot;</td><td>&quot;Irma Lorenzo&quot;</td><td>&quot;2024-02-15 16:08:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;040000096&quot;</td><td>&quot;2023-11-07 00:00:00&quot;</td><td>&quot;2024-11-06 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Distinct Part Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-119.779788&quot;</td><td>&quot;36.777715&quot;</td><td>&quot;District 31&quot;</td><td>&quot;District 14&quot;</td><td>&quot;District 21&quot;</td><td>&quot;06019003400&quot;</td><td>&quot;35c&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;206274027&quot;</td><td>&quot;WESTLAND HOUSE&quot;</td><td>&quot;100 BARNET SEGAL LANE&quot;</td><td>&quot;MONTEREY&quot;</td><td>&quot;93940&quot;</td><td>&quot;8316245311&quot;</td><td>&quot;Dr. Steven Packer&quot;</td><td>&quot;No&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Montage Health&quot;</td><td>&quot;PO Box HH&quot;</td><td>&quot;Monterey&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;93940&quot;</td><td>&quot;John W. Thibeau&quot;</td><td>&quot;2024-02-19 15:45:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;070000026&quot;</td><td>&quot;2023-12-01 00:00:00&quot;</td><td>&quot;2024-11-30 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Distinct Part Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-121.885834&quot;</td><td>&quot;36.5812&quot;</td><td>&quot;District 30&quot;</td><td>&quot;District 17&quot;</td><td>&quot;District 19&quot;</td><td>&quot;06053013200&quot;</td><td>&quot;110&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;206351814&quot;</td><td>&quot;HAZEL HAWKINS MEMORIAL HOSPITA…</td><td>&quot;900 SUNSET DRIVE&quot;</td><td>&quot;HOLLISTER&quot;</td><td>&quot;95023&quot;</td><td>&quot;831-635-1106&quot;</td><td>&quot;Mary Casillas&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;San Benito Health Care Distric…</td><td>&quot;911 Sunset Drive&quot;</td><td>&quot;Hollister&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;95023&quot;</td><td>&quot;SANDRA DILAURA&quot;</td><td>&quot;2024-02-21 15:35:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;070000004&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Distinct Part Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-121.386815&quot;</td><td>&quot;36.83558&quot;</td><td>&quot;District 29&quot;</td><td>&quot;District 17&quot;</td><td>&quot;District 18&quot;</td><td>&quot;06069000600&quot;</td><td>&quot;140&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>null</td><td>&quot;n = 506&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr></tbody></table></div></div></div>
+</div>
+<p>Sure enough, the last row contains what appears to be a count of the hospitals
+rather than a hospital. Let’s remove it by indexing with a negative value,
+which counts backward from the end:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 355)</small><table border="1" class="dataframe"><thead><tr><th>Description</th><th>FAC_NO</th><th>FAC_NAME</th><th>FAC_STR_ADDR</th><th>FAC_CITY</th><th>FAC_ZIP</th><th>FAC_PHONE</th><th>FAC_ADMIN_NAME</th><th>FAC_OPERATED_THIS_YR</th><th>FAC_OP_PER_BEGIN_DT</th><th>FAC_OP_PER_END_DT</th><th>FAC_PAR_CORP_NAME</th><th>FAC_PAR_CORP_BUS_ADDR</th><th>FAC_PAR_CORP_CITY</th><th>FAC_PAR_CORP_STATE</th><th>FAC_PAR_CORP_ZIP</th><th>REPT_PREP_NAME</th><th>SUBMITTED_DT</th><th>REV_REPT_PREP_NAME</th><th>REVISED_DT</th><th>CORRECTED_DT</th><th>LICENSE_NO</th><th>LICENSE_EFF_DATE</th><th>LICENSE_EXP_DATE</th><th>LICENSE_STATUS</th><th>FACILITY_LEVEL</th><th>TRAUMA_CTR</th><th>TEACH_HOSP</th><th>TEACH_RURAL</th><th>LONGITUDE</th><th>LATITUDE</th><th>ASSEMBLY_DIST</th><th>SENATE_DIST</th><th>CONGRESS_DIST</th><th>CENSUS_KEY</th><th>MED_SVC_STUDY_AREA</th><th>LA_COUNTY_SVC_PLAN_AREA</th><th>&hellip;</th><th>EQUIP_VAL_05</th><th>EQUIP_VAL_06</th><th>EQUIP_VAL_07</th><th>EQUIP_VAL_08</th><th>EQUIP_VAL_09</th><th>EQUIP_VAL_10</th><th>PROJ_EXPENDITURES_01</th><th>PROJ_EXPENDITURES_02</th><th>PROJ_EXPENDITURES_03</th><th>PROJ_EXPENDITURES_04</th><th>PROJ_EXPENDITURES_05</th><th>DT_AQUIRE_EQUIP_01</th><th>DT_AQUIRE_EQUIP_02</th><th>DT_AQUIRE_EQUIP_03</th><th>DT_AQUIRE_EQUIP_04</th><th>DT_AQUIRE_EQUIP_05</th><th>DT_AQUIRE_EQUIP_06</th><th>DT_AQUIRE_EQUIP_07</th><th>DT_AQUIRE_EQUIP_08</th><th>DT_AQUIRE_EQUIP_09</th><th>DT_AQUIRE_EQUIP_10</th><th>HCAI_PROJ_NO_01</th><th>HCAI_PROJ_NO_02</th><th>HCAI_PROJ_NO_03</th><th>HCAI_PROJ_NO_04</th><th>HCAI_PROJ_NO_05</th><th>MEANS_FOR_ACQUISITION_01</th><th>MEANS_FOR_ACQUISITION_02</th><th>MEANS_FOR_ACQUISITION_03</th><th>MEANS_FOR_ACQUISITION_04</th><th>MEANS_FOR_ACQUISITION_05</th><th>MEANS_FOR_ACQUISITION_06</th><th>MEANS_FOR_ACQUISITION_07</th><th>MEANS_FOR_ACQUISITION_08</th><th>MEANS_FOR_ACQUISITION_09</th><th>MEANS_FOR_ACQUISITION_10</th><th>__UNNAMED__354</th></tr><tr><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>&hellip;</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>null</td><td>&quot;106574010&quot;</td><td>&quot;SUTTER DAVIS HOSPITAL&quot;</td><td>&quot;2000 SUTTER PLACE&quot;</td><td>&quot;DAVIS&quot;</td><td>&quot;95616&quot;</td><td>&quot;(530) 756-6440&quot;</td><td>&quot;Michael Cureton&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Sutter Health&quot;</td><td>&quot;2300 River Plaza Dr&quot;</td><td>&quot;Sacramento&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;95833&quot;</td><td>&quot;Luke D. Peterson&quot;</td><td>&quot;2024-01-25 11:04:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;030000124&quot;</td><td>&quot;2023-06-05 00:00:00&quot;</td><td>&quot;2024-05-30 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Parent Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-121.770684&quot;</td><td>&quot;38.562688&quot;</td><td>&quot;District 4&quot;</td><td>&quot;District 3&quot;</td><td>&quot;District 4&quot;</td><td>&quot;06113010505&quot;</td><td>&quot;244&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;4847000&quot;</td><td>&quot;1999354&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;106580996&quot;</td><td>&quot;ADVENTIST HEALTH AND RIDEOUT&quot;</td><td>&quot;726 FOURTH ST&quot;</td><td>&quot;MARYSVILLE&quot;</td><td>&quot;95901&quot;</td><td>&quot;530-751-4300&quot;</td><td>&quot;Chris Champlin&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;Erika Collazo&quot;</td><td>&quot;2024-02-15 17:09:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;230000126&quot;</td><td>&quot;2023-11-01 00:00:00&quot;</td><td>&quot;2024-10-31 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;Level III&quot;</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-121.594228&quot;</td><td>&quot;39.138174&quot;</td><td>&quot;District 3&quot;</td><td>&quot;District 1&quot;</td><td>&quot;District 1&quot;</td><td>&quot;06115040100&quot;</td><td>&quot;249&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>&quot;2000000&quot;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;206100718&quot;</td><td>&quot;COMMUNITY SUBACUTE AND TRANSIT…</td><td>&quot;3003 NORTH MARIPOSA STREET&quot;</td><td>&quot;FRESNO&quot;</td><td>&quot;93703&quot;</td><td>&quot;559-459-1844&quot;</td><td>&quot;Leslie Cotham&quot;</td><td>&quot;No&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Fresno Community Hospital and …</td><td>&quot;789 N Medical Center Drive Eas…</td><td>&quot;Clovis&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;93611&quot;</td><td>&quot;Irma Lorenzo&quot;</td><td>&quot;2024-02-15 16:08:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;040000096&quot;</td><td>&quot;2023-11-07 00:00:00&quot;</td><td>&quot;2024-11-06 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Distinct Part Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-119.779788&quot;</td><td>&quot;36.777715&quot;</td><td>&quot;District 31&quot;</td><td>&quot;District 14&quot;</td><td>&quot;District 21&quot;</td><td>&quot;06019003400&quot;</td><td>&quot;35c&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;206274027&quot;</td><td>&quot;WESTLAND HOUSE&quot;</td><td>&quot;100 BARNET SEGAL LANE&quot;</td><td>&quot;MONTEREY&quot;</td><td>&quot;93940&quot;</td><td>&quot;8316245311&quot;</td><td>&quot;Dr. Steven Packer&quot;</td><td>&quot;No&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Montage Health&quot;</td><td>&quot;PO Box HH&quot;</td><td>&quot;Monterey&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;93940&quot;</td><td>&quot;John W. Thibeau&quot;</td><td>&quot;2024-02-19 15:45:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;070000026&quot;</td><td>&quot;2023-12-01 00:00:00&quot;</td><td>&quot;2024-11-30 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Distinct Part Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-121.885834&quot;</td><td>&quot;36.5812&quot;</td><td>&quot;District 30&quot;</td><td>&quot;District 17&quot;</td><td>&quot;District 19&quot;</td><td>&quot;06053013200&quot;</td><td>&quot;110&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>null</td><td>&quot;206351814&quot;</td><td>&quot;HAZEL HAWKINS MEMORIAL HOSPITA…</td><td>&quot;900 SUNSET DRIVE&quot;</td><td>&quot;HOLLISTER&quot;</td><td>&quot;95023&quot;</td><td>&quot;831-635-1106&quot;</td><td>&quot;Mary Casillas&quot;</td><td>&quot;Yes&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;San Benito Health Care Distric…</td><td>&quot;911 Sunset Drive&quot;</td><td>&quot;Hollister&quot;</td><td>&quot;CA - California&quot;</td><td>&quot;95023&quot;</td><td>&quot;SANDRA DILAURA&quot;</td><td>&quot;2024-02-21 15:35:00&quot;</td><td>null</td><td>null</td><td>null</td><td>&quot;070000004&quot;</td><td>&quot;2023-01-01 00:00:00&quot;</td><td>&quot;2023-12-31 00:00:00&quot;</td><td>&quot;Open&quot;</td><td>&quot;Distinct Part Facility&quot;</td><td>null</td><td>&quot;No&quot;</td><td>&quot;No&quot;</td><td>&quot;-121.386815&quot;</td><td>&quot;36.83558&quot;</td><td>&quot;District 29&quot;</td><td>&quot;District 17&quot;</td><td>&quot;District 18&quot;</td><td>&quot;06069000600&quot;</td><td>&quot;140&quot;</td><td>null</td><td>&hellip;</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td><td>null</td></tr></tbody></table></div></div></div>
+</div>
+<p>There are a lot of columns in sheet, so let’s make a list of just a few that
+we’ll use for analysis. We’ll keep:</p>
+<ul class="simple">
+<li><p>Columns with facility name, location, and operating status</p></li>
+<li><p>All of the columns whose names start with <code class="docutils literal notranslate"><span class="pre">TOT</span></code>, because these are totals for
+number of beds, number of census-days, and so on.</p></li>
+<li><p>Columns about acute respiratory beds, with names that contain <code class="docutils literal notranslate"><span class="pre">RESPIRATORY</span></code>,
+because they might also be relevant.</p></li>
+</ul>
+<p>We can get all of these columns with the <code class="docutils literal notranslate"><span class="pre">.select</span></code> method. The <code class="docutils literal notranslate"><span class="pre">TOT</span></code> and
+<code class="docutils literal notranslate"><span class="pre">RESPIRATORY</span></code> columns all contain numbers, but the element type is <code class="docutils literal notranslate"><span class="pre">str</span></code>, so
+we’ll cast them to floats. We’ll also add a column with the year:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">facility_cols</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span>
+    <span class="s2">&quot;FAC_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_CITY&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_ZIP&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_OPERATED_THIS_YR&quot;</span><span class="p">,</span> <span class="s2">&quot;FACILITY_LEVEL&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TEACH_HOSP&quot;</span><span class="p">,</span> <span class="s2">&quot;COUNTY&quot;</span><span class="p">,</span> <span class="s2">&quot;PRIN_SERVICE_TYPE&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="mi">2023</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">),</span>
+    <span class="n">facility_cols</span><span class="p">,</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;^TOT.*$&quot;</span><span class="p">,</span> <span class="s2">&quot;^.*RESPIRATORY.*$&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 22)</small><table border="1" class="dataframe"><thead><tr><th>year</th><th>FAC_NAME</th><th>FAC_CITY</th><th>FAC_ZIP</th><th>FAC_OPERATED_THIS_YR</th><th>FACILITY_LEVEL</th><th>TEACH_HOSP</th><th>COUNTY</th><th>PRIN_SERVICE_TYPE</th><th>TOT_LIC_BEDS</th><th>TOT_LIC_BED_DAYS</th><th>TOT_DISCHARGES</th><th>TOT_CEN_DAYS</th><th>TOT_ALOS_CY</th><th>TOT_ALOS_PY</th><th>ACUTE_RESPIRATORY_CARE_LIC_BEDS</th><th>ACUTE_RESPIRATORY_CARE_LIC_BED_DAYS</th><th>ACUTE_RESPIRATORY_CARE_DISCHARGES</th><th>ACUTE_RESPIRATORY_CARE_INTRA_TRANSFERS</th><th>ACUTE_RESPIRATORY_CARE_CEN_DAYS</th><th>ACUTE_RESPIRATORY_CARE_ALOS_CY</th><th>ACUTE_RESPIRATORY_CARE_ALOS_PY</th></tr><tr><td>i32</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>2023</td><td>&quot;ALAMEDA HOSPITAL&quot;</td><td>&quot;ALAMEDA&quot;</td><td>&quot;94501&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>247.0</td><td>90155.0</td><td>2974.0</td><td>66163.0</td><td>22.2</td><td>24.2</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94705&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>339.0</td><td>123735.0</td><td>11295.0</td><td>56442.0</td><td>5.0</td><td>4.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;UCSF BENIOFF CHILDREN&#x27;S HOSPIT…</td><td>&quot;OAKLAND&quot;</td><td>&quot;94609&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Pediatric&quot;</td><td>155.0</td><td>59465.0</td><td>7537.0</td><td>40891.0</td><td>5.4</td><td>5.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;FAIRMONT HOSPITAL&quot;</td><td>&quot;SAN LEANDRO&quot;</td><td>&quot;94578&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Long-Term Care (SN / IC)&quot;</td><td>109.0</td><td>39785.0</td><td>176.0</td><td>45336.0</td><td>257.6</td><td>371.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94704&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Psychiatric&quot;</td><td>64.0</td><td>24576.0</td><td>1853.0</td><td>17413.0</td><td>9.4</td><td>10.2</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr></tbody></table></div></div></div>
+</div>
+<p>Lowercase names are easier to type, so let’s also make all of the names
+lowercase with the <code class="docutils literal notranslate"><span class="pre">.rename</span></code> and <code class="docutils literal notranslate"><span class="pre">str.lower</span></code> methods:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 22)</small><table border="1" class="dataframe"><thead><tr><th>year</th><th>fac_name</th><th>fac_city</th><th>fac_zip</th><th>fac_operated_this_yr</th><th>facility_level</th><th>teach_hosp</th><th>county</th><th>prin_service_type</th><th>tot_lic_beds</th><th>tot_lic_bed_days</th><th>tot_discharges</th><th>tot_cen_days</th><th>tot_alos_cy</th><th>tot_alos_py</th><th>acute_respiratory_care_lic_beds</th><th>acute_respiratory_care_lic_bed_days</th><th>acute_respiratory_care_discharges</th><th>acute_respiratory_care_intra_transfers</th><th>acute_respiratory_care_cen_days</th><th>acute_respiratory_care_alos_cy</th><th>acute_respiratory_care_alos_py</th></tr><tr><td>i32</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>2023</td><td>&quot;ALAMEDA HOSPITAL&quot;</td><td>&quot;ALAMEDA&quot;</td><td>&quot;94501&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>247.0</td><td>90155.0</td><td>2974.0</td><td>66163.0</td><td>22.2</td><td>24.2</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94705&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>339.0</td><td>123735.0</td><td>11295.0</td><td>56442.0</td><td>5.0</td><td>4.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;UCSF BENIOFF CHILDREN&#x27;S HOSPIT…</td><td>&quot;OAKLAND&quot;</td><td>&quot;94609&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Pediatric&quot;</td><td>155.0</td><td>59465.0</td><td>7537.0</td><td>40891.0</td><td>5.4</td><td>5.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;FAIRMONT HOSPITAL&quot;</td><td>&quot;SAN LEANDRO&quot;</td><td>&quot;94578&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Long-Term Care (SN / IC)&quot;</td><td>109.0</td><td>39785.0</td><td>176.0</td><td>45336.0</td><td>257.6</td><td>371.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94704&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Psychiatric&quot;</td><td>64.0</td><td>24576.0</td><td>1853.0</td><td>17413.0</td><td>9.4</td><td>10.2</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr></tbody></table></div></div></div>
+</div>
+<p>We’ve successfully read one of the files! Since the 2018-2023 files all have
+the same format, it’s likely that we can use almost the same code for all of
+them. Any time you want to reuse code, it’s a sign that you should write a
+function, so that’s what we’ll do. We’ll take all of the code we have so far
+and put it in the body of a function called <code class="docutils literal notranslate"><span class="pre">read_hospital_data</span></code>, adding some
+comments to indicate the steps and a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement at the end:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_hospital_data</span><span class="p">():</span>
+    <span class="c1"># Read the 2nd sheet of the file.</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;data/ca_hospitals/hosp23_util_data_final.xlsx&quot;</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sheet_id</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Remove the first 4 and last row.</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span><span class="mi">4</span><span class="p">:,</span> <span class="p">:]</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="c1"># Select only a few columns of interest.</span>
+    <span class="n">facility_cols</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span>
+        <span class="s2">&quot;FAC_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_CITY&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_ZIP&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_OPERATED_THIS_YR&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;FACILITY_LEVEL&quot;</span><span class="p">,</span> <span class="s2">&quot;TEACH_HOSP&quot;</span><span class="p">,</span> <span class="s2">&quot;COUNTY&quot;</span><span class="p">,</span> <span class="s2">&quot;PRIN_SERVICE_TYPE&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="mi">2023</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">),</span>
+        <span class="n">facility_cols</span><span class="p">,</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;^TOT.*$&quot;</span><span class="p">,</span> <span class="s2">&quot;^.*RESPIRATORY.*$&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Rename the columns to lowercase.</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sheet</span>
+</pre></div>
+</div>
+<p>As it is, the function still only reads the 2023 file. The other files have
+different paths, so the first thing we need to do is make the <code class="docutils literal notranslate"><span class="pre">path</span></code> variable a
+parameter. We’ll also make a <code class="docutils literal notranslate"><span class="pre">year</span></code> parameter, for the year value inserted as a
+column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_hospital_data</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="c1"># Read the 2nd sheet of the file.</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sheet_id</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Remove the first 4 and last row.</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="c1"># Select only a few columns of interest.</span>
+    <span class="n">facility_cols</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span>
+        <span class="s2">&quot;FAC_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_CITY&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_ZIP&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_OPERATED_THIS_YR&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;FACILITY_LEVEL&quot;</span><span class="p">,</span> <span class="s2">&quot;TEACH_HOSP&quot;</span><span class="p">,</span> <span class="s2">&quot;COUNTY&quot;</span><span class="p">,</span> <span class="s2">&quot;PRIN_SERVICE_TYPE&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">),</span>
+        <span class="n">facility_cols</span><span class="p">,</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;^TOT.*$&quot;</span><span class="p">,</span> <span class="s2">&quot;^.*RESPIRATORY.*$&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Rename the columns to lowercase.</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sheet</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Test the function out on a few of the files to make sure it works correctly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">read_hospital_data</span><span class="p">(</span>
+    <span class="s2">&quot;data/ca_hospitals/hosp23_util_data_final.xlsx&quot;</span><span class="p">,</span> <span class="mi">2023</span>
+<span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 22)</small><table border="1" class="dataframe"><thead><tr><th>year</th><th>fac_name</th><th>fac_city</th><th>fac_zip</th><th>fac_operated_this_yr</th><th>facility_level</th><th>teach_hosp</th><th>county</th><th>prin_service_type</th><th>tot_lic_beds</th><th>tot_lic_bed_days</th><th>tot_discharges</th><th>tot_cen_days</th><th>tot_alos_cy</th><th>tot_alos_py</th><th>acute_respiratory_care_lic_beds</th><th>acute_respiratory_care_lic_bed_days</th><th>acute_respiratory_care_discharges</th><th>acute_respiratory_care_intra_transfers</th><th>acute_respiratory_care_cen_days</th><th>acute_respiratory_care_alos_cy</th><th>acute_respiratory_care_alos_py</th></tr><tr><td>i32</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>2023</td><td>&quot;ALAMEDA HOSPITAL&quot;</td><td>&quot;ALAMEDA&quot;</td><td>&quot;94501&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>247.0</td><td>90155.0</td><td>2974.0</td><td>66163.0</td><td>22.2</td><td>24.2</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94705&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>339.0</td><td>123735.0</td><td>11295.0</td><td>56442.0</td><td>5.0</td><td>4.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;UCSF BENIOFF CHILDREN&#x27;S HOSPIT…</td><td>&quot;OAKLAND&quot;</td><td>&quot;94609&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Pediatric&quot;</td><td>155.0</td><td>59465.0</td><td>7537.0</td><td>40891.0</td><td>5.4</td><td>5.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;FAIRMONT HOSPITAL&quot;</td><td>&quot;SAN LEANDRO&quot;</td><td>&quot;94578&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Long-Term Care (SN / IC)&quot;</td><td>109.0</td><td>39785.0</td><td>176.0</td><td>45336.0</td><td>257.6</td><td>371.7</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2023</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94704&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Psychiatric&quot;</td><td>64.0</td><td>24576.0</td><td>1853.0</td><td>17413.0</td><td>9.4</td><td>10.2</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr></tbody></table></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">read_hospital_data</span><span class="p">(</span>
+    <span class="s2">&quot;data/ca_hospitals/hosp21_util_data_final-revised-06.15.2023.xlsx&quot;</span><span class="p">,</span> <span class="mi">2021</span>
+<span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 22)</small><table border="1" class="dataframe"><thead><tr><th>year</th><th>fac_name</th><th>fac_city</th><th>fac_zip</th><th>fac_operated_this_yr</th><th>facility_level</th><th>teach_hosp</th><th>county</th><th>prin_service_type</th><th>tot_lic_beds</th><th>tot_lic_bed_days</th><th>tot_discharges</th><th>tot_cen_days</th><th>tot_alos_cy</th><th>tot_alos_py</th><th>acute_respiratory_care_lic_beds</th><th>acute_respiratory_care_lic_bed_days</th><th>acute_respiratory_care_discharges</th><th>acute_respiratory_care_intra_transfers</th><th>acute_respiratory_care_cen_days</th><th>acute_respiratory_care_alos_cy</th><th>acute_respiratory_care_alos_py</th></tr><tr><td>i32</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>2021</td><td>&quot;ALAMEDA HOSPITAL&quot;</td><td>&quot;ALAMEDA&quot;</td><td>&quot;94501&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>247.0</td><td>90155.0</td><td>2431.0</td><td>66473.0</td><td>27.3</td><td>26.8</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2021</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94705&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>339.0</td><td>123735.0</td><td>11344.0</td><td>53710.0</td><td>4.7</td><td>4.8</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2021</td><td>&quot;UCSF BENIOFF CHILDREN&#x27;S HOSPIT…</td><td>&quot;OAKLAND&quot;</td><td>&quot;94609&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Pediatric&quot;</td><td>215.0</td><td>78475.0</td><td>7256.0</td><td>38381.0</td><td>5.3</td><td>5.8</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2021</td><td>&quot;FAIRMONT HOSPITAL&quot;</td><td>&quot;SAN LEANDRO&quot;</td><td>&quot;94578&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Long-Term Care (SN / IC)&quot;</td><td>109.0</td><td>39785.0</td><td>179.0</td><td>38652.0</td><td>215.9</td><td>542.4</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr><tr><td>2021</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94704&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Psychiatric&quot;</td><td>68.0</td><td>24820.0</td><td>2236.0</td><td>19950.0</td><td>8.9</td><td>8.3</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td><td>null</td><td>0.0</td></tr></tbody></table></div></div></div>
+</div>
+<p>The function appears to work correctly for two of the files, so let’s try it on
+all of the 2018-2023 files. We can use the built-in <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module’s <code class="docutils literal notranslate"><span class="pre">Path</span></code>
+class to help get a list of the files. The class’ <code class="docutils literal notranslate"><span class="pre">.glob</span></code> method does a
+wildcard search for files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/ca_hospitals/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.xlsx&quot;</span><span class="p">)</span>
+<span class="n">paths</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+<span class="n">paths</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[PosixPath(&#39;data/ca_hospitals/hosp21_util_data_final-revised-06.15.2023.xlsx&#39;),
+ PosixPath(&#39;data/ca_hospitals/hosp18_util_data_final.xlsx&#39;),
+ PosixPath(&#39;data/ca_hospitals/hosp20_util_data_final-revised-06.15.2023.xlsx&#39;),
+ PosixPath(&#39;data/ca_hospitals/hosp17_util_data_final.xlsx&#39;),
+ PosixPath(&#39;data/ca_hospitals/hosp22_util_data_final_revised_11.28.2023.xlsx&#39;),
+ PosixPath(&#39;data/ca_hospitals/hosp16_util_data_final.xlsx&#39;),
+ PosixPath(&#39;data/ca_hospitals/hosp23_util_data_final.xlsx&#39;),
+ PosixPath(&#39;data/ca_hospitals/hosp19_util_data_final.xlsx&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In addition to the file paths, we also need the year for each file.
+Fortunately, the last two digits of the year are included in each file’s name.
+We can write a function to get these:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_hospital_year</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2000</span>
+
+
+<span class="n">get_hospital_year</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can use a for-loop to iterate over all of the files. We’ll skip the
+pre-2018 files for now:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hosps</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">get_hospital_year</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="c1"># Only years 2018-2023.</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="o">&gt;=</span> <span class="mi">2018</span><span class="p">:</span>
+        <span class="n">hosp</span> <span class="o">=</span> <span class="n">read_hospital_data</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+        <span class="n">hosps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hosp</span><span class="p">)</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">hosps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<p>With that working, we need to read the pre-2018 files. In the 2018 file, the
+fourth sheet is a crosswalk that shows which columns in the pre-2018 files
+correspond to columns in the later files. Let’s write some code to read the
+crosswalk. First, read the sheet:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cwalk</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sheet_id</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">cwalk</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 6)</small><table border="1" class="dataframe"><thead><tr><th>Page</th><th>Line</th><th>Column</th><th>SIERA Dataset Header (2019)</th><th>ALIRTS Dataset Header (2017)</th><th>Notes</th></tr><tr><td>i64</td><td>i64</td><td>i64</td><td>str</td><td>str</td><td>str</td></tr></thead><tbody><tr><td>1</td><td>1</td><td>1</td><td>&quot;FAC_NAME&quot;</td><td>&quot;FAC_NAME&quot;</td><td>null</td></tr><tr><td>1</td><td>2</td><td>1</td><td>&quot;FAC_NO&quot;</td><td>&quot;OSHPD_ID&quot;</td><td>null</td></tr><tr><td>1</td><td>3</td><td>1</td><td>&quot;FAC_STR_ADDR&quot;</td><td>null</td><td>&quot;Address 1 and Address 2 combin…</td></tr><tr><td>1</td><td>4</td><td>1</td><td>&quot;FAC_CITY&quot;</td><td>&quot;FAC_CITY&quot;</td><td>null</td></tr><tr><td>1</td><td>5</td><td>1</td><td>&quot;FAC_ZIP&quot;</td><td>&quot;FAC_ZIPCODE&quot;</td><td>null</td></tr></tbody></table></div></div></div>
+</div>
+<p>The new and old column names are in the fourth and fifth columns, respectively,
+so we’ll get just those:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cwalk</span> <span class="o">=</span> <span class="n">cwalk</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">cwalk</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 2)</small><table border="1" class="dataframe"><thead><tr><th>SIERA Dataset Header (2019)</th><th>ALIRTS Dataset Header (2017)</th></tr><tr><td>str</td><td>str</td></tr></thead><tbody><tr><td>&quot;FAC_NAME&quot;</td><td>&quot;FAC_NAME&quot;</td></tr><tr><td>&quot;FAC_NO&quot;</td><td>&quot;OSHPD_ID&quot;</td></tr><tr><td>&quot;FAC_STR_ADDR&quot;</td><td>null</td></tr><tr><td>&quot;FAC_CITY&quot;</td><td>&quot;FAC_CITY&quot;</td></tr><tr><td>&quot;FAC_ZIP&quot;</td><td>&quot;FAC_ZIPCODE&quot;</td></tr></tbody></table></div></div></div>
+</div>
+<p>Finally, use a comprehension to turn the <code class="docutils literal notranslate"><span class="pre">cwalk</span></code> data frame into a dictionary
+with the old column names as the keys and the new column names as the values.
+This way we can easily look up the new name for any of the old columns. Some of
+the column names in <code class="docutils literal notranslate"><span class="pre">cwalk</span></code> have extra spaces at the end, so we’ll use <code class="docutils literal notranslate"><span class="pre">.strip</span></code>
+method to remove them. We’ll also skip any rows where there’s no old column
+name (because the column is only in the new data):</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cwalk</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">old</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span> <span class="n">new</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">new</span><span class="p">,</span> <span class="n">old</span> <span class="ow">in</span> <span class="n">cwalk</span><span class="o">.</span><span class="n">iter_rows</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">old</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="p">}</span>
+
+<span class="n">cwalk</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;FAC_NAME&#39;: &#39;FAC_NAME&#39;,
+ &#39;OSHPD_ID&#39;: &#39;FAC_NO&#39;,
+ &#39;FAC_CITY&#39;: &#39;FAC_CITY&#39;,
+ &#39;FAC_ZIPCODE&#39;: &#39;FAC_ZIP&#39;,
+ &#39;FAC_PHONE&#39;: &#39;FAC_PHONE&#39;,
+ &#39;FAC_ADMIN_NAME&#39;: &#39;FAC_ADMIN_NAME&#39;,
+ &#39;FAC_OPER_CURRYR&#39;: &#39;FAC_OPERATED_THIS_YR&#39;,
+ &#39;BEG_DATE&#39;: &#39;FAC_OP_PER_BEGIN_DT&#39;,
+ &#39;END_DATE&#39;: &#39;FAC_OP_PER_END_DT&#39;,
+ &#39;PARENT_NAME&#39;: &#39;FAC_PAR_CORP_NAME&#39;,
+ &#39;PARENT_CITY&#39;: &#39;FAC_PAR_CORP_CITY&#39;,
+ &#39;PARENT_STATE&#39;: &#39;FAC_PAR_CORP_STATE&#39;,
+ &#39;PARENT_ZIP_9&#39;: &#39;FAC_PAR_CORP_ZIP&#39;,
+ &#39;REPORT_PREP_NAME&#39;: &#39;REPT_PREP_NAME&#39;,
+ &#39;SUBMITTED_DT_TIME&#39;: &#39;SUBMITTED_DT&#39;,
+ &#39;LICENSE_NO&#39;: &#39;LICENSE_NO&#39;,
+ &#39;LIC_STATUS&#39;: &#39;LICENSE_STATUS&#39;,
+ &#39;FACILITY_LEVEL&#39;: &#39;FACILITY_LEVEL&#39;,
+ &#39;TRAUMA_CTR&#39;: &#39;TRAUMA_CTR&#39;,
+ &#39;TEACH_HOSP&#39;: &#39;TEACH_HOSP&#39;,
+ &#39;LONGITUDE&#39;: &#39;LONGITUDE&#39;,
+ &#39;LATITUDE&#39;: &#39;LATITUDE&#39;,
+ &#39;ASSEMBLY_DIST&#39;: &#39;ASSEMBLY_DIST&#39;,
+ &#39;SENATE_DIST&#39;: &#39;SENATE_DIST&#39;,
+ &#39;CONGRESS_DIST&#39;: &#39;CONGRESS_DIST&#39;,
+ &#39;CENS_TRACT&#39;: &#39;CENS_TRACT&#39;,
+ &#39;MED_SVC_STUDY_AREA&#39;: &#39;MED_SVC_STUDY_AREA&#39;,
+ &#39;LACO_SVC_PLAN_AREA&#39;: &#39;LA_COUNTY_SVC_PLAN_AREA&#39;,
+ &#39;HEALTH_SVC_AREA&#39;: &#39;HEALTH_SVC_AREA&#39;,
+ &#39;COUNTY&#39;: &#39;COUNTY&#39;,
+ &#39;TYPE_LIC&#39;: &#39;LIC_CAT&#39;,
+ &#39;TYPE_CNTRL&#39;: &#39;LICEE_TOC&#39;,
+ &#39;TYPE_SVC_PRINCIPAL&#39;: &#39;PRIN_SERVICE_TYPE&#39;,
+ &#39;MED_SURG_LICBED_DAY&#39;: &#39;MED_SURG_LIC_BED_DAYS&#39;,
+ &#39;MED_SURG_CENS_DAY&#39;: &#39;MED_SURG_CEN_DAYS&#39;,
+ &#39;MED_SURG_DIS&#39;: &#39;MED_SURG_DISCHARGES&#39;,
+ &#39;MED_SURG_BED_LIC&#39;: &#39;MED_SURG_LIC_BEDS&#39;,
+ &#39;PERINATL_CENS_DAY&#39;: &#39;PERINATAL_CEN_DAYS&#39;,
+ &#39;PERINATL_LICBED_DAY&#39;: &#39;PERINATAL_LIC_BED_DAYS&#39;,
+ &#39;PERINATL_BED_LIC&#39;: &#39;PERINATAL_LIC_BEDS&#39;,
+ &#39;PERINATL_DIS&#39;: &#39;PERINATAL_DISCHARGES&#39;,
+ &#39;PED_CENS_DAY&#39;: &#39;PEDIATRIC_CEN_DAYS&#39;,
+ &#39;PED_DIS&#39;: &#39;PEDIATRIC_DISCHARGES&#39;,
+ &#39;PED_BED_LIC&#39;: &#39;PEDIATRIC_LIC_BEDS&#39;,
+ &#39;PED_LICBED_DAY&#39;: &#39;PEDIATRIC_LIC_BED_DAYS&#39;,
+ &#39;ICU_TFR_INHOSP&#39;: &#39;IC_INTRA_TRANSFERS&#39;,
+ &#39;ICU_LICBED_DAY&#39;: &#39;IC_LIC_BED_DAYS&#39;,
+ &#39;ICU_BED_LIC&#39;: &#39;IC_LIC_BEDS&#39;,
+ &#39;ICU_CENS_DAY&#39;: &#39;IC_CEN_DAYS&#39;,
+ &#39;ICU_DIS&#39;: &#39;IC_DISCHARGES&#39;,
+ &#39;CCU_CENS_DAY&#39;: &#39;CORONARY_CARE_CEN_DAYS&#39;,
+ &#39;CCU_BED_LIC&#39;: &#39;CORONARY_CARE_LIC_BEDS&#39;,
+ &#39;CCU_LICBED_DAY&#39;: &#39;CORONARY_CARE_LIC_BED_DAYS&#39;,
+ &#39;CCU_DIS&#39;: &#39;CORONARY_CARE_DISCHARGES&#39;,
+ &#39;CCU_TFR_INHOSP&#39;: &#39;CORONARY_CARE_INTRA_TRANSFERS&#39;,
+ &#39;RESP_DIS&#39;: &#39;ACUTE_RESPIRATORY_CARE_DISCHARGES&#39;,
+ &#39;RESP_LICBED_DAY&#39;: &#39;ACUTE_RESPIRATORY_CARE_LIC_BED_DAYS&#39;,
+ &#39;RESP_BED_LIC&#39;: &#39;ACUTE_RESPIRATORY_CARE_LIC_BEDS&#39;,
+ &#39;RESP_CENS_DAY&#39;: &#39;ACUTE_RESPIRATORY_CARE_CEN_DAYS&#39;,
+ &#39;RESP_TFR_INHOSP&#39;: &#39;ACUTE_RESPIRATORY_CARE_INTRA_TRANSFERS&#39;,
+ &#39;BURN_LICBED_DAY&#39;: &#39;BURN_LIC_BED_DAYS&#39;,
+ &#39;BURN_CENS_DAY&#39;: &#39;BURN_CEN_DAYS&#39;,
+ &#39;BURN_DIS&#39;: &#39;BURN_DISCHARGES&#39;,
+ &#39;BURN_TFR_INHOSP&#39;: &#39;BURN_INTRA_TRANSFERS&#39;,
+ &#39;BURN_BED_LIC&#39;: &#39;BURN_LIC_BEDS&#39;,
+ &#39;NICU_DIS&#39;: &#39;IC_NEWBORN_DISCHARGES&#39;,
+ &#39;NICU_LICBED_DAY&#39;: &#39;IC_NEWBORN_LIC_BED_DAYS&#39;,
+ &#39;NICU_BED_LIC&#39;: &#39;IC_NEWBORN_LIC_BEDS&#39;,
+ &#39;NICU_CENS_DAY&#39;: &#39;IC_NEWBORN_CEN_DAYS&#39;,
+ &#39;NICU_TFR_INHOSP&#39;: &#39;IC_NEWBORN_INTRA_TRANSFERS&#39;,
+ &#39;REHAB_LICBED_DAY&#39;: &#39;REHAB_CTR_LIC_BED_DAYS&#39;,
+ &#39;REHAB_CENS_DAY&#39;: &#39;REHAB_CTR_CEN_DAYS&#39;,
+ &#39;REHAB_DIS&#39;: &#39;REHAB_CTR_DISCHARGES&#39;,
+ &#39;REHAB_BED_LIC&#39;: &#39;REHAB_CTR_LIC_BEDS&#39;,
+ &#39;GAC_DIS_SUBTOTL&#39;: &#39;GAC_SUBTOT_DISCHARGES&#39;,
+ &#39;GAC_LICBED_DAY_SUBTOTL&#39;: &#39;GAC_SUBTOT_LIC_BED_DAYS&#39;,
+ &#39;GAC_BED_LIC_SUBTOTL&#39;: &#39;GAC_SUBTOT_LIC_BEDS&#39;,
+ &#39;GAC_CENS_DAY_SUBTOTL&#39;: &#39;GAC_SUBTOT_CEN_DAYS&#39;,
+ &#39;CHEM_LICBED_DAY&#39;: &#39;CHEM_DEPEND_RECOVERY_LIC_BED_DAYS&#39;,
+ &#39;CHEM_DIS&#39;: &#39;CHEM_DEPEND_RECOVERY_DISCHARGES&#39;,
+ &#39;CHEM_CENS_DAY&#39;: &#39;CHEM_DEPEND_RECOV_CEN_DAYS&#39;,
+ &#39;CHEM_BED_LIC&#39;: &#39;CHEM_DEPEND_RECOVERY_LIC_BEDS&#39;,
+ &#39;PSY_BED_LIC&#39;: &#39;ACUTE_PSYCHIATRIC_LIC_BEDS&#39;,
+ &#39;PSY_DIS&#39;: &#39;ACUTE_PSYCHIATRIC_DISCHARGES&#39;,
+ &#39;PSY_CENS_DAY&#39;: &#39;ACUTE_PSYCHIATRIC_CEN_DAYS&#39;,
+ &#39;PSY_LICBED_DAY&#39;: &#39;ACUTE_PSYCHIATRIC_LIC_BED_DAYS&#39;,
+ &#39;SN_DIS&#39;: &#39;SN_DISCHARGES&#39;,
+ &#39;SN_TFR_INHOSP&#39;: &#39;SN_INTRA_TRANSFERS&#39;,
+ &#39;SN_LICBED_DAY&#39;: &#39;SN_LIC_BED_DAYS&#39;,
+ &#39;SN_CENS_DAY&#39;: &#39;SN_CEN_DAYS&#39;,
+ &#39;SN_BED_LIC&#39;: &#39;SN_LIC_BEDS&#39;,
+ &#39;IC_DIS&#39;: &#39;INTERMEDIATE_CARE_DISCHARGES&#39;,
+ &#39;IC_BED_LIC&#39;: &#39;INTERMEDIATE_CARE_LIC_BEDS&#39;,
+ &#39;IC_CENS_DAY&#39;: &#39;INTERMEDIATE_CARE_CEN_DAYS&#39;,
+ &#39;IC_LICBED_DAY&#39;: &#39;INTERMEDIATE_CARE_LIC_BED_DAYS&#39;,
+ &#39;IC_DEV_DISBL_DIS&#39;: &#39;INTERMEDIATE_CARE_DEV_DIS_DISCHARGES&#39;,
+ &#39;IC_DEV_DISBL_BED_LIC&#39;: &#39;INTERMEDIATE_CARE_DEV_DIS_LIC_BEDS&#39;,
+ &#39;IC_DEV_DISBL_LICBED_DAY&#39;: &#39;INTERMEDIATE_CARE_DEV_DIS_LIC_BED_DAYS&#39;,
+ &#39;IC_DEV_DISBL_CENS_DAY&#39;: &#39;INTERMEDIATE_CARE_DEV_DIS_CEN_DAYS&#39;,
+ &#39;HOSP_BED_LIC_TOTL&#39;: &#39;TOT_LIC_BEDS&#39;,
+ &#39;HOSP_CENS_DAY_TOTL&#39;: &#39;TOT_CEN_DAYS&#39;,
+ &#39;HOSP_LICBED_DAY_TOTL&#39;: &#39;TOT_LIC_BED_DAYS&#39;,
+ &#39;HOSP_DIS_TOTL&#39;: &#39;TOT_DISCHARGES&#39;,
+ &#39;CHEM_GAC_CENS_DAY&#39;: &#39;GAC_CDRS_CEN_DAYS&#39;,
+ &#39;CHEM_GAC_BED_LIC&#39;: &#39;GAC_CDRS_LIC_BEDS&#39;,
+ &#39;CHEM_GAC_DIS&#39;: &#39;GAC_CDRS_DISCHARGES&#39;,
+ &#39;CHEM_PSY_CENS_DAY&#39;: &#39;ACUTE_PSYCH_CEN_DAYS&#39;,
+ &#39;CHEM_PSY_DIS&#39;: &#39;ACUTE_PSYCH_DISCHARGES&#39;,
+ &#39;CHEM_PSY_BED_LIC&#39;: &#39;ACUTE_PSYCH_LIC_BEDS&#39;,
+ &#39;NEWBORN_NURSRY_BASSINETS&#39;: &#39;NEWBORN_NURSERY_BASSINETS&#39;,
+ &#39;NEWBORN_NURSRY_INFANTS&#39;: &#39;NEWBORN_NURSERY_INFANTS&#39;,
+ &#39;NEWBORN_NURSRY_CENS_DAY&#39;: &#39;NEWBORN_NURSERY_CEN_DAYS&#39;,
+ &#39;BED_SWING_SN&#39;: &#39;GEN_ACUTE_CARE_SN_SWING_BEDS&#39;,
+ &#39;PSY_LCK_CENS_PATIENT&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_LOCKED_ON_1231&#39;,
+ &#39;PSY_OPN_CENS_PATIENT&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_OPEN_ON_1231&#39;,
+ &#39;PSY_CENS_PATIENT_TOTL&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_TOT_BY_PAYOR&#39;,
+ &#39;PSY_CENS_PATIENT_&lt;=17&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_0_TO_17_ON_1231&#39;,
+ &#39;PSY_CENS_PATIENT_18-64&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_18_TO_64_ON_1231&#39;,
+ &#39;PSY_CENS_PATIENT_=65&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_65_AND_UP_ON_1231&#39;,
+ &#39;PSY_CENS_PATIENT_MCAR&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_MED_TRAD_ON_1231&#39;,
+ &#39;PSY_CENS_PATIENT_MNG_MCAR&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_MED_MANAGED_CARE_ON_1231&#39;,
+ &#39;PSY_CENS_PATIENT_MCAL&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_MED_CAL_TRAD_ON_1231&#39;,
+ &#39;PSY_CENS_PATIENT_MNG_MCAL&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_MED_CAL_MANAGED_CARE_ON_1231&#39;,
+ &#39;PSY_CENS_PATIENT_CO_INDIG&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_COUNTY_INDIGENT_PROG&#39;,
+ &#39;PSY_CENS_PATIENT_OTHR_THIRDPTY&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_3RD_PARTIES_TRAD&#39;,
+ &#39;PSY_CENS_PATIENT_MNG_OTHR_THIRDPTY&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_3RD_PARTIES_MANAGED_CARE&#39;,
+ &#39;PSY_CENS_PATIENT_SHDOYL&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_SHORT_DOYLE&#39;,
+ &#39;PSY_CENS_PATIENT_OTHR_INDIG&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_OTHER_INDIGENT&#39;,
+ &#39;PSY_CENS_PATIENT_OTHR_PAYER&#39;: &#39;ACUTE_PSYCHIATRIC_PATS_OTHER_PAYERS&#39;,
+ &#39;PSY_PROG_SHDOYL&#39;: &#39;SHORT_DOYLE_SERVICES_OFFERED&#39;,
+ &#39;HOSPICE_PROG&#39;: &#39;INPATIENT_HOSPICE_PROG_OFFERED&#39;,
+ &#39;HOSPICE_CLASS_GAC_BED&#39;: &#39;BED_CLASS_GEN_ACUTE_CARE_SERVICE&#39;,
+ &#39;HOSPICE_CLASS_SN_BED&#39;: &#39;BED_CLASS_SN_HOSPICE_SERVICE&#39;,
+ &#39;HOSPICE_CLASS_IC_BED&#39;: &#39;BED_CLASS_IC_HOSPICE_SERVICE&#39;,
+ &#39;INPATIENT_PALLIATIVE_CARE_PROG_OFFERED&#39;: &#39;INPATIENT_PALLIATIVE_CARE_PROG_OFFERED&#39;,
+ &#39;INPATIENT_PALLIATIVE_CARE_PROG_NURSES&#39;: &#39;INPATIENT_PALLIATIVE_CARE_PROG_NURSES&#39;,
+ &#39;INPATIENT_PALLIATIVE_CARE_PROG_NURSES_CERTIFIED&#39;: &#39;INPATIENT_PALLIATIVE_CARE_PROG_NURSES_CERTIFIED&#39;,
+ &#39;INPATIENT_PALLIATIVE_CARE_PROG_PHYSICIAN&#39;: &#39;INPATIENT_PALLIATIVE_CARE_PROG_PHYSICIAN&#39;,
+ &#39;INPATIENT_PALLIATIVE_CARE_PROG_PHYSICIAN_CERTIFIED&#39;: &#39;INPATIENT_PALLIATIVE_CARE_PROG_PHYSICIAN_CERTIFIED&#39;,
+ &#39;INPATIENT_PALLIATIVE_CARE_PROG_SOCIAL_WORKER&#39;: &#39;INPATIENT_PALLIATIVE_CARE_PROG_SOCIAL_WORKER&#39;,
+ &#39;INPATIENT_PALLIATIVE_CARE_PROG_SOCIAL_WORKER_CERTIFIED&#39;: &#39;INPATIENT_PALLIATIVE_CARE_PROG_SOCIAL_WORKER_CERTIFIED&#39;,
+ &#39;INPATIENT_PALLIATIVE_CARE_PROG_CHAPLAINS&#39;: &#39;INPATIENT_PALLIATIVE_CARE_PROG_CHAPLAINS&#39;,
+ &#39;OUTPATIENT_PALLIATIVE_CARE_SERV_OFFERED&#39;: &#39;OUTPATIENT_PALLIATIVE_CARE_SERV_OFFERED&#39;,
+ &#39;EMSA_TRAUMA_CTR_DESIG&#39;: &#39;EMSA_TRAUMA_DESIGNATION&#39;,
+ &#39;EMSA_TRAUMA_PEDS_CTR_DESIG&#39;: &#39;EMSA_TRAUMA_DESIGNATION_PEDIATRIC&#39;,
+ &#39;ED_LIC_LEVL_END&#39;: &#39;LIC_ED_LEV_END&#39;,
+ &#39;ED_LIC_LEVL_BEGIN&#39;: &#39;LIC_ED_LEV_BEGIN&#39;,
+ &#39;ED_ANESTH_AVAIL24HRS&#39;: &#39;AVAIL_SERVICES_ANESTHESIOLOGIST_24HR&#39;,
+ &#39;ED_ANESTH_AVAIL_ON_CALL&#39;: &#39;AVAIL_SERVICES_ANESTHESIOLOGIST_ON_CALL&#39;,
+ &#39;ED_LAB_SVCS_AVAIL24HRS&#39;: &#39;AVAIL_SERVICES_LAB_24HR&#39;,
+ &#39;ED_LAB_SVCS_AVAIL_ON_CALL&#39;: &#39;AVAIL_SERVICES_LAB_ON_CALL&#39;,
+ &#39;ED_OP_RM_AVAIL_ON_CALL&#39;: &#39;AVAIL_SERVICES_OPER_RM_ON_CALL&#39;,
+ &#39;ED_OP_RM_AVAIL24HRS&#39;: &#39;AVAIL_SERVICES_OPER_RM_24HR&#39;,
+ &#39;ED_PHARM_AVAIL24HRS&#39;: &#39;AVAIL_SERVICES_PHARMACIST_24HR&#39;,
+ &#39;ED_PHARM_AVAIL_ON_CALL&#39;: &#39;AVAIL_SERVICES_PHARMACIST_ON_CALL&#39;,
+ &#39;ED_PHYSN_AVAIL24HRS&#39;: &#39;AVAIL_SERVICES_PHYSICIAN_24HR&#39;,
+ &#39;ED_PHYSN_AVAIL_ON_CALL&#39;: &#39;AVAIL_SERVICES_PHYSICIAN_ON_CALL&#39;,
+ &#39;ED_PSYCH_ER_AVAIL24HRS&#39;: &#39;AVAIL_SERVICES_PSYCHIATRIC_ER_24HR&#39;,
+ &#39;ED_PSYCH_ER_AVAIL_ON_CALL&#39;: &#39;AVAIL_SERVICES_PSYCHIATRIC_ER_ON_CALL&#39;,
+ &#39;ED_RADIOL_SVCS_AVAIL_ON_CALL&#39;: &#39;AVAIL_SERVICES_RADIOLOGY_ON_CALL&#39;,
+ &#39;ED_RADIOL_SVCS_AVAIL24HRS&#39;: &#39;AVAIL_SERVICES_RADIOLOGY_24HR&#39;,
+ &#39;EMS_VISITS_NON_URGENT_ADMITTED&#39;: &#39;EMS_VISITS_NON_URGENT_ADMITTED&#39;,
+ &#39;EMS_VISITS_NON_URGENT_NOT_ADMITTED&#39;: &#39;EMS_VISITS_NON_URGENT_TOT&#39;,
+ &#39;EMS_VISITS_URGENT_ADMITTED&#39;: &#39;EMS_VISITS_URGENT_ADMITTED&#39;,
+ &#39;EMS_VISITS_URGENT_NOT_ADMITTED&#39;: &#39;EMS_VISITS_URGENT_TOT&#39;,
+ &#39;EMS_VISITS_MODERATE_ADMITTED&#39;: &#39;EMS_VISITS_MODERATE_ADMITTED&#39;,
+ &#39;EMS_VISITS_MODERATE_NOT_ADMITTED&#39;: &#39;EMS_VISITS_MODERATE_TOT&#39;,
+ &#39;EMS_VISITS_SEVERE_ADMITTED&#39;: &#39;EMS_VISITS_SEVERE_ADMITTED&#39;,
+ &#39;EMS_VISITS_SEVERE_NOT_ADMITTED&#39;: &#39;EMS_VISITS_SEVERE_TOT&#39;,
+ &#39;EMS_VISITS_CRITICAL_NOT_ADMITTED&#39;: &#39;EMS_VISITS_CRITICAL_TOT&#39;,
+ &#39;EMS_VISITS_CRITICAL_ADMITTED&#39;: &#39;EMS_VISITS_CRITICAL_ADMITTED&#39;,
+ &#39;EMS_NO_ADM_VIS_TOTL&#39;: &#39;EMER_DEPT_VISITS_NOT_RESULT_ADMISSIONS_TOT&#39;,
+ &#39;ED_TRAFFIC_TOTL&#39;: &#39;ER_TRAFFIC_TOT&#39;,
+ &#39;EMS_ADM_VIS_TOTL&#39;: &#39;ADMITTED_FROM_EMER_DEPT_TOT&#39;,
+ &#39;EMS_STATION&#39;: &#39;EMER_MED_TREAT_STATIONS_ON_1231&#39;,
+ &#39;EMS_NON_EMERG_VIS&#39;: &#39;NON_EMER_VISITS_IN_EMER_DEPT&#39;,
+ &#39;EMS_REGISTERS_NO_TREAT&#39;: &#39;EMER_REGISTRATIONS_PATS_LEAVE_WO_BEING_SEEN&#39;,
+ &#39;EMS_AMB_DIVERS&#39;: &#39;EMER_DEPT_AMBULANCE_DIVERSION_HOURS&#39;,
+ &#39;EMS_AMB_DIVERS_JAN_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_JAN&#39;,
+ &#39;EMS_AMB_DIVERS_FEB_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_FEB&#39;,
+ &#39;EMS_AMB_DIVERS_MAR_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_MAR&#39;,
+ &#39;EMS_AMB_DIVERS_APR_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_APR&#39;,
+ &#39;EMS_AMB_DIVERS_MAY_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_MAY&#39;,
+ &#39;EMS_AMB_DIVERS_JUN_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_JUN&#39;,
+ &#39;EMS_AMB_DIVERS_JUL_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_JUL&#39;,
+ &#39;EMS_AMB_DIVERS_AUG_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_AUG&#39;,
+ &#39;EMS_AMB_DIVERS_SEP_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_SEP&#39;,
+ &#39;EMS_AMB_DIVERS_OCT_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_OCT&#39;,
+ &#39;EMS_AMB_DIVERS_NOV_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_NOV&#39;,
+ &#39;EMS_AMB_DIVERS_DEC_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_DEC&#39;,
+ &#39;EMS_AMB_DIVERS_TOTL_HOURS&#39;: &#39;EMER_DEPT_HR_DIVERSION_TOT&#39;,
+ &#39;OP_RM_MIN_IP&#39;: &#39;INPATIENT_SURG_OPER_RM_MINS&#39;,
+ &#39;SURG_IP&#39;: &#39;INPATIENT_SURG_OPER&#39;,
+ &#39;SURG_OP&#39;: &#39;OUTPATIENT_SURG_OPER&#39;,
+ &#39;OP_RM_MIN_OP&#39;: &#39;OUTPATIENT_SURG_OPER_RM_MINS&#39;,
+ &#39;OP_RM_IP_ONLY&#39;: &#39;INPAT_OPER_RM&#39;,
+ &#39;OP_RM_OP_ONLY&#39;: &#39;OUTPAT_OPER_RM&#39;,
+ &#39;OP_RM_IP_AND_OP&#39;: &#39;INPAT_OUTPAT_OPER_RM&#39;,
+ &#39;OP_RM_TOTL&#39;: &#39;OPER_RM_TOT&#39;,
+ &#39;AMB_SURG_PROG&#39;: &#39;OFFER_AMBULATORY_SURG_PROG&#39;,
+ &#39;BIRTHS_LIVE_TOTL&#39;: &#39;LIVE_BIRTHS_TOT&#39;,
+ &#39;BIRTHS_LIVE_&lt;5LBS_8OZ&#39;: &#39;LIVE_BIRTHS_LT_2500GM&#39;,
+ &#39;BIRTHS_LIVE_&lt;3LBS_5OZ&#39;: &#39;LIVE_BIRTHS_LT_1500GM&#39;,
+ &#39;ABC_OP_PROG&#39;: &#39;OFFER_ALTERNATE_BIRTH_PROG&#39;,
+ &#39;ABC_LDR&#39;: &#39;ALTERNATE_SETTING_LDR&#39;,
+ &#39;ABC_LDRP&#39;: &#39;ALTERNATE_SETTING_LDRP&#39;,
+ &#39;BIRTHS_LIVE_ABC&#39;: &#39;LIVE_BIRTHS_IN_ALTERNATIVE_SETTING&#39;,
+ &#39;BIRTHS_LIVE_C_SEC&#39;: &#39;LIVE_BIRTHS_C_SECTION&#39;,
+ &#39;LICENSURE_CVSURG_SVCS&#39;: &#39;LIC_CARDIOLOGY_CARDIOVASCULAR_SURG_SERVICES&#39;,
+ &#39;CVSURG_LIC_OP_RM&#39;: &#39;CARDIOVASCULAR_OPER_RM&#39;,
+ &#39;CVSURG_WITH_ECBPASS_PED&#39;: &#39;CARDIOVASCULAR_SURG_OPER_PEDIATRIC_BYPASS_USED&#39;,
+ &#39;CVSURG_WITHOUT_ECBPASS_PED&#39;: &#39;CARDIOVASCULAR_SURG_OPER_PEDIATRIC_BYPASS_NOT_USED&#39;,
+ &#39;CVSURG_WITHOUT_ECBPASS_ADLT&#39;: &#39;CARDIOVASCULAR_SURG_OPER_ADULT_BYPASS_NOT_USED&#39;,
+ &#39;CVSURG_WITH_ECBPASS_ADLT&#39;: &#39;CARDIOVASCULAR_SURG_OPER_ADULT_BYPASS_USED&#39;,
+ &#39;CVSURG_WITHOUT_ECBPASS_TOTL&#39;: &#39;CARDIOVASCULAR_SURG_OPER_BYPASS_NOT_USED_TOT&#39;,
+ &#39;CVSURG_WITH_ECBPASS_TOTL&#39;: &#39;CARDIOVASCULAR_SURG_OPER_BYPASS_USED_TOT&#39;,
+ &#39;CVSURG_CABG_TOTL&#39;: &#39;CORONARY_ARTERY_BYPASS_GRAFT_SURG&#39;,
+ &#39;CATH_CARD_RM&#39;: &#39;CARDIAC_CATHETERIZATION_LAB_RM&#39;,
+ &#39;CATH_IP_PED_THER_VIS&#39;: &#39;CARD_CATH_PED_IP_THER_VST&#39;,
+ &#39;CATH_IP_PED_DX_VIS&#39;: &#39;CARD_CATH_PED_IP_DIAG_VST&#39;,
+ &#39;CATH_OP_PED_THER_VIS&#39;: &#39;CARD_CATH_PED_OP_THER_VST&#39;,
+ &#39;CATH_OP_PED_DX_VIS&#39;: &#39;CARD_CATH_PED_OP_DIAG_VST&#39;,
+ &#39;CATH_IP_ADLT_DX_VIS&#39;: &#39;CARDIAC_CATHETERIZATION_ADULT_INPAT_DIAGNOSTIC_VISITS&#39;,
+ &#39;CATH_IP_ADLT_THER_VIS&#39;: &#39;CARDIAC_CATHETERIZATION_ADULT_INPAT_THERAPEUTIC_VISITS&#39;,
+ &#39;CATH_OP_ADLT_THER_VIS&#39;: &#39;CARDIAC_CATHETERIZATION_ADULT_OUTPAT_THERAPEUTIC_VISITS&#39;,
+ &#39;CATH_OP_ADLT_DX_VIS&#39;: &#39;CARDIAC_CATHETERIZATION_ADULT_OUTPAT_DIAGNOSTIC_VISITS&#39;,
+ &#39;CATH_THER_VIS_TOTL&#39;: &#39;CARDIAC_CATHETERIZATION_THERAPEUTIC_VISITS_TOT&#39;,
+ &#39;CATH_DX_VIS_TOTL&#39;: &#39;CARDIAC_CATHETERIZATION_DIAGNOSTIC_VISITS_TOT&#39;,
+ &#39;CARDIAC_CATH_DX_PROC&#39;: &#39;DIAGNOSTIC_CARDIAC_CATH_PROC&#39;,
+ &#39;MYOCARDIAL_BIOPSY&#39;: &#39;MYOCARDIAL_BIOPSY&#39;,
+ &#39;PACEMKR_PERM_IMPL&#39;: &#39;PERM_PACEMAKER_IMPLANT&#39;,
+ &#39;OTH_PERM_PACEMAKER_PROC&#39;: &#39;OTH_PERM_PACEMAKER_PROC&#39;,
+ &#39;ICD_IMPLANTATION&#39;: &#39;IMPLANABLE_CARDIO_DEFIB_IMPLANTATION&#39;,
+ &#39;OTH_ICD_PROCEDURES&#39;: &#39;OTH_PROCEDURES&#39;,
+ &#39;PCI_WITH_STENT&#39;: &#39;PCI_WITH_STENT&#39;,
+ &#39;PCI_WITHOUT_STENT&#39;: &#39;PCI_WO_STENT&#39;,
+ &#39;ATHERECTOMY_PTCRA&#39;: &#39;ATHERECTOMY&#39;,
+ &#39;THROMBO_AGT&#39;: &#39;THROMBOLYTIC_AGENTS&#39;,
+ &#39;PTBV&#39;: &#39;PTBV&#39;,
+ &#39;DX_EP_STUDY&#39;: &#39;DIAGNOSTIC_ELECTROPHYSIOLOGY_EP&#39;,
+ &#39;CATHETER_ABLATION&#39;: &#39;CATHETER_ABLATION&#39;,
+ &#39;PERIPHERAL_VASCULAR_ANGIOGRAPHY&#39;: &#39;PERIPHERAL_VASCULAR_ANGIOGRAPHY&#39;,
+ &#39;PERIPHERAL_VASCULAR_INTERVENTIONAL&#39;: &#39;PERIPHERAL_VASCULAR_INTERVENTIONAL&#39;,
+ &#39;CAROTID_STENTING&#39;: &#39;CAROTID_STENTING&#39;,
+ &#39;INTRA_AORTIC_BALLOON_PUMP_INS&#39;: &#39;INTRA_AORTIC_BALLOON_PUMP_INSERTION&#39;,
+ &#39;CATHETER_BASED_VENTRICULAR_INS&#39;: &#39;CATHETER_BASED_VENTRICULAR_ASSIST_DEVICE_INSERTION&#39;,
+ &#39;OTHR_CATH_PROC&#39;: &#39;ALL_OTHER_CATHETERIZATION_PROC&#39;,
+ &#39;CATH_TOTL&#39;: &#39;CATHETERIZATION_PROC_TOT&#39;,
+ &#39;EQUIP_ACQ_OVER_500K&#39;: &#39;FAC_ACQUIRE_EQUIP_OVER_500K&#39;,
+ &#39;EQUIP_01_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_01&#39;,
+ &#39;EQUIP_01_VALUE&#39;: &#39;EQUIP_VAL_01&#39;,
+ &#39;EQUIP_01_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_01&#39;,
+ &#39;EQUIP_01_DESCRIP&#39;: &#39;DESC_EQUIP_01&#39;,
+ &#39;EQUIP_02_DESCRIP&#39;: &#39;DESC_EQUIP_02&#39;,
+ &#39;EQUIP_02_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_02&#39;,
+ &#39;EQUIP_02_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_02&#39;,
+ &#39;EQUIP_02_VALUE&#39;: &#39;EQUIP_VAL_02&#39;,
+ &#39;EQUIP_03_VALUE&#39;: &#39;EQUIP_VAL_03&#39;,
+ &#39;EQUIP_03_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_03&#39;,
+ &#39;EQUIP_03_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_03&#39;,
+ &#39;EQUIP_03_DESCRIP&#39;: &#39;DESC_EQUIP_03&#39;,
+ &#39;EQUIP_04_DESCRIP&#39;: &#39;DESC_EQUIP_04&#39;,
+ &#39;EQUIP_04_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_04&#39;,
+ &#39;EQUIP_04_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_04&#39;,
+ &#39;EQUIP_04_VALUE&#39;: &#39;EQUIP_VAL_04&#39;,
+ &#39;EQUIP_05_VALUE&#39;: &#39;EQUIP_VAL_05&#39;,
+ &#39;EQUIP_05_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_05&#39;,
+ &#39;EQUIP_05_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_05&#39;,
+ &#39;EQUIP_05_DESCRIP&#39;: &#39;DESC_EQUIP_05&#39;,
+ &#39;EQUIP_06_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_06&#39;,
+ &#39;EQUIP_06_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_06&#39;,
+ &#39;EQUIP_06_DESCRIP&#39;: &#39;DESC_EQUIP_06&#39;,
+ &#39;EQUIP_06_VALUE&#39;: &#39;EQUIP_VAL_06&#39;,
+ &#39;EQUIP_07_VALUE&#39;: &#39;EQUIP_VAL_07&#39;,
+ &#39;EQUIP_07_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_07&#39;,
+ &#39;EQUIP_07_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_07&#39;,
+ &#39;EQUIP_07_DESCRIP&#39;: &#39;DESC_EQUIP_07&#39;,
+ &#39;EQUIP_08_DESCRIP&#39;: &#39;DESC_EQUIP_08&#39;,
+ &#39;EQUIP_08_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_08&#39;,
+ &#39;EQUIP_08_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_08&#39;,
+ &#39;EQUIP_08_VALUE&#39;: &#39;EQUIP_VAL_08&#39;,
+ &#39;EQUIP_09_VALUE&#39;: &#39;EQUIP_VAL_09&#39;,
+ &#39;EQUIP_09_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_09&#39;,
+ &#39;EQUIP_09_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_09&#39;,
+ &#39;EQUIP_09_DESCRIP&#39;: &#39;DESC_EQUIP_09&#39;,
+ &#39;EQUIP_10_DESCRIP&#39;: &#39;DESC_EQUIP_10&#39;,
+ &#39;EQUIP_10_ACQUI_MEANS&#39;: &#39;MEANS_FOR_ACQUISITION_10&#39;,
+ &#39;EQUIP_10_ACQUI_DT&#39;: &#39;DT_AQUIRE_EQUIP_10&#39;,
+ &#39;EQUIP_10_VALUE&#39;: &#39;EQUIP_VAL_10&#39;,
+ &#39;CAP_EXP_OVER_1MIL&#39;: &#39;PROJ_OVER_1M&#39;,
+ &#39;PROJ_01_PROJTD_CAP_EXP&#39;: &#39;PROJ_EXPENDITURES_01&#39;,
+ &#39;PROJ_01_OSHPD_PROJ_NO&#39;: &#39;OSHPD_PROJ_NO_01&#39;,
+ &#39;PROJ_01_DESCRIP_CAP_EXP&#39;: &#39;DESC_PROJ_01&#39;,
+ &#39;PROJ_02_DESCRIP_CAP_EXP&#39;: &#39;DESC_PROJ_02&#39;,
+ &#39;PROJ_02_OSHPD_PROJ_NO&#39;: &#39;OSHPD_PROJ_NO_02&#39;,
+ &#39;PROJ_02_PROJTD_CAP_EXP&#39;: &#39;PROJ_EXPENDITURES_02&#39;,
+ &#39;PROJ_03_OSHPD_PROJ_NO&#39;: &#39;OSHPD_PROJ_NO_03&#39;,
+ &#39;PROJ_03_PROJTD_CAP_EXP&#39;: &#39;PROJ_EXPENDITURES_03&#39;,
+ &#39;PROJ_03_DESCRIP_CAP_EXP&#39;: &#39;DESC_PROJ_03&#39;,
+ &#39;PROJ_04_DESCRIP_CAP_EXP&#39;: &#39;DESC_PROJ_04&#39;,
+ &#39;PROJ_04_OSHPD_PROJ_NO&#39;: &#39;OSHPD_PROJ_NO_04&#39;,
+ &#39;PROJ_04_PROJTD_CAP_EXP&#39;: &#39;PROJ_EXPENDITURES_04&#39;,
+ &#39;PROJ_05_OSHPD_PROJ_NO&#39;: &#39;OSHPD_PROJ_NO_05&#39;,
+ &#39;PROJ_05_PROJTD_CAP_EXP&#39;: &#39;PROJ_EXPENDITURES_05&#39;,
+ &#39;PROJ_05_DESCRIP_CAP_EXP&#39;: &#39;DESC_PROJ_05&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now define a new version of the <code class="docutils literal notranslate"><span class="pre">read_hospital_data</span></code> function that uses
+the crosswalk to change the column names when <code class="docutils literal notranslate"><span class="pre">year</span> <span class="pre">&lt;</span> <span class="pre">2018</span></code>. You can use the
+dict <code class="docutils literal notranslate"><span class="pre">.get</span></code> method, which tries to get the value for the key in its first
+argument and returns its second argument if that key isn’t in the dict. Let’s
+also change function to exclude columns with <code class="docutils literal notranslate"><span class="pre">ALOS</span></code> in the name, because they
+have no equivalent in the pre-2018 files:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_hospital_data</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="c1"># Read the 2nd sheet of the file.</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sheet_id</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Remove the first 4 and last row.</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="c1"># Fix pre-2018 column names.</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;</span> <span class="mi">2018</span><span class="p">:</span>
+        <span class="n">sheet</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">cwalk</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+    <span class="c1"># Select only a few columns of interest.</span>
+    <span class="n">facility_cols</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span>
+        <span class="s2">&quot;FAC_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_CITY&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_ZIP&quot;</span><span class="p">,</span> <span class="s2">&quot;FAC_OPERATED_THIS_YR&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;FACILITY_LEVEL&quot;</span><span class="p">,</span> <span class="s2">&quot;TEACH_HOSP&quot;</span><span class="p">,</span> <span class="s2">&quot;COUNTY&quot;</span><span class="p">,</span> <span class="s2">&quot;PRIN_SERVICE_TYPE&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">),</span>
+        <span class="n">facility_cols</span><span class="p">,</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;^TOT.*$&quot;</span><span class="p">,</span> <span class="s2">&quot;^.*RESPIRATORY.*$&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="s2">&quot;^.*ALOS.*$&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Float64</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Rename the columns to lowercase.</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sheet</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can test the function on all of the files. This time, we’ll check that</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hosps</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">get_hospital_year</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">hosp</span> <span class="o">=</span> <span class="n">read_hospital_data</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+    <span class="n">hosps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hosp</span><span class="p">)</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">hosps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">pl.concat</span></code> function to concatenate, or stack, a list of data
+frames:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hosps</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">hosps</span><span class="p">)</span>
+<span class="n">hosps</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 18)</small><table border="1" class="dataframe"><thead><tr><th>year</th><th>fac_name</th><th>fac_city</th><th>fac_zip</th><th>fac_operated_this_yr</th><th>facility_level</th><th>teach_hosp</th><th>county</th><th>prin_service_type</th><th>tot_lic_beds</th><th>tot_lic_bed_days</th><th>tot_discharges</th><th>tot_cen_days</th><th>acute_respiratory_care_lic_beds</th><th>acute_respiratory_care_lic_bed_days</th><th>acute_respiratory_care_discharges</th><th>acute_respiratory_care_intra_transfers</th><th>acute_respiratory_care_cen_days</th></tr><tr><td>i32</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>str</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td><td>f64</td></tr></thead><tbody><tr><td>2021</td><td>&quot;ALAMEDA HOSPITAL&quot;</td><td>&quot;ALAMEDA&quot;</td><td>&quot;94501&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>247.0</td><td>90155.0</td><td>2431.0</td><td>66473.0</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td></tr><tr><td>2021</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94705&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;General Medical / Surgical&quot;</td><td>339.0</td><td>123735.0</td><td>11344.0</td><td>53710.0</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td></tr><tr><td>2021</td><td>&quot;UCSF BENIOFF CHILDREN&#x27;S HOSPIT…</td><td>&quot;OAKLAND&quot;</td><td>&quot;94609&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Parent Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Pediatric&quot;</td><td>215.0</td><td>78475.0</td><td>7256.0</td><td>38381.0</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td></tr><tr><td>2021</td><td>&quot;FAIRMONT HOSPITAL&quot;</td><td>&quot;SAN LEANDRO&quot;</td><td>&quot;94578&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Long-Term Care (SN / IC)&quot;</td><td>109.0</td><td>39785.0</td><td>179.0</td><td>38652.0</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td></tr><tr><td>2021</td><td>&quot;ALTA BATES SUMMIT MEDICAL CENT…</td><td>&quot;BERKELEY&quot;</td><td>&quot;94704&quot;</td><td>&quot;Yes&quot;</td><td>&quot;Consolidated Facility&quot;</td><td>&quot;No&quot;</td><td>&quot;Alameda&quot;</td><td>&quot;Psychiatric&quot;</td><td>68.0</td><td>24820.0</td><td>2236.0</td><td>19950.0</td><td>0.0</td><td>0.0</td><td>null</td><td>null</td><td>null</td></tr></tbody></table></div></div></div>
+</div>
+<p>We’ve finally got all of the data in a single data frame!</p>
+<p>To begin to address whether hospital utilization changed in 2020, let’s make a
+bar plot of total census-days:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">plotnine</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">hosps</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="s2">&quot;tot_cen_days&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_bar</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/ad84a9b3100a77d575f3f95f506fa4a287646468a71a31bae753a56a40e1ad6d.png"><img alt="../_images/ad84a9b3100a77d575f3f95f506fa4a287646468a71a31bae753a56a40e1ad6d.png" src="../_images/ad84a9b3100a77d575f3f95f506fa4a287646468a71a31bae753a56a40e1ad6d.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>According to the plot, total census-days was slightly lower in 2020 than in
+2019. This is a bit surprising, but it’s possible that California hospitals
+typically operate close to maximum capacity and were not able to substantially
+increase the number of beds in 2020 in response to the COVID-19 pandemic. You
+can use other columns in the data set, such as <code class="docutils literal notranslate"><span class="pre">tot_lic_beds</span></code> or
+<code class="docutils literal notranslate"><span class="pre">tot_lic_bed_days</span></code>, to check this.</p>
+<p>Let’s also look at census-days for acute respiratory care:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">ggplot</span><span class="p">(</span><span class="n">hosps</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="s2">&quot;acute_respiratory_care_cen_days&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="n">geom_bar</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/928ab3a4deb134351ff630551e872cf4b780ed7f33a057b81279bb760216732b.png"><img alt="../_images/928ab3a4deb134351ff630551e872cf4b780ed7f33a057b81279bb760216732b.png" src="../_images/928ab3a4deb134351ff630551e872cf4b780ed7f33a057b81279bb760216732b.png" style="width: 640px; height: 480px;" />
+</a>
+</div>
+</div>
+<p>In this plot, there’s a clear uptick in census-days in 2020, and then an
+interesting decrease to below 2019 levels in the years following. Again, you
+could use other columns in the data set to investigate this further. We’ll end
+this case study here, having accomplished the difficult task of reading the
+data and the much easier task of doing a cursory preliminary analysis of the
+data.</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">4.5. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="exercise-1">
+<h3><span class="section-number">4.5.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Link to this heading">#</a></h3>
+<p>Try writing a function <code class="docutils literal notranslate"><span class="pre">is_leap</span></code> that detects leap years. The input to your
+function should be an integer year (or a series of years), and the output
+should be a Boolean value. A year is a leap year if either of these conditions
+is true:</p>
+<ul class="simple">
+<li><p>It is divisible by 4 and not 100</p></li>
+<li><p>It is divisible by 400</p></li>
+</ul>
+<p>That means the years 2004 and 2000 are leap years, but the year 2200 is not.</p>
+<p>Hint: The modulo operator <code class="docutils literal notranslate"><span class="pre">%</span></code> returns the remainder after divding a number, so
+for example <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">%</span> <span class="pre">3</span></code> returns <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p>Here’s a few test cases for your function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">is_leap</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">is_leap</span><span class="p">(</span><span class="mi">1997</span><span class="p">)</span>
+</pre></div>
+</div>
+<!--
+```python
+# If year is divisible by 4 and not 100 -> leap
+# If year is divisible by 400 -> leap
+year = 2004
+
+def is_leap(year):
+    if year % 4 == 0 and year % 100 != 0:
+        return True
+    elif year % 400 == 0:
+        return True
+    else:
+        return False
+
+is_leap(2200)
+```
+--></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_exploring-data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Exploring Data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_appendix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Appendix: Web Scraping</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4.1. Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-statements">4.2. Conditional Statements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iteration">4.3. Iteration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops">4.3.1. For-Loops</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#planning-for-iteration">4.3.2. Planning for Iteration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-ca-hospital-utilization">4.4. Case Study: CA Hospital Utilization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">4.5. Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">4.5.1. Exercise 1</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arthur Koehl, Tyler Shoemaker, and Nick Ulle
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
